@@ -7646,23 +7646,74 @@ $$BE\cdot DH=\sqrt{1+t^2}\cdot \frac{1-t}{t+1}\sqrt{2}=BD\cdot EH.$$</p>
 <img alt="No description has been provided for this image" src="ellipse_view.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 6: Ellipse construction with foci $B$ and $H$.</em></p>
 </div>
-<h3 id="Proof-sketch">Proof sketch<a class="anchor-link" href="#Proof-sketch">¶</a></h3><blockquote>
+<h3 id="Proof-3.1-(reflection-property)">Proof 3.1 (reflection property)<a class="anchor-link" href="#Proof-3.1-(reflection-property)">¶</a></h3><blockquote>
 <p>By the reflection property of the ellipse (a light ray from $B$ to $E$ reflects and then passes through $H$), we obtain
 $$\frac{EH}{HD}=\frac{BE}{BD}.$$</p>
 <p>Reflect $H$ across line $DE$ to $H'$. Then
 $$\frac{DB}{BE}=\frac{DH'}{EH'}=\frac{DH}{EH},$$
 which is the same proportion.</p>
-</blockquote>
 <div align="center">
 <img alt="No description has been provided for this image" src="ellipse_view_wproof.png" style="height:350px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 7: Reflection proof for the ellipse construction.</em></p>
 </div>
-<p>In this generalized setup, $EF$ is no longer perpendicular to $AB$. In fact, the perpendicular line intersects $AB$ and $DB$ at $F'$ and $H'$, as shown in Figure 7. Here $H'$ differs from $H$ and does not satisfy the ratio property. The original problem is special because the $45^\circ$ angles create a surplus of right angles. The single degree of freedom here is essentially the ellipse eccentricity, with $A$ and $C$ determined by the right angle $\angle ADC$. When the ellipse degenerates to a circle (foci coincide), the identity becomes obvious.</p>
+</blockquote>
+<p>In this generalized setup, $EF$ is no longer perpendicular to $AB$. In fact, the perpendicular line through $E$ intersects $AB$ and $DB$ at $F'$ and $H'$, as shown in Figure 7. Here $H'$ differs from $H$ and does not satisfy the ratio property. The original problem is special because the $45^\circ$ angles create a surplus of right angles. The single degree of freedom here is essentially the ellipse eccentricity, with $A$ and $C$ determined by the right angle $\angle ADC$. When the ellipse degenerates to a circle (foci coincide), the identity becomes obvious.</p>
 <p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem, as shown in Figure 8 with the pure geometric approach.</p>
 <div align="center">
 <img alt="No description has been provided for this image" src="./ellipse_view_simple.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 8: The simplified ellipse setup, which reveals the essence of the original problem.</em></p>
 </div>
+<p>We can also compute the ratio analytically in the ellipse model. The de La Hire (eccentric-angle) parameter makes the geometry transparent.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="ellipse_view_simple_param.png" style="height:320px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 9: de La Hire parameters and outer-circle view with $E$, $E'$, and $E''$.</em></p>
+</div>
+<h3 id="Proof-3.2-(de-La-Hire-+-outer-circle)">Proof 3.2 (de La Hire + outer circle)<a class="anchor-link" href="#Proof-3.2-(de-La-Hire-+-outer-circle)">¶</a></h3><blockquote>
+<p>Let the ellipse be $x^{2}/a^{2}+y^{2}/b^{2}=1$ with center $O$, foci $B=(-c,0)$ and $H=(c,0)$, and $c^{2}=a^{2}-b^{2}$. Use the de La Hire (eccentric-angle) parameter $\beta$:
+$$
+E=(a\cos\beta,\, b\sin\beta),\qquad
+EB=a+c\cos\beta,\qquad
+EH=a-c\cos\beta
+$$
+(up to swapping $B,H$). Let $\ell$ be the tangent at $E$ and $D=\ell\cap BH$.</p>
+<p>From the tangent formula
+$$
+\frac{xx_0}{a^{2}}+\frac{yy_0}{b^{2}}=1
+\quad\Rightarrow\quad
+\frac{x\cos\beta}{a}+\frac{y\sin\beta}{b}=1,
+$$
+setting $y=0$ gives $x_D=a/\cos\beta$.</p>
+<p>Geometrically, the affine map $(x,y)\mapsto(x,\frac{a}{b}y)$ sends the ellipse to the outer circle $x^{2}+y^{2}=a^{2}$ and sends $E$ to $E'=(a\cos\beta,a\sin\beta)$. Since only $y$ is scaled, $E$ and $E'$ lie on a line perpendicular to $BH$ and share the same $x$-coordinate. Let $E''$ be the intersection of the line through $E$ parallel to $BH$ with the outer circle, so $E$ and $E''$ share the same $y$-coordinate (Figure 9). The map preserves tangency, so $\angle{OE'D}$ is right and $OD=a/\cos\beta$.</p>
+<p>Therefore
+$$
+DB=\frac{a}{\cos\beta}+c,\qquad DH=\frac{a}{\cos\beta}-c,
+$$
+and
+$$
+\frac{DH}{DB}
+=\frac{a-c\cos\beta}{a+c\cos\beta}
+=\frac{EH}{EB}.
+$$</p>
+</blockquote>
+<h3 id="Corollary-1-(axis-focus-scaling;-inner-structure-of-the-ratio)">Corollary 1 (axis-focus scaling; inner structure of the ratio)<a class="anchor-link" href="#Corollary-1-(axis-focus-scaling;-inner-structure-of-the-ratio)">¶</a></h3><blockquote>
+<p>From $DH=\frac{a}{\cos\beta}-c=\frac{a-c\cos\beta}{\cos\beta}$ and $EH=a-c\cos\beta$, we get
+$$
+\boxed{EH=DH\cos\beta},\qquad \boxed{EB=DB\cos\beta}.
+$$
+This shows that the tangent-axis lengths $DB,DH$ are just the focal lengths $EB,EH$ scaled by the same factor $1/\cos\beta$ (see Figure 9). The main identity $DH/DB=EH/EB$ is exactly the cancellation of that common scale.</p>
+</blockquote>
+<h3 id="Corollary-2-(focus-to-outer-tangent-distances)">Corollary 2 (focus-to-outer-tangent distances)<a class="anchor-link" href="#Corollary-2-(focus-to-outer-tangent-distances)">¶</a></h3><blockquote>
+<p>Corollary 1 gives $EH=DH\cos\beta$, and geometrically $DH\cos\beta$ is exactly the perpendicular component of $DH$ to $\ell'$, i.e., $\operatorname{dist}(H,\ell')$ (see Figure 9). Hence
+$$
+\boxed{\operatorname{dist}(H,\ell')=EH},\qquad \boxed{\operatorname{dist}(B,\ell')=EB}.
+$$</p>
+<p>The simple consistency check
+$$
+\operatorname{dist}(B,\ell')+\operatorname{dist}(H,\ell')=2a=2\,\operatorname{dist}(O,\ell')
+$$
+accounts only for the sum. The real content is that each focus-to-tangent distance equals its matching focus-to-point distance; this rigidity is encoded by the de La Hire parameter and the ellipse's affine relation to the circle.</p>
+</blockquote>
+<p>Finally, once Corollary 2 is in hand, let $P$ and $P'$ be the feet of the perpendiculars from $H$ and $B$ to $\ell'$ (for simplicity Figure 9 only shows $P$). Then $\triangle DHP \sim \triangle DBP'$ (right angles at $P,P'$ and a common angle at $D$), so $DH/DB=HP/BP'=\operatorname{dist}(H,\ell')/\operatorname{dist}(B,\ell')$, recovering the same ratio.</p>
 </div>
 </div>
 </div>
