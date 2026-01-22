@@ -7720,7 +7720,7 @@ accounts only for the sum. The real content is that each focus-to-tangent distan
 <h3 id="Proof-3.4-Outer-circle-proof">Proof 3.4 Outer circle proof<a class="anchor-link" href="#Proof-3.4-Outer-circle-proof">¶</a></h3><blockquote>
 <p>Once Corollary 2 is in hand, let $P$ and $P'$ be the feet of the perpendiculars from $H$ and $B$ to $\ell'$ (for simplicity Figure 9 only shows $P$). Then $\triangle DHP \sim \triangle DBP'$ (right angles at $P,P'$ and a common angle at $D$), so $DH/DB=HP/BP'=\operatorname{dist}(H,\ell')/\operatorname{dist}(B,\ell')$, recovering the same ratio.</p>
 </blockquote>
-<p>Finally, note that the feet of the perpendiculars drawn in Proof 3.2, $S$ and $T$, are exactly the intersection points of the tangent line $DE$ with the ellipse's outer circle. A quick proof is to show that $OT=a$ (Figure 10). Let $H'$ be the reflection of $H$ across $DE$; then $T$ is the midpoint of $HH'$. Since $O$ is the midpoint of $BH$, we have $OT=\tfrac{1}{2}BH'$. But $BH'=BE+EH=2a$, hence $OT=a$. The same reflection with $B$ gives $OS=a$, so $S$ and $T$ are precisely the two intersections of $DE$ with the outer circle.</p>
+<p>Finally, there is a fun fact. Note that the feet of the perpendiculars drawn in Proof 3.2, $S$ and $T$, are exactly the intersection points of the tangent line $DE$ with the ellipse's outer circle. A quick proof is to show that $OT=a$ (Figure 10). Let $H'$ be the reflection of $H$ across $DE$; then $T$ is the midpoint of $HH'$. Since $O$ is the midpoint of $BH$, we have $OT=\tfrac{1}{2}BH'$. But $BH'=BE+EH=2a$, hence $OT=a$. The same reflection with $B$ gives $OS=a$, so the fun fact is that $S$ and $T$ are precisely the two intersections of $DE$ with the outer circle.</p>
 <div align="center">
 <img alt="No description has been provided for this image" src="ellipse_view_simple_param2.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 10: additional properties of T and S</em></p>
@@ -7848,6 +7848,80 @@ $$\frac{A(\overrightarrow{DH})}{EH}=\frac{A(\overrightarrow{DB})}{EB}.$$</p>
 $$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.</p>
 </blockquote>
 <p>By now I hope this part of the note have conveyed an appreciation for coordinate-free methods in our mathematical toolbox. I also hope it gives a preview of what modern physics use to solve geometry problems that are more than 3-dimensional, admittedly in a weak sense.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>So far in this part we discussed the simple case of how the reflection property implies the ratio equality.
+Below we show why the original problem in Part 1 gives the reflection property of $EF$ and $BE$, using a vector argument.</p>
+<h3 id="Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">Proof 4.4 Vector analysis: $EF$ is the reflection of $BE$ across $CD$ in Figure 3<a class="anchor-link" href="#Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">¶</a></h3><blockquote>
+<p>Let $\mathbf{u}=\overrightarrow{CB}$ and $\mathbf{d}=\overrightarrow{CD}$. Then $\mathbf{u}\perp\mathbf{d}$ and $\lVert\mathbf{u}\rVert=\lVert\mathbf{d}\rVert$.<br>
+Fix the unit normal $\mathbf{w}=\dfrac{\mathbf{u}\times\mathbf{d}}{\lVert\mathbf{u}\times\mathbf{d}\rVert}$.
+Since $AD\parallel CB$, $E\in CD$, and $DE=AD$, there exists a scalar $k$ such that
+$$\overrightarrow{AB}=-\mathbf{d}+(1-k)\mathbf{u},\qquad \overrightarrow{BE}=-(k-1)\mathbf{d}-\mathbf{u}.  $$
+Reflection across $CD$ is equivalent to
+$$\frac{\lVert\overrightarrow{BE}\times\mathbf{d}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\mathbf{d}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
+Because $EF\perp AB$, the direction of $EF$ is parallel to $\overrightarrow{AB}\times\mathbf{w}$, so the right-hand side equals
+$$\frac{\lVert(\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}\rVert}{\lVert\overrightarrow{AB}\times\mathbf{w}\rVert}.  $$
+Now compute the two normalized quantities. First,
+$$\overrightarrow{BE}\times\mathbf{d}=(-(k-1)\mathbf{d}-\mathbf{u})\times\mathbf{d}=-\mathbf{u}\times\mathbf{d}, $$
+so $\lVert\overrightarrow{BE}\times\mathbf{d}\rVert=\lVert\mathbf{u}\times\mathbf{d}\rVert=\lVert\mathbf{u}\rVert\,\lVert\mathbf{d}\rVert=\lVert\mathbf{d}\rVert^2$.
+Next, by Lagrange's formula $(\mathbf{a}\times\mathbf{b})\times\mathbf{c}=\mathbf{b}(\mathbf{a}\cdot\mathbf{c})-\mathbf{a}(\mathbf{b}\cdot\mathbf{c})$ and $\mathbf{w}\cdot\mathbf{d}=0$,
+$$ (\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}=\mathbf{w}(\overrightarrow{AB}\cdot\mathbf{d}). $$
+But
+$$\overrightarrow{AB}\cdot\mathbf{d}=(-\mathbf{d}+(1-k)\mathbf{u})\cdot\mathbf{d}=-\lVert\mathbf{d}\rVert^2, $$
+hence $\lVert(\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}\rVert=\lVert\mathbf{d}\rVert^2$.
+Finally, $\lVert\overrightarrow{AB}\times\mathbf{w}\rVert=\lVert\overrightarrow{AB}\rVert$, and
+$$\lVert\overrightarrow{AB}\rVert^2=\lVert\mathbf{d}\rVert^2+(k-1)^2\lVert\mathbf{u}\rVert^2=(k-1)^2\lVert\mathbf{d}\rVert^2+\lVert\mathbf{u}\rVert^2=\lVert\overrightarrow{BE}\rVert^2, $$
+so $\lVert\overrightarrow{AB}\rVert=\lVert\overrightarrow{BE}\rVert$. Therefore the normalized cross magnitudes match, and the reflection condition holds:
+$$\frac{\lVert\overrightarrow{BE}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
+So $BE$ reflects across $CD$ into $EF$.</br></p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We used Lagrange's formula, also called the triple vector formula, in the proof above. There are many proofs; here is a geometric one that highlights the intuition.</p>
+<h3 id="Proof-of-Lagrange's-formula-based-on-only-geometric-properties">Proof of Lagrange's formula based on only geometric properties<a class="anchor-link" href="#Proof-of-Lagrange's-formula-based-on-only-geometric-properties">¶</a></h3><blockquote>
+<p>Let $O$ be the origin and $\overrightarrow{OU}=\mathbf{u}$, $\overrightarrow{OV}=\mathbf{v}$, $\overrightarrow{OW}=\mathbf{w}$.
+Write $\mathbf{w}=\mathbf{w}_{\parallel}+\mathbf{w}_{\perp}$ relative to the plane $(OU,OV)$. Then $(\mathbf{u}\times\mathbf{v})\times\mathbf{w}_{\perp}=0$ (since $\mathbf{u}\times\mathbf{v}\parallel\mathbf{w}_{\perp}$) and $\mathbf{u}\cdot\mathbf{w}_{\perp}=\mathbf{v}\cdot\mathbf{w}_{\perp}=0$, so it suffices to assume $U,V,W$ are coplanar.
+By linearity of both $\times$ and $\cdot$ in each argument, scaling $\mathbf{u},\mathbf{v},\mathbf{w}$ by $a,b,c$ multiplies both sides by $abc$; hence it suffices to prove the unit case $\lvert\mathbf{u}\rvert=\lvert\mathbf{v}\rvert=\lvert\mathbf{w}\rvert=1$. Let $\alpha=\angle UOV$.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="triple_vector_thales_circle_safe.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 11: Geometric property of the triple vector formula.</em></p>
+</div>
+<p>For the plane geometry, refer to Figure 11. Draw the circle with diameter $OW$. Let it meet rays $OU,OV$ again at $A,B$. By Thales, $\angle OAW=\angle OBW=90^\circ$, hence $OA=\mathbf{u}\cdot\mathbf{w}$ and $OB=\mathbf{v}\cdot\mathbf{w}$.
+Define $A'\in OV$ and $B'\in OU$ by $OA'=OA$ and $OB'=OB$. Then
+$$\overrightarrow{A'B'}=(\mathbf{v}\cdot\mathbf{w})\mathbf{u}-(\mathbf{u}\cdot\mathbf{w})\mathbf{v}= -\big((\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}\big),$$
+so $\lvert A'B'\rvert$ is the magnitude of the right-hand side. It is easy to show $A'B'\perp OW$ by checking $\overrightarrow{A'B'}\cdot\mathbf{w}=0$, but here we want a pure geometric proof. Since $\angle WOA' + \angle A'B'O=90^\circ$, we get $A'B'\perp OW$, matching the left-hand side direction.
+Since $\triangle OAB\cong\triangle OA'B'$, we have $AB=A'B'$. In the diameter-1 circle, $AB=\sin\alpha$. But
+$$\lvert(\mathbf{u}\times\mathbf{v})\times\mathbf{w}\rvert=\lvert\mathbf{u}\times\mathbf{v}\rvert\,\lvert\mathbf{w}\rvert=\sin\alpha,$$
+so both sides are the same vector:
+$$ (\mathbf{u}\times\mathbf{v})\times\mathbf{w}=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}. $$
+So basically we used the multilinearity of the dot and cross products (it is enough to prove the identity for coplanar unit vectors). We also used that dot and cross magnitudes correspond to cos and sin of the angle. The rest relies on a circle fact: two chords have the same length if and only if their inscribed angles are equal.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h4 id="Postscript">Postscript<a class="anchor-link" href="#Postscript">¶</a></h4><p>It can be interesting to see how the following software would approach the problem:</p>
 <ol>
 <li>Medal-level AI geometry solvers (closest to "gold/silver" performance in the International Math Olympiad)</li>
