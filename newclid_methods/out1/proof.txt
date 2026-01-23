@@ -2,343 +2,205 @@
 
 ## Points
 
-- A(0.7361, -1.5202)
-- B(0.3412, 0.2944)
-- C(-0.9434, -0.7514)
-- D(0.1025, -2.0360)
-- E(-0.4134, -1.4024)
-- F(0.6597, -1.1689)
-- G(0.1613, -1.4613)
-- H(0.1806, -1.2731)
+- A(-1.2138, 0.5031)
+- B(-0.9328, 0.4593)
+- C(-0.9945, 0.7148)
+- D(-1.2500, 0.6531)
+- E(-1.1000, 0.6893)
+- F(-1.1311, 0.4902)
+- G(-1.1569, 0.5962)
+- H(-1.1182, 0.5726)
+- D₁(-0.7390, 0.7765)
 
 ## Assumptions:
 
-[C0] : DE = AD
-[C1] : BC = CD
-[C2] : A, E, G are collinear
-[C3] : BC ∥ AD
+[C0] : BC = CD
+[C1] : BC = CD₁
+[C2] : BC ⟂ CD
+[C3] : BC ⟂ CD₁
 [C4] : B, D, G are collinear
 [C5] : C, D, E are collinear
-[C6] : BC ⟂ CD
-[C7] : A, B, F are collinear
-[C8] : AB ⟂ EF
+[C6] : DE = AD
+[C7] : A, E, G are collinear
+[C8] : BC ∥ AD
 [C9] : B, D, H are collinear
-[C10] : E, F, H are collinear
+[C10] : A, B, F are collinear
+[C11] : E, F, H are collinear
+[C12] : AB ⟂ EF
 
 ## Numerical checks
 
-[N0] : ▲ADE has the same orientation as ▲DEG
-[N1] : ▲ADE has the same orientation as ▲ADE
-[N2] : ▲BCD has the same orientation as ▲BCD
-[N3] : A ≠ E
-[N4] : A ≠ G
-[N5] : E ≠ G
-[N6] : B ≠ D
-[N7] : B ≠ G
-[N8] : D ≠ G
-[N9] : C ≠ D
-[N10] : C ≠ E
-[N11] : D ≠ E
-[N12] : A, D, G are not collinear
-[N13] : A, D, E are not collinear
-[N14] : ▲ABE has the same orientation as ▲CDF
-[N15] : A ≠ B
-[N16] : A ≠ F
-[N17] : B ≠ F
-[N18] : A, D, F are not collinear
-[N19] : B, C, F are not collinear
-[N20] : ▲AFG has the same orientation as ▲CDF
-[N21] : B, C, G are not collinear
-[N22] : E, F, G are not collinear
-[N23] : ▲ADH has the same orientation as ▲DEF
-[N24] : ▲ABG has the same orientation as ▲BEG
-[N25] : B ≠ H
-[N26] : D ≠ H
-[N27] : G ≠ H
-[N28] : E ≠ F
-[N29] : E ≠ H
-[N30] : F ≠ H
-[N31] : A, F, H are not collinear
-[N32] : ▲AEH has the same orientation as ▲EFG
-[N33] : ▲BCD has the same orientation as ▲DGE
+[N0] : ▲BCG has the same orientation as ▲BD₁E
+[N1] : ▲BCD has the same orientation as ▲BD₁C
+[N2] : B ≠ D
+[N3] : B ≠ G
+[N4] : D ≠ G
+[N5] : C ≠ D
+[N6] : C ≠ E
+[N7] : D ≠ E
+[N8] : C ≠ D₁
+[N9] : D₁ ≠ E
+[N10] : ▲ADE has the same orientation as ▲ADE
+[N11] : A ≠ E
+[N12] : A ≠ G
+[N13] : E ≠ G
+[N14] : B, C, G are not collinear
+[N15] : ▲BCG has the same orientation as ▲DHE
+[N16] : B ≠ H
+[N17] : D ≠ H
+[N18] : ▲AGH has the same orientation as ▲EHG
+[N19] : G ≠ H
+[N20] : A, D, E are not collinear
+[N21] : A ≠ B
+[N22] : A ≠ F
+[N23] : B ≠ F
+[N24] : E ≠ F
+[N25] : E ≠ H
+[N26] : F ≠ H
+[N27] : A, F, H are not collinear
+[N28] : B, C, F are not collinear
+[N29] : B, F, G are not collinear
 
 
 # Goals
 
-BD:BE = DH:EH : Proved [69]
+BD:BE = DH:EH : Proved [55]
 
 
 # Proof:
 
-000. | DE = AD [C0] =(AR Deduction)> AD:DE = DE:AD [0]
-001. | ∠(AD,DE) = ∠(AD,DE) [T0], AD:DE = DE:AD [0], ▲ADE has the same orientation as ▲ADE [N1] =(r63 SAS Similarity of triangles (Reverse))> ▲ADE ≅ ▲EDA [1]
-002. | ▲ADE has the same orientation as ▲ADE [N1], ▲ADE ≅ ▲EDA [1] =(r53 Properties of similar triangles (Reverse))> ∠(AD,AE) = ∠(AE,DE) [2]
-003. | BC = CD [C1] =(AR Deduction)> BC:CD = CD:BC [3]
-004. | ∠(BC,CD) = ∠(BC,CD) [T1], BC:CD = CD:BC [3], ▲BCD has the same orientation as ▲BCD [N2] =(r63 SAS Similarity of triangles (Reverse))> ▲BCD ≅ ▲DCB [4]
-005. | ▲BCD has the same orientation as ▲BCD [N2], ▲BCD ≅ ▲DCB [4] =(r53 Properties of similar triangles (Reverse))> ∠(BC,BD) = ∠(BD,CD) [5]
-006. | A, E, G are collinear [C2], A ≠ E [N3], A ≠ G [N4], E ≠ G [N5] =(r82 Parallel from collinear)> AG ∥ AE [6]
-007. | A, E, G are collinear [C2], A ≠ E [N3], A ≠ G [N4], E ≠ G [N5] =(r82 Parallel from collinear)> AG ∥ EG [7]
-008. | B, D, G are collinear [C4], B ≠ D [N6], B ≠ G [N7], D ≠ G [N8] =(r82 Parallel from collinear)> BD ∥ BG [8]
-009. | C, D, E are collinear [C5], C ≠ D [N9], C ≠ E [N10], D ≠ E [N11] =(r82 Parallel from collinear)> CE ∥ CD [9]
-010. | C, D, E are collinear [C5], C ≠ D [N9], C ≠ E [N10], D ≠ E [N11] =(r82 Parallel from collinear)> DE ∥ CE [10]
-011. | B, D, G are collinear [C4], B ≠ D [N6], B ≠ G [N7], D ≠ G [N8] =(r82 Parallel from collinear)> DG ∥ BG [11]
-012. | ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], AG ∥ AE [6], AG ∥ EG [7], BC ∥ AD [C3], BD ∥ BG [8], CE ∥ CD [9], DE ∥ CE [10], DG ∥ BG [11], BC ⟂ CD [C6] =(AR Deduction)> ∠(AD,DE) = ∠(EG,DG) [12]
-013. | ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], AG ∥ AE [6], BC ∥ AD [C3], BD ∥ BG [8], CE ∥ CD [9], DE ∥ CE [10], DG ∥ BG [11], BC ⟂ CD [C6] =(AR Deduction)> ∠(AD,AG) = ∠(DG,AD) [13]
-014. | ∠(AD,AG) = ∠(DG,AD) [13], A, D, G are not collinear [N12] =(r14 Equal base angles imply isosceles)> AG = DG [14]
-015. | ∠(BC,BD) = ∠(BD,CD) [5], BC ∥ AD [C3], BD ∥ BG [8], CE ∥ CD [9], DE ∥ CE [10], DG ∥ BG [11] =(AR Deduction)> ∠(AD,DG) = ∠(DG,DE) [15]
-016. | A, E, G are collinear [C2], ∠(AD,DG) = ∠(DG,DE) [15], A, D, E are not collinear [N13] =(r12 Bisector theorem II)> AD:AG = DE:EG [16]
-017. | AG = DG [14], AD:AG = DE:EG [16] =(AR Deduction)> AD:DE = DG:EG [17]
-018. | ∠(AD,DE) = ∠(EG,DG) [12], AD:DE = DG:EG [17], ▲ADE has the same orientation as ▲DEG [N0] =(r63 SAS Similarity of triangles (Reverse))> ▲ADE ≅ ▲DGE [18]
-019. | ▲ADE has the same orientation as ▲DEG [N0], ▲ADE ≅ ▲DGE [18] =(r53 Properties of similar triangles (Reverse))> AD:AE = DG:DE [19]
-020. | A, B, F are collinear [C7], A ≠ B [N15], A ≠ F [N16], B ≠ F [N17] =(r82 Parallel from collinear)> AB ∥ AF [20]
-021. | AB ∥ AF [20], BC ∥ AD [C3], CE ∥ CD [9], DE ∥ CE [10], AB ⟂ EF [C8], BC ⟂ CD [C6] =(AR Deduction)> ∠(AD,AF) = ∠(DE,EF) [21]
-022. | ∠(AD,AF) = ∠(DE,EF) [21], A, D, F are not collinear [N18] =(r04 Congruent angles are in a cyclic)> ADEF are cyclic [22]
-023. | ADEF are cyclic [22] =(r03 Arc determines internal angles)> ∠(AE,AF) = ∠(DE,DF) [23]
-024. | ∠(AE,AF) = ∠(DE,DF) [23], AB ∥ AF [20], CE ∥ CD [9], DE ∥ CE [10] =(AR Deduction)> ∠(AB,AE) = ∠(DF,CD) [24]
-025. | A, B, F are collinear [C7], A ≠ B [N15], A ≠ F [N16], B ≠ F [N17] =(r82 Parallel from collinear)> BF ∥ AF [25]
-026. | AB ∥ AF [20], BF ∥ AF [25], CE ∥ CD [9], AB ⟂ EF [C8], BC ⟂ CD [C6] =(AR Deduction)> ∠(BC,BF) = ∠(CE,EF) [26]
-027. | ∠(BC,BF) = ∠(CE,EF) [26], B, C, F are not collinear [N19] =(r04 Congruent angles are in a cyclic)> BCEF are cyclic [27]
-028. | BCEF are cyclic [27] =(r03 Arc determines internal angles)> ∠(BE,BF) = ∠(CE,CF) [28]
-029. | ∠(BE,BF) = ∠(CE,CF) [28], AB ∥ AF [20], BF ∥ AF [25], CE ∥ CD [9] =(AR Deduction)> ∠(AB,BE) = ∠(CF,CD) [29]
-030. | ∠(AB,AE) = ∠(DF,CD) [24], ∠(AB,BE) = ∠(CF,CD) [29], ▲ABE has the same orientation as ▲CDF [N14] =(r35 AA Similarity of triangles (Reverse))> ▲ABE ≅ ▲DCF [30]
-031. | ▲ABE has the same orientation as ▲CDF [N14], ▲ABE ≅ ▲DCF [30] =(r53 Properties of similar triangles (Reverse))> AE:BE = DF:CF [31]
-032. | ∠(AE,AF) = ∠(DE,DF) [23], AG ∥ AE [6], CE ∥ CD [9], DE ∥ CE [10] =(AR Deduction)> ∠(AF,AG) = ∠(DF,CD) [32]
-033. | ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], AG ∥ AE [6], AG ∥ EG [7], BC ∥ AD [C3], BD ∥ BG [8], CE ∥ CD [9], DE ∥ CE [10], BC ⟂ CD [C6] =(AR Deduction)> ∠(BC,BG) = ∠(CE,EG) [33]
-034. | ∠(BC,BG) = ∠(CE,EG) [33], B, C, G are not collinear [N21] =(r04 Congruent angles are in a cyclic)> BCEG are cyclic [34]
-035. | BCEG are cyclic [34] =(r03 Arc determines internal angles)> ∠(BE,BG) = ∠(CE,CG) [35]
-036. | ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], ∠(BE,BF) = ∠(CE,CF) [28], ∠(BE,BG) = ∠(CE,CG) [35], AB ∥ AF [20], AG ∥ AE [6], AG ∥ EG [7], BC ∥ AD [C3], BD ∥ BG [8], BF ∥ AF [25], CE ∥ CD [9], DE ∥ CE [10], AB ⟂ EF [C8] =(AR Deduction)> ∠(CF,CG) = ∠(EF,EG) [36]
-037. | ∠(CF,CG) = ∠(EF,EG) [36], E, F, G are not collinear [N22] =(r04 Congruent angles are in a cyclic)> CEFG are cyclic [37]
-038. | CEFG are cyclic [37] =(r03 Arc determines internal angles)> ∠(CE,EG) = ∠(CF,FG) [38]
-039. | ∠(CE,EG) = ∠(CF,FG) [38], AG ∥ EG [7], CE ∥ CD [9] =(AR Deduction)> ∠(AG,FG) = ∠(CD,CF) [39]
-040. | ∠(AF,AG) = ∠(DF,CD) [32], ∠(AG,FG) = ∠(CD,CF) [39], ▲AFG has the same orientation as ▲CDF [N20] =(r34 AA Similarity of triangles (Direct))> ▲AFG ≅ ▲DFC [40]
-041. | ▲AFG has the same orientation as ▲CDF [N20], ▲AFG ≅ ▲DFC [40] =(r52 Properties of similar triangles (Direct))> AF:AG = DF:CD [41]
-042. | ▲AFG has the same orientation as ▲CDF [N20], ▲AFG ≅ ▲DFC [40] =(r52 Properties of similar triangles (Direct))> AF:DF = FG:CF [42]
-043. | ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], AG ∥ AE [6], AG ∥ EG [7], BC ∥ AD [C3], BD ∥ BG [8], CE ∥ CD [9], DE ∥ CE [10] =(AR Deduction)> ∠(AG,BG) = ∠(BG,EG) [43]
-044. | DE = AD [C0], AD:AG = DE:EG [16] =(AR Deduction)> AG:BG = EG:BG [44]
-045. | ∠(AG,BG) = ∠(BG,EG) [43], AG:BG = EG:BG [44], ▲ABG has the same orientation as ▲BEG [N24] =(r63 SAS Similarity of triangles (Reverse))> ▲ABG ≅ ▲EBG [45]
-046. | ▲ABG has the same orientation as ▲BEG [N24], ▲ABG ≅ ▲EBG [45] =(r53 Properties of similar triangles (Reverse))> ∠(AB,BG) = ∠(BG,BE) [46]
-047. | B, D, H are collinear [C9], B ≠ D [N6], B ≠ H [N25], D ≠ H [N26] =(r82 Parallel from collinear)> BD ∥ BH [47]
-048. | BD ∥ BG [8], BD ∥ BH [47] =(AR Deduction)> BH ∥ BG [48]
-049. | BH ∥ BG [48] =(r28 Overlapping parallels)> B, G, H are collinear [49]
-050. | B, G, H are collinear [49], B ≠ G [N7], B ≠ H [N25], G ≠ H [N27] =(r82 Parallel from collinear)> BG ∥ GH [50]
-051. | E, F, H are collinear [C10], E ≠ F [N28], E ≠ H [N29], F ≠ H [N30] =(r82 Parallel from collinear)> EH ∥ EF [51]
-052. | E, F, H are collinear [C10], E ≠ F [N28], E ≠ H [N29], F ≠ H [N30] =(r82 Parallel from collinear)> FH ∥ EH [52]
-053. | ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], AB ∥ AF [20], AG ∥ AE [6], BC ∥ AD [C3], BD ∥ BG [8], BG ∥ GH [50], CE ∥ CD [9], DE ∥ CE [10], EH ∥ EF [51], FH ∥ EH [52], AB ⟂ EF [C8] =(AR Deduction)> ∠(AF,FH) = ∠(AG,GH) [53]
-054. | ∠(AF,FH) = ∠(AG,GH) [53], A, F, H are not collinear [N31] =(r04 Congruent angles are in a cyclic)> AFGH are cyclic [54]
-055. | AFGH are cyclic [54] =(r03 Arc determines internal angles)> ∠(AG,AH) = ∠(FG,FH) [55]
-056. | ∠(AB,BG) = ∠(BG,BE) [46], ∠(AG,AH) = ∠(FG,FH) [55], ∠(BC,BD) = ∠(BD,CD) [5], ∠(BE,BF) = ∠(CE,CF) [28], ∠(CE,EG) = ∠(CF,FG) [38], AB ∥ AF [20], AG ∥ EG [7], BC ∥ AD [C3], BD ∥ BG [8], BF ∥ AF [25], CE ∥ CD [9], DE ∥ CE [10], EH ∥ EF [51], FH ∥ EH [52], AB ⟂ EF [C8] =(AR Deduction)> ∠(AD,AH) = ∠(EF,DE) [56]
-057. | ∠(AB,BG) = ∠(BG,BE) [46], ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], ∠(BE,BF) = ∠(CE,CF) [28], ∠(CE,EG) = ∠(CF,FG) [38], AB ∥ AF [20], AG ∥ AE [6], AG ∥ EG [7], BC ∥ AD [C3], BD ∥ BG [8], BF ∥ AF [25], CE ∥ CD [9], DE ∥ CE [10], EH ∥ EF [51], AB ⟂ EF [C8] =(AR Deduction)> ∠(AE,EH) = ∠(EF,FG) [57]
-058. | ∠(AG,AH) = ∠(FG,FH) [55], AG ∥ EG [7], FH ∥ EH [52] =(AR Deduction)> ∠(AH,EH) = ∠(EG,FG) [58]
-059. | ∠(AE,EH) = ∠(EF,FG) [57], ∠(AH,EH) = ∠(EG,FG) [58], ▲AEH has the same orientation as ▲EFG [N32] =(r34 AA Similarity of triangles (Direct))> ▲AEH ≅ ▲EFG [59]
-060. | ▲AEH has the same orientation as ▲EFG [N32], ▲AEH ≅ ▲EFG [59] =(r52 Properties of similar triangles (Direct))> AE:EF = EH:FG [60]
-061. | ▲AEH has the same orientation as ▲EFG [N32], ▲AEH ≅ ▲EFG [59] =(r52 Properties of similar triangles (Direct))> AH:EG = EH:FG [61]
-062. | AG = DG [14], DE = AD [C0], AD:AE = DG:DE [19], AD:AG = DE:EG [16], AE:EF = EH:FG [60], AH:EG = EH:FG [61] =(AR Deduction)> AD:AH = EF:DE [62]
-063. | ∠(AD,AH) = ∠(EF,DE) [56], AD:AH = EF:DE [62], ▲ADH has the same orientation as ▲DEF [N23] =(r62 SAS Similarity of triangles (Direct))> ▲ADH ≅ ▲EFD [63]
-064. | ▲ADH has the same orientation as ▲DEF [N23], ▲ADH ≅ ▲EFD [63] =(r52 Properties of similar triangles (Direct))> AH:DE = DH:DF [64]
-065. | ∠(AD,AE) = ∠(AE,DE) [2], ∠(BC,BD) = ∠(BD,CD) [5], AG ∥ AE [6], AG ∥ EG [7], BC ∥ AD [C3], BD ∥ BG [8], CE ∥ CD [9], DE ∥ CE [10], DG ∥ BG [11], BC ⟂ CD [C6] =(AR Deduction)> ∠(BC,CD) = ∠(DG,EG) [65]
-066. | AG = DG [14], BC = CD [C1], DE = AD [C0], AD:AG = DE:EG [16] =(AR Deduction)> BC:CD = EG:DG [66]
-067. | ∠(BC,CD) = ∠(DG,EG) [65], BC:CD = EG:DG [66], ▲BCD has the same orientation as ▲DGE [N33] =(r63 SAS Similarity of triangles (Reverse))> ▲BCD ≅ ▲EGD [67]
-068. | ▲BCD has the same orientation as ▲DGE [N33], ▲BCD ≅ ▲EGD [67] =(r53 Properties of similar triangles (Reverse))> BD:CD = DE:DG [68]
-069. | AD:AE = DG:DE [19], AD:AG = DE:EG [16], AE:BE = DF:CF [31], AF:AG = DF:CD [41], AF:DF = FG:CF [42], AH:DE = DH:DF [64], AH:EG = EH:FG [61], BD:CD = DE:DG [68] =(AR Deduction)> BD:BE = DH:EH [69]
+000. | BC ⟂ CD [C2], BC ⟂ CD₁ [C3] =(AR Deduction)> ∠(BC,CD) = ∠(CD₁,BC) [0]
+001. | BC = CD [C0], BC = CD₁ [C1] =(AR Deduction)> BC:CD = CD₁:BC [1]
+002. | ∠(BC,CD) = ∠(CD₁,BC) [0], BC:CD = CD₁:BC [1], ▲BCD has the same orientation as ▲BD₁C [N1] =(r62 SAS Similarity of triangles (Direct))> ▲BCD ≅ ▲D₁CB [2]
+003. | ▲BCD has the same orientation as ▲BD₁C [N1], ▲BCD ≅ ▲D₁CB [2] =(r52 Properties of similar triangles (Direct))> ∠(BC,BD₁) = ∠(CD,BD) [3]
+004. | B, D, G are collinear [C4], B ≠ D [N2], B ≠ G [N3], D ≠ G [N4] =(r82 Parallel from collinear)> BD ∥ BG [4]
+005. | C, D, E are collinear [C5], C ≠ D [N5], C ≠ E [N6], D ≠ E [N7] =(r82 Parallel from collinear)> CE ∥ CD [5]
+006. | CE ∥ CD [5], BC ⟂ CD [C2], BC ⟂ CD₁ [C3] =(AR Deduction)> CE ∥ CD₁ [6]
+007. | CE ∥ CD₁ [6] =(r28 Overlapping parallels)> C, D₁, E are collinear [7]
+008. | C, D₁, E are collinear [7], C ≠ D₁ [N8], C ≠ E [N6], D₁ ≠ E [N9] =(r82 Parallel from collinear)> CE ∥ D₁E [8]
+009. | ∠(BC,BD₁) = ∠(CD,BD) [3], BD ∥ BG [4], CE ∥ CD [5], CE ∥ D₁E [8], BC ⟂ CD [C2] =(AR Deduction)> ∠(BC,BG) = ∠(D₁E,BD₁) [9]
+010. | DE = AD [C6] =(AR Deduction)> AD:DE = DE:AD [10]
+011. | ∠(AD,DE) = ∠(AD,DE) [T0], AD:DE = DE:AD [10], ▲ADE has the same orientation as ▲ADE [N10] =(r63 SAS Similarity of triangles (Reverse))> ▲ADE ≅ ▲EDA [11]
+012. | ▲ADE has the same orientation as ▲ADE [N10], ▲ADE ≅ ▲EDA [11] =(r53 Properties of similar triangles (Reverse))> ∠(AD,AE) = ∠(AE,DE) [12]
+013. | BC = CD [C0], BC = CD₁ [C1] =(AR Deduction)> BC:BC = CD₁:CD [13]
+014. | ∠(BC,CD) = ∠(CD₁,BC) [0], BC:BC = CD₁:CD [13], ▲BCD has the same orientation as ▲BD₁C [N1] =(r63 SAS Similarity of triangles (Reverse))> ▲BCD ≅ ▲BCD₁ [14]
+015. | ▲BCD has the same orientation as ▲BD₁C [N1], ▲BCD ≅ ▲BCD₁ [14] =(r53 Properties of similar triangles (Reverse))> ∠(BC,BD) = ∠(BD₁,BC) [15]
+016. | A, E, G are collinear [C7], A ≠ E [N11], A ≠ G [N12], E ≠ G [N13] =(r82 Parallel from collinear)> AG ∥ AE [16]
+017. | A, E, G are collinear [C7], A ≠ E [N11], A ≠ G [N12], E ≠ G [N13] =(r82 Parallel from collinear)> AG ∥ EG [17]
+018. | C, D, E are collinear [C5], C ≠ D [N5], C ≠ E [N6], D ≠ E [N7] =(r82 Parallel from collinear)> DE ∥ CE [18]
+019. | ∠(AD,AE) = ∠(AE,DE) [12], ∠(BC,BD) = ∠(BD₁,BC) [15], ∠(BC,BD₁) = ∠(CD,BD) [3], AG ∥ AE [16], AG ∥ EG [17], BC ∥ AD [C8], BD ∥ BG [4], CE ∥ CD [5], DE ∥ CE [18], BC ⟂ CD [C2] =(AR Deduction)> ∠(BC,BG) = ∠(CE,EG) [19]
+020. | ∠(BC,BG) = ∠(CE,EG) [19], B, C, G are not collinear [N14] =(r04 Congruent angles are in a cyclic)> BCEG are cyclic [20]
+021. | BCEG are cyclic [20] =(r03 Arc determines internal angles)> ∠(BE,BG) = ∠(CE,CG) [21]
+022. | ∠(BE,BG) = ∠(CE,CG) [21], CE ∥ D₁E [8] =(AR Deduction)> ∠(BE,D₁E) = ∠(BG,CG) [22]
+023. | ∠(BC,BG) = ∠(D₁E,BD₁) [9], ∠(BE,D₁E) = ∠(BG,CG) [22], ▲BCG has the same orientation as ▲BD₁E [N0] =(r35 AA Similarity of triangles (Reverse))> ▲BCG ≅ ▲D₁BE [23]
+024. | ▲BCG has the same orientation as ▲BD₁E [N0], ▲BCG ≅ ▲D₁BE [23] =(r53 Properties of similar triangles (Reverse))> BC:BD₁ = CG:BE [24]
+025. | B, D, H are collinear [C9], B ≠ D [N2], B ≠ H [N16], D ≠ H [N17] =(r82 Parallel from collinear)> BD ∥ BH [25]
+026. | B, D, H are collinear [C9], B ≠ D [N2], B ≠ H [N16], D ≠ H [N17] =(r82 Parallel from collinear)> BH ∥ DH [26]
+027. | ∠(BC,BD) = ∠(BD₁,BC) [15], ∠(BC,BD₁) = ∠(CD,BD) [3], BD ∥ BG [4], BD ∥ BH [25], BH ∥ DH [26], CE ∥ CD [5], DE ∥ CE [18] =(AR Deduction)> ∠(BC,BG) = ∠(DH,DE) [27]
+028. | BD ∥ BG [4], BD ∥ BH [25] =(AR Deduction)> BH ∥ BG [28]
+029. | BH ∥ BG [28] =(r28 Overlapping parallels)> B, G, H are collinear [29]
+030. | B, G, H are collinear [29], B ≠ G [N3], B ≠ H [N16], G ≠ H [N19] =(r82 Parallel from collinear)> BG ∥ GH [30]
+031. | ∠(AD,AE) = ∠(AE,DE) [12], ∠(BC,BD) = ∠(BD₁,BC) [15], ∠(BC,BD₁) = ∠(CD,BD) [3], AG ∥ AE [16], AG ∥ EG [17], BC ∥ AD [C8], BD ∥ BG [4], BG ∥ GH [30], CE ∥ CD [5], DE ∥ CE [18] =(AR Deduction)> ∠(AG,GH) = ∠(GH,EG) [31]
+032. | B, D, G are collinear [C4], B ≠ D [N2], B ≠ G [N3], D ≠ G [N4] =(r82 Parallel from collinear)> DG ∥ BG [32]
+033. | ∠(BC,BD) = ∠(BD₁,BC) [15], ∠(BC,BD₁) = ∠(CD,BD) [3], BC ∥ AD [C8], BD ∥ BG [4], CE ∥ CD [5], DE ∥ CE [18], DG ∥ BG [32] =(AR Deduction)> ∠(AD,DG) = ∠(DG,DE) [33]
+034. | A, E, G are collinear [C7], ∠(AD,DG) = ∠(DG,DE) [33], A, D, E are not collinear [N20] =(r12 Bisector theorem II)> AD:AG = DE:EG [34]
+035. | DE = AD [C6], AD:AG = DE:EG [34] =(AR Deduction)> AG:EG = GH:GH [35]
+036. | ∠(AG,GH) = ∠(GH,EG) [31], AG:EG = GH:GH [35], ▲AGH has the same orientation as ▲EHG [N18] =(r63 SAS Similarity of triangles (Reverse))> ▲AGH ≅ ▲EGH [36]
+037. | ▲AGH has the same orientation as ▲EHG [N18], ▲AGH ≅ ▲EGH [36] =(r53 Properties of similar triangles (Reverse))> ∠(AG,AH) = ∠(EH,EG) [37]
+038. | A, B, F are collinear [C10], A ≠ B [N21], A ≠ F [N22], B ≠ F [N23] =(r82 Parallel from collinear)> AB ∥ AF [38]
+039. | E, F, H are collinear [C11], E ≠ F [N24], E ≠ H [N25], F ≠ H [N26] =(r82 Parallel from collinear)> EH ∥ EF [39]
+040. | E, F, H are collinear [C11], E ≠ F [N24], E ≠ H [N25], F ≠ H [N26] =(r82 Parallel from collinear)> FH ∥ EH [40]
+041. | ∠(AD,AE) = ∠(AE,DE) [12], ∠(BC,BD) = ∠(BD₁,BC) [15], ∠(BC,BD₁) = ∠(CD,BD) [3], AB ∥ AF [38], AG ∥ AE [16], BC ∥ AD [C8], BD ∥ BG [4], BG ∥ GH [30], CE ∥ CD [5], DE ∥ CE [18], EH ∥ EF [39], FH ∥ EH [40], AB ⟂ EF [C12] =(AR Deduction)> ∠(AF,FH) = ∠(AG,GH) [41]
+042. | ∠(AF,FH) = ∠(AG,GH) [41], A, F, H are not collinear [N27] =(r04 Congruent angles are in a cyclic)> AFGH are cyclic [42]
+043. | AFGH are cyclic [42] =(r03 Arc determines internal angles)> ∠(AG,AH) = ∠(FG,FH) [43]
+044. | A, B, F are collinear [C10], A ≠ B [N21], A ≠ F [N22], B ≠ F [N23] =(r82 Parallel from collinear)> BF ∥ AF [44]
+045. | AB ∥ AF [38], BF ∥ AF [44], CE ∥ CD [5], AB ⟂ EF [C12], BC ⟂ CD [C2] =(AR Deduction)> ∠(BC,BF) = ∠(CE,EF) [45]
+046. | ∠(BC,BF) = ∠(CE,EF) [45], B, C, F are not collinear [N28] =(r04 Congruent angles are in a cyclic)> BCEF are cyclic [46]
+047. | BCEF are cyclic [46] =(r03 Arc determines internal angles)> ∠(BE,BF) = ∠(CE,CF) [47]
+048. | ∠(BE,BF) = ∠(CE,CF) [47], ∠(BE,BG) = ∠(CE,CG) [21] =(AR Deduction)> ∠(BF,BG) = ∠(CF,CG) [48]
+049. | ∠(BF,BG) = ∠(CF,CG) [48], B, F, G are not collinear [N29] =(r04 Congruent angles are in a cyclic)> BCFG are cyclic [49]
+050. | BCFG are cyclic [49] =(r03 Arc determines internal angles)> ∠(BC,BG) = ∠(CF,FG) [50]
+051. | ∠(AD,AE) = ∠(AE,DE) [12], ∠(AG,AH) = ∠(EH,EG) [37], ∠(AG,AH) = ∠(FG,FH) [43], ∠(BC,BD) = ∠(BD₁,BC) [15], ∠(BC,BD₁) = ∠(CD,BD) [3], ∠(BC,BG) = ∠(CF,FG) [50], ∠(BE,BF) = ∠(CE,CF) [47], ∠(BE,BG) = ∠(CE,CG) [21], AB ∥ AF [38], AG ∥ AE [16], AG ∥ EG [17], BC ∥ AD [C8], BD ∥ BG [4], BF ∥ AF [44], CE ∥ CD [5], DE ∥ CE [18], EH ∥ EF [39], FH ∥ EH [40], AB ⟂ EF [C12] =(AR Deduction)> ∠(BG,CG) = ∠(DE,EH) [51]
+052. | ∠(BC,BG) = ∠(DH,DE) [27], ∠(BG,CG) = ∠(DE,EH) [51], ▲BCG has the same orientation as ▲DHE [N15] =(r34 AA Similarity of triangles (Direct))> ▲BCG ≅ ▲DHE [52]
+053. | ▲BCG has the same orientation as ▲DHE [N15], ▲BCG ≅ ▲DHE [52] =(r52 Properties of similar triangles (Direct))> BC:CG = DH:EH [53]
+054. | ▲BCD has the same orientation as ▲BD₁C [N1], ▲BCD ≅ ▲BCD₁ [14] =(r53 Properties of similar triangles (Reverse))> BD:BD₁ = CD:CD₁ [54]
+055. | BC = CD [C0], BC = CD₁ [C1], BC:BD₁ = CG:BE [24], BC:CG = DH:EH [53], BD:BD₁ = CD:CD₁ [54] =(AR Deduction)> BD:BE = DH:EH [55]
 
 
 # Appendix: AR deductions:
 
 
 
-000. | Ratio Chasing to prove AD:DE = DE:AD:
+000. | Angle Chasing to prove ∠(BC,CD) = ∠(CD₁,BC):
+| Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
+| Premise BC ⟂ CD₁ gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD1: -1}
+| Then {Âˆ BC: -1, Âˆ CD: 1} + -1 x {Âˆ BC: 1, Âˆ CD1: -1}
+|    = {Âˆ BC: -2, Âˆ CD: 1, Âˆ CD1: 1}
+We are left with a linear equation with coefficients {Âˆ BC: -2, Âˆ CD: 1, Âˆ CD1: 1} that gives ∠(BC,CD) = ∠(CD₁,BC)
+
+
+
+001. | Ratio Chasing to prove BC:CD = CD₁:BC:
+| Premise BC = CD gives a linear equation with coefficients {BC²: 1, CD²: -1}
+| Premise BC = CD₁ gives a linear equation with coefficients {BC²: 1, CD1²: -1}
+| Then {BC²: 1, CD²: -1} + 1 x {BC²: 1, CD1²: -1}
+|    = {BC²: 2, CD²: -1, CD1²: -1}
+We are left with a linear equation with coefficients {BC²: 2, CD²: -1, CD1²: -1} that gives BC:CD = CD₁:BC
+
+
+
+006. | Angle Chasing to prove CE ∥ CD₁:
+| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
+| Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
+| Then {Âˆ CD: -1, Âˆ CE: 1} + -1 x {Âˆ BC: 1, Âˆ CD: -1}
+|    = {Âˆ CE: 1, Âˆ BC: -1}
+| Premise BC ⟂ CD₁ gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD1: -1}
+| Then {Âˆ CE: 1, Âˆ BC: -1} + 1 x {Âˆ BC: 1, Âˆ CD1: -1}
+|    = {Âˆ CE: 1, Âˆ CD1: -1}
+We are left with a linear equation with coefficients {Âˆ CE: 1, Âˆ CD1: -1} that gives CE ∥ CD₁
+
+
+
+009. | Angle Chasing to prove ∠(BC,BG) = ∠(D₁E,BD₁):
+| Premise ∠(BC,BD₁) = ∠(CD,BD) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
+| Then {Âˆ BC: 1, Âˆ BD: 1, Âˆ BD1: -1, Âˆ CD: -1} + -1 x {Âˆ BD: 1, Âˆ BG: -1}
+|    = {Âˆ BC: 1, Âˆ BD1: -1, Âˆ CD: -1, Âˆ BG: 1}
+| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
+| Then {Âˆ BC: 1, Âˆ BD1: -1, Âˆ CD: -1, Âˆ BG: 1} + -1 x {Âˆ CD: 1, Âˆ CE: -1}
+|    = {Âˆ BC: 1, Âˆ BD1: -1, Âˆ CD: -2, Âˆ BG: 1, Âˆ CE: 1}
+| Premise CE ∥ D₁E gives a linear equation with coefficients {Âˆ CE: 1, Âˆ ED1: -1}
+| Then {Âˆ BC: 1, Âˆ BD1: -1, Âˆ CD: -2, Âˆ BG: 1, Âˆ CE: 1} + -1 x {Âˆ CE: 1, Âˆ ED1: -1}
+|    = {Âˆ BC: 1, Âˆ BD1: -1, Âˆ CD: -2, Âˆ BG: 1, Âˆ ED1: 1}
+| Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
+| Then {Âˆ BC: 1, Âˆ BD1: -1, Âˆ CD: -2, Âˆ BG: 1, Âˆ ED1: 1} + -2 x {Âˆ BC: 1, Âˆ CD: -1}
+|    = {Âˆ BC: -1, Âˆ BD1: -1, Âˆ BG: 1, Âˆ ED1: 1}
+We are left with a linear equation with coefficients {Âˆ BC: -1, Âˆ BD1: -1, Âˆ BG: 1, Âˆ ED1: 1} that gives ∠(BC,BG) = ∠(D₁E,BD₁)
+
+
+
+010. | Ratio Chasing to prove AD:DE = DE:AD:
 | Premise DE = AD gives a linear equation with coefficients {AD²: 1, DE²: -1}
 We are left with a linear equation with coefficients {AD²: 2, DE²: -2} that gives AD:DE = DE:AD
 
 
 
-003. | Ratio Chasing to prove BC:CD = CD:BC:
+013. | Ratio Chasing to prove BC:BC = CD₁:CD:
 | Premise BC = CD gives a linear equation with coefficients {BC²: 1, CD²: -1}
-We are left with a linear equation with coefficients {BC²: 2, CD²: -2} that gives BC:CD = CD:BC
+| Premise BC = CD₁ gives a linear equation with coefficients {BC²: 1, CD1²: -1}
+| Then {BC²: -1, CD²: 1} + 1 x {BC²: 1, CD1²: -1}
+|    = {CD²: 1, CD1²: -1}
+We are left with a linear equation with coefficients {CD²: 1, CD1²: -1} that gives BC:BC = CD₁:CD
 
 
 
-012. | Angle Chasing to prove ∠(AD,DE) = ∠(EG,DG):
+019. | Angle Chasing to prove ∠(BC,BG) = ∠(CE,EG):
 | Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2} + 1/2 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-|    = {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2}
-| Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
-| Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2} + -1 x {Âˆ AE: 1, Âˆ AG: -1}
-|    = {Âˆ AD: -1/2, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ AG: 1}
-| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
-| Then {Âˆ AD: -1/2, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ AG: 1} + -1 x {Âˆ AG: 1, Âˆ EG: -1}
-|    = {Âˆ AD: -1/2, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ EG: 1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ AD: -1/2, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ EG: 1} + -1/2 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ AD: -1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ EG: 1}
-| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Then {Âˆ AD: -1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ EG: 1} + 1 x {Âˆ BD: 1, Âˆ BG: -1}
-|    = {Âˆ AD: -1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: 1/2, Âˆ EG: 1, Âˆ BG: -1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AD: -1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: 1/2, Âˆ EG: 1, Âˆ BG: -1} + -3/2 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AD: -1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: -1, Âˆ EG: 1, Âˆ BG: -1, Âˆ CE: 3/2}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AD: -1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: -1, Âˆ EG: 1, Âˆ BG: -1, Âˆ CE: 3/2} + -3/2 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AD: -1, Âˆ DE: 1, Âˆ BC: 1, Âˆ CD: -1, Âˆ EG: 1, Âˆ BG: -1}
-| Premise DG ∥ BG gives a linear equation with coefficients {Âˆ BG: 1, Âˆ DG: -1}
-| Then {Âˆ AD: -1, Âˆ DE: 1, Âˆ BC: 1, Âˆ CD: -1, Âˆ EG: 1, Âˆ BG: -1} + 1 x {Âˆ BG: 1, Âˆ DG: -1}
-|    = {Âˆ AD: -1, Âˆ DE: 1, Âˆ BC: 1, Âˆ CD: -1, Âˆ EG: 1, Âˆ DG: -1}
-| Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
-| Then {Âˆ AD: -1, Âˆ DE: 1, Âˆ BC: 1, Âˆ CD: -1, Âˆ EG: 1, Âˆ DG: -1} + -1 x {Âˆ BC: 1, Âˆ CD: -1}
-|    = {Âˆ AD: -1, Âˆ DE: 1, Âˆ EG: 1, Âˆ DG: -1}
-We are left with a linear equation with coefficients {Âˆ AD: -1, Âˆ DE: 1, Âˆ EG: 1, Âˆ DG: -1} that gives ∠(AD,DE) = ∠(EG,DG)
-
-
-
-013. | Angle Chasing to prove ∠(AD,AG) = ∠(DG,AD):
-| Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2} + -1/2 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-|    = {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2}
-| Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
-| Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2} + -1 x {Âˆ AE: 1, Âˆ AG: -1}
-|    = {Âˆ AD: -1/2, Âˆ DE: -1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ AG: 1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ AD: -1/2, Âˆ DE: -1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ AG: 1} + -3/2 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ AD: -2, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ AG: 1}
-| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Then {Âˆ AD: -2, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ AG: 1} + -1 x {Âˆ BD: 1, Âˆ BG: -1}
-|    = {Âˆ AD: -2, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: -1/2, Âˆ AG: 1, Âˆ BG: 1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AD: -2, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: -1/2, Âˆ AG: 1, Âˆ BG: 1} + -1/2 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AD: -2, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: -1, Âˆ AG: 1, Âˆ BG: 1, Âˆ CE: 1/2}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AD: -2, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ CD: -1, Âˆ AG: 1, Âˆ BG: 1, Âˆ CE: 1/2} + -1/2 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AD: -2, Âˆ BC: 1, Âˆ CD: -1, Âˆ AG: 1, Âˆ BG: 1}
-| Premise DG ∥ BG gives a linear equation with coefficients {Âˆ BG: 1, Âˆ DG: -1}
-| Then {Âˆ AD: -2, Âˆ BC: 1, Âˆ CD: -1, Âˆ AG: 1, Âˆ BG: 1} + -1 x {Âˆ BG: 1, Âˆ DG: -1}
-|    = {Âˆ AD: -2, Âˆ BC: 1, Âˆ CD: -1, Âˆ AG: 1, Âˆ DG: 1}
-| Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
-| Then {Âˆ AD: -2, Âˆ BC: 1, Âˆ CD: -1, Âˆ AG: 1, Âˆ DG: 1} + -1 x {Âˆ BC: 1, Âˆ CD: -1}
-|    = {Âˆ AD: -2, Âˆ AG: 1, Âˆ DG: 1}
-We are left with a linear equation with coefficients {Âˆ AD: -2, Âˆ AG: 1, Âˆ DG: 1} that gives ∠(AD,AG) = ∠(DG,AD)
-
-
-
-015. | Angle Chasing to prove ∠(AD,DG) = ∠(DG,DE):
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1} + -1 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ BD: 2, Âˆ CD: -1, Âˆ AD: -1}
-| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Then {Âˆ BD: 2, Âˆ CD: -1, Âˆ AD: -1} + -2 x {Âˆ BD: 1, Âˆ BG: -1}
-|    = {Âˆ CD: -1, Âˆ AD: -1, Âˆ BG: 2}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ CD: -1, Âˆ AD: -1, Âˆ BG: 2} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AD: -1, Âˆ BG: 2, Âˆ CE: -1}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AD: -1, Âˆ BG: 2, Âˆ CE: -1} + 1 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AD: -1, Âˆ BG: 2, Âˆ DE: -1}
-| Premise DG ∥ BG gives a linear equation with coefficients {Âˆ BG: 1, Âˆ DG: -1}
-| Then {Âˆ AD: -1, Âˆ BG: 2, Âˆ DE: -1} + -2 x {Âˆ BG: 1, Âˆ DG: -1}
-|    = {Âˆ AD: -1, Âˆ DE: -1, Âˆ DG: 2}
-We are left with a linear equation with coefficients {Âˆ AD: -1, Âˆ DE: -1, Âˆ DG: 2} that gives ∠(AD,DG) = ∠(DG,DE)
-
-
-
-017. | Ratio Chasing to prove AD:DE = DG:EG:
-| Premise AG = DG gives a linear equation with coefficients {AG²: 1, DG²: -1}
-| Premise AD:AG = DE:EG gives a linear equation with coefficients {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-| Then {AG²: 1, DG²: -1} + 1 x {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-|    = {DG²: -1, AD²: 1, DE²: -1, EG²: 1}
-We are left with a linear equation with coefficients {DG²: -1, AD²: 1, DE²: -1, EG²: 1} that gives AD:DE = DG:EG
-
-
-
-021. | Angle Chasing to prove ∠(AD,AF) = ∠(DE,EF):
-| Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ AB: -1, Âˆ AF: 1} + -1 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ AB: -1, Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AB: -1, Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1} + -1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AB: -1, Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1, Âˆ CD: -1, Âˆ CE: 1}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AB: -1, Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1, Âˆ CD: -1, Âˆ CE: 1} + -1 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AB: -1, Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1, Âˆ CD: -1, Âˆ DE: 1}
-| Premise AB ⟂ EF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ EF: -1}
-| Then {Âˆ AB: -1, Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1, Âˆ CD: -1, Âˆ DE: 1} + 1 x {Âˆ AB: 1, Âˆ EF: -1}
-|    = {Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1, Âˆ CD: -1, Âˆ DE: 1, Âˆ EF: -1}
-| Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
-| Then {Âˆ AF: 1, Âˆ AD: -1, Âˆ BC: 1, Âˆ CD: -1, Âˆ DE: 1, Âˆ EF: -1} + -1 x {Âˆ BC: 1, Âˆ CD: -1}
-|    = {Âˆ AF: 1, Âˆ AD: -1, Âˆ DE: 1, Âˆ EF: -1}
-We are left with a linear equation with coefficients {Âˆ AF: 1, Âˆ AD: -1, Âˆ DE: 1, Âˆ EF: -1} that gives ∠(AD,AF) = ∠(DE,EF)
-
-
-
-024. | Angle Chasing to prove ∠(AB,AE) = ∠(DF,CD):
-| Premise ∠(AE,AF) = ∠(DE,DF) gives a linear equation with coefficients {Âˆ AE: -1, Âˆ AF: 1, Âˆ DE: 1, Âˆ DF: -1}
-| Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
-| Then {Âˆ AE: 1, Âˆ AF: -1, Âˆ DE: -1, Âˆ DF: 1} + -1 x {Âˆ AB: 1, Âˆ AF: -1}
-|    = {Âˆ AE: 1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AB: -1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AE: 1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AB: -1} + -1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AE: 1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AB: -1, Âˆ CD: -1, Âˆ CE: 1}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AE: 1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AB: -1, Âˆ CD: -1, Âˆ CE: 1} + -1 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AE: 1, Âˆ DF: 1, Âˆ AB: -1, Âˆ CD: -1}
-We are left with a linear equation with coefficients {Âˆ AE: 1, Âˆ DF: 1, Âˆ AB: -1, Âˆ CD: -1} that gives ∠(AB,AE) = ∠(DF,CD)
-
-
-
-026. | Angle Chasing to prove ∠(BC,BF) = ∠(CE,EF):
-| Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
-| Premise BF ∥ AF gives a linear equation with coefficients {Âˆ AF: 1, Âˆ BF: -1}
-| Then {Âˆ AB: -1, Âˆ AF: 1} + -1 x {Âˆ AF: 1, Âˆ BF: -1}
-|    = {Âˆ AB: -1, Âˆ BF: 1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AB: -1, Âˆ BF: 1} + -1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AB: -1, Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1}
-| Premise AB ⟂ EF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ EF: -1}
-| Then {Âˆ AB: -1, Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1} + 1 x {Âˆ AB: 1, Âˆ EF: -1}
-|    = {Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1, Âˆ EF: -1}
-| Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
-| Then {Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1, Âˆ EF: -1} + -1 x {Âˆ BC: 1, Âˆ CD: -1}
-|    = {Âˆ BF: 1, Âˆ CE: 1, Âˆ EF: -1, Âˆ BC: -1}
-We are left with a linear equation with coefficients {Âˆ BF: 1, Âˆ CE: 1, Âˆ EF: -1, Âˆ BC: -1} that gives ∠(BC,BF) = ∠(CE,EF)
-
-
-
-029. | Angle Chasing to prove ∠(AB,BE) = ∠(CF,CD):
-| Premise ∠(BE,BF) = ∠(CE,CF) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-| Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
-| Then {Âˆ BE: 1, Âˆ BF: -1, Âˆ CE: -1, Âˆ CF: 1} + -1 x {Âˆ AB: 1, Âˆ AF: -1}
-|    = {Âˆ BE: 1, Âˆ BF: -1, Âˆ CE: -1, Âˆ CF: 1, Âˆ AB: -1, Âˆ AF: 1}
-| Premise BF ∥ AF gives a linear equation with coefficients {Âˆ AF: 1, Âˆ BF: -1}
-| Then {Âˆ BE: 1, Âˆ BF: -1, Âˆ CE: -1, Âˆ CF: 1, Âˆ AB: -1, Âˆ AF: 1} + -1 x {Âˆ AF: 1, Âˆ BF: -1}
-|    = {Âˆ BE: 1, Âˆ CE: -1, Âˆ CF: 1, Âˆ AB: -1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ BE: 1, Âˆ CE: -1, Âˆ CF: 1, Âˆ AB: -1} + -1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ BE: 1, Âˆ CF: 1, Âˆ AB: -1, Âˆ CD: -1}
-We are left with a linear equation with coefficients {Âˆ BE: 1, Âˆ CF: 1, Âˆ AB: -1, Âˆ CD: -1} that gives ∠(AB,BE) = ∠(CF,CD)
-
-
-
-032. | Angle Chasing to prove ∠(AF,AG) = ∠(DF,CD):
-| Premise ∠(AE,AF) = ∠(DE,DF) gives a linear equation with coefficients {Âˆ AE: -1, Âˆ AF: 1, Âˆ DE: 1, Âˆ DF: -1}
-| Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
-| Then {Âˆ AE: 1, Âˆ AF: -1, Âˆ DE: -1, Âˆ DF: 1} + -1 x {Âˆ AE: 1, Âˆ AG: -1}
-|    = {Âˆ AF: -1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AG: 1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AF: -1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AG: 1} + -1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AF: -1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AG: 1, Âˆ CD: -1, Âˆ CE: 1}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AF: -1, Âˆ DE: -1, Âˆ DF: 1, Âˆ AG: 1, Âˆ CD: -1, Âˆ CE: 1} + -1 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AF: -1, Âˆ DF: 1, Âˆ AG: 1, Âˆ CD: -1}
-We are left with a linear equation with coefficients {Âˆ AF: -1, Âˆ DF: 1, Âˆ AG: 1, Âˆ CD: -1} that gives ∠(AF,AG) = ∠(DF,CD)
-
-
-
-033. | Angle Chasing to prove ∠(BC,BG) = ∠(CE,EG):
-| Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2} + -1/2 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
+| Premise ∠(BC,BD) = ∠(BD₁,BC) gives a linear equation with coefficients {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2} + 1/2 x {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1, Âˆ BD: 1/2, Âˆ BD1: 1/2}
+| Premise ∠(BC,BD₁) = ∠(CD,BD) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1, Âˆ BD: 1/2, Âˆ BD1: 1/2} + -1/2 x {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
 |    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2}
 | Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
 | Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2} + 1 x {Âˆ AE: 1, Âˆ AG: -1}
@@ -365,64 +227,55 @@ We are left with a linear equation with coefficients {Âˆ BC: -1, Âˆ EG: -1
 
 
 
-036. | Angle Chasing to prove ∠(CF,CG) = ∠(EF,EG):
-| Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2} + -1/2 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2}
-| Premise ∠(BE,BF) = ∠(CE,CF) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2} + 1 x {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
+022. | Angle Chasing to prove ∠(BE,D₁E) = ∠(BG,CG):
 | Premise ∠(BE,BG) = ∠(CE,CG) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BG: 1, Âˆ CE: 1, Âˆ CG: -1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1} + -1 x {Âˆ BE: -1, Âˆ BG: 1, Âˆ CE: 1, Âˆ CG: -1}
-|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1}
-| Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1} + 1 x {Âˆ AB: 1, Âˆ AF: -1}
-|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1}
-| Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1} + 1 x {Âˆ AE: 1, Âˆ AG: -1}
-|    = {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ AG: -1}
-| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
-| Then {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ AG: -1} + 1 x {Âˆ AG: 1, Âˆ EG: -1}
-|    = {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ EG: -1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ EG: -1} + -1/2 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ DE: 1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ EG: -1}
+| Premise CE ∥ D₁E gives a linear equation with coefficients {Âˆ CE: 1, Âˆ ED1: -1}
+| Then {Âˆ BE: -1, Âˆ BG: 1, Âˆ CE: 1, Âˆ CG: -1} + -1 x {Âˆ CE: 1, Âˆ ED1: -1}
+|    = {Âˆ BE: -1, Âˆ BG: 1, Âˆ CG: -1, Âˆ ED1: 1}
+We are left with a linear equation with coefficients {Âˆ BE: -1, Âˆ BG: 1, Âˆ CG: -1, Âˆ ED1: 1} that gives ∠(BE,D₁E) = ∠(BG,CG)
+
+
+
+027. | Angle Chasing to prove ∠(BC,BG) = ∠(DH,DE):
+| Premise ∠(BC,BD) = ∠(BD₁,BC) gives a linear equation with coefficients {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+| Premise ∠(BC,BD₁) = ∠(CD,BD) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+| Then {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1} + -1 x {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+|    = {Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1}
 | Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Then {Âˆ DE: 1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ EG: -1} + -1 x {Âˆ BD: 1, Âˆ BG: -1}
-|    = {Âˆ DE: 1/2, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ EG: -1}
-| Premise BF ∥ AF gives a linear equation with coefficients {Âˆ AF: 1, Âˆ BF: -1}
-| Then {Âˆ DE: 1/2, Âˆ CD: -1/2, Âˆ BF: 1, Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1, Âˆ EG: -1} + 1 x {Âˆ AF: 1, Âˆ BF: -1}
-|    = {Âˆ DE: 1/2, Âˆ CD: -1/2, Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EG: -1}
+| Then {Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1} + -1 x {Âˆ BD: 1, Âˆ BG: -1}
+|    = {Âˆ BC: -1, Âˆ BD: 1, Âˆ CD: -1, Âˆ BG: 1}
+| Premise BD ∥ BH gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BH: -1}
+| Then {Âˆ BC: -1, Âˆ BD: 1, Âˆ CD: -1, Âˆ BG: 1} + -1 x {Âˆ BD: 1, Âˆ BH: -1}
+|    = {Âˆ BC: -1, Âˆ CD: -1, Âˆ BG: 1, Âˆ BH: 1}
+| Premise BH ∥ DH gives a linear equation with coefficients {Âˆ BH: 1, Âˆ DH: -1}
+| Then {Âˆ BC: -1, Âˆ CD: -1, Âˆ BG: 1, Âˆ BH: 1} + -1 x {Âˆ BH: 1, Âˆ DH: -1}
+|    = {Âˆ BC: -1, Âˆ CD: -1, Âˆ BG: 1, Âˆ DH: 1}
 | Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ DE: 1/2, Âˆ CD: -1/2, Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EG: -1} + 1/2 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ DE: 1/2, Âˆ CE: -1/2, Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EG: -1}
+| Then {Âˆ BC: -1, Âˆ CD: -1, Âˆ BG: 1, Âˆ DH: 1} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
+|    = {Âˆ BC: -1, Âˆ BG: 1, Âˆ DH: 1, Âˆ CE: -1}
 | Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ DE: 1/2, Âˆ CE: -1/2, Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EG: -1} + 1/2 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EG: -1}
-| Premise AB ⟂ EF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ EF: -1}
-| Then {Âˆ CF: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EG: -1} + -1 x {Âˆ AB: 1, Âˆ EF: -1}
-|    = {Âˆ CF: -1, Âˆ CG: 1, Âˆ EG: -1, Âˆ EF: 1}
-We are left with a linear equation with coefficients {Âˆ CF: -1, Âˆ CG: 1, Âˆ EG: -1, Âˆ EF: 1} that gives ∠(CF,CG) = ∠(EF,EG)
+| Then {Âˆ BC: -1, Âˆ BG: 1, Âˆ DH: 1, Âˆ CE: -1} + 1 x {Âˆ CE: 1, Âˆ DE: -1}
+|    = {Âˆ BC: -1, Âˆ BG: 1, Âˆ DH: 1, Âˆ DE: -1}
+We are left with a linear equation with coefficients {Âˆ BC: -1, Âˆ BG: 1, Âˆ DH: 1, Âˆ DE: -1} that gives ∠(BC,BG) = ∠(DH,DE)
 
 
 
-039. | Angle Chasing to prove ∠(AG,FG) = ∠(CD,CF):
-| Premise ∠(CE,EG) = ∠(CF,FG) gives a linear equation with coefficients {Âˆ CE: -1, Âˆ CF: 1, Âˆ EG: 1, Âˆ FG: -1}
-| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
-| Then {Âˆ CE: 1, Âˆ CF: -1, Âˆ EG: -1, Âˆ FG: 1} + -1 x {Âˆ AG: 1, Âˆ EG: -1}
-|    = {Âˆ CE: 1, Âˆ CF: -1, Âˆ FG: 1, Âˆ AG: -1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ CE: 1, Âˆ CF: -1, Âˆ FG: 1, Âˆ AG: -1} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ CF: -1, Âˆ FG: 1, Âˆ AG: -1, Âˆ CD: 1}
-We are left with a linear equation with coefficients {Âˆ CF: -1, Âˆ FG: 1, Âˆ AG: -1, Âˆ CD: 1} that gives ∠(AG,FG) = ∠(CD,CF)
+028. | Angle Chasing to prove BH ∥ BG:
+| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
+| Premise BD ∥ BH gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BH: -1}
+| Then {Âˆ BD: -1, Âˆ BG: 1} + 1 x {Âˆ BD: 1, Âˆ BH: -1}
+|    = {Âˆ BG: 1, Âˆ BH: -1}
+We are left with a linear equation with coefficients {Âˆ BG: 1, Âˆ BH: -1} that gives BH ∥ BG
 
 
 
-043. | Angle Chasing to prove ∠(AG,BG) = ∠(BG,EG):
+031. | Angle Chasing to prove ∠(AG,GH) = ∠(GH,EG):
 | Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1} + -1 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
+| Premise ∠(BC,BD) = ∠(BD₁,BC) gives a linear equation with coefficients {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+| Then {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1} + 1 x {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+|    = {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+| Premise ∠(BC,BD₁) = ∠(CD,BD) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+| Then {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1} + -1 x {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
 |    = {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1}
 | Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
 | Then {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1} + 2 x {Âˆ AE: 1, Âˆ AG: -1}
@@ -436,38 +289,59 @@ We are left with a linear equation with coefficients {Âˆ CF: -1, Âˆ FG: 1,
 | Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
 | Then {Âˆ DE: 1, Âˆ BD: 2, Âˆ CD: -1, Âˆ AG: -1, Âˆ EG: -1} + -2 x {Âˆ BD: 1, Âˆ BG: -1}
 |    = {Âˆ DE: 1, Âˆ CD: -1, Âˆ AG: -1, Âˆ EG: -1, Âˆ BG: 2}
+| Premise BG ∥ GH gives a linear equation with coefficients {Âˆ BG: 1, Âˆ GH: -1}
+| Then {Âˆ DE: 1, Âˆ CD: -1, Âˆ AG: -1, Âˆ EG: -1, Âˆ BG: 2} + -2 x {Âˆ BG: 1, Âˆ GH: -1}
+|    = {Âˆ DE: 1, Âˆ CD: -1, Âˆ AG: -1, Âˆ EG: -1, Âˆ GH: 2}
 | Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ DE: 1, Âˆ CD: -1, Âˆ AG: -1, Âˆ EG: -1, Âˆ BG: 2} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ DE: 1, Âˆ AG: -1, Âˆ EG: -1, Âˆ BG: 2, Âˆ CE: -1}
+| Then {Âˆ DE: 1, Âˆ CD: -1, Âˆ AG: -1, Âˆ EG: -1, Âˆ GH: 2} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
+|    = {Âˆ DE: 1, Âˆ AG: -1, Âˆ EG: -1, Âˆ GH: 2, Âˆ CE: -1}
 | Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ DE: 1, Âˆ AG: -1, Âˆ EG: -1, Âˆ BG: 2, Âˆ CE: -1} + 1 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AG: -1, Âˆ EG: -1, Âˆ BG: 2}
-We are left with a linear equation with coefficients {Âˆ AG: -1, Âˆ EG: -1, Âˆ BG: 2} that gives ∠(AG,BG) = ∠(BG,EG)
+| Then {Âˆ DE: 1, Âˆ AG: -1, Âˆ EG: -1, Âˆ GH: 2, Âˆ CE: -1} + 1 x {Âˆ CE: 1, Âˆ DE: -1}
+|    = {Âˆ AG: -1, Âˆ EG: -1, Âˆ GH: 2}
+We are left with a linear equation with coefficients {Âˆ AG: -1, Âˆ EG: -1, Âˆ GH: 2} that gives ∠(AG,GH) = ∠(GH,EG)
 
 
 
-044. | Ratio Chasing to prove AG:BG = EG:BG:
+033. | Angle Chasing to prove ∠(AD,DG) = ∠(DG,DE):
+| Premise ∠(BC,BD) = ∠(BD₁,BC) gives a linear equation with coefficients {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+| Premise ∠(BC,BD₁) = ∠(CD,BD) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+| Then {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1} + -1 x {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+|    = {Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1}
+| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
+| Then {Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1} + -1 x {Âˆ AD: 1, Âˆ BC: -1}
+|    = {Âˆ BD: 2, Âˆ CD: -1, Âˆ AD: -1}
+| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
+| Then {Âˆ BD: 2, Âˆ CD: -1, Âˆ AD: -1} + -2 x {Âˆ BD: 1, Âˆ BG: -1}
+|    = {Âˆ CD: -1, Âˆ AD: -1, Âˆ BG: 2}
+| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
+| Then {Âˆ CD: -1, Âˆ AD: -1, Âˆ BG: 2} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
+|    = {Âˆ AD: -1, Âˆ BG: 2, Âˆ CE: -1}
+| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
+| Then {Âˆ AD: -1, Âˆ BG: 2, Âˆ CE: -1} + 1 x {Âˆ CE: 1, Âˆ DE: -1}
+|    = {Âˆ AD: -1, Âˆ BG: 2, Âˆ DE: -1}
+| Premise DG ∥ BG gives a linear equation with coefficients {Âˆ BG: 1, Âˆ DG: -1}
+| Then {Âˆ AD: -1, Âˆ BG: 2, Âˆ DE: -1} + -2 x {Âˆ BG: 1, Âˆ DG: -1}
+|    = {Âˆ AD: -1, Âˆ DE: -1, Âˆ DG: 2}
+We are left with a linear equation with coefficients {Âˆ AD: -1, Âˆ DE: -1, Âˆ DG: 2} that gives ∠(AD,DG) = ∠(DG,DE)
+
+
+
+035. | Ratio Chasing to prove AG:EG = GH:GH:
 | Premise DE = AD gives a linear equation with coefficients {AD²: 1, DE²: -1}
 | Premise AD:AG = DE:EG gives a linear equation with coefficients {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
 | Then {AD²: 1, DE²: -1} + -1 x {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
 |    = {AG²: 1, EG²: -1}
-We are left with a linear equation with coefficients {AG²: 1, EG²: -1} that gives AG:BG = EG:BG
+We are left with a linear equation with coefficients {AG²: 1, EG²: -1} that gives AG:EG = GH:GH
 
 
 
-048. | Angle Chasing to prove BH ∥ BG:
-| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Premise BD ∥ BH gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BH: -1}
-| Then {Âˆ BD: -1, Âˆ BG: 1} + 1 x {Âˆ BD: 1, Âˆ BH: -1}
-|    = {Âˆ BG: 1, Âˆ BH: -1}
-We are left with a linear equation with coefficients {Âˆ BG: 1, Âˆ BH: -1} that gives BH ∥ BG
-
-
-
-053. | Angle Chasing to prove ∠(AF,FH) = ∠(AG,GH):
+041. | Angle Chasing to prove ∠(AF,FH) = ∠(AG,GH):
 | Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2} + 1/2 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
+| Premise ∠(BC,BD) = ∠(BD₁,BC) gives a linear equation with coefficients {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+| Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2} + -1/2 x {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+|    = {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ BD: -1/2, Âˆ BD1: -1/2}
+| Premise ∠(BC,BD₁) = ∠(CD,BD) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+| Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: 1, Âˆ BD: -1/2, Âˆ BD1: -1/2} + 1/2 x {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
 |    = {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2}
 | Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
 | Then {Âˆ AD: -1/2, Âˆ AE: 1, Âˆ DE: -1/2, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2} + 1 x {Âˆ AB: 1, Âˆ AF: -1}
@@ -503,205 +377,106 @@ We are left with a linear equation with coefficients {Âˆ AF: -1, Âˆ AG: 1,
 
 
 
-056. | Angle Chasing to prove ∠(AD,AH) = ∠(EF,DE):
-| Premise ∠(AB,BG) = ∠(BG,BE) gives a linear equation with coefficients {Âˆ AB: -1, Âˆ BE: -1, Âˆ BG: 2}
-| Premise ∠(AG,AH) = ∠(FG,FH) gives a linear equation with coefficients {Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1}
-| Then {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2} + 1 x {Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1}
-|    = {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1} + -1 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-|    = {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1}
-| Premise ∠(BE,BF) = ∠(CE,CF) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-| Then {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1} + 1 x {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-|    = {Âˆ AB: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-| Premise ∠(CE,EG) = ∠(CF,FG) gives a linear equation with coefficients {Âˆ CE: -1, Âˆ CF: 1, Âˆ EG: 1, Âˆ FG: -1}
-| Then {Âˆ AB: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1} + 1 x {Âˆ CE: -1, Âˆ CF: 1, Âˆ EG: 1, Âˆ FG: -1}
-|    = {Âˆ AB: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1}
+045. | Angle Chasing to prove ∠(BC,BF) = ∠(CE,EF):
 | Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
-| Then {Âˆ AB: 1, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1} + 1 x {Âˆ AB: 1, Âˆ AF: -1}
-|    = {Âˆ AB: 2, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ AF: -1}
-| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
-| Then {Âˆ AB: 2, Âˆ BG: -2, Âˆ AG: -1, Âˆ AH: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ AF: -1} + 1 x {Âˆ AG: 1, Âˆ EG: -1}
-|    = {Âˆ AB: 2, Âˆ BG: -2, Âˆ AH: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ AF: -1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ AB: 2, Âˆ BG: -2, Âˆ AH: 1, Âˆ FH: -1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ AF: -1} + -1 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ AB: 2, Âˆ BG: -2, Âˆ AH: 1, Âˆ FH: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ AF: -1, Âˆ AD: -1}
-| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Then {Âˆ AB: 2, Âˆ BG: -2, Âˆ AH: 1, Âˆ FH: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ AF: -1, Âˆ AD: -1} + -2 x {Âˆ BD: 1, Âˆ BG: -1}
-|    = {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ CD: -1, Âˆ BF: 1, Âˆ AF: -1, Âˆ AD: -1}
 | Premise BF ∥ AF gives a linear equation with coefficients {Âˆ AF: 1, Âˆ BF: -1}
-| Then {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ CD: -1, Âˆ BF: 1, Âˆ AF: -1, Âˆ AD: -1} + 1 x {Âˆ AF: 1, Âˆ BF: -1}
-|    = {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ CD: -1, Âˆ AD: -1}
+| Then {Âˆ AB: -1, Âˆ AF: 1} + -1 x {Âˆ AF: 1, Âˆ BF: -1}
+|    = {Âˆ AB: -1, Âˆ BF: 1}
 | Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ CD: -1, Âˆ AD: -1} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ CE: -1, Âˆ AD: -1}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ CE: -1, Âˆ AD: -1} + 1 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ AD: -1, Âˆ DE: -1}
-| Premise EH ∥ EF gives a linear equation with coefficients {Âˆ EF: 1, Âˆ EH: -1}
-| Then {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ AD: -1, Âˆ DE: -1} + -1 x {Âˆ EF: 1, Âˆ EH: -1}
-|    = {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ AD: -1, Âˆ DE: -1, Âˆ EF: -1, Âˆ EH: 1}
-| Premise FH ∥ EH gives a linear equation with coefficients {Âˆ EH: 1, Âˆ FH: -1}
-| Then {Âˆ AB: 2, Âˆ AH: 1, Âˆ FH: -1, Âˆ AD: -1, Âˆ DE: -1, Âˆ EF: -1, Âˆ EH: 1} + -1 x {Âˆ EH: 1, Âˆ FH: -1}
-|    = {Âˆ AB: 2, Âˆ AH: 1, Âˆ AD: -1, Âˆ DE: -1, Âˆ EF: -1}
+| Then {Âˆ AB: -1, Âˆ BF: 1} + -1 x {Âˆ CD: 1, Âˆ CE: -1}
+|    = {Âˆ AB: -1, Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1}
 | Premise AB ⟂ EF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ EF: -1}
-| Then {Âˆ AB: 2, Âˆ AH: 1, Âˆ AD: -1, Âˆ DE: -1, Âˆ EF: -1} + -2 x {Âˆ AB: 1, Âˆ EF: -1}
-|    = {Âˆ AH: 1, Âˆ AD: -1, Âˆ DE: -1, Âˆ EF: 1}
-We are left with a linear equation with coefficients {Âˆ AH: 1, Âˆ AD: -1, Âˆ DE: -1, Âˆ EF: 1} that gives ∠(AD,AH) = ∠(EF,DE)
-
-
-
-057. | Angle Chasing to prove ∠(AE,EH) = ∠(EF,FG):
-| Premise ∠(AB,BG) = ∠(BG,BE) gives a linear equation with coefficients {Âˆ AB: -1, Âˆ BE: -1, Âˆ BG: 2}
-| Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Then {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2} + 1 x {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-|    = {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1} + -1 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-|    = {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1}
-| Premise ∠(BE,BF) = ∠(CE,CF) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-| Then {Âˆ AB: 1, Âˆ BE: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1} + 1 x {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-|    = {Âˆ AB: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
-| Premise ∠(CE,EG) = ∠(CF,FG) gives a linear equation with coefficients {Âˆ CE: -1, Âˆ CF: 1, Âˆ EG: 1, Âˆ FG: -1}
-| Then {Âˆ AB: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1} + 1 x {Âˆ CE: -1, Âˆ CF: 1, Âˆ EG: 1, Âˆ FG: -1}
-|    = {Âˆ AB: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ FG: -1}
-| Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
-| Then {Âˆ AB: 1, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ FG: -1} + 1 x {Âˆ AB: 1, Âˆ AF: -1}
-|    = {Âˆ AB: 2, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ FG: -1, Âˆ AF: -1}
-| Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
-| Then {Âˆ AB: 2, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ FG: -1, Âˆ AF: -1} + 1 x {Âˆ AE: 1, Âˆ AG: -1}
-|    = {Âˆ AB: 2, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -1, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ FG: -1, Âˆ AF: -1, Âˆ AG: -1}
-| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
-| Then {Âˆ AB: 2, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -1, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ EG: 1, Âˆ FG: -1, Âˆ AF: -1, Âˆ AG: -1} + 1 x {Âˆ AG: 1, Âˆ EG: -1}
-|    = {Âˆ AB: 2, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -1, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ FG: -1, Âˆ AF: -1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ AB: 2, Âˆ BG: -2, Âˆ AD: 1, Âˆ AE: -1, Âˆ DE: 1, Âˆ BC: -1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ FG: -1, Âˆ AF: -1} + -1 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ AB: 2, Âˆ BG: -2, Âˆ AE: -1, Âˆ DE: 1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ FG: -1, Âˆ AF: -1}
-| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Then {Âˆ AB: 2, Âˆ BG: -2, Âˆ AE: -1, Âˆ DE: 1, Âˆ BD: 2, Âˆ CD: -1, Âˆ BF: 1, Âˆ FG: -1, Âˆ AF: -1} + -2 x {Âˆ BD: 1, Âˆ BG: -1}
-|    = {Âˆ AB: 2, Âˆ AE: -1, Âˆ DE: 1, Âˆ CD: -1, Âˆ BF: 1, Âˆ FG: -1, Âˆ AF: -1}
-| Premise BF ∥ AF gives a linear equation with coefficients {Âˆ AF: 1, Âˆ BF: -1}
-| Then {Âˆ AB: 2, Âˆ AE: -1, Âˆ DE: 1, Âˆ CD: -1, Âˆ BF: 1, Âˆ FG: -1, Âˆ AF: -1} + 1 x {Âˆ AF: 1, Âˆ BF: -1}
-|    = {Âˆ AB: 2, Âˆ AE: -1, Âˆ DE: 1, Âˆ CD: -1, Âˆ FG: -1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ AB: 2, Âˆ AE: -1, Âˆ DE: 1, Âˆ CD: -1, Âˆ FG: -1} + 1 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ AB: 2, Âˆ AE: -1, Âˆ DE: 1, Âˆ CE: -1, Âˆ FG: -1}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ AB: 2, Âˆ AE: -1, Âˆ DE: 1, Âˆ CE: -1, Âˆ FG: -1} + 1 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ AB: 2, Âˆ AE: -1, Âˆ FG: -1}
-| Premise EH ∥ EF gives a linear equation with coefficients {Âˆ EF: 1, Âˆ EH: -1}
-| Then {Âˆ AB: 2, Âˆ AE: -1, Âˆ FG: -1} + -1 x {Âˆ EF: 1, Âˆ EH: -1}
-|    = {Âˆ AB: 2, Âˆ AE: -1, Âˆ FG: -1, Âˆ EF: -1, Âˆ EH: 1}
-| Premise AB ⟂ EF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ EF: -1}
-| Then {Âˆ AB: 2, Âˆ AE: -1, Âˆ FG: -1, Âˆ EF: -1, Âˆ EH: 1} + -2 x {Âˆ AB: 1, Âˆ EF: -1}
-|    = {Âˆ AE: -1, Âˆ FG: -1, Âˆ EF: 1, Âˆ EH: 1}
-We are left with a linear equation with coefficients {Âˆ AE: -1, Âˆ FG: -1, Âˆ EF: 1, Âˆ EH: 1} that gives ∠(AE,EH) = ∠(EF,FG)
-
-
-
-058. | Angle Chasing to prove ∠(AH,EH) = ∠(EG,FG):
-| Premise ∠(AG,AH) = ∠(FG,FH) gives a linear equation with coefficients {Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1}
-| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
-| Then {Âˆ AG: 1, Âˆ AH: -1, Âˆ FG: -1, Âˆ FH: 1} + -1 x {Âˆ AG: 1, Âˆ EG: -1}
-|    = {Âˆ AH: -1, Âˆ FG: -1, Âˆ FH: 1, Âˆ EG: 1}
-| Premise FH ∥ EH gives a linear equation with coefficients {Âˆ EH: 1, Âˆ FH: -1}
-| Then {Âˆ AH: -1, Âˆ FG: -1, Âˆ FH: 1, Âˆ EG: 1} + 1 x {Âˆ EH: 1, Âˆ FH: -1}
-|    = {Âˆ AH: -1, Âˆ FG: -1, Âˆ EG: 1, Âˆ EH: 1}
-We are left with a linear equation with coefficients {Âˆ AH: -1, Âˆ FG: -1, Âˆ EG: 1, Âˆ EH: 1} that gives ∠(AH,EH) = ∠(EG,FG)
-
-
-
-062. | Ratio Chasing to prove AD:AH = EF:DE:
-| Premise AG = DG gives a linear equation with coefficients {AG²: 1, DG²: -1}
-| Premise DE = AD gives a linear equation with coefficients {AD²: 1, DE²: -1}
-| Then {AG²: -1, DG²: 1} + 1 x {AD²: 1, DE²: -1}
-|    = {AG²: -1, DG²: 1, AD²: 1, DE²: -1}
-| Premise AD:AE = DG:DE gives a linear equation with coefficients {AD²: 1, AE²: -1, DE²: 1, DG²: -1}
-| Then {AG²: -1, DG²: 1, AD²: 1, DE²: -1} + 1 x {AD²: 1, AE²: -1, DE²: 1, DG²: -1}
-|    = {AG²: -1, AD²: 2, AE²: -1}
-| Premise AD:AG = DE:EG gives a linear equation with coefficients {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-| Then {AG²: -1, AD²: 2, AE²: -1} + -1 x {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-|    = {AD²: 1, DE²: 1, AE²: -1, EG²: -1}
-| Premise AE:EF = EH:FG gives a linear equation with coefficients {AE²: 1, EF²: -1, EH²: -1, FG²: 1}
-| Then {AD²: 1, DE²: 1, AE²: -1, EG²: -1} + 1 x {AE²: 1, EF²: -1, EH²: -1, FG²: 1}
-|    = {AD²: 1, DE²: 1, EG²: -1, EF²: -1, EH²: -1, FG²: 1}
-| Premise AH:EG = EH:FG gives a linear equation with coefficients {AH²: 1, EG²: -1, EH²: -1, FG²: 1}
-| Then {AD²: 1, DE²: 1, EG²: -1, EF²: -1, EH²: -1, FG²: 1} + -1 x {AH²: 1, EG²: -1, EH²: -1, FG²: 1}
-|    = {AD²: 1, DE²: 1, EF²: -1, AH²: -1}
-We are left with a linear equation with coefficients {AD²: 1, DE²: 1, EF²: -1, AH²: -1} that gives AD:AH = EF:DE
-
-
-
-065. | Angle Chasing to prove ∠(BC,CD) = ∠(DG,EG):
-| Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
-| Premise ∠(BC,BD) = ∠(BD,CD) gives a linear equation with coefficients {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2} + -1/2 x {Âˆ BC: 1, Âˆ BD: -2, Âˆ CD: 1}
-|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2}
-| Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
-| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2} + 1 x {Âˆ AE: 1, Âˆ AG: -1}
-|    = {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ AG: -1}
-| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
-| Then {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ AG: -1} + 1 x {Âˆ AG: 1, Âˆ EG: -1}
-|    = {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ EG: -1}
-| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
-| Then {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ BC: -1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ EG: -1} + -1/2 x {Âˆ AD: 1, Âˆ BC: -1}
-|    = {Âˆ DE: 1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ EG: -1}
-| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
-| Then {Âˆ DE: 1/2, Âˆ BD: 1, Âˆ CD: -1/2, Âˆ EG: -1} + -1 x {Âˆ BD: 1, Âˆ BG: -1}
-|    = {Âˆ DE: 1/2, Âˆ CD: -1/2, Âˆ EG: -1, Âˆ BG: 1}
-| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
-| Then {Âˆ DE: 1/2, Âˆ CD: -1/2, Âˆ EG: -1, Âˆ BG: 1} + 1/2 x {Âˆ CD: 1, Âˆ CE: -1}
-|    = {Âˆ DE: 1/2, Âˆ EG: -1, Âˆ BG: 1, Âˆ CE: -1/2}
-| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
-| Then {Âˆ DE: 1/2, Âˆ EG: -1, Âˆ BG: 1, Âˆ CE: -1/2} + 1/2 x {Âˆ CE: 1, Âˆ DE: -1}
-|    = {Âˆ EG: -1, Âˆ BG: 1}
-| Premise DG ∥ BG gives a linear equation with coefficients {Âˆ BG: 1, Âˆ DG: -1}
-| Then {Âˆ EG: -1, Âˆ BG: 1} + -1 x {Âˆ BG: 1, Âˆ DG: -1}
-|    = {Âˆ EG: -1, Âˆ DG: 1}
+| Then {Âˆ AB: -1, Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1} + 1 x {Âˆ AB: 1, Âˆ EF: -1}
+|    = {Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1, Âˆ EF: -1}
 | Premise BC ⟂ CD gives a linear equation with coefficients {Âˆ BC: 1, Âˆ CD: -1}
-| Then {Âˆ EG: -1, Âˆ DG: 1} + -1 x {Âˆ BC: 1, Âˆ CD: -1}
-|    = {Âˆ BC: -1, Âˆ CD: 1, Âˆ EG: -1, Âˆ DG: 1}
-We are left with a linear equation with coefficients {Âˆ BC: -1, Âˆ CD: 1, Âˆ EG: -1, Âˆ DG: 1} that gives ∠(BC,CD) = ∠(DG,EG)
+| Then {Âˆ BF: 1, Âˆ CD: -1, Âˆ CE: 1, Âˆ EF: -1} + -1 x {Âˆ BC: 1, Âˆ CD: -1}
+|    = {Âˆ BF: 1, Âˆ CE: 1, Âˆ EF: -1, Âˆ BC: -1}
+We are left with a linear equation with coefficients {Âˆ BF: 1, Âˆ CE: 1, Âˆ EF: -1, Âˆ BC: -1} that gives ∠(BC,BF) = ∠(CE,EF)
 
 
 
-066. | Ratio Chasing to prove BC:CD = EG:DG:
-| Premise AG = DG gives a linear equation with coefficients {AG²: 1, DG²: -1}
+048. | Angle Chasing to prove ∠(BF,BG) = ∠(CF,CG):
+| Premise ∠(BE,BF) = ∠(CE,CF) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
+| Premise ∠(BE,BG) = ∠(CE,CG) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BG: 1, Âˆ CE: 1, Âˆ CG: -1}
+| Then {Âˆ BE: 1, Âˆ BF: -1, Âˆ CE: -1, Âˆ CF: 1} + 1 x {Âˆ BE: -1, Âˆ BG: 1, Âˆ CE: 1, Âˆ CG: -1}
+|    = {Âˆ BF: -1, Âˆ CF: 1, Âˆ BG: 1, Âˆ CG: -1}
+We are left with a linear equation with coefficients {Âˆ BF: -1, Âˆ CF: 1, Âˆ BG: 1, Âˆ CG: -1} that gives ∠(BF,BG) = ∠(CF,CG)
+
+
+
+051. | Angle Chasing to prove ∠(BG,CG) = ∠(DE,EH):
+| Premise ∠(AD,AE) = ∠(AE,DE) gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AE: -2, Âˆ DE: 1}
+| Premise ∠(AG,AH) = ∠(EH,EG) gives a linear equation with coefficients {Âˆ AG: -1, Âˆ AH: 1, Âˆ EG: -1, Âˆ EH: 1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2} + -1 x {Âˆ AG: -1, Âˆ AH: 1, Âˆ EG: -1, Âˆ EH: 1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ AG: 1, Âˆ AH: -1, Âˆ EG: 1, Âˆ EH: -1}
+| Premise ∠(AG,AH) = ∠(FG,FH) gives a linear equation with coefficients {Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ AG: 1, Âˆ AH: -1, Âˆ EG: 1, Âˆ EH: -1} + 1 x {Âˆ AG: -1, Âˆ AH: 1, Âˆ FG: 1, Âˆ FH: -1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FG: 1, Âˆ FH: -1}
+| Premise ∠(BC,BD) = ∠(BD₁,BC) gives a linear equation with coefficients {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FG: 1, Âˆ FH: -1} + -1/2 x {Âˆ BC: -2, Âˆ BD: 1, Âˆ BD1: 1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: 1, Âˆ BD: -1/2, Âˆ BD1: -1/2}
+| Premise ∠(BC,BD₁) = ∠(CD,BD) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: 1, Âˆ BD: -1/2, Âˆ BD1: -1/2} + 1/2 x {Âˆ BC: -1, Âˆ BD: -1, Âˆ BD1: 1, Âˆ CD: 1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2}
+| Premise ∠(BC,BG) = ∠(CF,FG) gives a linear equation with coefficients {Âˆ BC: -1, Âˆ BG: 1, Âˆ CF: 1, Âˆ FG: -1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FG: 1, Âˆ FH: -1, Âˆ BC: 1/2, Âˆ BD: -1, Âˆ CD: 1/2} + 1 x {Âˆ BC: -1, Âˆ BG: 1, Âˆ CF: 1, Âˆ FG: -1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BG: 1, Âˆ CF: 1}
+| Premise ∠(BE,BF) = ∠(CE,CF) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BG: 1, Âˆ CF: 1} + 1 x {Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1, Âˆ CF: -1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BG: 1, Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1}
+| Premise ∠(BE,BG) = ∠(CE,CG) gives a linear equation with coefficients {Âˆ BE: -1, Âˆ BG: 1, Âˆ CE: 1, Âˆ CG: -1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BG: 1, Âˆ BE: -1, Âˆ BF: 1, Âˆ CE: 1} + -1 x {Âˆ BE: -1, Âˆ BG: 1, Âˆ CE: 1, Âˆ CG: -1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1}
+| Premise AB ∥ AF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ AF: -1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1} + 1 x {Âˆ AB: 1, Âˆ AF: -1}
+|    = {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1}
+| Premise AG ∥ AE gives a linear equation with coefficients {Âˆ AE: 1, Âˆ AG: -1}
+| Then {Âˆ AD: 1/2, Âˆ AE: -1, Âˆ DE: 1/2, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1} + 1 x {Âˆ AE: 1, Âˆ AG: -1}
+|    = {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ AG: -1, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1}
+| Premise AG ∥ EG gives a linear equation with coefficients {Âˆ AG: 1, Âˆ EG: -1}
+| Then {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ AG: -1, Âˆ EG: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1} + 1 x {Âˆ AG: 1, Âˆ EG: -1}
+|    = {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1}
+| Premise BC ∥ AD gives a linear equation with coefficients {Âˆ AD: 1, Âˆ BC: -1}
+| Then {Âˆ AD: 1/2, Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ BC: -1/2, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1} + -1/2 x {Âˆ AD: 1, Âˆ BC: -1}
+|    = {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1}
+| Premise BD ∥ BG gives a linear equation with coefficients {Âˆ BD: 1, Âˆ BG: -1}
+| Then {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ BD: -1, Âˆ CD: 1/2, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1} + 1 x {Âˆ BD: 1, Âˆ BG: -1}
+|    = {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ CD: 1/2, Âˆ BG: -1, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1}
+| Premise BF ∥ AF gives a linear equation with coefficients {Âˆ AF: 1, Âˆ BF: -1}
+| Then {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ CD: 1/2, Âˆ BG: -1, Âˆ BF: 1, Âˆ CG: 1, Âˆ AB: 1, Âˆ AF: -1} + 1 x {Âˆ AF: 1, Âˆ BF: -1}
+|    = {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ CD: 1/2, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1}
+| Premise CE ∥ CD gives a linear equation with coefficients {Âˆ CD: 1, Âˆ CE: -1}
+| Then {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ CD: 1/2, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1} + -1/2 x {Âˆ CD: 1, Âˆ CE: -1}
+|    = {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ BG: -1, Âˆ CE: 1/2, Âˆ CG: 1, Âˆ AB: 1}
+| Premise DE ∥ CE gives a linear equation with coefficients {Âˆ CE: 1, Âˆ DE: -1}
+| Then {Âˆ DE: 1/2, Âˆ EH: -1, Âˆ FH: -1, Âˆ BG: -1, Âˆ CE: 1/2, Âˆ CG: 1, Âˆ AB: 1} + -1/2 x {Âˆ CE: 1, Âˆ DE: -1}
+|    = {Âˆ DE: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1}
+| Premise EH ∥ EF gives a linear equation with coefficients {Âˆ EF: 1, Âˆ EH: -1}
+| Then {Âˆ DE: 1, Âˆ EH: -1, Âˆ FH: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1} + -1 x {Âˆ EF: 1, Âˆ EH: -1}
+|    = {Âˆ DE: 1, Âˆ FH: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EF: -1}
+| Premise FH ∥ EH gives a linear equation with coefficients {Âˆ EH: 1, Âˆ FH: -1}
+| Then {Âˆ DE: 1, Âˆ FH: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EF: -1} + -1 x {Âˆ EH: 1, Âˆ FH: -1}
+|    = {Âˆ DE: 1, Âˆ EH: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EF: -1}
+| Premise AB ⟂ EF gives a linear equation with coefficients {Âˆ AB: 1, Âˆ EF: -1}
+| Then {Âˆ DE: 1, Âˆ EH: -1, Âˆ BG: -1, Âˆ CG: 1, Âˆ AB: 1, Âˆ EF: -1} + -1 x {Âˆ AB: 1, Âˆ EF: -1}
+|    = {Âˆ DE: 1, Âˆ EH: -1, Âˆ BG: -1, Âˆ CG: 1}
+We are left with a linear equation with coefficients {Âˆ DE: 1, Âˆ EH: -1, Âˆ BG: -1, Âˆ CG: 1} that gives ∠(BG,CG) = ∠(DE,EH)
+
+
+
+055. | Ratio Chasing to prove BD:BE = DH:EH:
 | Premise BC = CD gives a linear equation with coefficients {BC²: 1, CD²: -1}
-| Then {AG²: -1, DG²: 1} + 1 x {BC²: 1, CD²: -1}
-|    = {AG²: -1, DG²: 1, BC²: 1, CD²: -1}
-| Premise DE = AD gives a linear equation with coefficients {AD²: 1, DE²: -1}
-| Then {AG²: -1, DG²: 1, BC²: 1, CD²: -1} + 1 x {AD²: 1, DE²: -1}
-|    = {AG²: -1, DG²: 1, BC²: 1, CD²: -1, AD²: 1, DE²: -1}
-| Premise AD:AG = DE:EG gives a linear equation with coefficients {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-| Then {AG²: -1, DG²: 1, BC²: 1, CD²: -1, AD²: 1, DE²: -1} + -1 x {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-|    = {DG²: 1, BC²: 1, CD²: -1, EG²: -1}
-We are left with a linear equation with coefficients {DG²: 1, BC²: 1, CD²: -1, EG²: -1} that gives BC:CD = EG:DG
-
-
-
-069. | Ratio Chasing to prove BD:BE = DH:EH:
-| Premise AD:AE = DG:DE gives a linear equation with coefficients {AD²: 1, AE²: -1, DE²: 1, DG²: -1}
-| Premise AD:AG = DE:EG gives a linear equation with coefficients {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-| Then {AD²: 1, AE²: -1, DE²: 1, DG²: -1} + -1 x {AD²: 1, AG²: -1, DE²: -1, EG²: 1}
-|    = {AE²: -1, DE²: 2, DG²: -1, AG²: 1, EG²: -1}
-| Premise AE:BE = DF:CF gives a linear equation with coefficients {AE²: 1, BE²: -1, CF²: 1, DF²: -1}
-| Then {AE²: -1, DE²: 2, DG²: -1, AG²: 1, EG²: -1} + 1 x {AE²: 1, BE²: -1, CF²: 1, DF²: -1}
-|    = {DE²: 2, DG²: -1, AG²: 1, EG²: -1, BE²: -1, CF²: 1, DF²: -1}
-| Premise AF:AG = DF:CD gives a linear equation with coefficients {AF²: 1, AG²: -1, CD²: 1, DF²: -1}
-| Then {DE²: 2, DG²: -1, AG²: 1, EG²: -1, BE²: -1, CF²: 1, DF²: -1} + 1 x {AF²: 1, AG²: -1, CD²: 1, DF²: -1}
-|    = {DE²: 2, DG²: -1, EG²: -1, BE²: -1, CF²: 1, DF²: -2, AF²: 1, CD²: 1}
-| Premise AF:DF = FG:CF gives a linear equation with coefficients {AF²: 1, CF²: 1, DF²: -1, FG²: -1}
-| Then {DE²: 2, DG²: -1, EG²: -1, BE²: -1, CF²: 1, DF²: -2, AF²: 1, CD²: 1} + -1 x {AF²: 1, CF²: 1, DF²: -1, FG²: -1}
-|    = {DE²: 2, DG²: -1, EG²: -1, BE²: -1, DF²: -1, CD²: 1, FG²: 1}
-| Premise AH:DE = DH:DF gives a linear equation with coefficients {AH²: 1, DE²: -1, DF²: 1, DH²: -1}
-| Then {DE²: 2, DG²: -1, EG²: -1, BE²: -1, DF²: -1, CD²: 1, FG²: 1} + 1 x {AH²: 1, DE²: -1, DF²: 1, DH²: -1}
-|    = {DE²: 1, DG²: -1, EG²: -1, BE²: -1, CD²: 1, FG²: 1, AH²: 1, DH²: -1}
-| Premise AH:EG = EH:FG gives a linear equation with coefficients {AH²: 1, EG²: -1, EH²: -1, FG²: 1}
-| Then {DE²: 1, DG²: -1, EG²: -1, BE²: -1, CD²: 1, FG²: 1, AH²: 1, DH²: -1} + -1 x {AH²: 1, EG²: -1, EH²: -1, FG²: 1}
-|    = {DE²: 1, DG²: -1, BE²: -1, CD²: 1, DH²: -1, EH²: 1}
-| Premise BD:CD = DE:DG gives a linear equation with coefficients {BD²: 1, CD²: -1, DE²: -1, DG²: 1}
-| Then {DE²: 1, DG²: -1, BE²: -1, CD²: 1, DH²: -1, EH²: 1} + 1 x {BD²: 1, CD²: -1, DE²: -1, DG²: 1}
+| Premise BC = CD₁ gives a linear equation with coefficients {BC²: 1, CD1²: -1}
+| Then {BC²: -1, CD²: 1} + 1 x {BC²: 1, CD1²: -1}
+|    = {CD²: 1, CD1²: -1}
+| Premise BC:BD₁ = CG:BE gives a linear equation with coefficients {BC²: 1, BE²: 1, BD1²: -1, CG²: -1}
+| Then {CD²: 1, CD1²: -1} + -1 x {BC²: 1, BE²: 1, BD1²: -1, CG²: -1}
+|    = {BC²: -1, CD²: 1, CD1²: -1, BE²: -1, BD1²: 1, CG²: 1}
+| Premise BC:CG = DH:EH gives a linear equation with coefficients {BC²: 1, CG²: -1, DH²: -1, EH²: 1}
+| Then {BC²: -1, CD²: 1, CD1²: -1, BE²: -1, BD1²: 1, CG²: 1} + 1 x {BC²: 1, CG²: -1, DH²: -1, EH²: 1}
+|    = {CD²: 1, CD1²: -1, BE²: -1, BD1²: 1, DH²: -1, EH²: 1}
+| Premise BD:BD₁ = CD:CD₁ gives a linear equation with coefficients {BD²: 1, BD1²: -1, CD²: -1, CD1²: 1}
+| Then {CD²: 1, CD1²: -1, BE²: -1, BD1²: 1, DH²: -1, EH²: 1} + 1 x {BD²: 1, BD1²: -1, CD²: -1, CD1²: 1}
 |    = {BE²: -1, DH²: -1, EH²: 1, BD²: 1}
 We are left with a linear equation with coefficients {BE²: -1, DH²: -1, EH²: 1, BD²: 1} that gives BD:BE = DH:EH
 
