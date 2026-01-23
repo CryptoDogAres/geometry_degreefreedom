@@ -4,6 +4,10 @@ tags: []
 
 ---
 
+# Main outcome: https://cryptodogares.github.io/geometry_degreefreedom/
+
+This GitHub Pages site is the primary output of the repo; it renders the generated HTML notebook pages.
+
 # Build HTML outputs
 
 This repo uses `build_html.py` to generate HTML versions of the three polygon ratio notebooks.
