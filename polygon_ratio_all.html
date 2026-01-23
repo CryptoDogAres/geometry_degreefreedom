@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-
-<html lang="en">
-<head><meta charset="utf-8"/>
+<html>
+<head>
+<meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>pysym_polygon_ratio</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>polygon_ratio_problem</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7508,99 +7508,662 @@ a.anchor-link {
     white-space: normal;
   }
 </style>
-<!-- End of mermaid configuration --></head>
-<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a9a21bce">
+<!-- End of mermaid configuration -->
+<style>
+.page-break { page-break-after: always; }
+.nb-section { page-break-after: always; }
+</style>
+</head>
+<body>
+<section class="nb-section" data-source="polygon_ratio_problem.html">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Polygon-Ratio-Problem:-Many-Proofs,-One-Degree-of-Freedom">Polygon Ratio Problem: Many Proofs, One Degree of Freedom<a class="anchor-link" href="#Polygon-Ratio-Problem:-Many-Proofs,-One-Degree-of-Freedom">¶</a></h2><p>Author: Changchun Shi<br/>
+Date: Jan 12, 2026</p>
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>During the Christmas holidays, a basic geometry proof problem showed up in my class alumni chat (Figure 1 is the original screenshot from classmate Lin He). He asked about the second question as the first of the two is almost trivial, and that set the whole discussion in motion. I have always liked Euclidean geometry and have exceled in most of teenage subject competitions (I don't recall failed to proof any of the geometry problems in my competition career). Problems like this rarely stop at one proof. Draw one line and a ratio drops out; draw another and a different argument appears. What follows is a cleaned collection: one quick sine-law proof, several synthetic proofs, an analytic-geometry proof (with help of ChatGPT 5.2-thinking for easy life, edited for clarity), and a one-parameter generalization that reveals deeper structure. I hope it gives younger students a sense of how much structure a single diagram can hide. I also plan to use this pilot problem to introduce the SOTA artificial intelligent ways of solving such problems in seperate notes.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="original_image.jpg" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 1: The original problem (photo from the chat).</em></p>
+</div>
+<p>Let me first restate the problem in words and redraw the diagram more cleanly.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/original_problem_redraw.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 2: A clean redraw in GeoGebra.</em></p>
+</div>
+<p>Problem statement (translated). In trapezoid $ABCD$, $AD\parallel BC$, $\angle C=90^\circ$, and $BC=CD$. Point $E$ lies on $CD$, and $DE=AD$. Through $E$, draw $EF\perp AB$ with $F$ as the foot of the perpendicular. Draw $BD$; it intersects $AE$ and $EF$ at points $G$ and $H$, respectively. Prove:</p>
+<ol>
+<li>$BF\cdot HE=GE\cdot BH$.</li>
+<li>$BE\cdot DH=BD\cdot EH$.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-1.-Synthetic-geometry-(auxiliary-lines)">Part 1. Synthetic geometry (auxiliary lines)<a class="anchor-link" href="#Part-1.-Synthetic-geometry-(auxiliary-lines)">¶</a></h2><p>The basic equal angles and lengths are shown in Figure 3.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/original_problem_basic_property.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 3: Basic angle and length relations.</em></p>
+</div>
+<p>Question (1) is a warm-up; it follows from similar triangles visible in Figure 3. For part (2), a quick start is the sine law. For a triangle $ABC$ with side lengths $a,b,c$ opposite vertices $A,B,C$, we have
+$$\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}.$$
+This gives Proof 0 immediately.</p>
+<h3 id="Proof-0-(sine-law)">Proof 0 (sine law)<a class="anchor-link" href="#Proof-0-(sine-law)">¶</a></h3><blockquote>
+<p>The ratios $DB:BE$ and $DH:HE$ are both $\sin(45^\circ+\alpha):\sin 45^\circ$, so they are equal. This proof uses no auxiliary lines.</p>
+</blockquote>
+<p>To avoid assuming the sine law, I drew auxiliary lines. Rather than separate diagrams per proof, the next figure collects all extra points. Each added point carries a subscript that matches the proof number (for example, $D_1$ is used only in Proof 1).</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/original_problem_with_proof.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 4: All auxiliary lines used in the synthetic proofs.</em></p>
+</div>
+<p>Below are brief proof sketches. Each can be completed as a standard middle-school geometry exercise.</p>
+<h3 id="Proof-1">Proof 1<a class="anchor-link" href="#Proof-1">¶</a></h3><blockquote>
+<p>Extend $DC$ to $D_1$ so that $D_1$ is symmetric to $D$ with respect to $BC$. Then $\triangle EBD_1\sim\triangle EHD$, so the desired ratio follows.</p>
+</blockquote>
+<h3 id="Proof-2">Proof 2<a class="anchor-link" href="#Proof-2">¶</a></h3><blockquote>
+<p>Extend $DC$ to $E_2$ so that $E_2$ is symmetric to $E$ with respect to $BC$. Then $\triangle E_2BD\sim\triangle EHD$, so the desired ratio follows.</p>
+</blockquote>
+<h3 id="Proof-3">Proof 3<a class="anchor-link" href="#Proof-3">¶</a></h3><blockquote>
+<p>From $H$ draw a line parallel to $BE$ and intersect $DE$ at $E'$. Then $HE=HE'$. The rest follows.</p>
+</blockquote>
+<h3 id="Proof-4">Proof 4<a class="anchor-link" href="#Proof-4">¶</a></h3><blockquote>
+<p>Extend $AE$ to meet $BC$ at $C_4$. Then $AC_4=BD$. Also $\triangle HED\sim\triangle ABC_4$, so the ratio follows. (Credit: Prof. Xueheng Lan.)</p>
+</blockquote>
+<h3 id="Proof-4.1">Proof 4.1<a class="anchor-link" href="#Proof-4.1">¶</a></h3><blockquote>
+<p>Use the reflection property: the ray from $B$ to $E$ reflects across $DE$ and passes through $H$. This gives the same angle relation at $DE$, so the ratio follows.</p>
+</blockquote>
+<h3 id="Proof-5">Proof 5<a class="anchor-link" href="#Proof-5">¶</a></h3><blockquote>
+<p>Draw a line from $H$ parallel to $DE$ and intersect $EA$ at $H_5$. Then $DH=EH_5$, and $\triangle EHH_5\sim\triangle BED$, which leads to the result.</p>
+</blockquote>
+<h3 id="Proof-6">Proof 6<a class="anchor-link" href="#Proof-6">¶</a></h3><blockquote>
+<p>Draw a line from $H$ parallel to $BC$ and intersect $DE$ at $H_6$. Then $DH/DB=HH_6/BD=EH/BD$.</p>
+</blockquote>
+<h3 id="Proof-7">Proof 7<a class="anchor-link" href="#Proof-7">¶</a></h3><blockquote>
+<p>Draw a line from $H$ parallel to $DE$ and intersect $BE$ at $H_7$. Then $HE:BE=H_7E:BE=HD:BD$.</p>
+</blockquote>
+<h3 id="Proof-8">Proof 8<a class="anchor-link" href="#Proof-8">¶</a></h3><blockquote>
+<p>The distances from $D$ to $BE$ and $EH$ are equal (use $DD_8$ and $DD'_8$; these are non-essential since $\angle BEC=\angle HED=45^\circ+\alpha$). The distances from $E$ to $BD$ and $HD$ are also equal. So area $BDE$ to area $DHE$ can be expressed as $BE\cdot DD_8/2:EH\cdot DD'_8/2=BE:EH$, and also as $BD\cdot GE/2:DH\cdot GE/2=BD:DH$. Hence they are equal.</p>
+</blockquote>
+<h3 id="Proof-9">Proof 9<a class="anchor-link" href="#Proof-9">¶</a></h3><blockquote>
+<p>Extend $BE$ to $A_9$ where $EA_9=EH$. Then $DH=DA_9$, $EH=EA_9$, and $\angle EDA_9=\angle EDH=45^\circ$. Since $DE$ bisects $\angle BDA_9$, we get $BD:DA_9=BE:EA_9$. The rest is trivial.</p>
+</blockquote>
+<h3 id="Proof-10">Proof 10<a class="anchor-link" href="#Proof-10">¶</a></h3><blockquote>
+<p>Extend $EH$ to $B_{10}$ where $B_{10}$ intersects the extension of line $BC$. Then $B_{10}$ is the reflection of $B$ across $BC$ (since $HE$ is the reflection path of light $BE$ at mirror $DC$). One can show $\angle CDB_{10}=\angle BDC=45^\circ$, so $DH:HE=DB_{10}:EB_{10}=DB:BE$.</p>
+</blockquote>
+<h3 id="Proof-11">Proof 11<a class="anchor-link" href="#Proof-11">¶</a></h3><blockquote>
+<p>This one also needs no auxiliary lines: notice $HD=HG+GE$ and $BD=BG+GE$, and $\triangle HGE\sim\triangle EGB$, so the result follows.</p>
+</blockquote>
+<p>A note on degrees of freedom: the only adjustable angle in the original configuration is $\alpha&lt;45^\circ$. If $\alpha=45^\circ$, then $H$ and $B$ overlap and the result is trivial. If $\alpha&gt;45^\circ$, then $H$ lies on the extension of $DB$, and $E$ lies on the extension of $DC$. The roles of $B$ and $H$ swap, and the same style of arguments still works. Similarly, one can show that a ray from $B$ to $E$ reflects across $DE$ and reaches $H$.</p>
+<h3 id="Other-proofs">Other proofs<a class="anchor-link" href="#Other-proofs">¶</a></h3><p>By now we should be done. However, if you followed the solutions so far, you likely noticed two patterns: (1) we have essentially drawn a square $BDB_{10}D_1$ in Figure 4, and many proofs are based on various points on this square; (2) polygon $ABED$ is symmetric about $BD$, which is why we could leverage $AB=BE$ and $AH=HE$ in several steps. It follows that any proof obtained by extending lines in the original diagram has a mirror proof across $BD$. These are indicated again by subscripts, and they give Proofs 12, 13, 14, 15, and 16. They form the symmetric rectangle $BDB_{15}D_{12}$ and are shown in Figure 5.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/original_problem_with_proof_ext.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 5: Five additional symmetric proofs.</em></p>
+</div>
+<p>Finally, several proofs such as Proofs 3, 5, 6, and 7 focus on what happens inside polygon $ABED$. Each has a symmetric counterpart (Proofs 17, 18, 19, 20) reflected across $BD$. For clarity, these are not displayed.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-2.-Analytic-geometry-proof">Part 2. Analytic geometry proof<a class="anchor-link" href="#Part-2.-Analytic-geometry-proof">¶</a></h2><p>This is a short coordinate proof.</p>
+<h3 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h3><p>$$BE\cdot DH = BD\cdot EH.$$</p>
+<h3 id="Proof">Proof<a class="anchor-link" href="#Proof">¶</a></h3><blockquote>
+<p>Setup. Let $C=(0,0)$, $B=(-1,0)$, $D=(0,1)$. Then $AD\parallel BC$ implies $A=(t-1,1)$ when $E=(0,t)$ and $DE=AD$ with $0&lt;t&lt;1$.</p>
+<p>Lines. $BD: y=x+1$. The slope of $AB$ is $1/t$, so $EF\perp AB$ has slope $-t$ and passes through $E$: $EF: y=t-tx$.</p>
+<p>Intersection. Solve $x+1=t-tx$ to get
+$$H=(\frac{t-1}{t+1},\ \frac{2t}{t+1}).$$</p>
+<p>Common factor.
+$$H-D=\frac{t-1}{t+1}(1,1),\qquad H-E=\frac{t-1}{t+1}(1,-t).$$
+Hence
+$$DH=\frac{1-t}{t+1}\sqrt{2},\qquad EH=\frac{1-t}{t+1}\sqrt{1+t^2}.$$
+Also $BD=\sqrt{2}$ and $BE=\sqrt{1+t^2}$.</p>
+<p>Finish.
+$$BE\cdot DH=\sqrt{1+t^2}\cdot \frac{1-t}{t+1}\sqrt{2}=BD\cdot EH.$$</p>
+</blockquote>
+<p>Conclusion: $BE\cdot DH = BD\cdot EH$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-3.-One-more-degree-of-freedom-(ellipse-view)">Part 3. One more degree of freedom (ellipse view)<a class="anchor-link" href="#Part-3.-One-more-degree-of-freedom-(ellipse-view)">¶</a></h2><p>The $45^\circ$ angle is special. If we relax that angle, the clean right-angle structure disappears, but the problem still has a simple geometric core: reflection on an ellipse. The key insight is to generalize the reflection: the ray from $B$ to $E$ reflects across $DE$ and heads to $H$. This reveals an ellipse that reflects light from one focus to the other at any point $E$ on it. That reflection property is equivalent to the constant-sum-of-distances definition of an ellipse.</p>
+<h3 id="Construction">Construction<a class="anchor-link" href="#Construction">¶</a></h3><p>Let $O$ be the ellipse with foci $B$ and $H$. Take a point $A$ on $O$, with $A$ closer to $H$. Draw the tangent line $AD$ at $A$, and let it intersect $BH$ at $D$. Take a point $E$ on $O$, the reflection of $A$ with respect to the major axis. Through $E$ draw the line $D-E-C$, and choose $C$ so that $BC\parallel AD$. Draw $EH$, and let it intersect $AB$ at $F$. In general, $\angle BFE$ is not $90^\circ$, but when $\theta=45^\circ$, $\angle BFE=90^\circ$. The resulting shape is shown in Figure 6.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/ellipse_view.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 6: Ellipse construction with foci $B$ and $H$.</em></p>
+</div>
+<h3 id="Proof-3.1-(reflection-property)">Proof 3.1 (reflection property)<a class="anchor-link" href="#Proof-3.1-(reflection-property)">¶</a></h3><blockquote>
+<p>By the reflection property of the ellipse (a light ray from $B$ to $E$ reflects and then passes through $H$), we obtain
+$$\frac{EH}{HD}=\frac{BE}{BD}.$$</p>
+<p>Reflect $H$ across line $DE$ to $H'$. Then
+$$\frac{DB}{BE}=\frac{DH'}{EH'}=\frac{DH}{EH},$$
+which is the same proportion.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/ellipse_view_wproof.png" style="height:350px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 7: Reflection proof for the ellipse construction.</em></p>
+</div>
+</blockquote>
+<p>In this generalized setup, $EF$ is no longer perpendicular to $AB$. In fact, the perpendicular line through $E$ intersects $AB$ and $DB$ at $F'$ and $H'$, as shown in Figure 7. Here $H'$ differs from $H$ and does not satisfy the ratio property. The original problem is special because the $45^\circ$ angles create a surplus of right angles. The single degree of freedom here is essentially the ellipse eccentricity, with $A$ and $C$ determined by the right angle $\angle ADC$. When the ellipse degenerates to a circle (foci coincide), the identity becomes obvious.</p>
+<p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem, as shown in Figure 8 with the pure geometric approach.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/ellipse_view_simple.png" style="height:300px; display:block; margin:0 auto;"/>
+<p><em>Figure 8: The simplified ellipse setup, which reveals the essence of the original problem.</em></p>
+</div>
+<p>The diagram also yields a second, similarity-based proof.</p>
+<h3 id="Proof-3.2,-similarity">Proof 3.2, similarity<a class="anchor-link" href="#Proof-3.2,-similarity">¶</a></h3><blockquote>
+<p>Let $T$ and $S$ be the feet of the perpendiculars from $H$ and $B$ to the tangent line $DE$. By the reflection property, $\triangle HET\sim\triangle BES$, so $HE:BE=HT:BS$. Likewise, $\triangle HDT\sim\triangle BDS$, so $HD:DB=HT:BS$. Combining gives $HD/DB=HE/BE$.</p>
+</blockquote>
+<p>Interestingly, we can also compute the ratio analytically in the ellipse model. It turns out to be simplest using the de La Hire (eccentric-angle) parameter, revealing the geometry transparent.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/ellipse_view_simple_param.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 9: de La Hire parameters and outer-circle view with $E$, $E'$, and $E''$.</em></p>
+</div>
+<h3 id="Proof-3.3-(de-La-Hire-+-outer-circle)">Proof 3.3 (de La Hire + outer circle)<a class="anchor-link" href="#Proof-3.3-(de-La-Hire-+-outer-circle)">¶</a></h3><blockquote>
+<p>Let the ellipse be $x^{2}/a^{2}+y^{2}/b^{2}=1$ with center $O$, foci $B=(-c,0)$ and $H=(c,0)$, and $c^{2}=a^{2}-b^{2}$. Use the de La Hire (eccentric-angle) parameter $\beta$:
+$$
+E=(a\cos\beta,\, b\sin\beta),\qquad
+EB=a+c\cos\beta,\qquad
+EH=a-c\cos\beta
+$$
+(up to swapping $B,H$). Let $\ell$ be the tangent at $E$ and $D=\ell\cap BH$.</p>
+<p>From the tangent formula
+$$
+\frac{xx_0}{a^{2}}+\frac{yy_0}{b^{2}}=1
+\quad\Rightarrow\quad
+\frac{x\cos\beta}{a}+\frac{y\sin\beta}{b}=1,
+$$
+setting $y=0$ gives $x_D=a/\cos\beta$.</p>
+<p>Geometrically, the affine map $(x,y)\mapsto(x,\frac{a}{b}y)$ sends the ellipse to the outer circle $x^{2}+y^{2}=a^{2}$ and sends $E$ to $E'=(a\cos\beta,a\sin\beta)$. Since only $y$ is scaled, $E$ and $E'$ lie on a line perpendicular to $BH$ and share the same $x$-coordinate. Let $E''$ be the intersection of the line through $E$ parallel to $BH$ with the outer circle, so $E$ and $E''$ share the same $y$-coordinate (Figure 9). The map preserves tangency, so $\angle{OE'D}$ is right and $OD=a/\cos\beta$.</p>
+<p>Therefore
+$$
+DB=\frac{a}{\cos\beta}+c,\qquad DH=\frac{a}{\cos\beta}-c,
+$$
+and
+$$
+\frac{DH}{DB}
+=\frac{a-c\cos\beta}{a+c\cos\beta}
+=\frac{EH}{EB}.
+$$</p>
+</blockquote>
+<h3 id="Corollary-1-(axis-focus-scaling;-inner-structure-of-the-ratio)">Corollary 1 (axis-focus scaling; inner structure of the ratio)<a class="anchor-link" href="#Corollary-1-(axis-focus-scaling;-inner-structure-of-the-ratio)">¶</a></h3><blockquote>
+<p>From $DH=\frac{a}{\cos\beta}-c=\frac{a-c\cos\beta}{\cos\beta}$ and $EH=a-c\cos\beta$, we get
+$$
+\boxed{EH=DH\cos\beta},\qquad \boxed{EB=DB\cos\beta}.
+$$
+This shows that the tangent-axis lengths $DB,DH$ are just the focal lengths $EB,EH$ scaled by the same factor $1/\cos\beta$ (see Figure 9). The main identity $DH/DB=EH/EB$ is exactly the cancellation of that common scale.</p>
+</blockquote>
+<h3 id="Corollary-2-(focus-to-outer-tangent-distances)">Corollary 2 (focus-to-outer-tangent distances)<a class="anchor-link" href="#Corollary-2-(focus-to-outer-tangent-distances)">¶</a></h3><blockquote>
+<p>Corollary 1 gives $EH=DH\cos\beta$, and geometrically $DH\cos\beta$ is exactly the perpendicular component of $DH$ to $\ell'$, i.e., $\operatorname{dist}(H,\ell')$ (see Figure 9). Hence
+$$
+\boxed{\operatorname{dist}(H,\ell')=EH},\qquad \boxed{\operatorname{dist}(B,\ell')=EB}.
+$$</p>
+<p>The simple consistency check
+$$
+\operatorname{dist}(B,\ell')+\operatorname{dist}(H,\ell')=2a=2\,\operatorname{dist}(O,\ell')
+$$
+accounts only for the sum. The real content is that each focus-to-tangent distance equals its matching focus-to-point distance; this rigidity is encoded by the de La Hire parameter and the ellipse's affine relation to the circle.</p>
+</blockquote>
+<h3 id="Proof-3.4-Outer-circle-proof">Proof 3.4 Outer circle proof<a class="anchor-link" href="#Proof-3.4-Outer-circle-proof">¶</a></h3><blockquote>
+<p>Once Corollary 2 is in hand, let $P$ and $P'$ be the feet of the perpendiculars from $H$ and $B$ to $\ell'$ (for simplicity Figure 9 only shows $P$). Then $\triangle DHP \sim \triangle DBP'$ (right angles at $P,P'$ and a common angle at $D$), so $DH/DB=HP/BP'=\operatorname{dist}(H,\ell')/\operatorname{dist}(B,\ell')$, recovering the same ratio.</p>
+</blockquote>
+<p>Finally, there is a fun fact. Note that the feet of the perpendiculars drawn in Proof 3.2, $S$ and $T$, are exactly the intersection points of the tangent line $DE$ with the ellipse's outer circle. A quick proof is to show that $OT=a$ (Figure 10). Let $H'$ be the reflection of $H$ across $DE$; then $T$ is the midpoint of $HH'$. Since $O$ is the midpoint of $BH$, we have $OT=\tfrac{1}{2}BH'$. But $BH'=BE+EH=2a$, hence $OT=a$. The same reflection with $B$ gives $OS=a$, so the fun fact is that $S$ and $T$ are precisely the two intersections of $DE$ with the outer circle.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/ellipse_view_simple_param2.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 10: additional properties of T and S</em></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Part-4.-Vector-analysis">Part 4. Vector analysis<a class="anchor-link" href="#Part-4.-Vector-analysis">¶</a></h3><p>Once one length is fixed, the trapezoid configuration has a single degree of freedom: the angle $\alpha$. In the broader ellipse construction, a second parameter $\theta$ (the tangent point/slope) appears, and the same ratio follows from the reflection property. The special case $\theta=45^\circ$ is exactly the original problem; that is why so many proofs exist, and why each auxiliary line exposes the same invariant ratio in a different way. Part 3 frees the $\theta$ dimension while keeping the reflection property, and that is what ultimately shows the simplicity behind the original picture.</p>
+<p>In this Part of the note, we will focusing on using some other mathematical tools useful in geometry to solve our proof. The problem to proof is almost trivial: DH:DB = EH:EB, given light BE reflects to the EH direction by mirror DE. Part 3 has explained extensively of the solutions. But it is still good to show some of the power of such tools.</p>
+<p>Since Euclid (~300 BCE), geometry was developed in a synthetic style: one reasons directly with the figure using congruence, similarity, tangency, and auxiliary lines. That is the mindset behind Part 1. A major second language arrived with Descartes (1637): analytic geometry turns geometric constraints into algebra once you choose coordinates, matching the style of Part 2.</p>
+<p>This arc also mirrors the historical split between geometry and algebra in physics and mechanics. Newton, in the <em>Principia</em> [NEWTON-PRINCIPIA], favored coordinate-free arguments because they were the clearest language of rigor in 1687, while modern physics often relies on coordinates for universal computation. Analytic geometry existed by Newton's time, but the algebraic language for differential equations matured later; Newton's methods therefore look Euclidean in flavor, mixing auxiliary lines with limiting arguments. Several later authors also gave elementary, coordinate-free proofs (see [KEPLER-TEACH], including Feynman's famous "lost lecture"). It is good for students to appreciate both techniques.</p>
+<p>Physics naturally blends geometry with differential ideas. Here we keep that discussion light and focus on the geometric tools that sit just below calculus.</p>
+<p>In the 1800s, geometry gained an especially efficient algebraic interface: vector analysis, where the dot and cross products encode the two most basic geometric primitives--projection/angle and oriented area. The modern $\cdot$ and $\times$ notation was introduced by Gibbs (and independently Heaviside) around 1881 and then standardized in physics usage. Later, divergence and curl became standard because they compactly describe fields and their integral laws--but that differential layer is not our focus here.</p>
+<p>That same "area backbone" explains the next conceptual step. Grassmann (1844) introduced the wedge product and exterior algebra, where the fundamental geometric object is no longer just a vector but also a bivector (directed area), trivector (directed volume), and so on. Clifford (1878) then built geometric algebra by unifying these objects into one coherent multiplication system. In our 2D Euclidean setting,
+$$|\mathbf{u}\times\mathbf{t}|,\qquad \|\mathbf{u}\wedge\mathbf{t}\|,\qquad |\omega(\mathbf{u},\mathbf{t})|$$
+are simply three notations for the same invariant: the area spanned by $\mathbf{u}$ and the tangent direction $\mathbf{t}$. So the proofs are interchangeable across these languages with no change in geometric content.</p>
+<p>Finally, modern physics is "geometric" in a deeper sense: it naturally lives on spaces that are not just 2D pictures--3D space, 4D spacetime, and even higher-dimensional configuration/phase spaces. We don't always call those "geometry" in everyday language because they're hard to visualize, but mathematically they are geometry: they carry intrinsic notions of angle, area/flux, invariance, and coordinate-free meaning. In our ellipse problem, we see a toy version of the same idea: at each point $E$ on the ellipse, there is a tangent line $DE$. Thinking of the tangent line as the attached object that moves with $E$ is the simplest concrete example of the bundle/fiber mindset.</p>
+<p>A brief timeline of tooling relevant to this note:</p>
+<ul>
+<li>~300 BCE: Euclid -- synthetic geometry</li>
+<li>1637: Descartes -- analytic geometry</li>
+<li>1687: Newton -- Euclidean geometry + limiting arguments</li>
+<li>1827: Gauss -- intrinsic geometric invariants (surfaces)</li>
+<li>1844: Grassmann -- wedge / bivectors (area as an object)</li>
+<li>1878: Clifford -- geometric algebra (bivectors/trivectors as first-class)</li>
+<li>1881: Gibbs/Heaviside -- standard dot/cross notation</li>
+<li>1899: Cartan -- exterior derivative/forms (beyond our needs here)</li>
+</ul>
+<p>For readers familiar with Maxwell's equations, the table below shows how mathematical language for geometry evolved over time: from coordinate-expanded component equations, to vector analysis, to geometric algebra, and then to differential forms. The tools change, but the physics does not, even as the expressions become more compact.</p>
+<table>
+<thead>
+<tr>
+<th>Formulation</th>
+<th>Coordinate status (what's really true)</th>
+<th>Maxwell equations written in that language</th>
+<th>What you gain / lose</th>
+<th>Good reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maxwell (1865, component-heavy)</td>
+<td>Coordinate-invariant laws, but written in components (explicit $x,y,z$ bookkeeping) and bundled with extra relations (constitutive laws, Ohm, forces, potentials).</td>
+<td>Not packaged as the modern four; a larger coupled component system (often summarized as ~20 equations/unknowns, plus auxiliaries).</td>
+<td>Gain: historically close to derivations. Lose: compactness; structure is obscured by bookkeeping.</td>
+<td>Maxwell's 1865 paper [MAXWELL-1865]; Deschamps [FORMS-EM].</td>
+</tr>
+<tr>
+<td>Vector calculus (Heaviside/Gibbs)</td>
+<td>Coordinate-free in content; coordinates enter only when writing component formulas.</td>
+<td>(SI, vacuum) $\nabla\cdot\mathbf{E}=\rho/\varepsilon_0$<br/>$\nabla\cdot\mathbf{B}=0$<br/>$\nabla\times\mathbf{E}=-\partial_t\mathbf{B}$<br/>$\nabla\times\mathbf{B}=\mu_0\mathbf{J}+\mu_0\varepsilon_0\,\partial_t\mathbf{E}$.</td>
+<td>Gain: four clean equations; practical in 3D Euclidean space. Caveat: $\nabla\cdot,\nabla\times$ depend on the chosen metric + orientation, though invariantly defined once fixed.</td>
+<td>Wilson [VECTOR-ANALYSIS]; cross product [CROSS-PRODUCT]; vector analysis [VECTOR-ANALYSIS-WIKI].</td>
+</tr>
+<tr>
+<td>Geometric algebra (Clifford; dot + wedge unified)</td>
+<td>Coordinate-free once metric + orientation are fixed. Vectors are bold (e.g., $\mathbf{a},\mathbf{b}$); higher-grade objects (bivectors, trivectors) are not vectors in disguise.</td>
+<td>Core algebra: $\mathbf{a}\mathbf{b}=\mathbf{a}\cdot\mathbf{b}+\mathbf{a}\wedge\mathbf{b}$. Maxwell can be written compactly (common spacetime GA convention): $\boxed{\nabla F=\mu_0 J}$, with the grade split $\nabla F=\nabla\cdot F+\nabla\wedge F$ giving $\nabla\wedge F=0$ (homogeneous) and $\nabla\cdot F=\mu_0 J$ (sources).</td>
+<td>Gain: cross product becomes derived (dual of $\wedge$); div/curl unify as one operator split by grade; rotations often cleaner. Lose: conventions vary (3D GA vs spacetime GA; units/signatures); less standard in mainstream EM courses.</td>
+<td>Peeter Joot [GA-EM].</td>
+</tr>
+<tr>
+<td>Differential forms (exterior calculus on spacetime)</td>
+<td>Manifestly coordinate-invariant; works naturally on curved manifolds (GR). Metric enters via the Hodge star.</td>
+<td>$\boxed{dF=0}$, $\boxed{d{*}F=J}$. Here $*$ maps $k$-forms to $(n-k)$-forms using the metric + orientation (in 4D, $2\leftrightarrow2$).</td>
+<td>Gain: topology/relativity are transparent; $d^2=0$ exposes structure. Lose: abstraction up front; computations often unpack to components.</td>
+<td>Deschamps [FORMS-EM]; Lindell [LINDELL-DF]; Epstein [EPSTEIN-DG].</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1 summarizes the evolution of Maxwell's equations across these languages.</p>
+<p>Notes:</p>
+<ul>
+<li>Geometric algebra (Clifford; dot + wedge unified): metric + wedge fused immediately via $\mathbf{a}\mathbf{b}=\mathbf{a}\cdot\mathbf{b}+\mathbf{a}\wedge\mathbf{b}$.</li>
+<li>Differential forms (exterior calculus on spacetime): forms are wedge-first, metric-later via $*$.</li>
+</ul>
+<p>So the concept of vector analysis has evolved significantly since Newton's time. Maxwell's equations were first written in a coordinate-expanded form, which has the flavor of our solution in Part 2, along with differential operators that were by then well understood. Only later did divergence and curl become standard, giving a more compact, coordinate-free expression using $\nabla\cdot$ and $\nabla\times$. Those operators are coordinate-free in meaning, which parallels the shift from the coordinate solution in Part 2 back to the coordinate-free constructions in Part 1. Vector analysis keeps the geometric insight while still enabling the algebraic computations of the coordinate approach. To explain the power of this toolbox, I include a couple of short proofs below.</p>
+<p>Since our problem is 2D, both dot and cross products can be used to solve it naturally. We emphasize how these tools enable coordinate-free proofs while still allowing analytic methods beyond the purely Euclidean geometry used in Part 1, yet more direct than the coordinate approach in Part 2.</p>
+<h3 id="Proof-4.1-(reflection-on-$DE$)">Proof 4.1 (reflection on $DE$)<a class="anchor-link" href="#Proof-4.1-(reflection-on-$DE$)">¶</a></h3><blockquote>
+<p>Use the reflection property: a ray from $B$ to $E$ reflects across $DE$ and passes through $H$.
+Let $p=|\overrightarrow{EB}|$, $q=|\overrightarrow{EH}|$, and define unit vectors $\hat u=\overrightarrow{EB}/p$, $\hat v=\overrightarrow{EH}/q$.
+Then $\overrightarrow{EB}=p\hat u$ and $\overrightarrow{EH}=q\hat v$, with $|\hat u|=|\hat v|=1$.
+The tangent at $E$ is perpendicular to $\hat u+\hat v$, so its direction is parallel to $\hat u-\hat v$.
+Hence $$\overrightarrow{ED}=\tau(\hat u-\hat v)$$ for some scalar $\tau$.
+Because $D\in BH$, $$\overrightarrow{BH}=\overrightarrow{EH}-\overrightarrow{EB}=q\hat v-p\hat u,\quad \overrightarrow{BD}=\mu\overrightarrow{BH}.$$
+Using $\overrightarrow{ED}=\overrightarrow{EB}+\overrightarrow{BD}$ gives $$\tau(\hat u-\hat v)=p(1-\mu)\hat u+\mu q\hat v.$$
+Matching coefficients yields $\tau=p(1-\mu)$ and $-\tau=\mu q$, so $\mu=\frac{p}{p-q}$.
+Finally, $\overrightarrow{HD}=\overrightarrow{BD}-\overrightarrow{BH}=(\mu-1)\overrightarrow{BH}$, so $$\frac{BD}{HD}=\frac{\mu}{\mu-1}=\frac{p}{q}=\frac{BE}{EH},$$ which is equivalent to $\frac{BE}{BD}=\frac{EH}{HD}$.</p>
+</blockquote>
+<h3 id="Proof-4.2-(using-the-cross-product)">Proof 4.2 (using the cross product)<a class="anchor-link" href="#Proof-4.2-(using-the-cross-product)">¶</a></h3><blockquote>
+<p>Let the tangent at $E$ meet $BH$ at $D$, and take any nonzero tangent vector $\overrightarrow{ED}$. The reflection law says the tangent bisects the angle between $\overrightarrow{EB}$ and $\overrightarrow{EH}$, so the perpendicular components match:
+$$\frac{|\overrightarrow{EH}\times\overrightarrow{ED}|}{EH}=\frac{|\overrightarrow{EB}\times\overrightarrow{ED}|}{EB}.$$
+Now $\overrightarrow{EH}=\overrightarrow{ED}+\overrightarrow{DH}$ and $\overrightarrow{EB}=\overrightarrow{ED}+\overrightarrow{DB}$. Cross with $\overrightarrow{ED}$ and drop the $\overrightarrow{ED}\times\overrightarrow{ED}$ term:
+$$\overrightarrow{EH}\times\overrightarrow{ED}=\overrightarrow{DH}\times\overrightarrow{ED},\qquad
+\overrightarrow{EB}\times\overrightarrow{ED}=\overrightarrow{DB}\times\overrightarrow{ED}.$$
+So $$\frac{|\overrightarrow{DH}\times\overrightarrow{ED}|}{EH}=\frac{|\overrightarrow{DB}\times\overrightarrow{ED}|}{BE}.$$
+Because $B,D,H$ are collinear, $\overrightarrow{DB}\parallel\overrightarrow{DH}$, hence $$|\overrightarrow{DB}\times\overrightarrow{ED}|:|\overrightarrow{DH}\times\overrightarrow{ED}|=BD:HD.$$
+Substitute to get $$\boxed{\frac{BD}{HD}=\frac{BE}{EH}},$$ which is equivalent to $\frac{BE}{BD}=\frac{EH}{HD}$.</p>
+</blockquote>
+<p>I explored several alternative constructions which give various other proofs that I won't detail here since these two are the simplest and representative. For instance, in the original configuration, the condition $EH\perp AB$ immediately yields the dot-product constraint $\overrightarrow{EH}\cdot
+\overrightarrow{AB}=0$. This orthogonality can be used to reduce the degrees of freedom without appealing to any reflection argument. More generally, one can start from essentially any point in the diagram, parameterize the remaining configuration by a small set of length (or scaling) parameters, and then drive the argument to the target length-ratio identity. There are many such routes, and they do not require introducing any auxiliary lines.</p>
+<p>In this 2D Euclidean setting, the geometric-algebra approach does not introduce additional structure compare with the cross product. Both encode the oriented (signed) area of the parallelogram spanned by two vectors. The $\times$ only makes traditional sense in 3D space, resulting in a vector perpendicular to the plane, the $\wedge$ operator gives a bivector that's definited universally for d-D space and the bivector doesn't need to utilize the 3rd dimension. Likewise, the differential-forms formulation is not fundamentally different in this context: a 2-form takes two vectors as input and returns a scalar, and 1-form vector is essentially difine the dot product of any vector with a given vector; so the resulting identities reduce to the same area or determinant computations already used in the cross-product argument. For completeness, Proof 4.3 shows how they are united and replaced in the same proof. Be aware that in the modern math/physics which often utilize dimensionality beyond 3, the dot and cross way become hard, which is way we had to separate time t (another dimension strictly speaking) from the space in order to write the equation as "coordinate free". And that's why you no longer see any use of t in the unified maxell equation using geometric algebra and differential form.</p>
+<h3 id="Proof-4.3:-Unified-simple-solution-(area-language:-cross-=-wedge-=-2-form-=-1-form)">Proof 4.3: Unified simple solution (area language: cross = wedge = 2-form = 1-form)<a class="anchor-link" href="#Proof-4.3:-Unified-simple-solution-(area-language:-cross-=-wedge-=-2-form-=-1-form)">¶</a></h3><blockquote>
+<p>Let $DE$ be the tangent at $E$ and let $\mathbf{t}=\overrightarrow{ED}\ne 0$.
+For any vector $\mathbf{u}$ based at $E$ (here $\overrightarrow{EB},\overrightarrow{EH},\overrightarrow{DB},\overrightarrow{DH}$), the area with the tangent is the same in all languages:
+$$A(\mathbf{u})=|\mathbf{u}\times\mathbf{t}|=\|\mathbf{u}\wedge\mathbf{t}\|=|\omega(\mathbf{u},\mathbf{t})|,$$
+where $\omega$ is an oriented area 2-form.</p>
+<p>Fix $\omega$ and define the 1-form $\alpha=\iota_{\mathbf{t}}\omega$, so $\alpha(\mathbf{u})=\omega(\mathbf{u},\mathbf{t})$ and $|\alpha(\mathbf{u})|=A(\mathbf{u})$. This is the perpendicular component of $\mathbf{u}$ to the tangent.</p>
+<p>Reflection at $E$ gives equality of perpendicular components:
+$$\frac{A(\overrightarrow{EH})}{EH}=\frac{A(\overrightarrow{EB})}{EB}.$$</p>
+<p>Since $D\in BH$,
+$$\overrightarrow{EH}=\overrightarrow{ED}+\overrightarrow{DH},\qquad \overrightarrow{EB}=\overrightarrow{ED}+\overrightarrow{DB}.$$
+Using bilinearity and $\omega(\mathbf{t},\mathbf{t})=0$ gives
+$$A(\overrightarrow{EH})=A(\overrightarrow{DH}),\qquad A(\overrightarrow{EB})=A(\overrightarrow{DB}).$$
+Hence
+$$\frac{A(\overrightarrow{DH})}{EH}=\frac{A(\overrightarrow{DB})}{EB}.$$</p>
+<p>Because $B,D,H$ are collinear, $A(\overrightarrow{DB})/A(\overrightarrow{DH})=BD/HD$, so
+$$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.</p>
+</blockquote>
+<p>By now I hope this part of the note have conveyed an appreciation for coordinate-free methods in our mathematical toolbox. I also hope it gives a preview of what modern physics use to solve geometry problems that are more than 3-dimensional, admittedly in a weak sense.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>So far in this part we discussed the simple case of how the reflection property implies the ratio equality.
+Below we show why the original problem in Part 1 gives the reflection property of $EF$ and $BE$, using a vector argument.</p>
+<h3 id="Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">Proof 4.4 Vector analysis: $EF$ is the reflection of $BE$ across $CD$ in Figure 3<a class="anchor-link" href="#Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">¶</a></h3><blockquote>
+<p>Let $\mathbf{u}=\overrightarrow{CB}$ and $\mathbf{d}=\overrightarrow{CD}$. Then $\mathbf{u}\perp\mathbf{d}$ and $\lVert\mathbf{u}\rVert=\lVert\mathbf{d}\rVert$.<br>
+Fix the unit normal $\mathbf{w}=\dfrac{\mathbf{u}\times\mathbf{d}}{\lVert\mathbf{u}\times\mathbf{d}\rVert}$.
+Since $AD\parallel CB$, $E\in CD$, and $DE=AD$, there exists a scalar $k$ such that
+$$\overrightarrow{AB}=-\mathbf{d}+(1-k)\mathbf{u},\qquad \overrightarrow{BE}=-(k-1)\mathbf{d}-\mathbf{u}.  $$
+Reflection across $CD$ is equivalent to
+$$\frac{\lVert\overrightarrow{BE}\times\mathbf{d}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\mathbf{d}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
+Because $EF\perp AB$, the direction of $EF$ is parallel to $\overrightarrow{AB}\times\mathbf{w}$, so the right-hand side equals
+$$\frac{\lVert(\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}\rVert}{\lVert\overrightarrow{AB}\times\mathbf{w}\rVert}.  $$
+Now compute the two normalized quantities. First,
+$$\overrightarrow{BE}\times\mathbf{d}=(-(k-1)\mathbf{d}-\mathbf{u})\times\mathbf{d}=-\mathbf{u}\times\mathbf{d}, $$
+so $\lVert\overrightarrow{BE}\times\mathbf{d}\rVert=\lVert\mathbf{u}\times\mathbf{d}\rVert=\lVert\mathbf{u}\rVert\,\lVert\mathbf{d}\rVert=\lVert\mathbf{d}\rVert^2$.
+Next, by Lagrange's formula $(\mathbf{a}\times\mathbf{b})\times\mathbf{c}=\mathbf{b}(\mathbf{a}\cdot\mathbf{c})-\mathbf{a}(\mathbf{b}\cdot\mathbf{c})$ and $\mathbf{w}\cdot\mathbf{d}=0$,
+$$ (\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}=\mathbf{w}(\overrightarrow{AB}\cdot\mathbf{d}). $$
+But
+$$\overrightarrow{AB}\cdot\mathbf{d}=(-\mathbf{d}+(1-k)\mathbf{u})\cdot\mathbf{d}=-\lVert\mathbf{d}\rVert^2, $$
+hence $\lVert(\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}\rVert=\lVert\mathbf{d}\rVert^2$.
+Finally, $\lVert\overrightarrow{AB}\times\mathbf{w}\rVert=\lVert\overrightarrow{AB}\rVert$, and
+$$\lVert\overrightarrow{AB}\rVert^2=\lVert\mathbf{d}\rVert^2+(k-1)^2\lVert\mathbf{u}\rVert^2=(k-1)^2\lVert\mathbf{d}\rVert^2+\lVert\mathbf{u}\rVert^2=\lVert\overrightarrow{BE}\rVert^2, $$
+so $\lVert\overrightarrow{AB}\rVert=\lVert\overrightarrow{BE}\rVert$. Therefore the normalized cross magnitudes match, and the reflection condition holds:
+$$\frac{\lVert\overrightarrow{BE}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
+So $BE$ reflects across $CD$ into $EF$.</br></p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We used Lagrange’s formula (the vector triple product identity) in the proof above. There are many known proofs,some classic ones pure algebraic, but this one that I came up is purely geometric and makes the identity feel almost unavoidable. I haven’t seen this particular “Thales-circle + chord” intuition presented in such a compact form else where, so it seems worth sharing though it can hardly be original given this is elementary. In a sense, it brings the argument back to a Euclid-style picture: analysis and geometry are not rivals, but two languages for the same structure, constantly translating into each other.</p>
+<h3 id="Proof-of-Lagrange's-formula-based-on-only-geometric-properties">Proof of Lagrange's formula based on only geometric properties<a class="anchor-link" href="#Proof-of-Lagrange's-formula-based-on-only-geometric-properties">¶</a></h3><blockquote>
+<p>Let $O$ be the origin and $\overrightarrow{OU}=\mathbf{u}$, $\overrightarrow{OV}=\mathbf{v}$, $\overrightarrow{OW}=\mathbf{w}$.
+Write $\mathbf{w}=\mathbf{w}_{\parallel}+\mathbf{w}_{\perp}$ relative to the plane $(OU,OV)$. Then $(\mathbf{u}\times\mathbf{v})\times\mathbf{w}_{\perp}=0$ (since $\mathbf{u}\times\mathbf{v}\parallel\mathbf{w}_{\perp}$) and $\mathbf{u}\cdot\mathbf{w}_{\perp}=\mathbf{v}\cdot\mathbf{w}_{\perp}=0$, so it suffices to assume $U,V,W$ are coplanar.
+By linearity of both $\times$ and $\cdot$ in each argument, scaling $\mathbf{u},\mathbf{v},\mathbf{w}$ by $a,b,c$ multiplies both sides by $abc$; hence it suffices to prove the unit case $\lvert\mathbf{u}\rvert=\lvert\mathbf{v}\rvert=\lvert\mathbf{w}\rvert=1$. Let $\alpha=\angle UOV$.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="polygon_ratio_geometry/triple_vector_thales_circle_safe.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 11: Geometric property of the triple vector formula.</em></p>
+</div>
+<p>For the plane geometry, refer to Figure 11. Draw the circle with diameter $OW$. Let it meet rays $OU,OV$ again at $A,B$. By Thales, $\angle OAW=\angle OBW=90^\circ$, hence $OA=\mathbf{u}\cdot\mathbf{w}$ and $OB=\mathbf{v}\cdot\mathbf{w}$.
+Define $A'\in OV$ and $B'\in OU$ by $OA'=OA$ and $OB'=OB$. Then
+$$\overrightarrow{A'B'}=(\mathbf{v}\cdot\mathbf{w})\mathbf{u}-(\mathbf{u}\cdot\mathbf{w})\mathbf{v}= -\big((\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}\big),$$
+so $\lvert A'B'\rvert$ is the magnitude of the right-hand side. It is easy to show $A'B'\perp OW$ by checking $\overrightarrow{A'B'}\cdot\mathbf{w}=0$, but here we want a pure geometric proof. Since $\angle WOA' + \angle A'B'O=90^\circ$, we get $A'B'\perp OW$, matching the left-hand side direction.
+Since $\triangle OAB\cong\triangle OA'B'$, we have $AB=A'B'$. In the diameter-1 circle, $AB=\sin\alpha$. But
+$$\lvert(\mathbf{u}\times\mathbf{v})\times\mathbf{w}\rvert=\lvert\mathbf{u}\times\mathbf{v}\rvert\,\lvert\mathbf{w}\rvert=\sin\alpha,$$
+so both sides are the same vector:
+$$ (\mathbf{u}\times\mathbf{v})\times\mathbf{w}=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}. $$
+So basically we used the multilinearity of the dot and cross products (it is enough to prove the identity for coplanar unit vectors). We also used that dot and cross magnitudes correspond to cos and sin of the angle. The rest relies on a circle fact: two chords have the same length if and only if their inscribed angles are equal.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Postscript">Postscript<a class="anchor-link" href="#Postscript">¶</a></h3><p>It can be interesting to see how the following software would approach the problem:</p>
+<ol>
+<li>Medal-level AI geometry solvers (closest to "gold/silver" performance in the International Math Olympiad)</li>
+</ol>
+<ul>
+<li>AlphaGeometry / AlphaGeometry 2 (research systems that can solve many Olympiad problems)</li>
+<li>Open source software such as Newclid/yuclid by startup company Harmonic</li>
+</ul>
+<ol start="2">
+<li>Geometry theorem provers (strong automation, not always Olympiad-style proofs)</li>
+</ol>
+<ul>
+<li>GCLC / WinGCLC (area method, Wu's method, Grobner bases)</li>
+<li>JGEX and Sympy (Wu/Grobner/full-angle methods with visualization)</li>
+<li>OpenGeoProver (Wu/Grobner style)</li>
+<li>GeoLogic (interactive Euclidean prover)</li>
+</ul>
+<ol start="3">
+<li>Proof assistants (formal, but manual)</li>
+</ol>
+<ul>
+<li>Lean 4 + mathlib</li>
+<li>LeanGeo</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="References">References<a class="anchor-link" href="#References">¶</a></h3><ul>
+<li>[CROSS-PRODUCT] Gibbs/Heaviside (1881). "Cross product." Summary: Notation for dot/cross products introduced in 1881. URL: <a href="https://en.wikipedia.org/wiki/Cross_product">https://en.wikipedia.org/wiki/Cross_product</a></li>
+<li>[EPSTEIN-DG] Epstein (2013~2014). "Differential Geometry Minicourse." Summary: Minicourse notes associated with a 2013 workshop; book version appeared in 2014. URL: <a href="https://marceloepstein.weebly.com/uploads/1/2/8/4/12849112/dg_minicourse.pdf">https://marceloepstein.weebly.com/uploads/1/2/8/4/12849112/dg_minicourse.pdf</a> (context: <a href="https://www.isbn.de/buch/9783319357140/differential-geometry">https://www.isbn.de/buch/9783319357140/differential-geometry</a>)</li>
+<li>[EUCLID-VIDEO] Syversen (2025-09-18). "Euclid's ruler-and-compass constructions." YouTube. Summary: Video on the role of straightedge-and-compass constructions in Euclid. URL: <a href="https://youtu.be/M-MgQC6z3VU">https://youtu.be/M-MgQC6z3VU</a></li>
+<li>[FORMS-EM] Deschamps (1981). "Electromagnetics and Differential Forms." Summary: Proc. IEEE article that sparked broader EM use of differential forms. URL: <a href="https://faculty.washington.edu/seattle/physics544/2011-lectures/deschamps.pdf">https://faculty.washington.edu/seattle/physics544/2011-lectures/deschamps.pdf</a></li>
+<li>[GA-EM] Joot (2018). "Geometric Algebra for Electrical Engineers: Multivector Electromagnetism." Summary: Notes introducing geometric algebra for electromagnetism (version dated April 2018). URL: <a href="https://peeterjoot.com/archives/math2018/GAelectrodynamics.V0.1.6.pdf">https://peeterjoot.com/archives/math2018/GAelectrodynamics.V0.1.6.pdf</a></li>
+<li>[KEPLER-TEACH] van Haandel &amp; Heckman (2007). "Teaching the Kepler laws for freshmen." arXiv:0707.4605. Summary: Pedagogical treatment of Kepler's laws with geometric insights. URL: <a href="https://arxiv.org/abs/0707.4605">https://arxiv.org/abs/0707.4605</a></li>
+<li>[LINDELL-DF] Lindell (2004). "Differential Forms in Electromagnetics." Summary: Lecture notes/book with a 2004 copyright. URL: <a href="https://faculty.washington.edu/seattle/physics544/2011-lectures/lindell.pdf">https://faculty.washington.edu/seattle/physics544/2011-lectures/lindell.pdf</a></li>
+<li>[MAXWELL-1865] Maxwell (1865). "A Dynamical Theory of the Electromagnetic Field." Summary: Original formulation of Maxwell's equations in component-heavy form. URL: <a href="https://archive.org/details/electromagnetic00maxwgoog">https://archive.org/details/electromagnetic00maxwgoog</a></li>
+<li>[NEWTON-PRINCIPIA] Newton (1687). <em>Philosophiae Naturalis Principia Mathematica.</em> Project Gutenberg. Summary: Foundational work in classical mechanics with Euclidean-style geometric reasoning. URL: <a href="https://www.gutenberg.org/ebooks/28233">https://www.gutenberg.org/ebooks/28233</a></li>
+<li>[QUATERNION] Hamilton (1843). "Quaternion." Summary: Quaternions were introduced by Hamilton in 1843. URL: <a href="https://en.wikipedia.org/wiki/Quaternion">https://en.wikipedia.org/wiki/Quaternion</a></li>
+<li>[VECTOR-ANALYSIS] Wilson (1901). <em>Vector Analysis</em> (from Gibbs' lectures). Summary: Classic text that standardizes dot/cross notation and vector calculus. URL: <a href="https://archive.org/details/vectoranalysis00wilsrich">https://archive.org/details/vectoranalysis00wilsrich</a></li>
+<li>[VECTOR-ANALYSIS-WIKI] Wilson/Gibbs (1901). "Vector Analysis." Summary: Wikipedia entry on the 1901 textbook and its role in standardizing notation. URL: <a href="https://en.wikipedia.org/wiki/Vector_Analysis">https://en.wikipedia.org/wiki/Vector_Analysis</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</section>
+<div class="page-break"></div>
+<section class="nb-section" data-source="pysym_polygon_ratio_Wu_and_Groebner.html">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a11e961d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-5:-Groebner-and-Wu:-polynomial-elimination-methods">Part 5: Groebner and Wu: polynomial elimination methods<a class="anchor-link" href="#Part-5:-Groebner-and-Wu:-polynomial-elimination-methods">¶</a></h2><p>So far, in Parts 1–4, we’ve followed a mostly pure-math storyline: from Euclid’s synthetic geometry, through analytic and algebraic viewpoints, all the way to the modern language of vectors, forms, and (eventually) geometric algebra—ideas that were already in very solid shape by the early 20th century. A natural next question is: what happened in roughly the last 50 years for solving Euclidean geometry problems? The surprise is that the “next big step” is not a new axiom system, but a new attitude: turn geometry into an algorithm—a replicable, programmable procedure for symbolic reasoning. In Euclidean geometry this becomes especially concrete: translate points, lines, circles, and incidences into variables, and translate geometric constraints into polynomial equations. Once everything becomes polynomial, a proof turns into a computable elimination problem. In this part we introduce two early but seminal algebraic approaches to automated Euclidean theorem proving: Wu’s method (first) and the Gröbner basis method (second).</p>
+<p>Wu’s method (Wen-Tsün / Wenjun Wu, late 1970s). Wu’s method—often presented through characteristic sets (triangular-style elimination)—was developed by Wen-Tsün Wu in the late 1970s and became one of the first highly successful, systematic methods for mechanical theorem proving in elementary geometry [WU-ORIG] [WU-CHAR]. The key move is explicitly analytic: choose coordinates for “free” points, convert each geometric relation (collinearity, perpendicularity, equal lengths, parallelism, cyclicity, etc.) into polynomial constraints, then eliminate variables in a structured way until the target statement reduces to an algebraic consequence of the hypotheses [WU-CHAR]. Conceptually it’s: geometry → polynomials → elimination, with a procedure that a computer can execute step-by-step.</p>
+<p>Gröbner basis method (Buchberger 1965; geometry automation later). Gröbner bases were introduced by Bruno Buchberger (1965), together with the Buchberger algorithm, giving a general-purpose computational engine for polynomial ideal problems [GB-HIST] [GB-THESIS]. In geometry proving, the translation is almost too clean: encode the hypotheses as an ideal
+𝐼
+I generated by polynomials, encode the desired conclusion as a polynomial
+𝑔
+g, and prove the theorem by checking whether
+𝑔
+∈
+𝐼
+g∈I (or in a saturation/elimination variant to handle degeneracies). Gröbner bases make this membership test algorithmic via systematic reductions and elimination behavior [GB-HIST].</p>
+<p>Same destination, different roads (and “coordinate dependence”). Both methods share the same punchline: a Euclidean proof can be reduced to algebraic elimination, once you choose coordinates and translate relations into polynomials [WU-CHAR] [GB-HIST]. This looks “coordinate-dependent” in execution because we literally pick a coordinate system, but the truth is coordinate-free: any non-degenerate coordinate choice represents the same geometry. Wu emphasized this as a workable philosophy of mechanization—geometry carries enough intrinsic structure that, after coordinatization, proof becomes a deterministic computation [WU-SURVEY]. That’s the deeper shift of the last decades: not just knowing geometry, but compiling geometry into a procedure.So far, in Parts 1–4, we’ve followed a mostly pure-math storyline: from Euclid’s synthetic geometry, through analytic and algebraic viewpoints, all the way to the modern language of vectors, forms, and (eventually) geometric algebra—ideas that were already in very solid shape by the early 20th century. A natural next question is: what happened in roughly the last 50 years for solving Euclidean geometry problems? The surprise is that the “next big step” is not a new axiom system, but a new attitude: turn geometry into an algorithm—a replicable, programmable procedure for symbolic reasoning. In Euclidean geometry this becomes especially concrete: translate points, lines, circles, and incidences into variables, and translate geometric constraints into polynomial equations. Once everything becomes polynomial, a proof turns into a computable elimination problem. In this part we introduce two early but seminal algebraic approaches to automated Euclidean theorem proving: Wu’s method (first) and the Gröbner basis method (second).</p>
+<p>Wu’s method (Wen-Tsün / Wenjun Wu, late 1970s). Wu’s method—often presented through characteristic sets (triangular-style elimination)—was developed by Wen-Tsün Wu in the late 1970s and became one of the first highly successful, systematic methods for mechanical theorem proving in elementary geometry [WU-ORIG] [WU-CHAR]. The key move is explicitly analytic: choose coordinates for “free” points, convert each geometric relation (collinearity, perpendicularity, equal lengths, parallelism, cyclicity, etc.) into polynomial constraints, then eliminate variables in a structured way until the target statement reduces to an algebraic consequence of the hypotheses [WU-CHAR]. Conceptually it’s: geometry → polynomials → elimination, with a procedure that a computer can execute step-by-step.</p>
+<p>Gröbner basis method (Buchberger 1965; geometry automation later). Gröbner bases were introduced by Bruno Buchberger (1965), together with the Buchberger algorithm, giving a general-purpose computational engine for polynomial ideal problems [GB-HIST] [GB-THESIS]. In geometry proving, the translation is almost too clean: encode the hypotheses as an ideal 𝐼 in I generated by polynomials, encode the desired conclusion as a polynomial 𝑔 in g, and prove the theorem by checking whether 𝑔 ∈ 𝐼
+g∈I (or in a saturation/elimination variant to handle degeneracies). Gröbner bases make this membership test algorithmic via systematic reductions and elimination behavior [GB-HIST].</p>
+<p>Same destination, different roads (and “coordinate dependence”). This roughly captures the last 30 years of 20th century's computational contributions to geometric proofs. There are other important development, such as more numerically related--which we will also briefly utilize, for problem verifications. Both methods share the same punchline: a Euclidean proof can be reduced to algebraic elimination, once you choose coordinates and translate relations into polynomials [WU-CHAR] [GB-HIST]. This looks “coordinate-dependent” in execution because we literally pick a coordinate system, but the truth is coordinate-free: any non-degenerate coordinate choice represents the same geometry. Wu emphasized this as a workable philosophy of mechanization—geometry carries enough intrinsic structure that, after coordinatization, proof becomes a deterministic computation [WU-SURVEY]. That’s the deeper shift of the last decades: not just knowing geometry, but compiling geometry into a procedure.</p>
+<p>This rest of this part shows two classic algebraic geometry-prover styles on the same configuration:</p>
+<ol>
+<li>Gröbner basis method: prove the target polynomial lies in the ideal generated by hypothesis polynomials.</li>
+<li>Wu’s method style (characteristic-set / triangular elimination): eliminate variables using a triangular chain (here it becomes simple linear elimination).</li>
+<li>Wu's method following the algorithm by Wu more religuously to show the difference from 2.</li>
+</ol>
+<p>We work entirely in polynomials (no square-roots) by proving the squared identity
+$$
+(BE^2)(DH^2) - (BD^2)(EH^2) = 0,
+$$
+which is equivalent to $BE\cdot DH = BD\cdot EH$ for positive lengths.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ad30e6a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Notes on representation</p>
+<ul>
+<li>SymPy is used here for convenience (symbolic polynomials + Groebner/Wu-style elimination). It is not required in principle.</li>
+<li>Matrices are used only as a compact way to write determinants/dot products; this is a modeling choice, not a requirement of Wu's method.</li>
+<li>In later program the geometry is built with <code>Point</code> objects in sympy instead of matices, to show a more geometric style; both approaches are equivalent.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cbcc2ae2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="5.1-Coordinate-encoding-of-the-geometry-(bake-in-the-constraints)">5.1 Coordinate encoding of the geometry (bake-in the constraints)<a class="anchor-link" href="#5.1-Coordinate-encoding-of-the-geometry-(bake-in-the-constraints)">¶</a></h3><p>Given:</p>
+<ul>
+<li>$AD \parallel BC$</li>
+<li>$\angle C = 90^\circ$</li>
+<li>$BC = CD$</li>
+<li>$E \in CD$, and $DE = AD$</li>
+<li>$EF \perp AB$</li>
+<li>$H = BD \cap EF$</li>
+</ul>
+<p>We can choose coordinates (scale is irrelevant):</p>
+<p>$$
+C=(0,0),\quad B=(1,0),\quad D=(0,1)
+$$
+so $BC\perp CD$ and $BC=CD=1$.</p>
+<p>Since $AD\parallel BC$, line $AD$ is horizontal, so:
+$$
+A=(a,1).
+$$</p>
+<p>Point $E\in CD$ means $E=(0,e)$. Condition $DE=AD$ gives:
+$$
+DE = 1-e,\quad AD = a \quad\Rightarrow\quad 1-e=a \Rightarrow e=1-a.
+$$
+So:
+$$
+E=(0,1-a).
+$$</p>
+<p>Now let $H=(h_x,h_y)$ be the intersection point we will solve from the constraints:</p>
+<ul>
+<li>$B,D,H$ are collinear (because $H \in BD$)</li>
+<li>$(H-E)\perp(B-A)$ (because $H\in EF$ and $EF\perp AB$)</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5f3868fc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Line</span>
-
 <span class="n">sp</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dist2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">P</span> <span class="o">-</span> <span class="n">Q</span>
+    <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">sec</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">show</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> ="</span><span class="p">)</span>
-    <span class="c1"># Use a compact one-line string to avoid large ASCII pretty-print blocks.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sstr</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">hx</span><span class="p">,</span> <span class="n">hy</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">"a hx hy"</span><span class="p">)</span>
 
-<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">"a b"</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Fixed points</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
-<span class="c1"># 1) Encode the geometry with coordinates</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"1) Coordinate model (bakes in BC ⟂ CD and BC=CD)"</span><span class="p">)</span>
+<span class="c1"># Variable point A, and derived point E</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">a</span><span class="p">])</span>
 
-<span class="n">C</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">D</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="c1"># Variable point H</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">hx</span><span class="p">,</span> <span class="n">hy</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=388a234e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now we translate hypotheses into polynomials</p>
+<h3 id="Collinearity-$B,D,H$">Collinearity $B,D,H$<a class="anchor-link" href="#Collinearity-$B,D,H$">¶</a></h3><p>Vectors $\overrightarrow{DB} = B-D$ and $\overrightarrow{DH}=H-D$ must be linearly dependent, so the 2×2 determinant is zero:
+$$
+\det\begin{pmatrix}
+B_x-D_x &amp; B_y-D_y\\
+H_x-D_x &amp; H_y-D_y
+\end{pmatrix}=0.
+$$</p>
+<h3 id="Perpendicularity-$(H-E)%5Cperp(B-A)$">Perpendicularity $(H-E)\perp(B-A)$<a class="anchor-link" href="#Perpendicularity-$(H-E)%5Cperp(B-A)$">¶</a></h3><p>Dot product is zero:
+$$
+(H-E)\cdot(B-A)=0.
+$$</p>
+<p>These give two polynomials $f_1=0$, $f_2=0$.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7033b47a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sec</span><span class="p">(</span><span class="s2">"Hypothesis polynomials"</span><span class="p">)</span>
 
-<span class="c1"># AD ∥ BC ⇒ AD horizontal ⇒ A has y=b</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="c1"># (1) Collinear B, D, H</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                <span class="p">[</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span><span class="o">.</span><span class="n">det</span><span class="p">()</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>
 
-<span class="c1"># E on CD and DE=AD ⇒ E=(0, b-a)</span>
-<span class="n">E</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
+<span class="c1"># (2) (H-E) ⟂ (B-A)</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">((</span><span class="n">H</span> <span class="o">-</span> <span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span> <span class="o">-</span> <span class="n">A</span><span class="p">))</span>
 
-<span class="n">show</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"C"</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"E"</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"f1 (collinear B,D,H) ="</span><span class="p">,</span> <span class="n">f1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"f2 ((H-E) ⟂ (B-A))  ="</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span>
 
-<span class="c1"># 2) Build the lines and the special point H</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"2) Construct AB, BD, and EF ⟂ AB through E; define H = BD ∩ EF"</span><span class="p">)</span>
-
-<span class="n">AB</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-<span class="n">BD</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
-<span class="n">EF</span> <span class="o">=</span> <span class="n">AB</span><span class="o">.</span><span class="n">perpendicular_line</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">"AB equation"</span><span class="p">,</span> <span class="n">AB</span><span class="o">.</span><span class="n">equation</span><span class="p">())</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"BD equation"</span><span class="p">,</span> <span class="n">BD</span><span class="o">.</span><span class="n">equation</span><span class="p">())</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"EF equation"</span><span class="p">,</span> <span class="n">EF</span><span class="o">.</span><span class="n">equation</span><span class="p">())</span>
-
-<span class="n">H</span> <span class="o">=</span> <span class="n">BD</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">EF</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"H = BD ∩ EF"</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
-
-<span class="c1"># 3) Compute squared lengths (avoid square roots)</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"3) Compute squared lengths"</span><span class="p">)</span>
-
-<span class="c1"># Raw (unsimplified) squared distances</span>
-<span class="n">BE2_raw</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">BD2_raw</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">DH2_raw</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">EH2_raw</span> <span class="o">=</span> <span class="n">E</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">"BE^2 raw"</span><span class="p">,</span> <span class="n">BE2_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"BD^2 raw"</span><span class="p">,</span> <span class="n">BD2_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"DH^2 raw"</span><span class="p">,</span> <span class="n">DH2_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"EH^2 raw"</span><span class="p">,</span> <span class="n">EH2_raw</span><span class="p">)</span>
-
-<span class="c1"># Simplified squared distances</span>
-<span class="n">BE2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">BE2_raw</span><span class="p">)</span>
-<span class="n">BD2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">BD2_raw</span><span class="p">)</span>
-<span class="n">DH2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">DH2_raw</span><span class="p">)</span>
-<span class="n">EH2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">EH2_raw</span><span class="p">)</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">"BE^2 simplified"</span><span class="p">,</span> <span class="n">BE2</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"BD^2 simplified"</span><span class="p">,</span> <span class="n">BD2</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"DH^2 simplified"</span><span class="p">,</span> <span class="n">DH2</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"EH^2 simplified"</span><span class="p">,</span> <span class="n">EH2</span><span class="p">)</span>
-
-<span class="c1"># 4) Target equation, squared</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"4) Prove BE*DH = BD*EH by proving BE^2*DH^2 - BD^2*EH^2 = 0"</span><span class="p">)</span>
-
-<span class="n">expr_raw</span> <span class="o">=</span> <span class="n">BE2_raw</span><span class="o">*</span><span class="n">DH2_raw</span> <span class="o">-</span> <span class="n">BD2_raw</span><span class="o">*</span><span class="n">EH2_raw</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"Raw expr"</span><span class="p">,</span> <span class="n">expr_raw</span><span class="p">)</span>
-
-<span class="n">expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"simplify(raw expr)"</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
+<span class="c1"># For reference, simplify them:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Simplified forms:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"f1 ="</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">f1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"f2 ="</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">f2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7615,83 +8178,854 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 ======================================================================
-1) Coordinate model (bakes in BC ⟂ CD and BC=CD)
+Hypothesis polynomials
 ======================================================================
+f1 (collinear B,D,H) = hx + hy - 1
+f2 ((H-E) ⟂ (B-A))  = -a*hx - a + hx - hy + 1
 
-A =
-Point2D(a, b)
-
-B =
-Point2D(b, 0)
-
-C =
-Point2D(0, 0)
-
-D =
-Point2D(0, b)
-
-E =
-Point2D(0, -a + b)
-
-======================================================================
-2) Construct AB, BD, and EF ⟂ AB through E; define H = BD ∩ EF
-======================================================================
-
-AB equation =
--b**2 + b*x + y*(-a + b)
-
-BD equation =
-b**2 - b*x - b*y
-
-EF equation =
-b*y + b*(a - b) + x*(a - b)
-
-H = BD ∩ EF =
-Point2D(-a*b/(a - 2*b), 2*b*(a - b)/(a - 2*b))
-
-======================================================================
-3) Compute squared lengths
-======================================================================
-
-BE^2 raw =
-b**2 + (a - b)**2
-
-BD^2 raw =
-2*b**2
-
-DH^2 raw =
-a**2*b**2/(a - 2*b)**2 + (b - 2*b*(a - b)/(a - 2*b))**2
-
-EH^2 raw =
-a**2*b**2/(a - 2*b)**2 + (-a + b - 2*b*(a - b)/(a - 2*b))**2
-
-BE^2 simplified =
-b**2 + (a - b)**2
-
-BD^2 simplified =
-2*b**2
-
-DH^2 simplified =
-2*a**2*b**2/(a - 2*b)**2
-
-EH^2 simplified =
-a**2*(b**2 + (a - b)**2)/(a - 2*b)**2
-
-======================================================================
-4) Prove BE*DH = BD*EH by proving BE^2*DH^2 - BD^2*EH^2 = 0
-======================================================================
-
-Raw expr =
--2*b**2*(a**2*b**2/(a - 2*b)**2 + (-a + b - 2*b*(a - b)/(a - 2*b))**2) + (b**2 + (a - b)**2)*(a**2*b**2/(a - 2*b)**2 + (b - 2*b*(a - b)/(a - 2*b))**2)
-
-simplify(raw expr) =
-0
+Simplified forms:
+f1 = hx + hy - 1
+f2 = -a*hx - a + hx - hy + 1
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e2f669bf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Target polynomial is the following identity to prove:
+$$
+p := (BE^2)(DH^2) - (BD^2)(EH^2) = 0.
+$$</p>
+<p>This is equivalent to $BE\cdot DH = BD\cdot EH$ because lengths are nonnegative.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ceb177cb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sec</span><span class="p">(</span><span class="s2">"Target polynomial p"</span><span class="p">)</span>
+
+<span class="n">BE2</span> <span class="o">=</span> <span class="n">dist2</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+<span class="n">BD2</span> <span class="o">=</span> <span class="n">dist2</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
+<span class="n">DH2</span> <span class="o">=</span> <span class="n">dist2</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
+<span class="n">EH2</span> <span class="o">=</span> <span class="n">dist2</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">BE2</span><span class="o">*</span><span class="n">DH2</span> <span class="o">-</span> <span class="n">BD2</span><span class="o">*</span><span class="n">EH2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"BE^2 ="</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">BE2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"BD^2 ="</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">BD2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"DH^2 ="</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">DH2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"EH^2 ="</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">EH2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">p = (BE^2)(DH^2) - (BD^2)(EH^2) ="</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sstr</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+======================================================================
+Target polynomial p
+======================================================================
+BE^2 = a**2 - 2*a + 2
+BD^2 = 2
+DH^2 = hx**2 + hy**2 - 2*hy + 1
+EH^2 = a**2 + 2*a*hy - 2*a + hx**2 + hy**2 - 2*hy + 1
+
+p = (BE^2)(DH^2) - (BD^2)(EH^2) =
+a*(a*hx**2 + a*hy**2 - 2*a*hy - a - 2*hx**2 - 2*hy**2 + 2)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=beb35e0f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="5.2-Gr%C3%B6bner-basis-proof">5.2 Gröbner basis proof<a class="anchor-link" href="#5.2-Gr%C3%B6bner-basis-proof">¶</a></h3><blockquote>
+<p>We compute a Gröbner basis $G$ for the ideal $\langle f_1,f_2\rangle$.<br/>
+Then reduce $p$ modulo $G$. If the remainder is 0, then
+$$ p \in \langle f_1,f_2\rangle $$
+so the hypotheses imply the conclusion.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67bc076b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sec</span><span class="p">(</span><span class="s2">"| Groebner basis reduction"</span><span class="p">)</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">groebner</span><span class="p">([</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">],</span> <span class="n">hx</span><span class="p">,</span> <span class="n">hy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"lex"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"| Groebner basis polynomials:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">polys</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"|   "</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">as_expr</span><span class="p">())</span>
+
+<span class="n">rem</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">| Remainder of p modulo Groebner basis ="</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="s1">'| '</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">sstr</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">rem</span><span class="p">)))</span>
+
+<span class="k">assert</span> <span class="n">rem</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">| ✅ Groebner proof complete: remainder = 0"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+======================================================================
+| Groebner basis reduction
+======================================================================
+| Groebner basis polynomials:
+|    hx + hy - 1
+|    a*hy - 2*a - 2*hy + 2
+
+| Remainder of p modulo Groebner basis =
+| 0
+
+| ✅ Groebner proof complete: remainder = 0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=060d5377">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="5.3-Wu%E2%80%99s-method-style-proof-(triangular-elimination)">5.3 Wu’s method style proof (triangular elimination)<a class="anchor-link" href="#5.3-Wu%E2%80%99s-method-style-proof-(triangular-elimination)">¶</a></h3><blockquote>
+<p>Wu’s method builds a triangular (ascending) chain and repeatedly takes pseudo-remainders to eliminate variables.
+Here, our constraints are already linear, so the “characteristic set” is essentially:</p>
+<ul>
+<li>from collinearity: $f_1= h_x + h_y - 1 = 0$</li>
+<li>from perpendicularity: $f_2= -a h_x - a + h_x - h_y + 1 = 0$
+So elimination becomes:</li>
+</ul>
+<ol>
+<li>From $f_1=0$:<br/>
+$$ h_y = 1-h_x.  $$</li>
+<li>Substitute into $f_2=0$ to solve $h_x$.</li>
+<li>Substitute $(h_x,h_y)$ into $p$. If it becomes 0, the theorem is proved.
+This is exactly the <em>same spirit</em> as Wu: reduce the goal with the chain until remainder is 0.
+See below for the code execution</li>
+</ol>
+</blockquote>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a45a8bec">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sec</span><span class="p">(</span><span class="s2">"Wu-style triangular elimination"</span><span class="p">)</span>
+
+<span class="c1"># Step 1: solve f1 for hy</span>
+<span class="n">hy_expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">hy</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"From f1=0, hy ="</span><span class="p">,</span> <span class="n">hy_expr</span><span class="p">)</span>
+
+<span class="c1"># Step 2: substitute into f2 and solve for hx</span>
+<span class="n">f2_sub</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">hy</span><span class="p">,</span> <span class="n">hy_expr</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Substitute hy into f2 -&gt;"</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">f2_sub</span><span class="p">))</span>
+
+<span class="n">hx_expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">f2_sub</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">hx</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Solve for hx -&gt; hx ="</span><span class="p">,</span> <span class="n">hx_expr</span><span class="p">)</span>
+
+<span class="c1"># Then hy</span>
+<span class="n">hy_expr2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">hy_expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">hx</span><span class="p">,</span> <span class="n">hx_expr</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"And hy ="</span><span class="p">,</span> <span class="n">hy_expr2</span><span class="p">)</span>
+
+<span class="c1"># Step 3: substitute into p</span>
+<span class="n">p_sub</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">hx</span><span class="p">:</span> <span class="n">hx_expr</span><span class="p">,</span> <span class="n">hy</span><span class="p">:</span> <span class="n">hy_expr2</span><span class="p">}))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Substitute (hx,hy) into p -&gt;"</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">p_sub</span><span class="p">))</span>
+
+<span class="k">assert</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">p_sub</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Wu-style elimination complete: p reduces to 0"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+======================================================================
+Wu-style triangular elimination
+======================================================================
+From f1=0, hy = 1 - hx
+
+Substitute hy into f2 -&gt;
+-a⋅hx - a + 2⋅hx
+
+Solve for hx -&gt; hx = -a/(a - 2)
+And hy = 2*(a - 1)/(a - 2)
+
+Substitute (hx,hy) into p -&gt;
+0
+
+✅ Wu-style elimination complete: p reduces to 0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b3d8f2f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="5.4-Extra:-numeric-sanity-check">5.4 Extra: numeric sanity check<a class="anchor-link" href="#5.4-Extra:-numeric-sanity-check">¶</a></h3><p>Since we are in python, we can pick any $a\in(0,1)$. (For the original picture you typically have $0&lt;a&lt;1$.)</p>
+<p>We compute the actual numeric lengths and verify $BE\cdot DH = BD\cdot EH$.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=eb8d783d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sec</span><span class="p">(</span><span class="s2">"Numeric sanity check"</span><span class="p">)</span>
+
+<span class="n">aval</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>   <span class="c1"># a = 0.4</span>
+<span class="n">subs_num</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span> <span class="n">aval</span><span class="p">,</span> <span class="n">hx</span><span class="p">:</span> <span class="n">hx_expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">aval</span><span class="p">),</span> <span class="n">hy</span><span class="p">:</span> <span class="n">hy_expr2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">aval</span><span class="p">)}</span>
+
+<span class="c1"># Evaluate squared lengths</span>
+<span class="n">BE2_num</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="n">BE2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_num</span><span class="p">))</span>
+<span class="n">BD2_num</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="n">BD2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_num</span><span class="p">))</span>
+<span class="n">DH2_num</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="n">DH2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_num</span><span class="p">))</span>
+<span class="n">EH2_num</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="n">EH2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_num</span><span class="p">))</span>
+
+<span class="n">BE</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">BE2_num</span><span class="p">))</span>
+<span class="n">BD</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">BD2_num</span><span class="p">))</span>
+<span class="n">DH</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">DH2_num</span><span class="p">))</span>
+<span class="n">EH</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">EH2_num</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"a ="</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">aval</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"H ="</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">subs_num</span><span class="p">[</span><span class="n">hx</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">subs_num</span><span class="p">[</span><span class="n">hy</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"BE*DH ="</span><span class="p">,</span> <span class="n">BE</span><span class="o">*</span><span class="n">DH</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"BD*EH ="</span><span class="p">,</span> <span class="n">BD</span><span class="o">*</span><span class="n">EH</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"difference ="</span><span class="p">,</span> <span class="p">(</span><span class="n">BE</span><span class="o">*</span><span class="n">DH</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">BD</span><span class="o">*</span><span class="n">EH</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+======================================================================
+Numeric sanity check
+======================================================================
+a = 0.4
+H = (0.25, 0.75)
+BE*DH = 0.412310562561766
+BD*EH = 0.412310562561766
+difference = 0.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b49d4c6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This is Wu-flavored code, but it does not implement the full, original Wu characteristic-set algorithm.</p>
+<p>In the real Wu method, you fix a variable order (a precedence like $h_y \succ h_x \succ \cdots$), then build a triangular chain (a characteristic set).</p>
+<p>You do not "randomly solve" for a variable when it looks convenient. You pick eliminations to make the next polynomial's main variable well-behaved and the chain triangular.</p>
+<p>Most importantly: Wu's method avoids fraction of polynomials by using pseudo-division (a.k.a. pseudo-remainder).
+This guarantees you stay inside the polynomial ring: no denominators ever appear.
+Internally, pseudo-division multiplies by powers of the leading coefficient, so the "portfolio" always contains pure polynomials.</p>
+<p>So we call it "Wu-style" elimination here: same spirit (triangular elimination), but the first version uses solve (which may introduce denominators), while the second version shows the truly programmable "no-denominator" elimination that resembles Wu's mechanics. Below we will show how the problem would be solved had we followed the algo of Wu's method more programmably.</p>
+<p>Fully programmable "no-denominator" Wu-like elimination (pseudo-remainder)</p>
+<p>This is the key upgrade: we eliminate variables without ever dividing.</p>
+<p>Core idea (one line)</p>
+<p>To eliminate $h_y$, we replace "substitute $h_y=-b/a$" by pseudo-remainder:</p>
+<p>$$R_2 = \operatorname{prem}(f_2, f_1; h_y),$$</p>
+<p>which equals $a^k f_2(h_y=-b/a)$ but with denominators cleared, hence still a polynomial.</p>
+<p>What this corresponds to mathematically</p>
+<p>We built a triangular chain:</p>
+<p>$$T_1 = f_1 \quad \text{(main variable } h_y),$$</p>
+<p>$$T_2 = \operatorname{prem}(f_2, T_1; h_y) \quad \text{(main variable } h_x).$$</p>
+<p>Then we reduced the goal:</p>
+<p>$$p \xrightarrow{\operatorname{prem}(\cdot, T_1; h_y)} R_p \xrightarrow{\operatorname{prem}(\cdot, T_2; h_x)} 0.$$</p>
+<p>That is exactly the "eliminate $h_y$, then eliminate $h_x$, then the goal collapses" story - but now in a Wu-programmable way.</p>
+<p>One important Wu caveat (geometry degeneracy)</p>
+<p>Pseudo-division implicitly assumes the leading coefficients used during elimination are not zero (otherwise the "main variable" disappears and you're in a degenerate case).
+In geometry, this corresponds to "generic position" assumptions (no coincident points, no accidental parallel collapse, etc.).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c0e045f0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sec</span><span class="p">(</span><span class="s2">"Wu-style triangular elimination (pseudo-remainder / no-denominator)"</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy.polys.polytools</span><span class="w"> </span><span class="kn">import</span> <span class="n">prem</span>
+
+<span class="c1"># --- Step 1: eliminate hy using pseudo-remainder ---</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>                         <span class="c1"># main variable: hy</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">prem</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">hy</span><span class="p">))</span>           <span class="c1"># eliminates hy, stays polynomial</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"T1 (main var hy) ="</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">T1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">R2 = prem(f2, T1, hy)  (hy eliminated, polynomial) ="</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">R2</span><span class="p">)</span>
+
+<span class="c1"># --- Step 2: eliminate hx using pseudo-remainder ---</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">R2</span><span class="p">)</span>                         <span class="c1"># main variable: hx (ideally)</span>
+<span class="n">Rp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">prem</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">hy</span><span class="p">))</span>            <span class="c1"># first reduce goal by T1 in hy</span>
+<span class="n">Rp2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">prem</span><span class="p">(</span><span class="n">Rp</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">hx</span><span class="p">))</span>          <span class="c1"># then reduce by T2 in hx</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">T2 (after eliminating hy; main var should be hx) ="</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">T2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Goal reduction: Rp2 = prem(prem(p,T1,hy), T2, hx) ="</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">Rp2</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">sp</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">Rp2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Wu-style pseudo-remainder elimination: goal reduces to 0 (no denominators ever used)"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+======================================================================
+Wu-style triangular elimination (pseudo-remainder / no-denominator)
+======================================================================
+T1 (main var hy) =
+hx + hy - 1
+
+R2 = prem(f2, T1, hy)  (hy eliminated, polynomial) =
+-a⋅hx - a + 2⋅hx
+
+T2 (after eliminating hy; main var should be hx) =
+-a⋅hx - a + 2⋅hx
+
+Goal reduction: Rp2 = prem(prem(p,T1,hy), T2, hx) =
+0
+
+✅ Wu-style pseudo-remainder elimination: goal reduces to 0 (no denominators ever used)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cca5e03f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="References">References<a class="anchor-link" href="#References">¶</a></h3><ul>
+<li>[ATP-GEO] Chou, Gao, Zhang (2001). "Machine Proofs in Geometry." Summary: Monograph on automated geometry theorem proving. URL: <a href="http://www.mmrc.iss.ac.cn/~xgao/paper/book-area.pdf">http://www.mmrc.iss.ac.cn/~xgao/paper/book-area.pdf</a></li>
+<li>[CAS-GEN] "Computer algebra systems: Mathematica, Maple." Summary: General-purpose CAS background for symbolic computation. URLs: <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">https://en.wikipedia.org/wiki/Wolfram_Mathematica</a> ; <a href="https://en.wikipedia.org/wiki/Maple_(software">https://en.wikipedia.org/wiki/Maple_(software</a>)</li>
+<li>[GB-HIST] Buchberger (2005). "An Introduction to Groebner Bases." Summary: Historical and conceptual introduction to Gr?bner bases. URL: <a href="https://www3.risc.jku.at/publications/download/risc_3045/2005-07-09-Historic-Intro-to-GB.pdf">https://www3.risc.jku.at/publications/download/risc_3045/2005-07-09-Historic-Intro-to-GB.pdf</a></li>
+<li>[GB-THESIS] Buchberger (1965/2005 translation). "Bruno Buchberger's PhD thesis (Gr?bner bases)." Summary: Original Gr?bner basis algorithm and theory; later English translation with commentary. URL: <a href="https://www.sciencedirect.com/science/article/pii/S0747717105001483">https://www.sciencedirect.com/science/article/pii/S0747717105001483</a></li>
+<li>[WU-CHAR] Wu (late 1970s). "Wu's method of characteristic set." Summary: Overview of characteristic-set elimination developed in the late 1970s. URL: <a href="https://en.wikipedia.org/wiki/Wu%27s_method_of_characteristic_set">https://en.wikipedia.org/wiki/Wu%27s_method_of_characteristic_set</a></li>
+<li>[WU-ORIG] Wu (late 1970s). "Wu's method discovery timeline." Summary: Historical timeline for the development of Wu's method. URL: <a href="http://www.mmrc.iss.ac.cn/~lzhi/Research/wuritt.html">http://www.mmrc.iss.ac.cn/~lzhi/Research/wuritt.html</a></li>
+<li>[WU-SURVEY] Wu et al. (2007). "Mathematics mechanization" survey. Summary: Survey of algebraic methods and mechanization in geometry proving. URL: <a href="http://www.mmrc.iss.ac.cn/~xgao/paper/07-mmsurvey.pdf">http://www.mmrc.iss.ac.cn/~xgao/paper/07-mmsurvey.pdf</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de42bbf9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
 </main>
+</section>
+<div class="page-break"></div>
+<section class="nb-section" data-source="newclid_polygon_ratio.html">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89eb04bf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-6.-Modern-Geometric-Prover">Part 6. Modern Geometric Prover<a class="anchor-link" href="#Part-6.-Modern-Geometric-Prover">¶</a></h2><p>Wu’s method and Gröbner-basis proving are “old school algorithmic” in the best sense: once you translate a diagram into polynomial constraints, the prover can grind deterministically and still surprise you with what it manages to derive. That feels creative because the algorithm is not following a human narrative, yet it discovers nontrivial consequences reliably and at scale. The downside is exactly what you observed: these proofs often become long coordinate eliminations that certify truth, but don’t illuminate the geometry. In fact, modern surveys often summarize algebraic methods this way: extremely powerful decision procedures, but the output is typically not a readable, traditional geometry proof—more a yes/no outcome with an algebraic justification. [SURVEY]</p>
+<p>A key idea that matured over the last two decades is to keep the computation, but move the “language of thought” closer to geometry itself. Semi-synthetic methods like the area method and the full-angle method do this by replacing raw coordinates with geometric invariants (directed areas, oriented angles, angle expressions) and carefully designed elimination rules. The area method is explicitly praised for producing proofs that are concise and human-readable while still being automated. [AREA]  The full-angle line of work went further by building rule systems around angle expressions in a way that can be structured hierarchically, which even enables visually dynamic, step-by-step presentations of proofs—much closer to how a person reasons with a diagram. [VDP]</p>
+<p>This “human-facing” direction also pushed geometry provers into interactive and educational software. A milestone was the incorporation and testing of multiple automated geometry provers inside GeoGebra, motivated by the idea that automated deduction had become mature enough to change how people learn and explore geometry. [GGB]  Around the same time, community efforts like OpenGeoProver worked on unifying several proof styles (algebraic, semi-synthetic, synthetic) behind a common tool interface, so the user sees geometry objects while the backend can choose the best proving engine.</p>
+<p>Then the last two years added a new ingredient that directly targets the “magic of auxiliary constructions”: systems that can propose new points/lines/circles in a human-like way. AlphaGeometry (Nature 2024) made this explicit: a neural language model guides a symbolic deduction engine through the huge branching factor of difficult Olympiad problems, and it reaches near gold-medalist performance on a benchmark of 30 problems. [AG1]  DeepMind’s own description highlights the core leap: the model predicts useful new constructs from an effectively infinite space, while the symbolic engine validates the consequences. [AG1-BLOG]  AlphaGeometry2 pushes this further by enriching the language and emphasizing auxiliary constructions even more strongly, and it is built on a more powerful Gemini-based model. [AG2]</p>
+<p>What’s also interesting is that “auxiliary creativity” is no longer owned by neural models alone. HAGeo shows you can get gold-medal level performance by engineering strong heuristic auxiliary construction strategies wrapped around a symbolic deduction engine, running fully on CPUs without neural inference. [HAG]  GenesisGeo attacks the bottleneck from the other side: it open-sources a massive synthetic dataset (including millions of cases with auxiliaries) and accelerates the symbolic engine with C++ components, while also adding a neuro-symbolic prover based on Qwen3-0.6B-Base. [GEN]  These results collectively say something profound: the “human-like” part of geometry solving is largely about proposing the right extra objects, and we now have multiple competing ways to do that—LLMs, heuristics, and hybrid search.</p>
+<p>Newclid is a nice example of how modern systems separate “frontend geometry” from “backend proof.” On the frontend, you describe the construction and goals (JGEX / GeoGebra import); in the backend, a symbolic engine (DDARN) runs deduction and proof search. The important architectural twist is that Newclid exposes an agent interface between them, so the choice of auxiliary construction strategy can be swapped: an LLM agent, a heuristic agent, a BFS-style agent, or even a human-in-the-loop agent. The Newclid paper explicitly frames its CLI as a way to run problems without a Python entry point and even to replace the original LLM with human decisions, while still using the same symbolic core. [NC]</p>
+<p>Formal verification languages (Lean/Coq) matter because they make “correctness” non-negotiable. Once you have systems that generate highly non-obvious auxiliaries, you urgently need a small trusted kernel that can check every step. The area method already had a deep formalization path: Narboux implemented it as a decision procedure inside Coq, explicitly valuing short and readable proofs with machine-checkable elimination lemmas. [COQ-AM]  LeanGeo extends this spirit to competition-level geometry inside Lean 4, aiming for a unified, rigorously verified framework integrated with Mathlib and released with an open-source library and benchmark. [LG]  The big point is: “creative search” can be messy, probabilistic, and exploratory—but the final proof artifact can still be as clean and trustworthy as a textbook, because the checker is unforgiving.</p>
+<p>Another piece of the “human-like” story is not just finding a proof, but presenting it in a way that looks like geometry again. Historically, this emerged as a reaction to coordinate/elimination proofs: Wu/Gröbner methods can certify truth, but the output often reads like algebraic elimination rather than geometric insight. Semi-synthetic provers helped because they operate in higher-level invariants (areas, oriented angles, angle expressions), which naturally map back into short Euclid-style steps that a student can follow. The full-angle method is a representative example: it was designed specifically so the proof object is a sequence of geometric statements that can be displayed and checked step by step, rather than a large polynomial certificate [FA].</p>
+<p>Once the reasoning steps become “geometric sentences,” visualization becomes possible and valuable. A major milestone was the line of work on visually dynamic proof presentation, where the proof is organized hierarchically and the diagram is animated so that objects and relations appear exactly when the text uses them; this turns a proof from a static list of facts into a guided tour that matches human attention [VDP]. In parallel, automated provers began integrating into interactive geometry environments, so proving becomes part of exploration: you construct a figure, conjecture an invariant, and then ask the prover to justify it inside the same visual workspace, often with a human-readable proof trace rather than an opaque “true/false” result [GGB]. This visualization layer matters because it is where “machine correctness” becomes “human understanding.”</p>
+<p>Euclid-Omni fits into this contribution as a unification attempt that pushes the interface boundary outward. Compared to systems like Newclid, which cleanly separate a formal geometry frontend (JGEX/diagram constraints) from a symbolic backend (DDARN proof search) [NC], Euclid-Omni aims to connect more of the pipeline end-to-end: it combines formal symbolic proving with LLM/VLM components so that inputs can be more flexible (including natural language or diagram perception), while outputs can remain structured and human readable as logical steps supported by a formal core [EO]. Conceptually, it tries to make the “frontend” not just a parser for JGEX, but also a translator from human modalities into formal predicates, and then back into a readable proof narrative—bridging the last gap between creative construction and explainable reasoning.</p>
+<p>Furthermore, Euclid-Omni explicitly frames “open data” as one of the missing pieces in the current gold-medal pipeline ecosystem, and positions itself as a response. It points out that existing IMO-level systems required massive compute to generate training examples, yet did not release their data-generation pipelines or datasets, which blocks broader reproducibility and extension by the community [EO]. In contrast, EO’s core contribution is not only a symbolic solver (Euclidea), but also a complete configurable data factory that synthesizes symbolic problems, renders diagrams, and produces aligned natural-language versions, thereby yielding large-scale datasets for training LLMs/VLMs; and it explicitly states “we will release the complete framework,” which (by their own definition of the framework) includes the data generation pipeline and the datasets it produces [EO]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=803021e3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Proof-6.1:-Newclid">Proof 6.1: Newclid<a class="anchor-link" href="#Proof-6.1:-Newclid">¶</a></h3><p>Newclid was created based on AlphaGeometry, by a startup company called Harmonic.</p>
+<p>Harmonic built Newclid to make the AlphaGeometry-style approach usable outside a closed research stack: a tool that is easier to run, easier to extend, and easier to integrate into other workflows. The emphasis is on a clean interface between geometry input and the symbolic proof engine, so different construction or search strategies (LLM, heuristics, or human-in-the-loop) can be swapped in without changing the core prover. Newclid use its own DDARN (Deductive Database with Algebraic Reasoning in Newclid) symbolic solver that's derived from the DDAR of AlphaGeometry. In Newclid 3 published in later 2025, the model also included an C++ optimized execution engine of DDARN that is called Yuclid.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5aaef1af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">newclid</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeometricSolverBuilder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">newclid.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">PredicateConstruction</span><span class="p">,</span> <span class="n">ProblemSetup</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">newclid.jgex.problem_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">JGEXProblemBuilder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">newclid.jgex.formulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">JGEXFormulation</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">JGEX_PROBLEM</span> <span class="o">=</span> <span class="s2">"""C B = segment C B;</span>
+<span class="s2">D = on_tline D C B C, on_circle D C B;</span>
+<span class="s2">E = on_line E C D;</span>
+<span class="s2">A = on_pline A D B C, on_circle A D E;</span>
+<span class="s2">F = intersection_lt F A B E A B;</span>
+<span class="s2">G = intersection_ll G B D A E;</span>
+<span class="s2">H = intersection_ll H B D E F</span>
+<span class="s2">"""</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span>
+<span class="n">goals</span> <span class="o">=</span> <span class="p">[</span><span class="n">PredicateConstruction</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="s2">"eqratio D H E H D B E B"</span><span class="p">)]</span>
+
+
+<span class="c1"># Build a JGEX formulation into a ProblemSetup</span>
+<span class="n">jgex_problem</span> <span class="o">=</span> <span class="n">JGEXFormulation</span><span class="o">.</span><span class="n">from_text</span><span class="p">(</span><span class="n">JGEX_PROBLEM</span><span class="p">)</span>
+<span class="n">problem_builder</span> <span class="o">=</span> <span class="n">JGEXProblemBuilder</span><span class="p">(</span><span class="n">problem</span><span class="o">=</span><span class="n">jgex_problem</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">problem_setup</span> <span class="o">=</span> <span class="n">problem_builder</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">ProblemSetup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">problem_setup</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                        <span class="n">points</span><span class="o">=</span><span class="n">problem_setup</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
+                        <span class="n">assumptions</span><span class="o">=</span><span class="n">problem_setup</span><span class="o">.</span><span class="n">assumptions</span><span class="p">,</span>
+                        <span class="n">goals</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">goals</span><span class="p">),</span>
+                        <span class="p">)</span>
+<span class="c1"># Build a solver from the ProblemSetup</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">GeometricSolverBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">problem</span><span class="p">)</span>
+
+<span class="c1"># Run deduction + algebraic reasoning</span>
+<span class="n">success</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"solved: "</span><span class="p">,</span> <span class="n">success</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">write_all_outputs</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">'out'</span><span class="p">),</span> <span class="n">jgex_problem</span><span class="o">=</span><span class="n">problem_builder</span><span class="o">.</span><span class="n">jgex_problem</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">'all'</span><span class="p">)</span>
+    <span class="c1"># proof = solver.proof()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>solved:  True
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>out\html\dependency_graph.html
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41eb1d94">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<div align="center">
+<img alt="No description has been provided for this image" src="newclid_methods/out/proof_figure.svg" width="100%"/>
+<br/>
+<em>Figure 1: Proof figure generated by Newclid for Proof 6.1 (proof_figure.svg); even though less polished, it does show the geometries fine.</em>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cb3f47e0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">IFrame</span><span class="p">(</span><span class="s1">'out/html/dependency_graph.html'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">'100%'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">520</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<iframe allowfullscreen="" frameborder="0" height="520" src="newclid_methods/out/html/dependency_graph.html" width="100%"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=07148dc5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<blockquote>
+<div align="center">
+<em>Figure 2: Proof dependency graph for the out run (dependency_graph.html).</em>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2a6ba52">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Summarize the solution from out/proof.text in human readable steps using ChatGPT:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f573bb24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<blockquote>
+<p>Because $B,C,E,F$ are concyclic, the angles subtending the same chords are equal; with $A,B,F$ collinear and $C,D,E$ collinear, this gives two matching angles between $\triangle ABE$ and $\triangle DCF$, so $\triangle ABE\sim\triangle DCF$, hence $\dfrac{AE}{BE}=\dfrac{DF}{CF}$.
+Because $C,E,F,G$ are concyclic, the same "equal angles on equal arcs" rule gives two matching angles between $\triangle AFG$ and $\triangle DFC$, so $\triangle AFG\sim\triangle DFC$, hence $\dfrac{AF}{DF}=\dfrac{FG}{CF}$. Combining with the previous relation eliminates $CF$ and yields $BE=\dfrac{AE\cdot FG}{AF}$.
+Next, since $C,D,E$ are collinear and $B,D,G$ are collinear, and the right-angle/parallels in the construction align the remaining angles, we get $\triangle BCD\sim\triangle EGD$, hence $\dfrac{BD}{CD}=\dfrac{DE}{DG}$. Together with the proportionalities already obtained from $\triangle AFG\sim\triangle DFC$, this rewrites $BD$ in the same scale as $BE$, giving $BD=\dfrac{AD\cdot DF}{AF}$.
+Now bring in $H$. Because $A,D,E,F$ are concyclic, equal angles in the same segment give $\triangle ADH\sim\triangle EFD$, so $DH=\dfrac{AD\cdot DF}{EF}$. Also, because $A,F,G,H$ are concyclic, the same cyclic angle rule gives $\triangle AEH\sim\triangle EFG$, so $EH=\dfrac{AE\cdot FG}{EF}$.
+Finally,
+$$
+\frac{BD}{BE}
+=\frac{AD\cdot DF/AF}{AE\cdot FG/AF}
+=\frac{AD\cdot DF}{AE\cdot FG}
+=\frac{AD\cdot DF/EF}{AE\cdot FG/EF}
+=\frac{DH}{EH},
+$$
+so $BE\cdot DH=BD\cdot EH$.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72ecc757">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This proof has 65 steps in its proof.text which is about 500 lines. ChatGPT summarized it well, from it we see this doesn't require auxiliary lines other than some trivial connecting existing points. It is also more complex than some of the other methods listed in part 1. In this sense, this method is innovative and reveals a few other similarities of triangles that are not too obvious.</p>
+<h3 id="6.2-auxiliary-lines">6.2 auxiliary lines<a class="anchor-link" href="#6.2-auxiliary-lines">¶</a></h3><p>Newclid supports multiple ways of adding auxiliary lines. In the following session we will explore it. First we need to have the G point defined, without that line, even though it is apparently irrelevant, the solver would fail with error message "ProofBuildError: Goal eqratio B D B E D H E H is numerically false.". This shows the solver first makes sure numerically a generated case can verify the goal. The reason this fails without G is because A and B can sit on the opposite side of CD now. In that case though, EA//BD so they would never intersect. This is why by defining G we eliminated an unexpected case defined by JGEX language. Such trap can be subtle. The GeoGebra's plot support would help with such constraints.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=544308cc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">JGEX_PROBLEM</span> <span class="o">=</span> <span class="s2">"""C B = segment C B;</span>
+<span class="s2">D = on_tline D C B C, on_circle D C B;</span>
+<span class="s2">D1 = on_tline D1 C B C, on_circle D1 C B;</span>
+<span class="s2">E = on_line E C D;</span>
+<span class="s2">A = on_pline A D B C, on_circle A D E;</span>
+<span class="s2">F = intersection_lt F A B E A B;</span>
+<span class="s2">G = intersection_ll G B D A E;</span>
+<span class="s2">H = intersection_ll H B D E F;</span>
+<span class="s2">"""</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span>
+<span class="n">goals</span> <span class="o">=</span> <span class="p">[</span><span class="n">PredicateConstruction</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="s2">"eqratio H D H E D B E B"</span><span class="p">)]</span>
+
+
+<span class="n">jgex_problem</span> <span class="o">=</span> <span class="n">JGEXFormulation</span><span class="o">.</span><span class="n">from_text</span><span class="p">(</span><span class="n">JGEX_PROBLEM</span><span class="p">)</span>
+<span class="n">problem_builder</span> <span class="o">=</span> <span class="n">JGEXProblemBuilder</span><span class="p">(</span><span class="n">problem</span><span class="o">=</span><span class="n">jgex_problem</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">problem_setup</span> <span class="o">=</span> <span class="n">problem_builder</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">ProblemSetup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">problem_setup</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                        <span class="n">points</span><span class="o">=</span><span class="n">problem_setup</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
+                        <span class="n">assumptions</span><span class="o">=</span><span class="n">problem_setup</span><span class="o">.</span><span class="n">assumptions</span><span class="p">,</span>
+                        <span class="n">goals</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">goals</span><span class="p">)</span>
+                        <span class="p">)</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">GeometricSolverBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">problem</span><span class="p">)</span>
+
+<span class="n">success</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"solved: "</span><span class="p">,</span> <span class="n">success</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">write_all_outputs</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">'out1'</span><span class="p">),</span> <span class="n">jgex_problem</span><span class="o">=</span><span class="n">problem_builder</span><span class="o">.</span><span class="n">jgex_problem</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">'all'</span><span class="p">)</span>
+    <span class="n">proof</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">proof</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>solved:  True
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>out1\html\dependency_graph.html
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d19f9a88">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<div align="center">
+<img alt="No description has been provided for this image" src="newclid_methods/out1/proof_figure.svg" width="100%"/>
+<br/>
+<em>Figure 3: Proof figure generated by Newclid for Proof 6.2 (proof_figure.svg); note the auxiliary point D1 is added compare with Figure 1.</em>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a0a37a63">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">IFrame</span><span class="p">(</span><span class="s1">'out1/html/dependency_graph.html'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">'100%'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">520</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<iframe allowfullscreen="" frameborder="0" height="520" src="newclid_methods/out1/html/dependency_graph.html" width="100%"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6713fbb4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<div align="center">
+<em>Figure 4: Proof dependency graph for the out1 run (dependency_graph.html); this is noticeably simpler than the previous Figure 2 which shows the help point D1 has simplified the proof that's also evidential in the proof summary by ChatGPT below.</em>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bf91dd38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Proof 6.2 can be summarized based on out1/proof.txt by ChatGPT, we see it becomes significantly simpler than the previous proof</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=778ad994">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<blockquote>
+<p>Introduce $D_1$ on the extension of $DC$ such that $CD_1=CD$. Then $C$ is the midpoint of $DD_1$, and since $BC \perp DC$ we also have $BC \perp DD_1$. Hence $BC$ is the perpendicular bisector of $DD_1$, so $BD=BD_1$.
+Newclid then proves two similarities: $\triangle BCG \sim \triangle D_1BE$ and $\triangle BCG \sim \triangle DHE$. From the first, $BD_1:BE=BC:CG$; from the second, $DH:EH=BC:CG$. Therefore $BD_1:BE=DH:EH$, and using $BD_1=BD$ gives $BD:BE=DH:EH$, as desired.</p>
+</blockquote>
+<p>Moreover, beyond Newclid's ratio-chasing, the logic can be shortened: we can show that $\triangle D_1BE \sim \triangle DHE$. That directly yields $BD_1:BE=DH:EH$, and then $BD_1=BD$ finishes the proof in one line. This shortened version is exactly what our proof 1 in part 1 did. So Newclid isn't necessarily putting great efforts to simplify the solution; instead it aims to grow the algebraic reasoning tree till it reach the desired conclusion.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=605c8275">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>References</p>
+<ul>
+<li>[AG1] Trinh et al. (2024). "Solving olympiad geometry without human demonstrations." Nature. Summary: Introduces AlphaGeometry, combining a neural model with a symbolic deduction engine to solve Olympiad geometry at near gold-medal level. URL: <a href="https://www.nature.com/articles/s41586-023-06747-5">https://www.nature.com/articles/s41586-023-06747-5</a></li>
+<li>[AG1-BLOG] Trinh &amp; Luong (2024). "AlphaGeometry: An Olympiad-level AI system for geometry." DeepMind blog (Jan 17, 2024). Summary: Practitioner-oriented overview of AlphaGeometry's pipeline and results. URL: <a href="https://deepmind.google/discover/blog/alphageometry-an-olympiad-level-ai-system-for-geometry/">https://deepmind.google/discover/blog/alphageometry-an-olympiad-level-ai-system-for-geometry/</a></li>
+<li>[AG2] Chervonyi et al. (2025). "Gold-medalist Performance in Solving Olympiad Geometry with AlphaGeometry2." arXiv:2502.03544. Summary: Extends AlphaGeometry with a richer language and stronger auxiliary-construction capability. URL: <a href="https://dblp.org/rec/journals/corr/abs-2502-03544">https://dblp.org/rec/journals/corr/abs-2502-03544</a></li>
+<li>[AREA] Janicic, Narboux, Quaresma (2012). "The Area Method: a Recapitulation." Journal of Automated Reasoning. Summary: Surveys the area method and argues for concise, human-readable automated proofs. URL: <a href="https://research.matf.bg.ac.rs/handle/123456789/510">https://research.matf.bg.ac.rs/handle/123456789/510</a></li>
+<li>[COQ-AM] Narboux (2009). "Formalization of the Area Method in the Coq proof assistant." Summary: Coq formalization of the area method (user contribution dated 2009). URL: <a href="https://www.irif.fr/~narboux/area_method.html">https://www.irif.fr/~narboux/area_method.html</a></li>
+<li>[EO] Li et al. (2026). "Euclid-Omni: A Unified Neuro-Symbolic Framework for Geometry Problem Solving." OpenReview (ICLR 2026 submission). Summary: Unifies symbolic proving with LLM/VLM components and a data-generation pipeline. URL: <a href="https://openreview.net/forum?id=1GQv7jhmtV">https://openreview.net/forum?id=1GQv7jhmtV</a></li>
+<li>[FA] Baeta &amp; Quaresma (2013). "The full angle method on the OpenGeoProver." ThEdu 2013. Summary: Describes the full-angle method implementation in OpenGeoProver. URL: <a href="https://old.cisuc.uc.pt/publication/show/3494">https://old.cisuc.uc.pt/publication/show/3494</a></li>
+<li>[GEN] Zhu et al. (2025). "GenesisGeo: Technical Report." arXiv:2509.21896. Summary: Releases a large synthetic geometry dataset and a neuro-symbolic prover to support auxiliary construction research. URL: <a href="https://huggingface.co/papers/2509.21896">https://huggingface.co/papers/2509.21896</a></li>
+<li>[GGB] Botana et al. (2015). "Automated Theorem Proving in GeoGebra: Current Achievements." Journal of Automated Reasoning. Summary: Reports results from integrating provers into GeoGebra. URL: <a href="https://research.matf.bg.ac.rs/handle/123456789/503">https://research.matf.bg.ac.rs/handle/123456789/503</a></li>
+<li>[HAG] Duan et al. (2025). "Gold-Medal-Level Olympiad Geometry Solving with Efficient Heuristic Auxiliary Constructions." arXiv:2512.00097. Summary: Achieves gold-medal-level performance using heuristic auxiliary construction strategies without neural inference. URL: <a href="https://huggingface.co/papers/2512.00097">https://huggingface.co/papers/2512.00097</a></li>
+<li>[LG] LeanGeo team (2025-08-20). "LeanGeo benchmark page." Summary: Project page for the LeanGeo benchmark and library (page dated Aug 20, 2025). URL: <a href="https://www.alphaxiv.org/benchmarks/university-of-toronto/leangeo">https://www.alphaxiv.org/benchmarks/university-of-toronto/leangeo</a></li>
+<li>[NC] Sicca et al. (2024). "Newclid: A User-Friendly Replacement for AlphaGeometry." arXiv:2411.11938. Summary: Presents Newclid's CLI and agent interface for auxiliary construction strategies on top of a symbolic core. URL: <a href="https://notesum.ai/share/arxiv_papers/public/2024-11-20/2411.11938v1">https://notesum.ai/share/arxiv_papers/public/2024-11-20/2411.11938v1</a></li>
+<li>[SURVEY] Chou, Gao, Zhang (1996). "Automated geometric reasoning: Dixon resultants, Grobner bases, and characteristic sets." ADG 1996. Summary: Early survey of algebraic methods in automated geometry. URL: <a href="https://link.springer.com/chapter/10.1007/BFb0022716">https://link.springer.com/chapter/10.1007/BFb0022716</a></li>
+<li>[VDP] Ye, Chou, Gao (2010). "Visually Dynamic Presentation of Proofs in Plane Geometry (Part 1)." Journal of Automated Reasoning. Summary: Proposes a hierarchical, animated proof presentation for geometry. URL: <a href="https://dblp.org/rec/journals/jar/YeCG10a">https://dblp.org/rec/journals/jar/YeCG10a</a></li>
+<li>[WU] Chou &amp; Gao (1990). "Ritt-Wu's decomposition algorithm and geometry theorem proving." CADE 1990. Summary: Presents the Ritt-Wu decomposition approach for geometry theorem proving. URL: <a href="https://link.springer.com/chapter/10.1007/3-540-52885-7_89">https://link.springer.com/chapter/10.1007/3-540-52885-7_89</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f75f9f90">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</section>
 </body>
 </html>

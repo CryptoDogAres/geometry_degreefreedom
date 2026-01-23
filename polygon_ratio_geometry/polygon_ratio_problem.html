@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>pysym_polygon_ratio</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>polygon_ratio_problem</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7510,184 +7510,466 @@ a.anchor-link {
 </style>
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a9a21bce">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Line</span>
-
-<span class="n">sp</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">sec</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">show</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> ="</span><span class="p">)</span>
-    <span class="c1"># Use a compact one-line string to avoid large ASCII pretty-print blocks.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sstr</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
-
-<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">"a b"</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># 1) Encode the geometry with coordinates</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"1) Coordinate model (bakes in BC ⟂ CD and BC=CD)"</span><span class="p">)</span>
-
-<span class="n">C</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">D</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-
-<span class="c1"># AD ∥ BC ⇒ AD horizontal ⇒ A has y=b</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-
-<span class="c1"># E on CD and DE=AD ⇒ E=(0, b-a)</span>
-<span class="n">E</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"C"</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"E"</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
-
-<span class="c1"># 2) Build the lines and the special point H</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"2) Construct AB, BD, and EF ⟂ AB through E; define H = BD ∩ EF"</span><span class="p">)</span>
-
-<span class="n">AB</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-<span class="n">BD</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
-<span class="n">EF</span> <span class="o">=</span> <span class="n">AB</span><span class="o">.</span><span class="n">perpendicular_line</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">"AB equation"</span><span class="p">,</span> <span class="n">AB</span><span class="o">.</span><span class="n">equation</span><span class="p">())</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"BD equation"</span><span class="p">,</span> <span class="n">BD</span><span class="o">.</span><span class="n">equation</span><span class="p">())</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"EF equation"</span><span class="p">,</span> <span class="n">EF</span><span class="o">.</span><span class="n">equation</span><span class="p">())</span>
-
-<span class="n">H</span> <span class="o">=</span> <span class="n">BD</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">EF</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"H = BD ∩ EF"</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
-
-<span class="c1"># 3) Compute squared lengths (avoid square roots)</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"3) Compute squared lengths"</span><span class="p">)</span>
-
-<span class="c1"># Raw (unsimplified) squared distances</span>
-<span class="n">BE2_raw</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">BD2_raw</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">DH2_raw</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">EH2_raw</span> <span class="o">=</span> <span class="n">E</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">"BE^2 raw"</span><span class="p">,</span> <span class="n">BE2_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"BD^2 raw"</span><span class="p">,</span> <span class="n">BD2_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"DH^2 raw"</span><span class="p">,</span> <span class="n">DH2_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"EH^2 raw"</span><span class="p">,</span> <span class="n">EH2_raw</span><span class="p">)</span>
-
-<span class="c1"># Simplified squared distances</span>
-<span class="n">BE2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">BE2_raw</span><span class="p">)</span>
-<span class="n">BD2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">BD2_raw</span><span class="p">)</span>
-<span class="n">DH2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">DH2_raw</span><span class="p">)</span>
-<span class="n">EH2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">EH2_raw</span><span class="p">)</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">"BE^2 simplified"</span><span class="p">,</span> <span class="n">BE2</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"BD^2 simplified"</span><span class="p">,</span> <span class="n">BD2</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"DH^2 simplified"</span><span class="p">,</span> <span class="n">DH2</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"EH^2 simplified"</span><span class="p">,</span> <span class="n">EH2</span><span class="p">)</span>
-
-<span class="c1"># 4) Target equation, squared</span>
-<span class="n">sec</span><span class="p">(</span><span class="s2">"4) Prove BE*DH = BD*EH by proving BE^2*DH^2 - BD^2*EH^2 = 0"</span><span class="p">)</span>
-
-<span class="n">expr_raw</span> <span class="o">=</span> <span class="n">BE2_raw</span><span class="o">*</span><span class="n">DH2_raw</span> <span class="o">-</span> <span class="n">BD2_raw</span><span class="o">*</span><span class="n">EH2_raw</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"Raw expr"</span><span class="p">,</span> <span class="n">expr_raw</span><span class="p">)</span>
-
-<span class="n">expr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr_raw</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">"simplify(raw expr)"</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Polygon-Ratio-Problem:-Many-Proofs,-One-Degree-of-Freedom">Polygon Ratio Problem: Many Proofs, One Degree of Freedom<a class="anchor-link" href="#Polygon-Ratio-Problem:-Many-Proofs,-One-Degree-of-Freedom">¶</a></h2><p>Author: Changchun Shi<br/>
+Date: Jan 12, 2026</p>
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>During the Christmas holidays, a basic geometry proof problem showed up in my class alumni chat (Figure 1 is the original screenshot from classmate Lin He). He asked about the second question as the first of the two is almost trivial, and that set the whole discussion in motion. I have always liked Euclidean geometry and have exceled in most of teenage subject competitions (I don't recall failed to proof any of the geometry problems in my competition career). Problems like this rarely stop at one proof. Draw one line and a ratio drops out; draw another and a different argument appears. What follows is a cleaned collection: one quick sine-law proof, several synthetic proofs, an analytic-geometry proof (with help of ChatGPT 5.2-thinking for easy life, edited for clarity), and a one-parameter generalization that reveals deeper structure. I hope it gives younger students a sense of how much structure a single diagram can hide. I also plan to use this pilot problem to introduce the SOTA artificial intelligent ways of solving such problems in seperate notes.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="../original_image.jpg" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 1: The original problem (photo from the chat).</em></p>
+</div>
+<p>Let me first restate the problem in words and redraw the diagram more cleanly.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="original_problem_redraw.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 2: A clean redraw in GeoGebra.</em></p>
+</div>
+<p>Problem statement (translated). In trapezoid $ABCD$, $AD\parallel BC$, $\angle C=90^\circ$, and $BC=CD$. Point $E$ lies on $CD$, and $DE=AD$. Through $E$, draw $EF\perp AB$ with $F$ as the foot of the perpendicular. Draw $BD$; it intersects $AE$ and $EF$ at points $G$ and $H$, respectively. Prove:</p>
+<ol>
+<li>$BF\cdot HE=GE\cdot BH$.</li>
+<li>$BE\cdot DH=BD\cdot EH$.</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-======================================================================
-1) Coordinate model (bakes in BC ⟂ CD and BC=CD)
-======================================================================
-
-A =
-Point2D(a, b)
-
-B =
-Point2D(b, 0)
-
-C =
-Point2D(0, 0)
-
-D =
-Point2D(0, b)
-
-E =
-Point2D(0, -a + b)
-
-======================================================================
-2) Construct AB, BD, and EF ⟂ AB through E; define H = BD ∩ EF
-======================================================================
-
-AB equation =
--b**2 + b*x + y*(-a + b)
-
-BD equation =
-b**2 - b*x - b*y
-
-EF equation =
-b*y + b*(a - b) + x*(a - b)
-
-H = BD ∩ EF =
-Point2D(-a*b/(a - 2*b), 2*b*(a - b)/(a - 2*b))
-
-======================================================================
-3) Compute squared lengths
-======================================================================
-
-BE^2 raw =
-b**2 + (a - b)**2
-
-BD^2 raw =
-2*b**2
-
-DH^2 raw =
-a**2*b**2/(a - 2*b)**2 + (b - 2*b*(a - b)/(a - 2*b))**2
-
-EH^2 raw =
-a**2*b**2/(a - 2*b)**2 + (-a + b - 2*b*(a - b)/(a - 2*b))**2
-
-BE^2 simplified =
-b**2 + (a - b)**2
-
-BD^2 simplified =
-2*b**2
-
-DH^2 simplified =
-2*a**2*b**2/(a - 2*b)**2
-
-EH^2 simplified =
-a**2*(b**2 + (a - b)**2)/(a - 2*b)**2
-
-======================================================================
-4) Prove BE*DH = BD*EH by proving BE^2*DH^2 - BD^2*EH^2 = 0
-======================================================================
-
-Raw expr =
--2*b**2*(a**2*b**2/(a - 2*b)**2 + (-a + b - 2*b*(a - b)/(a - 2*b))**2) + (b**2 + (a - b)**2)*(a**2*b**2/(a - 2*b)**2 + (b - 2*b*(a - b)/(a - 2*b))**2)
-
-simplify(raw expr) =
-0
-</pre>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-1.-Synthetic-geometry-(auxiliary-lines)">Part 1. Synthetic geometry (auxiliary lines)<a class="anchor-link" href="#Part-1.-Synthetic-geometry-(auxiliary-lines)">¶</a></h2><p>The basic equal angles and lengths are shown in Figure 3.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="original_problem_basic_property.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 3: Basic angle and length relations.</em></p>
 </div>
+<p>Question (1) is a warm-up; it follows from similar triangles visible in Figure 3. For part (2), a quick start is the sine law. For a triangle $ABC$ with side lengths $a,b,c$ opposite vertices $A,B,C$, we have
+$$\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}.$$
+This gives Proof 0 immediately.</p>
+<h3 id="Proof-0-(sine-law)">Proof 0 (sine law)<a class="anchor-link" href="#Proof-0-(sine-law)">¶</a></h3><blockquote>
+<p>The ratios $DB:BE$ and $DH:HE$ are both $\sin(45^\circ+\alpha):\sin 45^\circ$, so they are equal. This proof uses no auxiliary lines.</p>
+</blockquote>
+<p>To avoid assuming the sine law, I drew auxiliary lines. Rather than separate diagrams per proof, the next figure collects all extra points. Each added point carries a subscript that matches the proof number (for example, $D_1$ is used only in Proof 1).</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="original_problem_with_proof.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 4: All auxiliary lines used in the synthetic proofs.</em></p>
+</div>
+<p>Below are brief proof sketches. Each can be completed as a standard middle-school geometry exercise.</p>
+<h3 id="Proof-1">Proof 1<a class="anchor-link" href="#Proof-1">¶</a></h3><blockquote>
+<p>Extend $DC$ to $D_1$ so that $D_1$ is symmetric to $D$ with respect to $BC$. Then $\triangle EBD_1\sim\triangle EHD$, so the desired ratio follows.</p>
+</blockquote>
+<h3 id="Proof-2">Proof 2<a class="anchor-link" href="#Proof-2">¶</a></h3><blockquote>
+<p>Extend $DC$ to $E_2$ so that $E_2$ is symmetric to $E$ with respect to $BC$. Then $\triangle E_2BD\sim\triangle EHD$, so the desired ratio follows.</p>
+</blockquote>
+<h3 id="Proof-3">Proof 3<a class="anchor-link" href="#Proof-3">¶</a></h3><blockquote>
+<p>From $H$ draw a line parallel to $BE$ and intersect $DE$ at $E'$. Then $HE=HE'$. The rest follows.</p>
+</blockquote>
+<h3 id="Proof-4">Proof 4<a class="anchor-link" href="#Proof-4">¶</a></h3><blockquote>
+<p>Extend $AE$ to meet $BC$ at $C_4$. Then $AC_4=BD$. Also $\triangle HED\sim\triangle ABC_4$, so the ratio follows. (Credit: Prof. Xueheng Lan.)</p>
+</blockquote>
+<h3 id="Proof-4.1">Proof 4.1<a class="anchor-link" href="#Proof-4.1">¶</a></h3><blockquote>
+<p>Use the reflection property: the ray from $B$ to $E$ reflects across $DE$ and passes through $H$. This gives the same angle relation at $DE$, so the ratio follows.</p>
+</blockquote>
+<h3 id="Proof-5">Proof 5<a class="anchor-link" href="#Proof-5">¶</a></h3><blockquote>
+<p>Draw a line from $H$ parallel to $DE$ and intersect $EA$ at $H_5$. Then $DH=EH_5$, and $\triangle EHH_5\sim\triangle BED$, which leads to the result.</p>
+</blockquote>
+<h3 id="Proof-6">Proof 6<a class="anchor-link" href="#Proof-6">¶</a></h3><blockquote>
+<p>Draw a line from $H$ parallel to $BC$ and intersect $DE$ at $H_6$. Then $DH/DB=HH_6/BD=EH/BD$.</p>
+</blockquote>
+<h3 id="Proof-7">Proof 7<a class="anchor-link" href="#Proof-7">¶</a></h3><blockquote>
+<p>Draw a line from $H$ parallel to $DE$ and intersect $BE$ at $H_7$. Then $HE:BE=H_7E:BE=HD:BD$.</p>
+</blockquote>
+<h3 id="Proof-8">Proof 8<a class="anchor-link" href="#Proof-8">¶</a></h3><blockquote>
+<p>The distances from $D$ to $BE$ and $EH$ are equal (use $DD_8$ and $DD'_8$; these are non-essential since $\angle BEC=\angle HED=45^\circ+\alpha$). The distances from $E$ to $BD$ and $HD$ are also equal. So area $BDE$ to area $DHE$ can be expressed as $BE\cdot DD_8/2:EH\cdot DD'_8/2=BE:EH$, and also as $BD\cdot GE/2:DH\cdot GE/2=BD:DH$. Hence they are equal.</p>
+</blockquote>
+<h3 id="Proof-9">Proof 9<a class="anchor-link" href="#Proof-9">¶</a></h3><blockquote>
+<p>Extend $BE$ to $A_9$ where $EA_9=EH$. Then $DH=DA_9$, $EH=EA_9$, and $\angle EDA_9=\angle EDH=45^\circ$. Since $DE$ bisects $\angle BDA_9$, we get $BD:DA_9=BE:EA_9$. The rest is trivial.</p>
+</blockquote>
+<h3 id="Proof-10">Proof 10<a class="anchor-link" href="#Proof-10">¶</a></h3><blockquote>
+<p>Extend $EH$ to $B_{10}$ where $B_{10}$ intersects the extension of line $BC$. Then $B_{10}$ is the reflection of $B$ across $BC$ (since $HE$ is the reflection path of light $BE$ at mirror $DC$). One can show $\angle CDB_{10}=\angle BDC=45^\circ$, so $DH:HE=DB_{10}:EB_{10}=DB:BE$.</p>
+</blockquote>
+<h3 id="Proof-11">Proof 11<a class="anchor-link" href="#Proof-11">¶</a></h3><blockquote>
+<p>This one also needs no auxiliary lines: notice $HD=HG+GE$ and $BD=BG+GE$, and $\triangle HGE\sim\triangle EGB$, so the result follows.</p>
+</blockquote>
+<p>A note on degrees of freedom: the only adjustable angle in the original configuration is $\alpha&lt;45^\circ$. If $\alpha=45^\circ$, then $H$ and $B$ overlap and the result is trivial. If $\alpha&gt;45^\circ$, then $H$ lies on the extension of $DB$, and $E$ lies on the extension of $DC$. The roles of $B$ and $H$ swap, and the same style of arguments still works. Similarly, one can show that a ray from $B$ to $E$ reflects across $DE$ and reaches $H$.</p>
+<h3 id="Other-proofs">Other proofs<a class="anchor-link" href="#Other-proofs">¶</a></h3><p>By now we should be done. However, if you followed the solutions so far, you likely noticed two patterns: (1) we have essentially drawn a square $BDB_{10}D_1$ in Figure 4, and many proofs are based on various points on this square; (2) polygon $ABED$ is symmetric about $BD$, which is why we could leverage $AB=BE$ and $AH=HE$ in several steps. It follows that any proof obtained by extending lines in the original diagram has a mirror proof across $BD$. These are indicated again by subscripts, and they give Proofs 12, 13, 14, 15, and 16. They form the symmetric rectangle $BDB_{15}D_{12}$ and are shown in Figure 5.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="original_problem_with_proof_ext.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 5: Five additional symmetric proofs.</em></p>
+</div>
+<p>Finally, several proofs such as Proofs 3, 5, 6, and 7 focus on what happens inside polygon $ABED$. Each has a symmetric counterpart (Proofs 17, 18, 19, 20) reflected across $BD$. For clarity, these are not displayed.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-2.-Analytic-geometry-proof">Part 2. Analytic geometry proof<a class="anchor-link" href="#Part-2.-Analytic-geometry-proof">¶</a></h2><p>This is a short coordinate proof.</p>
+<h3 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h3><p>$$BE\cdot DH = BD\cdot EH.$$</p>
+<h3 id="Proof">Proof<a class="anchor-link" href="#Proof">¶</a></h3><blockquote>
+<p>Setup. Let $C=(0,0)$, $B=(-1,0)$, $D=(0,1)$. Then $AD\parallel BC$ implies $A=(t-1,1)$ when $E=(0,t)$ and $DE=AD$ with $0&lt;t&lt;1$.</p>
+<p>Lines. $BD: y=x+1$. The slope of $AB$ is $1/t$, so $EF\perp AB$ has slope $-t$ and passes through $E$: $EF: y=t-tx$.</p>
+<p>Intersection. Solve $x+1=t-tx$ to get
+$$H=(\frac{t-1}{t+1},\ \frac{2t}{t+1}).$$</p>
+<p>Common factor.
+$$H-D=\frac{t-1}{t+1}(1,1),\qquad H-E=\frac{t-1}{t+1}(1,-t).$$
+Hence
+$$DH=\frac{1-t}{t+1}\sqrt{2},\qquad EH=\frac{1-t}{t+1}\sqrt{1+t^2}.$$
+Also $BD=\sqrt{2}$ and $BE=\sqrt{1+t^2}$.</p>
+<p>Finish.
+$$BE\cdot DH=\sqrt{1+t^2}\cdot \frac{1-t}{t+1}\sqrt{2}=BD\cdot EH.$$</p>
+</blockquote>
+<p>Conclusion: $BE\cdot DH = BD\cdot EH$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-3.-One-more-degree-of-freedom-(ellipse-view)">Part 3. One more degree of freedom (ellipse view)<a class="anchor-link" href="#Part-3.-One-more-degree-of-freedom-(ellipse-view)">¶</a></h2><p>The $45^\circ$ angle is special. If we relax that angle, the clean right-angle structure disappears, but the problem still has a simple geometric core: reflection on an ellipse. The key insight is to generalize the reflection: the ray from $B$ to $E$ reflects across $DE$ and heads to $H$. This reveals an ellipse that reflects light from one focus to the other at any point $E$ on it. That reflection property is equivalent to the constant-sum-of-distances definition of an ellipse.</p>
+<h3 id="Construction">Construction<a class="anchor-link" href="#Construction">¶</a></h3><p>Let $O$ be the ellipse with foci $B$ and $H$. Take a point $A$ on $O$, with $A$ closer to $H$. Draw the tangent line $AD$ at $A$, and let it intersect $BH$ at $D$. Take a point $E$ on $O$, the reflection of $A$ with respect to the major axis. Through $E$ draw the line $D-E-C$, and choose $C$ so that $BC\parallel AD$. Draw $EH$, and let it intersect $AB$ at $F$. In general, $\angle BFE$ is not $90^\circ$, but when $\theta=45^\circ$, $\angle BFE=90^\circ$. The resulting shape is shown in Figure 6.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="ellipse_view.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 6: Ellipse construction with foci $B$ and $H$.</em></p>
+</div>
+<h3 id="Proof-3.1-(reflection-property)">Proof 3.1 (reflection property)<a class="anchor-link" href="#Proof-3.1-(reflection-property)">¶</a></h3><blockquote>
+<p>By the reflection property of the ellipse (a light ray from $B$ to $E$ reflects and then passes through $H$), we obtain
+$$\frac{EH}{HD}=\frac{BE}{BD}.$$</p>
+<p>Reflect $H$ across line $DE$ to $H'$. Then
+$$\frac{DB}{BE}=\frac{DH'}{EH'}=\frac{DH}{EH},$$
+which is the same proportion.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="ellipse_view_wproof.png" style="height:350px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 7: Reflection proof for the ellipse construction.</em></p>
+</div>
+</blockquote>
+<p>In this generalized setup, $EF$ is no longer perpendicular to $AB$. In fact, the perpendicular line through $E$ intersects $AB$ and $DB$ at $F'$ and $H'$, as shown in Figure 7. Here $H'$ differs from $H$ and does not satisfy the ratio property. The original problem is special because the $45^\circ$ angles create a surplus of right angles. The single degree of freedom here is essentially the ellipse eccentricity, with $A$ and $C$ determined by the right angle $\angle ADC$. When the ellipse degenerates to a circle (foci coincide), the identity becomes obvious.</p>
+<p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem, as shown in Figure 8 with the pure geometric approach.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="./ellipse_view_simple.png" style="height:300px; display:block; margin:0 auto;"/>
+<p><em>Figure 8: The simplified ellipse setup, which reveals the essence of the original problem.</em></p>
+</div>
+<p>The diagram also yields a second, similarity-based proof.</p>
+<h3 id="Proof-3.2,-similarity">Proof 3.2, similarity<a class="anchor-link" href="#Proof-3.2,-similarity">¶</a></h3><blockquote>
+<p>Let $T$ and $S$ be the feet of the perpendiculars from $H$ and $B$ to the tangent line $DE$. By the reflection property, $\triangle HET\sim\triangle BES$, so $HE:BE=HT:BS$. Likewise, $\triangle HDT\sim\triangle BDS$, so $HD:DB=HT:BS$. Combining gives $HD/DB=HE/BE$.</p>
+</blockquote>
+<p>Interestingly, we can also compute the ratio analytically in the ellipse model. It turns out to be simplest using the de La Hire (eccentric-angle) parameter, revealing the geometry transparent.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="ellipse_view_simple_param.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 9: de La Hire parameters and outer-circle view with $E$, $E'$, and $E''$.</em></p>
+</div>
+<h3 id="Proof-3.3-(de-La-Hire-+-outer-circle)">Proof 3.3 (de La Hire + outer circle)<a class="anchor-link" href="#Proof-3.3-(de-La-Hire-+-outer-circle)">¶</a></h3><blockquote>
+<p>Let the ellipse be $x^{2}/a^{2}+y^{2}/b^{2}=1$ with center $O$, foci $B=(-c,0)$ and $H=(c,0)$, and $c^{2}=a^{2}-b^{2}$. Use the de La Hire (eccentric-angle) parameter $\beta$:
+$$
+E=(a\cos\beta,\, b\sin\beta),\qquad
+EB=a+c\cos\beta,\qquad
+EH=a-c\cos\beta
+$$
+(up to swapping $B,H$). Let $\ell$ be the tangent at $E$ and $D=\ell\cap BH$.</p>
+<p>From the tangent formula
+$$
+\frac{xx_0}{a^{2}}+\frac{yy_0}{b^{2}}=1
+\quad\Rightarrow\quad
+\frac{x\cos\beta}{a}+\frac{y\sin\beta}{b}=1,
+$$
+setting $y=0$ gives $x_D=a/\cos\beta$.</p>
+<p>Geometrically, the affine map $(x,y)\mapsto(x,\frac{a}{b}y)$ sends the ellipse to the outer circle $x^{2}+y^{2}=a^{2}$ and sends $E$ to $E'=(a\cos\beta,a\sin\beta)$. Since only $y$ is scaled, $E$ and $E'$ lie on a line perpendicular to $BH$ and share the same $x$-coordinate. Let $E''$ be the intersection of the line through $E$ parallel to $BH$ with the outer circle, so $E$ and $E''$ share the same $y$-coordinate (Figure 9). The map preserves tangency, so $\angle{OE'D}$ is right and $OD=a/\cos\beta$.</p>
+<p>Therefore
+$$
+DB=\frac{a}{\cos\beta}+c,\qquad DH=\frac{a}{\cos\beta}-c,
+$$
+and
+$$
+\frac{DH}{DB}
+=\frac{a-c\cos\beta}{a+c\cos\beta}
+=\frac{EH}{EB}.
+$$</p>
+</blockquote>
+<h3 id="Corollary-1-(axis-focus-scaling;-inner-structure-of-the-ratio)">Corollary 1 (axis-focus scaling; inner structure of the ratio)<a class="anchor-link" href="#Corollary-1-(axis-focus-scaling;-inner-structure-of-the-ratio)">¶</a></h3><blockquote>
+<p>From $DH=\frac{a}{\cos\beta}-c=\frac{a-c\cos\beta}{\cos\beta}$ and $EH=a-c\cos\beta$, we get
+$$
+\boxed{EH=DH\cos\beta},\qquad \boxed{EB=DB\cos\beta}.
+$$
+This shows that the tangent-axis lengths $DB,DH$ are just the focal lengths $EB,EH$ scaled by the same factor $1/\cos\beta$ (see Figure 9). The main identity $DH/DB=EH/EB$ is exactly the cancellation of that common scale.</p>
+</blockquote>
+<h3 id="Corollary-2-(focus-to-outer-tangent-distances)">Corollary 2 (focus-to-outer-tangent distances)<a class="anchor-link" href="#Corollary-2-(focus-to-outer-tangent-distances)">¶</a></h3><blockquote>
+<p>Corollary 1 gives $EH=DH\cos\beta$, and geometrically $DH\cos\beta$ is exactly the perpendicular component of $DH$ to $\ell'$, i.e., $\operatorname{dist}(H,\ell')$ (see Figure 9). Hence
+$$
+\boxed{\operatorname{dist}(H,\ell')=EH},\qquad \boxed{\operatorname{dist}(B,\ell')=EB}.
+$$</p>
+<p>The simple consistency check
+$$
+\operatorname{dist}(B,\ell')+\operatorname{dist}(H,\ell')=2a=2\,\operatorname{dist}(O,\ell')
+$$
+accounts only for the sum. The real content is that each focus-to-tangent distance equals its matching focus-to-point distance; this rigidity is encoded by the de La Hire parameter and the ellipse's affine relation to the circle.</p>
+</blockquote>
+<h3 id="Proof-3.4-Outer-circle-proof">Proof 3.4 Outer circle proof<a class="anchor-link" href="#Proof-3.4-Outer-circle-proof">¶</a></h3><blockquote>
+<p>Once Corollary 2 is in hand, let $P$ and $P'$ be the feet of the perpendiculars from $H$ and $B$ to $\ell'$ (for simplicity Figure 9 only shows $P$). Then $\triangle DHP \sim \triangle DBP'$ (right angles at $P,P'$ and a common angle at $D$), so $DH/DB=HP/BP'=\operatorname{dist}(H,\ell')/\operatorname{dist}(B,\ell')$, recovering the same ratio.</p>
+</blockquote>
+<p>Finally, there is a fun fact. Note that the feet of the perpendiculars drawn in Proof 3.2, $S$ and $T$, are exactly the intersection points of the tangent line $DE$ with the ellipse's outer circle. A quick proof is to show that $OT=a$ (Figure 10). Let $H'$ be the reflection of $H$ across $DE$; then $T$ is the midpoint of $HH'$. Since $O$ is the midpoint of $BH$, we have $OT=\tfrac{1}{2}BH'$. But $BH'=BE+EH=2a$, hence $OT=a$. The same reflection with $B$ gives $OS=a$, so the fun fact is that $S$ and $T$ are precisely the two intersections of $DE$ with the outer circle.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="ellipse_view_simple_param2.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 10: additional properties of T and S</em></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Part-4.-Vector-analysis">Part 4. Vector analysis<a class="anchor-link" href="#Part-4.-Vector-analysis">¶</a></h3><p>Once one length is fixed, the trapezoid configuration has a single degree of freedom: the angle $\alpha$. In the broader ellipse construction, a second parameter $\theta$ (the tangent point/slope) appears, and the same ratio follows from the reflection property. The special case $\theta=45^\circ$ is exactly the original problem; that is why so many proofs exist, and why each auxiliary line exposes the same invariant ratio in a different way. Part 3 frees the $\theta$ dimension while keeping the reflection property, and that is what ultimately shows the simplicity behind the original picture.</p>
+<p>In this Part of the note, we will focusing on using some other mathematical tools useful in geometry to solve our proof. The problem to proof is almost trivial: DH:DB = EH:EB, given light BE reflects to the EH direction by mirror DE. Part 3 has explained extensively of the solutions. But it is still good to show some of the power of such tools.</p>
+<p>Since Euclid (~300 BCE), geometry was developed in a synthetic style: one reasons directly with the figure using congruence, similarity, tangency, and auxiliary lines. That is the mindset behind Part 1. A major second language arrived with Descartes (1637): analytic geometry turns geometric constraints into algebra once you choose coordinates, matching the style of Part 2.</p>
+<p>This arc also mirrors the historical split between geometry and algebra in physics and mechanics. Newton, in the <em>Principia</em> [NEWTON-PRINCIPIA], favored coordinate-free arguments because they were the clearest language of rigor in 1687, while modern physics often relies on coordinates for universal computation. Analytic geometry existed by Newton's time, but the algebraic language for differential equations matured later; Newton's methods therefore look Euclidean in flavor, mixing auxiliary lines with limiting arguments. Several later authors also gave elementary, coordinate-free proofs (see [KEPLER-TEACH], including Feynman's famous "lost lecture"). It is good for students to appreciate both techniques.</p>
+<p>Physics naturally blends geometry with differential ideas. Here we keep that discussion light and focus on the geometric tools that sit just below calculus.</p>
+<p>In the 1800s, geometry gained an especially efficient algebraic interface: vector analysis, where the dot and cross products encode the two most basic geometric primitives--projection/angle and oriented area. The modern $\cdot$ and $\times$ notation was introduced by Gibbs (and independently Heaviside) around 1881 and then standardized in physics usage. Later, divergence and curl became standard because they compactly describe fields and their integral laws--but that differential layer is not our focus here.</p>
+<p>That same "area backbone" explains the next conceptual step. Grassmann (1844) introduced the wedge product and exterior algebra, where the fundamental geometric object is no longer just a vector but also a bivector (directed area), trivector (directed volume), and so on. Clifford (1878) then built geometric algebra by unifying these objects into one coherent multiplication system. In our 2D Euclidean setting,
+$$|\mathbf{u}\times\mathbf{t}|,\qquad \|\mathbf{u}\wedge\mathbf{t}\|,\qquad |\omega(\mathbf{u},\mathbf{t})|$$
+are simply three notations for the same invariant: the area spanned by $\mathbf{u}$ and the tangent direction $\mathbf{t}$. So the proofs are interchangeable across these languages with no change in geometric content.</p>
+<p>Finally, modern physics is "geometric" in a deeper sense: it naturally lives on spaces that are not just 2D pictures--3D space, 4D spacetime, and even higher-dimensional configuration/phase spaces. We don't always call those "geometry" in everyday language because they're hard to visualize, but mathematically they are geometry: they carry intrinsic notions of angle, area/flux, invariance, and coordinate-free meaning. In our ellipse problem, we see a toy version of the same idea: at each point $E$ on the ellipse, there is a tangent line $DE$. Thinking of the tangent line as the attached object that moves with $E$ is the simplest concrete example of the bundle/fiber mindset.</p>
+<p>A brief timeline of tooling relevant to this note:</p>
+<ul>
+<li>~300 BCE: Euclid -- synthetic geometry</li>
+<li>1637: Descartes -- analytic geometry</li>
+<li>1687: Newton -- Euclidean geometry + limiting arguments</li>
+<li>1827: Gauss -- intrinsic geometric invariants (surfaces)</li>
+<li>1844: Grassmann -- wedge / bivectors (area as an object)</li>
+<li>1878: Clifford -- geometric algebra (bivectors/trivectors as first-class)</li>
+<li>1881: Gibbs/Heaviside -- standard dot/cross notation</li>
+<li>1899: Cartan -- exterior derivative/forms (beyond our needs here)</li>
+</ul>
+<p>For readers familiar with Maxwell's equations, the table below shows how mathematical language for geometry evolved over time: from coordinate-expanded component equations, to vector analysis, to geometric algebra, and then to differential forms. The tools change, but the physics does not, even as the expressions become more compact.</p>
+<table>
+<thead>
+<tr>
+<th>Formulation</th>
+<th>Coordinate status (what's really true)</th>
+<th>Maxwell equations written in that language</th>
+<th>What you gain / lose</th>
+<th>Good reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maxwell (1865, component-heavy)</td>
+<td>Coordinate-invariant laws, but written in components (explicit $x,y,z$ bookkeeping) and bundled with extra relations (constitutive laws, Ohm, forces, potentials).</td>
+<td>Not packaged as the modern four; a larger coupled component system (often summarized as ~20 equations/unknowns, plus auxiliaries).</td>
+<td>Gain: historically close to derivations. Lose: compactness; structure is obscured by bookkeeping.</td>
+<td>Maxwell's 1865 paper [MAXWELL-1865]; Deschamps [FORMS-EM].</td>
+</tr>
+<tr>
+<td>Vector calculus (Heaviside/Gibbs)</td>
+<td>Coordinate-free in content; coordinates enter only when writing component formulas.</td>
+<td>(SI, vacuum) $\nabla\cdot\mathbf{E}=\rho/\varepsilon_0$<br/>$\nabla\cdot\mathbf{B}=0$<br/>$\nabla\times\mathbf{E}=-\partial_t\mathbf{B}$<br/>$\nabla\times\mathbf{B}=\mu_0\mathbf{J}+\mu_0\varepsilon_0\,\partial_t\mathbf{E}$.</td>
+<td>Gain: four clean equations; practical in 3D Euclidean space. Caveat: $\nabla\cdot,\nabla\times$ depend on the chosen metric + orientation, though invariantly defined once fixed.</td>
+<td>Wilson [VECTOR-ANALYSIS]; cross product [CROSS-PRODUCT]; vector analysis [VECTOR-ANALYSIS-WIKI].</td>
+</tr>
+<tr>
+<td>Geometric algebra (Clifford; dot + wedge unified)</td>
+<td>Coordinate-free once metric + orientation are fixed. Vectors are bold (e.g., $\mathbf{a},\mathbf{b}$); higher-grade objects (bivectors, trivectors) are not vectors in disguise.</td>
+<td>Core algebra: $\mathbf{a}\mathbf{b}=\mathbf{a}\cdot\mathbf{b}+\mathbf{a}\wedge\mathbf{b}$. Maxwell can be written compactly (common spacetime GA convention): $\boxed{\nabla F=\mu_0 J}$, with the grade split $\nabla F=\nabla\cdot F+\nabla\wedge F$ giving $\nabla\wedge F=0$ (homogeneous) and $\nabla\cdot F=\mu_0 J$ (sources).</td>
+<td>Gain: cross product becomes derived (dual of $\wedge$); div/curl unify as one operator split by grade; rotations often cleaner. Lose: conventions vary (3D GA vs spacetime GA; units/signatures); less standard in mainstream EM courses.</td>
+<td>Peeter Joot [GA-EM].</td>
+</tr>
+<tr>
+<td>Differential forms (exterior calculus on spacetime)</td>
+<td>Manifestly coordinate-invariant; works naturally on curved manifolds (GR). Metric enters via the Hodge star.</td>
+<td>$\boxed{dF=0}$, $\boxed{d{*}F=J}$. Here $*$ maps $k$-forms to $(n-k)$-forms using the metric + orientation (in 4D, $2\leftrightarrow2$).</td>
+<td>Gain: topology/relativity are transparent; $d^2=0$ exposes structure. Lose: abstraction up front; computations often unpack to components.</td>
+<td>Deschamps [FORMS-EM]; Lindell [LINDELL-DF]; Epstein [EPSTEIN-DG].</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1 summarizes the evolution of Maxwell's equations across these languages.</p>
+<p>Notes:</p>
+<ul>
+<li>Geometric algebra (Clifford; dot + wedge unified): metric + wedge fused immediately via $\mathbf{a}\mathbf{b}=\mathbf{a}\cdot\mathbf{b}+\mathbf{a}\wedge\mathbf{b}$.</li>
+<li>Differential forms (exterior calculus on spacetime): forms are wedge-first, metric-later via $*$.</li>
+</ul>
+<p>So the concept of vector analysis has evolved significantly since Newton's time. Maxwell's equations were first written in a coordinate-expanded form, which has the flavor of our solution in Part 2, along with differential operators that were by then well understood. Only later did divergence and curl become standard, giving a more compact, coordinate-free expression using $\nabla\cdot$ and $\nabla\times$. Those operators are coordinate-free in meaning, which parallels the shift from the coordinate solution in Part 2 back to the coordinate-free constructions in Part 1. Vector analysis keeps the geometric insight while still enabling the algebraic computations of the coordinate approach. To explain the power of this toolbox, I include a couple of short proofs below.</p>
+<p>Since our problem is 2D, both dot and cross products can be used to solve it naturally. We emphasize how these tools enable coordinate-free proofs while still allowing analytic methods beyond the purely Euclidean geometry used in Part 1, yet more direct than the coordinate approach in Part 2.</p>
+<h3 id="Proof-4.1-(reflection-on-$DE$)">Proof 4.1 (reflection on $DE$)<a class="anchor-link" href="#Proof-4.1-(reflection-on-$DE$)">¶</a></h3><blockquote>
+<p>Use the reflection property: a ray from $B$ to $E$ reflects across $DE$ and passes through $H$.
+Let $p=|\overrightarrow{EB}|$, $q=|\overrightarrow{EH}|$, and define unit vectors $\hat u=\overrightarrow{EB}/p$, $\hat v=\overrightarrow{EH}/q$.
+Then $\overrightarrow{EB}=p\hat u$ and $\overrightarrow{EH}=q\hat v$, with $|\hat u|=|\hat v|=1$.
+The tangent at $E$ is perpendicular to $\hat u+\hat v$, so its direction is parallel to $\hat u-\hat v$.
+Hence $$\overrightarrow{ED}=\tau(\hat u-\hat v)$$ for some scalar $\tau$.
+Because $D\in BH$, $$\overrightarrow{BH}=\overrightarrow{EH}-\overrightarrow{EB}=q\hat v-p\hat u,\quad \overrightarrow{BD}=\mu\overrightarrow{BH}.$$
+Using $\overrightarrow{ED}=\overrightarrow{EB}+\overrightarrow{BD}$ gives $$\tau(\hat u-\hat v)=p(1-\mu)\hat u+\mu q\hat v.$$
+Matching coefficients yields $\tau=p(1-\mu)$ and $-\tau=\mu q$, so $\mu=\frac{p}{p-q}$.
+Finally, $\overrightarrow{HD}=\overrightarrow{BD}-\overrightarrow{BH}=(\mu-1)\overrightarrow{BH}$, so $$\frac{BD}{HD}=\frac{\mu}{\mu-1}=\frac{p}{q}=\frac{BE}{EH},$$ which is equivalent to $\frac{BE}{BD}=\frac{EH}{HD}$.</p>
+</blockquote>
+<h3 id="Proof-4.2-(using-the-cross-product)">Proof 4.2 (using the cross product)<a class="anchor-link" href="#Proof-4.2-(using-the-cross-product)">¶</a></h3><blockquote>
+<p>Let the tangent at $E$ meet $BH$ at $D$, and take any nonzero tangent vector $\overrightarrow{ED}$. The reflection law says the tangent bisects the angle between $\overrightarrow{EB}$ and $\overrightarrow{EH}$, so the perpendicular components match:
+$$\frac{|\overrightarrow{EH}\times\overrightarrow{ED}|}{EH}=\frac{|\overrightarrow{EB}\times\overrightarrow{ED}|}{EB}.$$
+Now $\overrightarrow{EH}=\overrightarrow{ED}+\overrightarrow{DH}$ and $\overrightarrow{EB}=\overrightarrow{ED}+\overrightarrow{DB}$. Cross with $\overrightarrow{ED}$ and drop the $\overrightarrow{ED}\times\overrightarrow{ED}$ term:
+$$\overrightarrow{EH}\times\overrightarrow{ED}=\overrightarrow{DH}\times\overrightarrow{ED},\qquad
+\overrightarrow{EB}\times\overrightarrow{ED}=\overrightarrow{DB}\times\overrightarrow{ED}.$$
+So $$\frac{|\overrightarrow{DH}\times\overrightarrow{ED}|}{EH}=\frac{|\overrightarrow{DB}\times\overrightarrow{ED}|}{BE}.$$
+Because $B,D,H$ are collinear, $\overrightarrow{DB}\parallel\overrightarrow{DH}$, hence $$|\overrightarrow{DB}\times\overrightarrow{ED}|:|\overrightarrow{DH}\times\overrightarrow{ED}|=BD:HD.$$
+Substitute to get $$\boxed{\frac{BD}{HD}=\frac{BE}{EH}},$$ which is equivalent to $\frac{BE}{BD}=\frac{EH}{HD}$.</p>
+</blockquote>
+<p>I explored several alternative constructions which give various other proofs that I won't detail here since these two are the simplest and representative. For instance, in the original configuration, the condition $EH\perp AB$ immediately yields the dot-product constraint $\overrightarrow{EH}\cdot
+\overrightarrow{AB}=0$. This orthogonality can be used to reduce the degrees of freedom without appealing to any reflection argument. More generally, one can start from essentially any point in the diagram, parameterize the remaining configuration by a small set of length (or scaling) parameters, and then drive the argument to the target length-ratio identity. There are many such routes, and they do not require introducing any auxiliary lines.</p>
+<p>In this 2D Euclidean setting, the geometric-algebra approach does not introduce additional structure compare with the cross product. Both encode the oriented (signed) area of the parallelogram spanned by two vectors. The $\times$ only makes traditional sense in 3D space, resulting in a vector perpendicular to the plane, the $\wedge$ operator gives a bivector that's definited universally for d-D space and the bivector doesn't need to utilize the 3rd dimension. Likewise, the differential-forms formulation is not fundamentally different in this context: a 2-form takes two vectors as input and returns a scalar, and 1-form vector is essentially difine the dot product of any vector with a given vector; so the resulting identities reduce to the same area or determinant computations already used in the cross-product argument. For completeness, Proof 4.3 shows how they are united and replaced in the same proof. Be aware that in the modern math/physics which often utilize dimensionality beyond 3, the dot and cross way become hard, which is way we had to separate time t (another dimension strictly speaking) from the space in order to write the equation as "coordinate free". And that's why you no longer see any use of t in the unified maxell equation using geometric algebra and differential form.</p>
+<h3 id="Proof-4.3:-Unified-simple-solution-(area-language:-cross-=-wedge-=-2-form-=-1-form)">Proof 4.3: Unified simple solution (area language: cross = wedge = 2-form = 1-form)<a class="anchor-link" href="#Proof-4.3:-Unified-simple-solution-(area-language:-cross-=-wedge-=-2-form-=-1-form)">¶</a></h3><blockquote>
+<p>Let $DE$ be the tangent at $E$ and let $\mathbf{t}=\overrightarrow{ED}\ne 0$.
+For any vector $\mathbf{u}$ based at $E$ (here $\overrightarrow{EB},\overrightarrow{EH},\overrightarrow{DB},\overrightarrow{DH}$), the area with the tangent is the same in all languages:
+$$A(\mathbf{u})=|\mathbf{u}\times\mathbf{t}|=\|\mathbf{u}\wedge\mathbf{t}\|=|\omega(\mathbf{u},\mathbf{t})|,$$
+where $\omega$ is an oriented area 2-form.</p>
+<p>Fix $\omega$ and define the 1-form $\alpha=\iota_{\mathbf{t}}\omega$, so $\alpha(\mathbf{u})=\omega(\mathbf{u},\mathbf{t})$ and $|\alpha(\mathbf{u})|=A(\mathbf{u})$. This is the perpendicular component of $\mathbf{u}$ to the tangent.</p>
+<p>Reflection at $E$ gives equality of perpendicular components:
+$$\frac{A(\overrightarrow{EH})}{EH}=\frac{A(\overrightarrow{EB})}{EB}.$$</p>
+<p>Since $D\in BH$,
+$$\overrightarrow{EH}=\overrightarrow{ED}+\overrightarrow{DH},\qquad \overrightarrow{EB}=\overrightarrow{ED}+\overrightarrow{DB}.$$
+Using bilinearity and $\omega(\mathbf{t},\mathbf{t})=0$ gives
+$$A(\overrightarrow{EH})=A(\overrightarrow{DH}),\qquad A(\overrightarrow{EB})=A(\overrightarrow{DB}).$$
+Hence
+$$\frac{A(\overrightarrow{DH})}{EH}=\frac{A(\overrightarrow{DB})}{EB}.$$</p>
+<p>Because $B,D,H$ are collinear, $A(\overrightarrow{DB})/A(\overrightarrow{DH})=BD/HD$, so
+$$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.</p>
+</blockquote>
+<p>By now I hope this part of the note have conveyed an appreciation for coordinate-free methods in our mathematical toolbox. I also hope it gives a preview of what modern physics use to solve geometry problems that are more than 3-dimensional, admittedly in a weak sense.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>So far in this part we discussed the simple case of how the reflection property implies the ratio equality.
+Below we show why the original problem in Part 1 gives the reflection property of $EF$ and $BE$, using a vector argument.</p>
+<h3 id="Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">Proof 4.4 Vector analysis: $EF$ is the reflection of $BE$ across $CD$ in Figure 3<a class="anchor-link" href="#Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">¶</a></h3><blockquote>
+<p>Let $\mathbf{u}=\overrightarrow{CB}$ and $\mathbf{d}=\overrightarrow{CD}$. Then $\mathbf{u}\perp\mathbf{d}$ and $\lVert\mathbf{u}\rVert=\lVert\mathbf{d}\rVert$.<br>
+Fix the unit normal $\mathbf{w}=\dfrac{\mathbf{u}\times\mathbf{d}}{\lVert\mathbf{u}\times\mathbf{d}\rVert}$.
+Since $AD\parallel CB$, $E\in CD$, and $DE=AD$, there exists a scalar $k$ such that
+$$\overrightarrow{AB}=-\mathbf{d}+(1-k)\mathbf{u},\qquad \overrightarrow{BE}=-(k-1)\mathbf{d}-\mathbf{u}.  $$
+Reflection across $CD$ is equivalent to
+$$\frac{\lVert\overrightarrow{BE}\times\mathbf{d}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\mathbf{d}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
+Because $EF\perp AB$, the direction of $EF$ is parallel to $\overrightarrow{AB}\times\mathbf{w}$, so the right-hand side equals
+$$\frac{\lVert(\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}\rVert}{\lVert\overrightarrow{AB}\times\mathbf{w}\rVert}.  $$
+Now compute the two normalized quantities. First,
+$$\overrightarrow{BE}\times\mathbf{d}=(-(k-1)\mathbf{d}-\mathbf{u})\times\mathbf{d}=-\mathbf{u}\times\mathbf{d}, $$
+so $\lVert\overrightarrow{BE}\times\mathbf{d}\rVert=\lVert\mathbf{u}\times\mathbf{d}\rVert=\lVert\mathbf{u}\rVert\,\lVert\mathbf{d}\rVert=\lVert\mathbf{d}\rVert^2$.
+Next, by Lagrange's formula $(\mathbf{a}\times\mathbf{b})\times\mathbf{c}=\mathbf{b}(\mathbf{a}\cdot\mathbf{c})-\mathbf{a}(\mathbf{b}\cdot\mathbf{c})$ and $\mathbf{w}\cdot\mathbf{d}=0$,
+$$ (\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}=\mathbf{w}(\overrightarrow{AB}\cdot\mathbf{d}). $$
+But
+$$\overrightarrow{AB}\cdot\mathbf{d}=(-\mathbf{d}+(1-k)\mathbf{u})\cdot\mathbf{d}=-\lVert\mathbf{d}\rVert^2, $$
+hence $\lVert(\overrightarrow{AB}\times\mathbf{w})\times\mathbf{d}\rVert=\lVert\mathbf{d}\rVert^2$.
+Finally, $\lVert\overrightarrow{AB}\times\mathbf{w}\rVert=\lVert\overrightarrow{AB}\rVert$, and
+$$\lVert\overrightarrow{AB}\rVert^2=\lVert\mathbf{d}\rVert^2+(k-1)^2\lVert\mathbf{u}\rVert^2=(k-1)^2\lVert\mathbf{d}\rVert^2+\lVert\mathbf{u}\rVert^2=\lVert\overrightarrow{BE}\rVert^2, $$
+so $\lVert\overrightarrow{AB}\rVert=\lVert\overrightarrow{BE}\rVert$. Therefore the normalized cross magnitudes match, and the reflection condition holds:
+$$\frac{\lVert\overrightarrow{BE}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
+So $BE$ reflects across $CD$ into $EF$.</br></p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We used Lagrange’s formula (the vector triple product identity) in the proof above. There are many known proofs,some classic ones pure algebraic, but this one that I came up is purely geometric and makes the identity feel almost unavoidable. I haven’t seen this particular “Thales-circle + chord” intuition presented in such a compact form else where, so it seems worth sharing though it can hardly be original given this is elementary. In a sense, it brings the argument back to a Euclid-style picture: analysis and geometry are not rivals, but two languages for the same structure, constantly translating into each other.</p>
+<h3 id="Proof-of-Lagrange's-formula-based-on-only-geometric-properties">Proof of Lagrange's formula based on only geometric properties<a class="anchor-link" href="#Proof-of-Lagrange's-formula-based-on-only-geometric-properties">¶</a></h3><blockquote>
+<p>Let $O$ be the origin and $\overrightarrow{OU}=\mathbf{u}$, $\overrightarrow{OV}=\mathbf{v}$, $\overrightarrow{OW}=\mathbf{w}$.
+Write $\mathbf{w}=\mathbf{w}_{\parallel}+\mathbf{w}_{\perp}$ relative to the plane $(OU,OV)$. Then $(\mathbf{u}\times\mathbf{v})\times\mathbf{w}_{\perp}=0$ (since $\mathbf{u}\times\mathbf{v}\parallel\mathbf{w}_{\perp}$) and $\mathbf{u}\cdot\mathbf{w}_{\perp}=\mathbf{v}\cdot\mathbf{w}_{\perp}=0$, so it suffices to assume $U,V,W$ are coplanar.
+By linearity of both $\times$ and $\cdot$ in each argument, scaling $\mathbf{u},\mathbf{v},\mathbf{w}$ by $a,b,c$ multiplies both sides by $abc$; hence it suffices to prove the unit case $\lvert\mathbf{u}\rvert=\lvert\mathbf{v}\rvert=\lvert\mathbf{w}\rvert=1$. Let $\alpha=\angle UOV$.</p>
+<div align="center">
+<img alt="No description has been provided for this image" src="triple_vector_thales_circle_safe.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 11: Geometric property of the triple vector formula.</em></p>
+</div>
+<p>For the plane geometry, refer to Figure 11. Draw the circle with diameter $OW$. Let it meet rays $OU,OV$ again at $A,B$. By Thales, $\angle OAW=\angle OBW=90^\circ$, hence $OA=\mathbf{u}\cdot\mathbf{w}$ and $OB=\mathbf{v}\cdot\mathbf{w}$.
+Define $A'\in OV$ and $B'\in OU$ by $OA'=OA$ and $OB'=OB$. Then
+$$\overrightarrow{A'B'}=(\mathbf{v}\cdot\mathbf{w})\mathbf{u}-(\mathbf{u}\cdot\mathbf{w})\mathbf{v}= -\big((\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}\big),$$
+so $\lvert A'B'\rvert$ is the magnitude of the right-hand side. It is easy to show $A'B'\perp OW$ by checking $\overrightarrow{A'B'}\cdot\mathbf{w}=0$, but here we want a pure geometric proof. Since $\angle WOA' + \angle A'B'O=90^\circ$, we get $A'B'\perp OW$, matching the left-hand side direction.
+Since $\triangle OAB\cong\triangle OA'B'$, we have $AB=A'B'$. In the diameter-1 circle, $AB=\sin\alpha$. But
+$$\lvert(\mathbf{u}\times\mathbf{v})\times\mathbf{w}\rvert=\lvert\mathbf{u}\times\mathbf{v}\rvert\,\lvert\mathbf{w}\rvert=\sin\alpha,$$
+so both sides are the same vector:
+$$ (\mathbf{u}\times\mathbf{v})\times\mathbf{w}=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}. $$
+So basically we used the multilinearity of the dot and cross products (it is enough to prove the identity for coplanar unit vectors). We also used that dot and cross magnitudes correspond to cos and sin of the angle. The rest relies on a circle fact: two chords have the same length if and only if their inscribed angles are equal.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Postscript">Postscript<a class="anchor-link" href="#Postscript">¶</a></h3><p>It can be interesting to see how the following software would approach the problem:</p>
+<ol>
+<li>Medal-level AI geometry solvers (closest to "gold/silver" performance in the International Math Olympiad)</li>
+</ol>
+<ul>
+<li>AlphaGeometry / AlphaGeometry 2 (research systems that can solve many Olympiad problems)</li>
+<li>Open source software such as Newclid/yuclid by startup company Harmonic</li>
+</ul>
+<ol start="2">
+<li>Geometry theorem provers (strong automation, not always Olympiad-style proofs)</li>
+</ol>
+<ul>
+<li>GCLC / WinGCLC (area method, Wu's method, Grobner bases)</li>
+<li>JGEX and Sympy (Wu/Grobner/full-angle methods with visualization)</li>
+<li>OpenGeoProver (Wu/Grobner style)</li>
+<li>GeoLogic (interactive Euclidean prover)</li>
+</ul>
+<ol start="3">
+<li>Proof assistants (formal, but manual)</li>
+</ol>
+<ul>
+<li>Lean 4 + mathlib</li>
+<li>LeanGeo</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="References">References<a class="anchor-link" href="#References">¶</a></h3><ul>
+<li>[CROSS-PRODUCT] Gibbs/Heaviside (1881). "Cross product." Summary: Notation for dot/cross products introduced in 1881. URL: <a href="https://en.wikipedia.org/wiki/Cross_product">https://en.wikipedia.org/wiki/Cross_product</a></li>
+<li>[EPSTEIN-DG] Epstein (2013~2014). "Differential Geometry Minicourse." Summary: Minicourse notes associated with a 2013 workshop; book version appeared in 2014. URL: <a href="https://marceloepstein.weebly.com/uploads/1/2/8/4/12849112/dg_minicourse.pdf">https://marceloepstein.weebly.com/uploads/1/2/8/4/12849112/dg_minicourse.pdf</a> (context: <a href="https://www.isbn.de/buch/9783319357140/differential-geometry">https://www.isbn.de/buch/9783319357140/differential-geometry</a>)</li>
+<li>[EUCLID-VIDEO] Syversen (2025-09-18). "Euclid's ruler-and-compass constructions." YouTube. Summary: Video on the role of straightedge-and-compass constructions in Euclid. URL: <a href="https://youtu.be/M-MgQC6z3VU">https://youtu.be/M-MgQC6z3VU</a></li>
+<li>[FORMS-EM] Deschamps (1981). "Electromagnetics and Differential Forms." Summary: Proc. IEEE article that sparked broader EM use of differential forms. URL: <a href="https://faculty.washington.edu/seattle/physics544/2011-lectures/deschamps.pdf">https://faculty.washington.edu/seattle/physics544/2011-lectures/deschamps.pdf</a></li>
+<li>[GA-EM] Joot (2018). "Geometric Algebra for Electrical Engineers: Multivector Electromagnetism." Summary: Notes introducing geometric algebra for electromagnetism (version dated April 2018). URL: <a href="https://peeterjoot.com/archives/math2018/GAelectrodynamics.V0.1.6.pdf">https://peeterjoot.com/archives/math2018/GAelectrodynamics.V0.1.6.pdf</a></li>
+<li>[KEPLER-TEACH] van Haandel &amp; Heckman (2007). "Teaching the Kepler laws for freshmen." arXiv:0707.4605. Summary: Pedagogical treatment of Kepler's laws with geometric insights. URL: <a href="https://arxiv.org/abs/0707.4605">https://arxiv.org/abs/0707.4605</a></li>
+<li>[LINDELL-DF] Lindell (2004). "Differential Forms in Electromagnetics." Summary: Lecture notes/book with a 2004 copyright. URL: <a href="https://faculty.washington.edu/seattle/physics544/2011-lectures/lindell.pdf">https://faculty.washington.edu/seattle/physics544/2011-lectures/lindell.pdf</a></li>
+<li>[MAXWELL-1865] Maxwell (1865). "A Dynamical Theory of the Electromagnetic Field." Summary: Original formulation of Maxwell's equations in component-heavy form. URL: <a href="https://archive.org/details/electromagnetic00maxwgoog">https://archive.org/details/electromagnetic00maxwgoog</a></li>
+<li>[NEWTON-PRINCIPIA] Newton (1687). <em>Philosophiae Naturalis Principia Mathematica.</em> Project Gutenberg. Summary: Foundational work in classical mechanics with Euclidean-style geometric reasoning. URL: <a href="https://www.gutenberg.org/ebooks/28233">https://www.gutenberg.org/ebooks/28233</a></li>
+<li>[QUATERNION] Hamilton (1843). "Quaternion." Summary: Quaternions were introduced by Hamilton in 1843. URL: <a href="https://en.wikipedia.org/wiki/Quaternion">https://en.wikipedia.org/wiki/Quaternion</a></li>
+<li>[VECTOR-ANALYSIS] Wilson (1901). <em>Vector Analysis</em> (from Gibbs' lectures). Summary: Classic text that standardizes dot/cross notation and vector calculus. URL: <a href="https://archive.org/details/vectoranalysis00wilsrich">https://archive.org/details/vectoranalysis00wilsrich</a></li>
+<li>[VECTOR-ANALYSIS-WIKI] Wilson/Gibbs (1901). "Vector Analysis." Summary: Wikipedia entry on the 1901 textbook and its role in standardizing notation. URL: <a href="https://en.wikipedia.org/wiki/Vector_Analysis">https://en.wikipedia.org/wiki/Vector_Analysis</a></li>
+</ul>
 </div>
 </div>
 </div>
