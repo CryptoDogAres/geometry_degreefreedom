@@ -1,0 +1,13 @@
+{
+  "runtime": 0.47362351417541504,
+  "success": true,
+  "steps": 111,
+  "success_per_goal": {
+    "BD:BE = DH:EH succeeded": true
+  },
+  "agent_stats": {
+    "agent_type": "follow_deductions",
+    "n_deductions_stored": 110,
+    "n_deductions_followed": 110
+  }
+}

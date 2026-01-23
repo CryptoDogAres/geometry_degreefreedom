@@ -1,0 +1,48 @@
+# Problem setup:
+
+## Points
+
+- A(0.4127, 0.5303)
+- B(0.9202, 0.6639)
+- C(0.5468, 1.2823)
+- D(0.7681, 0.9158)
+- X(0.9316, 1.0930)
+
+## Assumptions:
+
+[C0] : B, C, D are collinear
+[C1] : ∠(AB,AX) = ∠(AX,AC)
+[C2] : A, D, X are collinear
+
+## Numerical checks
+
+[N0] : A ≠ D
+[N1] : A ≠ X
+[N2] : D ≠ X
+[N3] : A, B, C are not collinear
+
+
+# Goals
+
+AB:AC = BD:CD : Proved [2]
+
+
+# Proof:
+
+000. | A, D, X are collinear [C2], A ≠ D [N0], A ≠ X [N1], D ≠ X [N2] =(r82 Parallel from collinear)> AD ∥ AX [0]
+001. | ∠(AB,AX) = ∠(AX,AC) [C1], AD ∥ AX [0] =(AR Deduction)> ∠(AB,AD) = ∠(AD,AC) [1]
+002. | B, C, D are collinear [C0], ∠(AB,AD) = ∠(AD,AC) [1], A, B, C are not collinear [N3] =(r12 Bisector theorem II)> AB:AC = BD:CD [2]
+
+
+# Appendix: AR deductions:
+
+
+
+001. | Angle Chasing to prove ∠(AB,AD) = ∠(AD,AC):
+| Premise ∠(AB,AX) = ∠(AX,AC) gives a linear equation with coefficients {Âˆ AB: -1, Âˆ AC: -1, Âˆ AX: 2}
+| Premise AD ∥ AX gives a linear equation with coefficients {Âˆ AD: 1, Âˆ AX: -1}
+| Then {Âˆ AB: -1, Âˆ AC: -1, Âˆ AX: 2} + 2 x {Âˆ AD: 1, Âˆ AX: -1}
+|    = {Âˆ AB: -1, Âˆ AC: -1, Âˆ AD: 2}
+We are left with a linear equation with coefficients {Âˆ AB: -1, Âˆ AC: -1, Âˆ AD: 2} that gives ∠(AB,AD) = ∠(AD,AC)
+
+End of proof.
