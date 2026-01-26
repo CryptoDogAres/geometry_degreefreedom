@@ -5,6 +5,7 @@ Run:
 """
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 import sys
@@ -42,6 +43,50 @@ def _rewrite_asset_paths(body_html: str, base_dir: Path, repo_root: Path) -> str
         return f'src="{rel_posix}"'
 
     return re.sub(r'src="([^"]+)"', repl, body_html)
+
+
+def _inject_back_button(html_text: str, href: str) -> str:
+    css = """
+<style>
+.back-to-index {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  padding: 10px 14px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.back-to-index:hover { background: #333; }
+</style>
+""".strip()
+
+    button = f'<a class="back-to-index" href="{href}">Back to index</a>'
+
+    if "</head>" in html_text:
+        html_text = html_text.replace("</head>", f"{css}\n</head>", 1)
+    else:
+        html_text = css + "\n" + html_text
+
+    if "<body" in html_text:
+        html_text = re.sub(r"(<body[^>]*>)", r"\\1\n" + button, html_text, count=1)
+    else:
+        html_text += "\n" + button
+
+    return html_text
+
+
+def _apply_back_button(html_path: Path, repo_root: Path) -> None:
+    index_path = (repo_root / "index.html").resolve()
+    rel = os.path.relpath(index_path, html_path.parent).replace("\\", "/")
+    html_text = html_path.read_text(encoding="utf-8", errors="ignore")
+    html_text = _inject_back_button(html_text, rel)
+    html_path.write_text(html_text, encoding="utf-8")
 
 
 def build_combined_html(html_paths: list[Path], output_path: Path, repo_root: Path) -> None:
@@ -127,10 +172,13 @@ def main() -> int:
         ]
         print(f"Generating: {output_dir / html_name}")
         subprocess.run(cmd, check=True)
-        html_paths.append(output_dir / html_name)
+        html_path = output_dir / html_name
+        _apply_back_button(html_path, repo_root)
+        html_paths.append(html_path)
 
     combined_html_path = repo_root / COMBINED_HTML
     build_combined_html(html_paths, combined_html_path, repo_root)
+    _apply_back_button(combined_html_path, repo_root)
     print(f"Combined HTML: {combined_html_path}")
 
     return 0

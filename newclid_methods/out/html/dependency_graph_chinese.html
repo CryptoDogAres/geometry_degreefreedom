@@ -1,0 +1,248 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<script src="lib/bindings/utils.js"></script>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<script crossorigin="anonymous" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js"></script>
+<center>
+<h1></h1>
+</center>
+ &lt;link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" /&gt;
+&lt;script type="text/javascript" src="../node_modules/vis/dist/vis.js"&gt; &lt;/script&gt;
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" rel="stylesheet"/>
+<script crossorigin="anonymous" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<center>
+<h1></h1>
+</center>
+<style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 1080px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 1080px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+</head>
+<body>
+<div class="card" style="width: 100%">
+<div class="card-body" id="mynetwork"></div>
+</div>
+<div id="loadingBar">
+<div class="outerBorder">
+<div id="text">0%</div>
+<div id="border">
+<div id="bar"></div>
+</div>
+</div>
+</div>
+<div id="config"></div>
+<script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "\u25b2ADE has the same orientation as \u25b2DEG", "label": "\u25b2ADE has the same orientation as \u25b2DEG", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "AD = DE", "label": "AD = DE", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "AD:DE = DE:AD", "label": "AD:DE = DE:AD", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2ADE \u2245 \u25b2EDA", "label": "\u25b2ADE \u2245 \u25b2EDA", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AD,AE) = \u2220(AE,DE)", "label": "\u2220(AD,AE) = \u2220(AE,DE)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "BC = CD", "label": "BC = CD", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "BC:CD = CD:BC", "label": "BC:CD = CD:BC", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2BCD \u2245 \u25b2DCB", "label": "\u25b2BCD \u2245 \u25b2DCB", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(BC,BD) = \u2220(BD,CD)", "label": "\u2220(BC,BD) = \u2220(BD,CD)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AD \u2225 BC", "label": "AD \u2225 BC", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "A, E, G are collinear", "label": "A, E, G are collinear", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "A \u2260 E", "label": "A \u2260 E", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "A \u2260 G", "label": "A \u2260 G", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "E \u2260 G", "label": "E \u2260 G", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "AG \u2225 AE", "label": "AG \u2225 AE", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AG \u2225 EG", "label": "AG \u2225 EG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "B, D, G are collinear", "label": "B, D, G are collinear", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "B \u2260 D", "label": "B \u2260 D", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "B \u2260 G", "label": "B \u2260 G", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "D \u2260 G", "label": "D \u2260 G", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "BD \u2225 BG", "label": "BD \u2225 BG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "C, D, E are collinear", "label": "C, D, E are collinear", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "C \u2260 D", "label": "C \u2260 D", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "C \u2260 E", "label": "C \u2260 E", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "D \u2260 E", "label": "D \u2260 E", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "CE \u2225 CD", "label": "CE \u2225 CD", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "CE \u2225 DE", "label": "CE \u2225 DE", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "DG \u2225 BG", "label": "DG \u2225 BG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "BC \u27c2 CD", "label": "BC \u27c2 CD", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "\u2220(AD,DE) = \u2220(EG,DG)", "label": "\u2220(AD,DE) = \u2220(EG,DG)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u2220(AD,AG) = \u2220(DG,AD)", "label": "\u2220(AD,AG) = \u2220(DG,AD)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "A, D, G are not collinear", "label": "A, D, G are not collinear", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "DG = AG", "label": "DG = AG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AD,DG) = \u2220(DG,DE)", "label": "\u2220(AD,DG) = \u2220(DG,DE)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "A, D, E are not collinear", "label": "A, D, E are not collinear", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "AD:AG = DE:EG", "label": "AD:AG = DE:EG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AD:DE = DG:EG", "label": "AD:DE = DG:EG", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2ADE \u2245 \u25b2DGE", "label": "\u25b2ADE \u2245 \u25b2DGE", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AD:AE = DG:DE", "label": "AD:AE = DG:DE", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u25b2ABE has the same orientation as \u25b2CDF", "label": "\u25b2ABE has the same orientation as \u25b2CDF", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "A, B, F are collinear", "label": "A, B, F are collinear", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "A \u2260 B", "label": "A \u2260 B", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "A \u2260 F", "label": "A \u2260 F", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "B \u2260 F", "label": "B \u2260 F", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "AF \u2225 AB", "label": "AF \u2225 AB", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AB \u27c2 EF", "label": "AB \u27c2 EF", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "\u2220(AD,AF) = \u2220(DE,EF)", "label": "\u2220(AD,AF) = \u2220(DE,EF)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "A, D, F are not collinear", "label": "A, D, F are not collinear", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "ADEF are cyclic", "label": "ADEF are cyclic", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AE,AF) = \u2220(DE,DF)", "label": "\u2220(AE,AF) = \u2220(DE,DF)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AB,AE) = \u2220(DF,CD)", "label": "\u2220(AB,AE) = \u2220(DF,CD)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "BF \u2225 AF", "label": "BF \u2225 AF", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(BC,BF) = \u2220(CE,EF)", "label": "\u2220(BC,BF) = \u2220(CE,EF)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "B, C, F are not collinear", "label": "B, C, F are not collinear", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "BCEF are cyclic", "label": "BCEF are cyclic", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(BE,BF) = \u2220(CE,CF)", "label": "\u2220(BE,BF) = \u2220(CE,CF)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AB,BE) = \u2220(CF,CD)", "label": "\u2220(AB,BE) = \u2220(CF,CD)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2ABE \u2245 \u25b2DCF", "label": "\u25b2ABE \u2245 \u25b2DCF", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AE:BE = DF:CF", "label": "AE:BE = DF:CF", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u25b2AFG has the same orientation as \u25b2CDF", "label": "\u25b2AFG has the same orientation as \u25b2CDF", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "\u2220(AF,AG) = \u2220(DF,CD)", "label": "\u2220(AF,AG) = \u2220(DF,CD)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u2220(BC,BG) = \u2220(CE,EG)", "label": "\u2220(BC,BG) = \u2220(CE,EG)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "B, C, G are not collinear", "label": "B, C, G are not collinear", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "BCEG are cyclic", "label": "BCEG are cyclic", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(BE,BG) = \u2220(CE,CG)", "label": "\u2220(BE,BG) = \u2220(CE,CG)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(CF,CG) = \u2220(EF,EG)", "label": "\u2220(CF,CG) = \u2220(EF,EG)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "E, F, G are not collinear", "label": "E, F, G are not collinear", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "CEFG are cyclic", "label": "CEFG are cyclic", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(CE,EG) = \u2220(CF,FG)", "label": "\u2220(CE,EG) = \u2220(CF,FG)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AG,FG) = \u2220(CD,CF)", "label": "\u2220(AG,FG) = \u2220(CD,CF)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2AFG \u2245 \u25b2DFC", "label": "\u25b2AFG \u2245 \u25b2DFC", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AF:AG = DF:CD", "label": "AF:AG = DF:CD", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AF:DF = FG:CF", "label": "AF:DF = FG:CF", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u25b2ADH has the same orientation as \u25b2DEF", "label": "\u25b2ADH has the same orientation as \u25b2DEF", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "\u25b2ABG has the same orientation as \u25b2BEG", "label": "\u25b2ABG has the same orientation as \u25b2BEG", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "\u2220(AG,BG) = \u2220(BG,EG)", "label": "\u2220(AG,BG) = \u2220(BG,EG)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "AG:BG = EG:BG", "label": "AG:BG = EG:BG", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2ABG \u2245 \u25b2EBG", "label": "\u25b2ABG \u2245 \u25b2EBG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AB,BG) = \u2220(BG,BE)", "label": "\u2220(AB,BG) = \u2220(BG,BE)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "E, F, H are collinear", "label": "E, F, H are collinear", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "E \u2260 F", "label": "E \u2260 F", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "E \u2260 H", "label": "E \u2260 H", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "F \u2260 H", "label": "F \u2260 H", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "EH \u2225 EF", "label": "EH \u2225 EF", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "EH \u2225 FH", "label": "EH \u2225 FH", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "B, D, H are collinear", "label": "B, D, H are collinear", "shape": "dot", "size": 10, "title": "Assumption"}, {"color": "#97c2fc", "id": "B \u2260 H", "label": "B \u2260 H", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "D \u2260 H", "label": "D \u2260 H", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "BD \u2225 BH", "label": "BD \u2225 BH", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "BG \u2225 BH", "label": "BG \u2225 BH", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "B, G, H are collinear", "label": "B, G, H are collinear", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "G \u2260 H", "label": "G \u2260 H", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "GH \u2225 BG", "label": "GH \u2225 BG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AF,FH) = \u2220(AG,GH)", "label": "\u2220(AF,FH) = \u2220(AG,GH)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "A, F, H are not collinear", "label": "A, F, H are not collinear", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "AFGH are cyclic", "label": "AFGH are cyclic", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AG,AH) = \u2220(FG,FH)", "label": "\u2220(AG,AH) = \u2220(FG,FH)", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u2220(AD,AH) = \u2220(EF,DE)", "label": "\u2220(AD,AH) = \u2220(EF,DE)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2AEH has the same orientation as \u25b2EFG", "label": "\u25b2AEH has the same orientation as \u25b2EFG", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "\u2220(AE,EH) = \u2220(EF,FG)", "label": "\u2220(AE,EH) = \u2220(EF,FG)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u2220(AH,EH) = \u2220(EG,FG)", "label": "\u2220(AH,EH) = \u2220(EG,FG)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2AEH \u2245 \u25b2EFG", "label": "\u25b2AEH \u2245 \u25b2EFG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AE:EF = EH:FG", "label": "AE:EF = EH:FG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AH:EG = EH:FG", "label": "AH:EG = EH:FG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AD:AH = EF:DE", "label": "AD:AH = EF:DE", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2ADH \u2245 \u25b2EFD", "label": "\u25b2ADH \u2245 \u25b2EFD", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "AH:DE = DH:DF", "label": "AH:DE = DH:DF", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "\u25b2BCD has the same orientation as \u25b2DGE", "label": "\u25b2BCD has the same orientation as \u25b2DGE", "shape": "dot", "size": 10, "title": "Numerical Check"}, {"color": "#97c2fc", "id": "\u2220(BC,CD) = \u2220(DG,EG)", "label": "\u2220(BC,CD) = \u2220(DG,EG)", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "BC:CD = EG:DG", "label": "BC:CD = EG:DG", "shape": "dot", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u25b2BCD \u2245 \u25b2EGD", "label": "\u25b2BCD \u2245 \u25b2EGD", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "#97c2fc", "id": "BD:CD = DE:DG", "label": "BD:CD = DE:DG", "shape": "dot", "size": 10, "title": "Rule Application"}, {"color": "gold", "id": "BD:BE = DH:EH", "label": "BD:BE = DH:EH", "shape": "star", "size": 10, "title": "AR Deduction"}, {"color": "#97c2fc", "id": "\u2220(AD,DE) = \u2220(AD,DE)", "label": "\u2220(AD,DE) = \u2220(AD,DE)", "shape": "dot"}, {"color": "#97c2fc", "id": "\u25b2ADE has the same orientation as \u25b2ADE", "label": "\u25b2ADE has the same orientation as \u25b2ADE", "shape": "dot"}, {"color": "#97c2fc", "id": "\u2220(BC,CD) = \u2220(BC,CD)", "label": "\u2220(BC,CD) = \u2220(BC,CD)", "shape": "dot"}, {"color": "#97c2fc", "id": "\u25b2BCD has the same orientation as \u25b2BCD", "label": "\u25b2BCD has the same orientation as \u25b2BCD", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "AD = DE", "to": "AD:DE = DE:AD"}, {"arrows": "to", "from": "\u2220(AD,DE) = \u2220(AD,DE)", "to": "\u25b2ADE \u2245 \u25b2EDA"}, {"arrows": "to", "from": "AD:DE = DE:AD", "to": "\u25b2ADE \u2245 \u25b2EDA"}, {"arrows": "to", "from": "\u25b2ADE has the same orientation as \u25b2ADE", "to": "\u25b2ADE \u2245 \u25b2EDA"}, {"arrows": "to", "from": "\u25b2ADE has the same orientation as \u25b2ADE", "to": "\u2220(AD,AE) = \u2220(AE,DE)"}, {"arrows": "to", "from": "\u25b2ADE \u2245 \u25b2EDA", "to": "\u2220(AD,AE) = \u2220(AE,DE)"}, {"arrows": "to", "from": "BC = CD", "to": "BC:CD = CD:BC"}, {"arrows": "to", "from": "\u2220(BC,CD) = \u2220(BC,CD)", "to": "\u25b2BCD \u2245 \u25b2DCB"}, {"arrows": "to", "from": "BC:CD = CD:BC", "to": "\u25b2BCD \u2245 \u25b2DCB"}, {"arrows": "to", "from": "\u25b2BCD has the same orientation as \u25b2BCD", "to": "\u25b2BCD \u2245 \u25b2DCB"}, {"arrows": "to", "from": "\u25b2BCD has the same orientation as \u25b2BCD", "to": "\u2220(BC,BD) = \u2220(BD,CD)"}, {"arrows": "to", "from": "\u25b2BCD \u2245 \u25b2DCB", "to": "\u2220(BC,BD) = \u2220(BD,CD)"}, {"arrows": "to", "from": "A, E, G are collinear", "to": "AG \u2225 AE"}, {"arrows": "to", "from": "A \u2260 E", "to": "AG \u2225 AE"}, {"arrows": "to", "from": "A \u2260 G", "to": "AG \u2225 AE"}, {"arrows": "to", "from": "E \u2260 G", "to": "AG \u2225 AE"}, {"arrows": "to", "from": "A, E, G are collinear", "to": "AG \u2225 EG"}, {"arrows": "to", "from": "A \u2260 E", "to": "AG \u2225 EG"}, {"arrows": "to", "from": "A \u2260 G", "to": "AG \u2225 EG"}, {"arrows": "to", "from": "E \u2260 G", "to": "AG \u2225 EG"}, {"arrows": "to", "from": "B, D, G are collinear", "to": "BD \u2225 BG"}, {"arrows": "to", "from": "B \u2260 D", "to": "BD \u2225 BG"}, {"arrows": "to", "from": "B \u2260 G", "to": "BD \u2225 BG"}, {"arrows": "to", "from": "D \u2260 G", "to": "BD \u2225 BG"}, {"arrows": "to", "from": "C, D, E are collinear", "to": "CE \u2225 CD"}, {"arrows": "to", "from": "C \u2260 D", "to": "CE \u2225 CD"}, {"arrows": "to", "from": "C \u2260 E", "to": "CE \u2225 CD"}, {"arrows": "to", "from": "D \u2260 E", "to": "CE \u2225 CD"}, {"arrows": "to", "from": "C, D, E are collinear", "to": "CE \u2225 DE"}, {"arrows": "to", "from": "C \u2260 D", "to": "CE \u2225 DE"}, {"arrows": "to", "from": "C \u2260 E", "to": "CE \u2225 DE"}, {"arrows": "to", "from": "D \u2260 E", "to": "CE \u2225 DE"}, {"arrows": "to", "from": "B, D, G are collinear", "to": "DG \u2225 BG"}, {"arrows": "to", "from": "B \u2260 D", "to": "DG \u2225 BG"}, {"arrows": "to", "from": "B \u2260 G", "to": "DG \u2225 BG"}, {"arrows": "to", "from": "D \u2260 G", "to": "DG \u2225 BG"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "DG \u2225 BG", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "BC \u27c2 CD", "to": "\u2220(AD,DE) = \u2220(EG,DG)"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "DG \u2225 BG", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "BC \u27c2 CD", "to": "\u2220(AD,AG) = \u2220(DG,AD)"}, {"arrows": "to", "from": "\u2220(AD,AG) = \u2220(DG,AD)", "to": "DG = AG"}, {"arrows": "to", "from": "A, D, G are not collinear", "to": "DG = AG"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(AD,DG) = \u2220(DG,DE)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AD,DG) = \u2220(DG,DE)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(AD,DG) = \u2220(DG,DE)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AD,DG) = \u2220(DG,DE)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AD,DG) = \u2220(DG,DE)"}, {"arrows": "to", "from": "DG \u2225 BG", "to": "\u2220(AD,DG) = \u2220(DG,DE)"}, {"arrows": "to", "from": "A, E, G are collinear", "to": "AD:AG = DE:EG"}, {"arrows": "to", "from": "\u2220(AD,DG) = \u2220(DG,DE)", "to": "AD:AG = DE:EG"}, {"arrows": "to", "from": "A, D, E are not collinear", "to": "AD:AG = DE:EG"}, {"arrows": "to", "from": "DG = AG", "to": "AD:DE = DG:EG"}, {"arrows": "to", "from": "AD:AG = DE:EG", "to": "AD:DE = DG:EG"}, {"arrows": "to", "from": "\u2220(AD,DE) = \u2220(EG,DG)", "to": "\u25b2ADE \u2245 \u25b2DGE"}, {"arrows": "to", "from": "AD:DE = DG:EG", "to": "\u25b2ADE \u2245 \u25b2DGE"}, {"arrows": "to", "from": "\u25b2ADE has the same orientation as \u25b2DEG", "to": "\u25b2ADE \u2245 \u25b2DGE"}, {"arrows": "to", "from": "\u25b2ADE has the same orientation as \u25b2DEG", "to": "AD:AE = DG:DE"}, {"arrows": "to", "from": "\u25b2ADE \u2245 \u25b2DGE", "to": "AD:AE = DG:DE"}, {"arrows": "to", "from": "A, B, F are collinear", "to": "AF \u2225 AB"}, {"arrows": "to", "from": "A \u2260 B", "to": "AF \u2225 AB"}, {"arrows": "to", "from": "A \u2260 F", "to": "AF \u2225 AB"}, {"arrows": "to", "from": "B \u2260 F", "to": "AF \u2225 AB"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AD,AF) = \u2220(DE,EF)"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(AD,AF) = \u2220(DE,EF)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AD,AF) = \u2220(DE,EF)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AD,AF) = \u2220(DE,EF)"}, {"arrows": "to", "from": "AB \u27c2 EF", "to": "\u2220(AD,AF) = \u2220(DE,EF)"}, {"arrows": "to", "from": "BC \u27c2 CD", "to": "\u2220(AD,AF) = \u2220(DE,EF)"}, {"arrows": "to", "from": "\u2220(AD,AF) = \u2220(DE,EF)", "to": "ADEF are cyclic"}, {"arrows": "to", "from": "A, D, F are not collinear", "to": "ADEF are cyclic"}, {"arrows": "to", "from": "ADEF are cyclic", "to": "\u2220(AE,AF) = \u2220(DE,DF)"}, {"arrows": "to", "from": "\u2220(AE,AF) = \u2220(DE,DF)", "to": "\u2220(AB,AE) = \u2220(DF,CD)"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(AB,AE) = \u2220(DF,CD)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AB,AE) = \u2220(DF,CD)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AB,AE) = \u2220(DF,CD)"}, {"arrows": "to", "from": "A, B, F are collinear", "to": "BF \u2225 AF"}, {"arrows": "to", "from": "A \u2260 B", "to": "BF \u2225 AF"}, {"arrows": "to", "from": "A \u2260 F", "to": "BF \u2225 AF"}, {"arrows": "to", "from": "B \u2260 F", "to": "BF \u2225 AF"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(BC,BF) = \u2220(CE,EF)"}, {"arrows": "to", "from": "BF \u2225 AF", "to": "\u2220(BC,BF) = \u2220(CE,EF)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(BC,BF) = \u2220(CE,EF)"}, {"arrows": "to", "from": "AB \u27c2 EF", "to": "\u2220(BC,BF) = \u2220(CE,EF)"}, {"arrows": "to", "from": "BC \u27c2 CD", "to": "\u2220(BC,BF) = \u2220(CE,EF)"}, {"arrows": "to", "from": "\u2220(BC,BF) = \u2220(CE,EF)", "to": "BCEF are cyclic"}, {"arrows": "to", "from": "B, C, F are not collinear", "to": "BCEF are cyclic"}, {"arrows": "to", "from": "BCEF are cyclic", "to": "\u2220(BE,BF) = \u2220(CE,CF)"}, {"arrows": "to", "from": "\u2220(BE,BF) = \u2220(CE,CF)", "to": "\u2220(AB,BE) = \u2220(CF,CD)"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(AB,BE) = \u2220(CF,CD)"}, {"arrows": "to", "from": "BF \u2225 AF", "to": "\u2220(AB,BE) = \u2220(CF,CD)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AB,BE) = \u2220(CF,CD)"}, {"arrows": "to", "from": "\u2220(AB,AE) = \u2220(DF,CD)", "to": "\u25b2ABE \u2245 \u25b2DCF"}, {"arrows": "to", "from": "\u2220(AB,BE) = \u2220(CF,CD)", "to": "\u25b2ABE \u2245 \u25b2DCF"}, {"arrows": "to", "from": "\u25b2ABE has the same orientation as \u25b2CDF", "to": "\u25b2ABE \u2245 \u25b2DCF"}, {"arrows": "to", "from": "\u25b2ABE has the same orientation as \u25b2CDF", "to": "AE:BE = DF:CF"}, {"arrows": "to", "from": "\u25b2ABE \u2245 \u25b2DCF", "to": "AE:BE = DF:CF"}, {"arrows": "to", "from": "\u2220(AE,AF) = \u2220(DE,DF)", "to": "\u2220(AF,AG) = \u2220(DF,CD)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(AF,AG) = \u2220(DF,CD)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AF,AG) = \u2220(DF,CD)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AF,AG) = \u2220(DF,CD)"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "BC \u27c2 CD", "to": "\u2220(BC,BG) = \u2220(CE,EG)"}, {"arrows": "to", "from": "\u2220(BC,BG) = \u2220(CE,EG)", "to": "BCEG are cyclic"}, {"arrows": "to", "from": "B, C, G are not collinear", "to": "BCEG are cyclic"}, {"arrows": "to", "from": "BCEG are cyclic", "to": "\u2220(BE,BG) = \u2220(CE,CG)"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "\u2220(BE,BF) = \u2220(CE,CF)", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "\u2220(BE,BG) = \u2220(CE,CG)", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "BF \u2225 AF", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "AB \u27c2 EF", "to": "\u2220(CF,CG) = \u2220(EF,EG)"}, {"arrows": "to", "from": "\u2220(CF,CG) = \u2220(EF,EG)", "to": "CEFG are cyclic"}, {"arrows": "to", "from": "E, F, G are not collinear", "to": "CEFG are cyclic"}, {"arrows": "to", "from": "CEFG are cyclic", "to": "\u2220(CE,EG) = \u2220(CF,FG)"}, {"arrows": "to", "from": "\u2220(CE,EG) = \u2220(CF,FG)", "to": "\u2220(AG,FG) = \u2220(CD,CF)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(AG,FG) = \u2220(CD,CF)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AG,FG) = \u2220(CD,CF)"}, {"arrows": "to", "from": "\u2220(AF,AG) = \u2220(DF,CD)", "to": "\u25b2AFG \u2245 \u25b2DFC"}, {"arrows": "to", "from": "\u2220(AG,FG) = \u2220(CD,CF)", "to": "\u25b2AFG \u2245 \u25b2DFC"}, {"arrows": "to", "from": "\u25b2AFG has the same orientation as \u25b2CDF", "to": "\u25b2AFG \u2245 \u25b2DFC"}, {"arrows": "to", "from": "\u25b2AFG has the same orientation as \u25b2CDF", "to": "AF:AG = DF:CD"}, {"arrows": "to", "from": "\u25b2AFG \u2245 \u25b2DFC", "to": "AF:AG = DF:CD"}, {"arrows": "to", "from": "\u25b2AFG has the same orientation as \u25b2CDF", "to": "AF:DF = FG:CF"}, {"arrows": "to", "from": "\u25b2AFG \u2245 \u25b2DFC", "to": "AF:DF = FG:CF"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AG,BG) = \u2220(BG,EG)"}, {"arrows": "to", "from": "AD = DE", "to": "AG:BG = EG:BG"}, {"arrows": "to", "from": "AD:AG = DE:EG", "to": "AG:BG = EG:BG"}, {"arrows": "to", "from": "\u2220(AG,BG) = \u2220(BG,EG)", "to": "\u25b2ABG \u2245 \u25b2EBG"}, {"arrows": "to", "from": "AG:BG = EG:BG", "to": "\u25b2ABG \u2245 \u25b2EBG"}, {"arrows": "to", "from": "\u25b2ABG has the same orientation as \u25b2BEG", "to": "\u25b2ABG \u2245 \u25b2EBG"}, {"arrows": "to", "from": "\u25b2ABG has the same orientation as \u25b2BEG", "to": "\u2220(AB,BG) = \u2220(BG,BE)"}, {"arrows": "to", "from": "\u25b2ABG \u2245 \u25b2EBG", "to": "\u2220(AB,BG) = \u2220(BG,BE)"}, {"arrows": "to", "from": "E, F, H are collinear", "to": "EH \u2225 EF"}, {"arrows": "to", "from": "E \u2260 F", "to": "EH \u2225 EF"}, {"arrows": "to", "from": "E \u2260 H", "to": "EH \u2225 EF"}, {"arrows": "to", "from": "F \u2260 H", "to": "EH \u2225 EF"}, {"arrows": "to", "from": "E, F, H are collinear", "to": "EH \u2225 FH"}, {"arrows": "to", "from": "E \u2260 F", "to": "EH \u2225 FH"}, {"arrows": "to", "from": "E \u2260 H", "to": "EH \u2225 FH"}, {"arrows": "to", "from": "F \u2260 H", "to": "EH \u2225 FH"}, {"arrows": "to", "from": "B, D, H are collinear", "to": "BD \u2225 BH"}, {"arrows": "to", "from": "B \u2260 D", "to": "BD \u2225 BH"}, {"arrows": "to", "from": "B \u2260 H", "to": "BD \u2225 BH"}, {"arrows": "to", "from": "D \u2260 H", "to": "BD \u2225 BH"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "BG \u2225 BH"}, {"arrows": "to", "from": "BD \u2225 BH", "to": "BG \u2225 BH"}, {"arrows": "to", "from": "BG \u2225 BH", "to": "B, G, H are collinear"}, {"arrows": "to", "from": "B, G, H are collinear", "to": "GH \u2225 BG"}, {"arrows": "to", "from": "B \u2260 G", "to": "GH \u2225 BG"}, {"arrows": "to", "from": "B \u2260 H", "to": "GH \u2225 BG"}, {"arrows": "to", "from": "G \u2260 H", "to": "GH \u2225 BG"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "EH \u2225 EF", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "EH \u2225 FH", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "GH \u2225 BG", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "AB \u27c2 EF", "to": "\u2220(AF,FH) = \u2220(AG,GH)"}, {"arrows": "to", "from": "\u2220(AF,FH) = \u2220(AG,GH)", "to": "AFGH are cyclic"}, {"arrows": "to", "from": "A, F, H are not collinear", "to": "AFGH are cyclic"}, {"arrows": "to", "from": "AFGH are cyclic", "to": "\u2220(AG,AH) = \u2220(FG,FH)"}, {"arrows": "to", "from": "\u2220(AB,BG) = \u2220(BG,BE)", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "\u2220(AG,AH) = \u2220(FG,FH)", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "\u2220(BE,BF) = \u2220(CE,CF)", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "\u2220(CE,EG) = \u2220(CF,FG)", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "BF \u2225 AF", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "EH \u2225 EF", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "EH \u2225 FH", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "AB \u27c2 EF", "to": "\u2220(AD,AH) = \u2220(EF,DE)"}, {"arrows": "to", "from": "\u2220(AB,BG) = \u2220(BG,BE)", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "\u2220(BE,BF) = \u2220(CE,CF)", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "\u2220(CE,EG) = \u2220(CF,FG)", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "AF \u2225 AB", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "BF \u2225 AF", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "EH \u2225 EF", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "AB \u27c2 EF", "to": "\u2220(AE,EH) = \u2220(EF,FG)"}, {"arrows": "to", "from": "\u2220(AG,AH) = \u2220(FG,FH)", "to": "\u2220(AH,EH) = \u2220(EG,FG)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(AH,EH) = \u2220(EG,FG)"}, {"arrows": "to", "from": "EH \u2225 FH", "to": "\u2220(AH,EH) = \u2220(EG,FG)"}, {"arrows": "to", "from": "\u2220(AE,EH) = \u2220(EF,FG)", "to": "\u25b2AEH \u2245 \u25b2EFG"}, {"arrows": "to", "from": "\u2220(AH,EH) = \u2220(EG,FG)", "to": "\u25b2AEH \u2245 \u25b2EFG"}, {"arrows": "to", "from": "\u25b2AEH has the same orientation as \u25b2EFG", "to": "\u25b2AEH \u2245 \u25b2EFG"}, {"arrows": "to", "from": "\u25b2AEH has the same orientation as \u25b2EFG", "to": "AE:EF = EH:FG"}, {"arrows": "to", "from": "\u25b2AEH \u2245 \u25b2EFG", "to": "AE:EF = EH:FG"}, {"arrows": "to", "from": "\u25b2AEH has the same orientation as \u25b2EFG", "to": "AH:EG = EH:FG"}, {"arrows": "to", "from": "\u25b2AEH \u2245 \u25b2EFG", "to": "AH:EG = EH:FG"}, {"arrows": "to", "from": "AD = DE", "to": "AD:AH = EF:DE"}, {"arrows": "to", "from": "DG = AG", "to": "AD:AH = EF:DE"}, {"arrows": "to", "from": "AD:AE = DG:DE", "to": "AD:AH = EF:DE"}, {"arrows": "to", "from": "AD:AG = DE:EG", "to": "AD:AH = EF:DE"}, {"arrows": "to", "from": "AE:EF = EH:FG", "to": "AD:AH = EF:DE"}, {"arrows": "to", "from": "AH:EG = EH:FG", "to": "AD:AH = EF:DE"}, {"arrows": "to", "from": "\u2220(AD,AH) = \u2220(EF,DE)", "to": "\u25b2ADH \u2245 \u25b2EFD"}, {"arrows": "to", "from": "AD:AH = EF:DE", "to": "\u25b2ADH \u2245 \u25b2EFD"}, {"arrows": "to", "from": "\u25b2ADH has the same orientation as \u25b2DEF", "to": "\u25b2ADH \u2245 \u25b2EFD"}, {"arrows": "to", "from": "\u25b2ADH has the same orientation as \u25b2DEF", "to": "AH:DE = DH:DF"}, {"arrows": "to", "from": "\u25b2ADH \u2245 \u25b2EFD", "to": "AH:DE = DH:DF"}, {"arrows": "to", "from": "\u2220(AD,AE) = \u2220(AE,DE)", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "\u2220(BC,BD) = \u2220(BD,CD)", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "AD \u2225 BC", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "AG \u2225 AE", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "AG \u2225 EG", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "BD \u2225 BG", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "CE \u2225 CD", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "CE \u2225 DE", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "DG \u2225 BG", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "BC \u27c2 CD", "to": "\u2220(BC,CD) = \u2220(DG,EG)"}, {"arrows": "to", "from": "AD = DE", "to": "BC:CD = EG:DG"}, {"arrows": "to", "from": "BC = CD", "to": "BC:CD = EG:DG"}, {"arrows": "to", "from": "DG = AG", "to": "BC:CD = EG:DG"}, {"arrows": "to", "from": "AD:AG = DE:EG", "to": "BC:CD = EG:DG"}, {"arrows": "to", "from": "\u2220(BC,CD) = \u2220(DG,EG)", "to": "\u25b2BCD \u2245 \u25b2EGD"}, {"arrows": "to", "from": "BC:CD = EG:DG", "to": "\u25b2BCD \u2245 \u25b2EGD"}, {"arrows": "to", "from": "\u25b2BCD has the same orientation as \u25b2DGE", "to": "\u25b2BCD \u2245 \u25b2EGD"}, {"arrows": "to", "from": "\u25b2BCD has the same orientation as \u25b2DGE", "to": "BD:CD = DE:DG"}, {"arrows": "to", "from": "\u25b2BCD \u2245 \u25b2EGD", "to": "BD:CD = DE:DG"}, {"arrows": "to", "from": "AD:AE = DG:DE", "to": "BD:BE = DH:EH"}, {"arrows": "to", "from": "AD:AG = DE:EG", "to": "BD:BE = DH:EH"}, {"arrows": "to", "from": "AE:BE = DF:CF", "to": "BD:BE = DH:EH"}, {"arrows": "to", "from": "AF:AG = DF:CD", "to": "BD:BE = DH:EH"}, {"arrows": "to", "from": "AF:DF = FG:CF", "to": "BD:BE = DH:EH"}, {"arrows": "to", "from": "AH:DE = DH:DF", "to": "BD:BE = DH:EH"}, {"arrows": "to", "from": "AH:EG = EH:FG", "to": "BD:BE = DH:EH"}, {"arrows": "to", "from": "BD:CD = DE:DG", "to": "BD:BE = DH:EH"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics",
+            "layout"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "layout": {
+        "hierarchical": {
+            "direction": "LR",
+            "enabled": true,
+            "sortMethod": "directed"
+        }
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+</body>
+</html>
