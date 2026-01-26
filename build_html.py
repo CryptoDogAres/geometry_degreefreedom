@@ -102,16 +102,29 @@ def _apply_back_button(html_path: Path, repo_root: Path) -> None:
 def _add_heading_ids(body_html: str, section_prefix: str) -> tuple[str, list[tuple[int, str, str]]]:
     headings: list[tuple[int, str, str]] = []
 
+    def strip_anchor_link(inner_html: str) -> str:
+        return re.sub(
+            r'<a[^>]*class="anchor-link"[^>]*>.*?</a>',
+            "",
+            inner_html,
+            flags=re.DOTALL | re.IGNORECASE,
+        ).strip()
+
+    def strip_tags(inner_html: str) -> str:
+        return re.sub(r"<[^>]+>", "", inner_html).strip()
+
     def repl(match: re.Match[str]) -> str:
         level = int(match.group(1))
         attrs = match.group(2) or ""
-        text = match.group(3).strip()
-        slug = re.sub(r"[^a-zA-Z0-9_-]+", "-", text).strip("-").lower()
+        inner_raw = match.group(3).strip()
+        inner_clean = strip_anchor_link(inner_raw)
+        display_text = strip_tags(inner_clean)
+        slug = re.sub(r"[^a-zA-Z0-9_-]+", "-", display_text).strip("-").lower()
         anchor = f"{section_prefix}-{slug}" if slug else f"{section_prefix}-h{level}-{len(headings)+1}"
-        if 'id=' not in attrs:
-            attrs = attrs + f' id="{anchor}"'
-        headings.append((level, text, anchor))
-        return f"<h{level}{attrs}>{text}</h{level}>"
+        attrs = re.sub(r'\s+id="[^"]*"', "", attrs, flags=re.IGNORECASE)
+        attrs = attrs + f' id="{anchor}"'
+        headings.append((level, display_text, anchor))
+        return f"<h{level}{attrs}>{inner_clean}</h{level}>"
 
     body_html = re.sub(r"<h([1-4])([^>]*)>(.*?)</h\1>", repl, body_html, flags=re.DOTALL | re.IGNORECASE)
     return body_html, headings
@@ -145,7 +158,7 @@ def build_combined_html(html_paths: list[Path], output_path: Path, repo_root: Pa
             level = int(match.group(1))
             attrs = match.group(2) or ""
             inner = match.group(3) or ""
-            if not re.search(r"\\bpart\\b", inner, flags=re.IGNORECASE):
+            if not re.search(r"\bpart\b", inner, flags=re.IGNORECASE):
                 return match.group(0)
             return (
                 '<div class="back-to-toc"><a href="#toc">Back to TOC</a></div>\n'
