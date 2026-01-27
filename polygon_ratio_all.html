@@ -7601,7 +7601,7 @@ h4 { font-size: 1.05em; }
 <li class="toc-h2"><a href="#section-polygon_ratio_problem-part-4-vector-analysis">Part 4. Vector analysis</a></li>
 </ul>
 </li>
-<li class="toc-section"><a href="#section-pysym_polygon_ratio_Wu_and_Groebner">Part 5: Groebner(Gröbner) basis and Wu Method: polynomial elimination methods</a>
+<li class="toc-section"><a href="#section-pysym_polygon_ratio_Wu_and_Groebner">Part 5: Groebner (Grobner) basis and Wu Method: polynomial elimination methods</a>
 </li>
 <li class="toc-section"><a href="#section-newclid_polygon_ratio">Part 6. Modern Geometric Prover</a>
 </li>
@@ -7618,9 +7618,9 @@ h4 { font-size: 1.05em; }
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="section-polygon_ratio_problem-polygon-ratio-problem-many-proofs-one-degree-of-freedom">Polygon Ratio Problem: Many Proofs, One Degree of Freedom</h1><p>Author: Changchun Shi<br/>
-Date: First Version Jan 12, 2026
+Date: First version Jan 12, 2026<br/>
 Last update Jan 25, 2026</p>
-<h2 id="section-polygon_ratio_problem-introduction">Introduction</h2><p>During the Christmas holidays, a basic geometry proof problem showed up in my class alumni chat (Figure 1 is the original screenshot from classmate Lin He). He asked about the second question as the first of the two is almost trivial, and that set the whole discussion in motion. I have always liked Euclidean geometry and have exceled in most of teenage subject competitions (I don't recall failed to proof any of the geometry problems in my competition career). Problems like this rarely stop at one proof. Draw one line and a ratio drops out; draw another and a different argument appears. What follows is a cleaned collection: one quick sine-law proof, several synthetic proofs, an analytic-geometry proof (with help of ChatGPT 5.2-thinking for easy life, edited for clarity), and a one-parameter generalization that reveals deeper structure. I hope it gives younger students a sense of how much structure a single diagram can hide. I also plan to use this pilot problem to introduce the SOTA artificial intelligent ways of solving such problems in seperate notes.</p>
+<h2 id="section-polygon_ratio_problem-introduction">Introduction</h2><p>During the Christmas holidays, a basic geometry proof problem showed up in my class alumni chat (Figure 1 is the original screenshot from classmate Lin He). He asked about the second question because the first is almost trivial, and that set the discussion in motion. I have always liked Euclidean geometry and excelled in my teenage competitions (I don't recall failing to prove any geometry problems in that period). Problems like this rarely stop at one proof. Draw one line and a ratio drops out; draw another and a different argument appears. What follows is a cleaned collection: one quick sine-law proof, several synthetic proofs, an analytic-geometry proof (with help from ChatGPT 5.2-thinking, edited for clarity), and a one-parameter generalization that reveals deeper structure. I hope it gives younger students a sense of how much structure a single diagram can hide. I also plan to use this pilot problem to introduce state-of-the-art AI approaches for solving such problems in separate notes.</p>
 <div align="center">
 <img alt="Image" src="original_image.jpg" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 1: The original problem (photo from the chat).</em></p>
@@ -7630,7 +7630,7 @@ Last update Jan 25, 2026</p>
 <img alt="Image" src="polygon_ratio_geometry/original_problem_redraw.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 2: A clean redraw in GeoGebra.</em></p>
 </div>
-<p>Problem statement (translated). In trapezoid $ABCD$, $AD\parallel BC$, $\angle C=90^\circ$, and $BC=CD$. Point $E$ lies on $CD$, and $DE=AD$. Through $E$, draw $EF\perp AB$ with $F$ as the foot of the perpendicular. Draw $BD$; it intersects $AE$ and $EF$ at points $G$ and $H$, respectively. Prove:</p>
+<p>Problem statement (translated). In trapezoid $ABCD$, $AD\parallel BC$, $ngle C=90^\circ$, and $BC=CD$. Point $E$ lies on $CD$, and $DE=AD$. Through $E$, draw $EF\perp AB$ with $F$ as the foot of the perpendicular. Draw $BD$; it intersects $AE$ and $EF$ at points $G$ and $H$, respectively. Prove:</p>
 <ol>
 <li>$BF\cdot HE=GE\cdot BH$.</li>
 <li>$BE\cdot DH=BD\cdot EH$.</li>
@@ -7764,7 +7764,7 @@ which is the same proportion.</p>
 </div>
 </blockquote>
 <p>In this generalized setup, $EF$ is no longer perpendicular to $AB$. In fact, the perpendicular line through $E$ intersects $AB$ and $DB$ at $F'$ and $H'$, as shown in Figure 7. Here $H'$ differs from $H$ and does not satisfy the ratio property. The original problem is special because the $45^\circ$ angles create a surplus of right angles. The single degree of freedom here is essentially the ellipse eccentricity, with $A$ and $C$ determined by the right angle $\angle ADC$. When the ellipse degenerates to a circle (foci coincide), the identity becomes obvious.</p>
-<p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem, as shown in Figure 8 with the pure geometric approach.</p>
+<p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem; Figure 8 shows the pure geometric approach.</p>
 <div align="center">
 <img alt="Image" src="polygon_ratio_geometry/ellipse_view_simple.png" style="height:300px; display:block; margin:0 auto;"/>
 <p><em>Figure 8: The simplified ellipse setup, which reveals the essence of the original problem.</em></p>
@@ -7773,7 +7773,7 @@ which is the same proportion.</p>
 <h3 id="section-polygon_ratio_problem-proof-3-2-similarity">Proof 3.2, similarity</h3><blockquote>
 <p>Let $T$ and $S$ be the feet of the perpendiculars from $H$ and $B$ to the tangent line $DE$. By the reflection property, $\triangle HET\sim\triangle BES$, so $HE:BE=HT:BS$. Likewise, $\triangle HDT\sim\triangle BDS$, so $HD:DB=HT:BS$. Combining gives $HD/DB=HE/BE$.</p>
 </blockquote>
-<p>Interestingly, we can also compute the ratio analytically in the ellipse model. It turns out to be simplest using the de La Hire (eccentric-angle) parameter, revealing the geometry transparent.</p>
+<p>Interestingly, we can also compute the ratio analytically in the ellipse model. It turns out to be simplest using the de La Hire (eccentric-angle) parameter, revealing the geometry transparently.</p>
 <div align="center">
 <img alt="Image" src="polygon_ratio_geometry/ellipse_view_simple_param.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 9: de La Hire parameters and outer-circle view with $E$, $E'$, and $E''$.</em></p>
@@ -7823,7 +7823,7 @@ $$
 $$
 accounts only for the sum. The real content is that each focus-to-tangent distance equals its matching focus-to-point distance; this rigidity is encoded by the de La Hire parameter and the ellipse's affine relation to the circle.</p>
 </blockquote>
-<h3 id="section-polygon_ratio_problem-proof-3-4-outer-circle-proof">Proof 3.4 Outer circle proof</h3><blockquote>
+<h3 id="section-polygon_ratio_problem-proof-3-4-outer-circle-proof">Proof 3.4 (outer circle proof)</h3><blockquote>
 <p>Once Corollary 2 is in hand, let $P$ and $P'$ be the feet of the perpendiculars from $H$ and $B$ to $\ell'$ (for simplicity Figure 9 only shows $P$). Then $\triangle DHP \sim \triangle DBP'$ (right angles at $P,P'$ and a common angle at $D$), so $DH/DB=HP/BP'=\operatorname{dist}(H,\ell')/\operatorname{dist}(B,\ell')$, recovering the same ratio.</p>
 </blockquote>
 <p>Finally, there is a fun fact. Note that the feet of the perpendiculars drawn in Proof 3.2, $S$ and $T$, are exactly the intersection points of the tangent line $DE$ with the ellipse's outer circle. A quick proof is to show that $OT=a$ (Figure 10). Let $H'$ be the reflection of $H$ across $DE$; then $T$ is the midpoint of $HH'$. Since $O$ is the midpoint of $BH$, we have $OT=\tfrac{1}{2}BH'$. But $BH'=BE+EH=2a$, hence $OT=a$. The same reflection with $B$ gives $OS=a$, so the fun fact is that $S$ and $T$ are precisely the two intersections of $DE$ with the outer circle.</p>
@@ -7844,7 +7844,7 @@ accounts only for the sum. The real content is that each focus-to-tangent distan
 <div class="page-break"></div>
 <div class="back-to-toc"><a href="#toc">Back to TOC</a></div>
 <h2 id="section-polygon_ratio_problem-part-4-vector-analysis">Part 4. Vector analysis</h2><p>Once one length is fixed, the trapezoid configuration has a single degree of freedom: the angle $\alpha$. In the broader ellipse construction, a second parameter $\theta$ (the tangent point/slope) appears, and the same ratio follows from the reflection property. The special case $\theta=45^\circ$ is exactly the original problem; that is why so many proofs exist, and why each auxiliary line exposes the same invariant ratio in a different way. Part 3 frees the $\theta$ dimension while keeping the reflection property, and that is what ultimately shows the simplicity behind the original picture.</p>
-<p>In this Part of the note, we will focusing on using some other mathematical tools useful in geometry to solve our proof. The problem to proof is almost trivial: DH:DB = EH:EB, given light BE reflects to the EH direction by mirror DE. Part 3 has explained extensively of the solutions. But it is still good to show some of the power of such tools.</p>
+<p>In this part of the note, we focus on other mathematical tools that are useful in geometry. The target ratio is almost trivial here: $DH:DB = EH:EB$, given that the ray $BE$ reflects across the mirror $DE$ and reaches $H$. Part 3 already explained the reflection viewpoint, but it is still instructive to see how these tools express the same invariant.</p>
 <p>Since Euclid (~300 BCE), geometry was developed in a synthetic style: one reasons directly with the figure using congruence, similarity, tangency, and auxiliary lines. That is the mindset behind Part 1. A major second language arrived with Descartes (1637): analytic geometry turns geometric constraints into algebra once you choose coordinates, matching the style of Part 2.</p>
 <p>This arc also mirrors the historical split between geometry and algebra in physics and mechanics. Newton, in the <em>Principia</em> [NEWTON-PRINCIPIA], favored coordinate-free arguments because they were the clearest language of rigor in 1687, while modern physics often relies on coordinates for universal computation. Analytic geometry existed by Newton's time, but the algebraic language for differential equations matured later; Newton's methods therefore look Euclidean in flavor, mixing auxiliary lines with limiting arguments. Several later authors also gave elementary, coordinate-free proofs (see [KEPLER-TEACH], including Feynman's famous "lost lecture"). It is good for students to appreciate both techniques.</p>
 <p>Physics naturally blends geometry with differential ideas. Here we keep that discussion light and focus on the geometric tools that sit just below calculus.</p>
@@ -7937,7 +7937,7 @@ Substitute to get $$\boxed{\frac{BD}{HD}=\frac{BE}{EH}},$$ which is equivalent t
 </blockquote>
 <p>I explored several alternative constructions which give various other proofs that I won't detail here since these two are the simplest and representative. For instance, in the original configuration, the condition $EH\perp AB$ immediately yields the dot-product constraint $\overrightarrow{EH}\cdot
 \overrightarrow{AB}=0$. This orthogonality can be used to reduce the degrees of freedom without appealing to any reflection argument. More generally, one can start from essentially any point in the diagram, parameterize the remaining configuration by a small set of length (or scaling) parameters, and then drive the argument to the target length-ratio identity. There are many such routes, and they do not require introducing any auxiliary lines.</p>
-<p>In this 2D Euclidean setting, the geometric-algebra approach does not introduce additional structure compare with the cross product. Both encode the oriented (signed) area of the parallelogram spanned by two vectors. The $\times$ only makes traditional sense in 3D space, resulting in a vector perpendicular to the plane, the $\wedge$ operator gives a bivector that's definited universally for d-D space and the bivector doesn't need to utilize the 3rd dimension. Likewise, the differential-forms formulation is not fundamentally different in this context: a 2-form takes two vectors as input and returns a scalar, and 1-form vector is essentially difine the dot product of any vector with a given vector; so the resulting identities reduce to the same area or determinant computations already used in the cross-product argument. For completeness, Proof 4.3 shows how they are united and replaced in the same proof. Be aware that in the modern math/physics which often utilize dimensionality beyond 3, the dot and cross way become hard, which is way we had to separate time t (another dimension strictly speaking) from the space in order to write the equation as "coordinate free". And that's why you no longer see any use of t in the unified maxell equation using geometric algebra and differential form.</p>
+<p>In this 2D Euclidean setting, the geometric-algebra approach does not introduce additional structure compared with the cross product. Both encode the oriented (signed) area of the parallelogram spanned by two vectors. The $\times$ operator only makes traditional sense in 3D space (it produces a vector perpendicular to the plane), whereas the $\wedge$ operator gives a bivector that is defined in any dimension. Likewise, the differential-forms formulation is not fundamentally different here: a 2-form takes two vectors as input and returns a scalar, and a 1-form is essentially a linear functional (often represented by a dot product with a fixed vector). The identities therefore reduce to the same area or determinant computations already used in the cross-product argument. For completeness, Proof 4.3 shows how they are unified in one proof. In modern math/physics, where the dimensionality is often beyond 3, the dot/cross picture becomes awkward, which is why spacetime formulations separate time from space and why geometric algebra and differential forms are preferred. That is also why the unified Maxwell equations are usually written without an explicit time coordinate.</p>
 <h3 id="section-polygon_ratio_problem-proof-4-3-unified-simple-solution-area-language-cross-wedge-2-form-1-form">Proof 4.3: Unified simple solution (area language: cross = wedge = 2-form = 1-form)</h3><blockquote>
 <p>Let $DE$ be the tangent at $E$ and let $\mathbf{t}=\overrightarrow{ED}\ne 0$.
 For any vector $\mathbf{u}$ based at $E$ (here $\overrightarrow{EB},\overrightarrow{EH},\overrightarrow{DB},\overrightarrow{DH}$), the area with the tangent is the same in all languages:
@@ -7953,9 +7953,9 @@ $$A(\overrightarrow{EH})=A(\overrightarrow{DH}),\qquad A(\overrightarrow{EB})=A(
 Hence
 $$\frac{A(\overrightarrow{DH})}{EH}=\frac{A(\overrightarrow{DB})}{EB}.$$</p>
 <p>Because $B,D,H$ are collinear, $A(\overrightarrow{DB})/A(\overrightarrow{DH})=BD/HD$, so
-$$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.</p>
+$$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.$$</p>
 </blockquote>
-<p>By now I hope this part of the note have conveyed an appreciation for coordinate-free methods in our mathematical toolbox. I also hope it gives a preview of what modern physics use to solve geometry problems that are more than 3-dimensional, admittedly in a weak sense.</p>
+<p>By now I hope this part of the note has conveyed an appreciation for coordinate-free methods in our mathematical toolbox. I also hope it gives a preview of what modern physics use to solve geometry problems that are more than 3-dimensional, admittedly in a weak sense.</p>
 </div>
 </div>
 </div>
@@ -7966,10 +7966,10 @@ $$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>So far in this part we discussed the simple case of how the reflection property implies the ratio equality.
+<p>So far in this part we have discussed the simple case of how the reflection property implies the ratio equality.
 Below we show why the original problem in Part 1 gives the reflection property of $EF$ and $BE$, using a vector argument.</p>
 <h3 id="section-polygon_ratio_problem-proof-4-4-vector-analysis-ef-is-the-reflection-of-be-across-cd-in-figure-3">Proof 4.4 Vector analysis: $EF$ is the reflection of $BE$ across $CD$ in Figure 3</h3><blockquote>
-<p>Let $\mathbf{u}=\overrightarrow{CB}$ and $\mathbf{d}=\overrightarrow{CD}$. Then $\mathbf{u}\perp\mathbf{d}$ and $\lVert\mathbf{u}\rVert=\lVert\mathbf{d}\rVert$.<br>
+<p>Let $\mathbf{u}=\overrightarrow{CB}$ and $\mathbf{d}=\overrightarrow{CD}$. Then $\mathbf{u}\perp\mathbf{d}$ and $\lVert\mathbf{u}\rVert=\lVert\mathbf{d}\rVert$.
 Fix the unit normal $\mathbf{w}=\dfrac{\mathbf{u}\times\mathbf{d}}{\lVert\mathbf{u}\times\mathbf{d}\rVert}$.
 Since $AD\parallel CB$, $E\in CD$, and $DE=AD$, there exists a scalar $k$ such that
 $$\overrightarrow{AB}=-\mathbf{d}+(1-k)\mathbf{u},\qquad \overrightarrow{BE}=-(k-1)\mathbf{d}-\mathbf{u}.  $$
@@ -7989,7 +7989,7 @@ Finally, $\lVert\overrightarrow{AB}\times\mathbf{w}\rVert=\lVert\overrightarrow{
 $$\lVert\overrightarrow{AB}\rVert^2=\lVert\mathbf{d}\rVert^2+(k-1)^2\lVert\mathbf{u}\rVert^2=(k-1)^2\lVert\mathbf{d}\rVert^2+\lVert\mathbf{u}\rVert^2=\lVert\overrightarrow{BE}\rVert^2, $$
 so $\lVert\overrightarrow{AB}\rVert=\lVert\overrightarrow{BE}\rVert$. Therefore the normalized cross magnitudes match, and the reflection condition holds:
 $$\frac{\lVert\overrightarrow{BE}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
-So $BE$ reflects across $CD$ into $EF$.</br></p>
+So $BE$ reflects across $CD$ into $EF$.</p>
 </blockquote>
 </div>
 </div>
@@ -8001,7 +8001,7 @@ So $BE$ reflects across $CD$ into $EF$.</br></p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We used Lagrange’s formula (the vector triple product identity) in the proof above. There are many known proofs,some classic ones pure algebraic, but this one that I came up is purely geometric and makes the identity feel almost unavoidable. I haven’t seen this particular “Thales-circle + chord” intuition presented in such a compact form else where, so it seems worth sharing though it can hardly be original given this is elementary. In a sense, it brings the argument back to a Euclid-style picture: analysis and geometry are not rivals, but two languages for the same structure, constantly translating into each other.</p>
+<p>We used Lagrange’s formula (the vector triple product identity) in the proof above. There are many known proofs, some classic and purely algebraic, but this one that I came up with is purely geometric and makes the identity feel almost unavoidable. I haven’t seen this particular “Thales-circle + chord” intuition presented in such a compact form elsewhere, so it seems worth sharing though it can hardly be original, given that this is elementary. In a sense, it brings the argument back to a Euclid-style picture: analysis and geometry are not rivals, but two languages for the same structure, constantly translating into each other.</p>
 <h3 id="section-polygon_ratio_problem-proof-of-lagrange-s-formula-based-on-only-geometric-properties">Proof of Lagrange's formula based on only geometric properties</h3><blockquote>
 <p>Let $O$ be the origin and $\overrightarrow{OU}=\mathbf{u}$, $\overrightarrow{OV}=\mathbf{v}$, $\overrightarrow{OW}=\mathbf{w}$.
 Write $\mathbf{w}=\mathbf{w}_{\parallel}+\mathbf{w}_{\perp}$ relative to the plane $(OU,OV)$. Then $(\mathbf{u}\times\mathbf{v})\times\mathbf{w}_{\perp}=0$ (since $\mathbf{u}\times\mathbf{v}\parallel\mathbf{w}_{\perp}$) and $\mathbf{u}\cdot\mathbf{w}_{\perp}=\mathbf{v}\cdot\mathbf{w}_{\perp}=0$, so it suffices to assume $U,V,W$ are coplanar.
@@ -8018,7 +8018,7 @@ Since $\triangle OAB\cong\triangle OA'B'$, we have $AB=A'B'$. In the diameter-1 
 $$\lvert(\mathbf{u}\times\mathbf{v})\times\mathbf{w}\rvert=\lvert\mathbf{u}\times\mathbf{v}\rvert\,\lvert\mathbf{w}\rvert=\sin\alpha,$$
 so both sides are the same vector:
 $$ (\mathbf{u}\times\mathbf{v})\times\mathbf{w}=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}. $$
-So basically we used the multilinearity of the dot and cross products (it is enough to prove the identity for coplanar unit vectors). We also used that dot and cross magnitudes correspond to cos and sin of the angle. The rest relies on a circle fact: two chords have the same length if and only if their inscribed angles are equal.</p>
+In short, we used the multilinearity of the dot and cross products (it is enough to prove the identity for coplanar unit vectors). We also used that dot and cross magnitudes correspond to cos and sin of the angle. The rest relies on a circle fact: two chords have the same length if and only if their inscribed angles are equal.</p>
 </blockquote>
 </div>
 </div>
@@ -8036,15 +8036,15 @@ So basically we used the multilinearity of the dot and cross products (it is eno
 </ol>
 <ul>
 <li>AlphaGeometry / AlphaGeometry 2 (research systems that can solve many Olympiad problems)</li>
-<li>Open source software such as Newclid/yuclid by startup company Harmonic</li>
+<li>Open-source software such as Newclid/Yuclid by the startup company Harmonic</li>
 </ul>
 <ol start="2">
 <li>Geometry theorem provers (strong automation, not always Olympiad-style proofs)</li>
 </ol>
 <ul>
-<li>GCLC / WinGCLC (area method, Wu's method, Grobner bases)</li>
-<li>JGEX and Sympy (Wu/Grobner/full-angle methods with visualization)</li>
-<li>OpenGeoProver (Wu/Grobner style)</li>
+<li>GCLC / WinGCLC (area method, Wu's method, Gr?bner bases)</li>
+<li>JGEX and SymPy (Wu/Grobner/full-angle methods with visualization)</li>
+<li>OpenGeoProver (Wu/Gr?bner style)</li>
 <li>GeoLogic (interactive Euclidean prover)</li>
 </ul>
 <ol start="3">
@@ -8094,27 +8094,15 @@ So basically we used the multilinearity of the dot and cross products (it is eno
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <div class="page-break"></div>
 <div class="back-to-toc"><a href="#toc">Back to TOC</a></div>
-<h2 id="section-pysym_polygon_ratio_Wu_and_Groebner-part-5-groebner-gr-bner-basis-and-wu-method-polynomial-elimination-methods">Part 5: Groebner(Gröbner) basis and Wu Method: polynomial elimination methods</h2><p>So far, in Parts 1–4, we’ve followed a mostly pure-math storyline: from Euclid’s synthetic geometry, through analytic and algebraic viewpoints, all the way to the modern language of vectors, forms, and (eventually) geometric algebra—ideas that were already in very solid shape by the early 20th century. A natural next question is: what happened in roughly the last 50 years for solving Euclidean geometry problems? The surprise is that the “next big step” is not a new axiom system, but a new attitude: turn geometry into an algorithm—a replicable, programmable procedure for symbolic reasoning. In Euclidean geometry this becomes especially concrete: translate points, lines, circles, and incidences into variables, and translate geometric constraints into polynomial equations. Once everything becomes polynomial, a proof turns into a computable elimination problem. In this part we introduce two early but seminal algebraic approaches to automated Euclidean theorem proving: Wu’s method (first) and the Gröbner basis method (second).</p>
-<p>Wu’s method (Wen-Tsün / Wenjun Wu, late 1970s). Wu’s method—often presented through characteristic sets (triangular-style elimination)—was developed by Wen-Tsün Wu in the late 1970s and became one of the first highly successful, systematic methods for mechanical theorem proving in elementary geometry [WU-ORIG] [WU-CHAR]. The key move is explicitly analytic: choose coordinates for “free” points, convert each geometric relation (collinearity, perpendicularity, equal lengths, parallelism, cyclicity, etc.) into polynomial constraints, then eliminate variables in a structured way until the target statement reduces to an algebraic consequence of the hypotheses [WU-CHAR]. Conceptually it’s: geometry → polynomials → elimination, with a procedure that a computer can execute step-by-step.</p>
-<p>Gröbner basis method (Buchberger 1965; geometry automation later). Gröbner bases were introduced by Bruno Buchberger (1965), together with the Buchberger algorithm, giving a general-purpose computational engine for polynomial ideal problems [GB-HIST] [GB-THESIS]. In geometry proving, the translation is almost too clean: encode the hypotheses as an ideal
-𝐼
-I generated by polynomials, encode the desired conclusion as a polynomial
-𝑔
-g, and prove the theorem by checking whether
-𝑔
-∈
-𝐼
-g∈I (or in a saturation/elimination variant to handle degeneracies). Gröbner bases make this membership test algorithmic via systematic reductions and elimination behavior [GB-HIST].</p>
-<p>Same destination, different roads (and “coordinate dependence”). Both methods share the same punchline: a Euclidean proof can be reduced to algebraic elimination, once you choose coordinates and translate relations into polynomials [WU-CHAR] [GB-HIST]. This looks “coordinate-dependent” in execution because we literally pick a coordinate system, but the truth is coordinate-free: any non-degenerate coordinate choice represents the same geometry. Wu emphasized this as a workable philosophy of mechanization—geometry carries enough intrinsic structure that, after coordinatization, proof becomes a deterministic computation [WU-SURVEY]. That’s the deeper shift of the last decades: not just knowing geometry, but compiling geometry into a procedure.So far, in Parts 1–4, we’ve followed a mostly pure-math storyline: from Euclid’s synthetic geometry, through analytic and algebraic viewpoints, all the way to the modern language of vectors, forms, and (eventually) geometric algebra—ideas that were already in very solid shape by the early 20th century. A natural next question is: what happened in roughly the last 50 years for solving Euclidean geometry problems? The surprise is that the “next big step” is not a new axiom system, but a new attitude: turn geometry into an algorithm—a replicable, programmable procedure for symbolic reasoning. In Euclidean geometry this becomes especially concrete: translate points, lines, circles, and incidences into variables, and translate geometric constraints into polynomial equations. Once everything becomes polynomial, a proof turns into a computable elimination problem. In this part we introduce two early but seminal algebraic approaches to automated Euclidean theorem proving: Wu’s method (first) and the Gröbner basis method (second).</p>
-<p>Wu’s method (Wen-Tsün / Wenjun Wu, late 1970s). Wu’s method—often presented through characteristic sets (triangular-style elimination)—was developed by Wen-Tsün Wu in the late 1970s and became one of the first highly successful, systematic methods for mechanical theorem proving in elementary geometry [WU-ORIG] [WU-CHAR]. The key move is explicitly analytic: choose coordinates for “free” points, convert each geometric relation (collinearity, perpendicularity, equal lengths, parallelism, cyclicity, etc.) into polynomial constraints, then eliminate variables in a structured way until the target statement reduces to an algebraic consequence of the hypotheses [WU-CHAR]. Conceptually it’s: geometry → polynomials → elimination, with a procedure that a computer can execute step-by-step.</p>
-<p>Gröbner basis method (Buchberger 1965; geometry automation later). Gröbner bases were introduced by Bruno Buchberger (1965), together with the Buchberger algorithm, giving a general-purpose computational engine for polynomial ideal problems [GB-HIST] [GB-THESIS]. In geometry proving, the translation is almost too clean: encode the hypotheses as an ideal 𝐼 in I generated by polynomials, encode the desired conclusion as a polynomial 𝑔 in g, and prove the theorem by checking whether 𝑔 ∈ 𝐼
-g∈I (or in a saturation/elimination variant to handle degeneracies). Gröbner bases make this membership test algorithmic via systematic reductions and elimination behavior [GB-HIST].</p>
-<p>Same destination, different roads (and “coordinate dependence”). This roughly captures the last 30 years of 20th century's computational contributions to geometric proofs. There are other important development, such as more numerically related--which we will also briefly utilize, for problem verifications. Both methods share the same punchline: a Euclidean proof can be reduced to algebraic elimination, once you choose coordinates and translate relations into polynomials [WU-CHAR] [GB-HIST]. This looks “coordinate-dependent” in execution because we literally pick a coordinate system, but the truth is coordinate-free: any non-degenerate coordinate choice represents the same geometry. Wu emphasized this as a workable philosophy of mechanization—geometry carries enough intrinsic structure that, after coordinatization, proof becomes a deterministic computation [WU-SURVEY]. That’s the deeper shift of the last decades: not just knowing geometry, but compiling geometry into a procedure.</p>
-<p>This rest of this part shows two classic algebraic geometry-prover styles on the same configuration:</p>
+<h2 id="section-pysym_polygon_ratio_Wu_and_Groebner-part-5-groebner-grobner-basis-and-wu-method-polynomial-elimination-methods">Part 5: Groebner (Grobner) basis and Wu Method: polynomial elimination methods</h2><p>So far, in Parts 1-4, we have followed a mostly pure-math storyline: from Euclid's synthetic geometry, through analytic and algebraic viewpoints, all the way to the modern language of vectors, forms, and (eventually) geometric algebra - ideas that were already in very solid shape by the early 20th century. A natural next question is: what happened in roughly the last 50 years for solving Euclidean geometry problems? The next big step is algorithmic: turn geometry into a procedure. Translate points, lines, circles, and incidences into variables, and translate geometric constraints into polynomial equations. Once everything becomes polynomial, a proof turns into a computable elimination problem. In this part we introduce two seminal algebraic approaches to automated Euclidean theorem proving: Wu's method and the Groebner basis method.</p>
+<p>Wu's method (Wen-Tsun / Wenjun Wu, late 1970s). Wu's method - often presented through characteristic sets (triangular-style elimination) - was developed by Wen-Tsun Wu in the late 1970s and became one of the first highly successful, systematic methods for mechanical theorem proving in elementary geometry [WU-ORIG] [WU-CHAR]. The key move is explicitly analytic: choose coordinates for "free" points, convert each geometric relation (collinearity, perpendicularity, equal lengths, parallelism, cyclicity, etc.) into polynomial constraints, then eliminate variables in a structured way until the target statement reduces to an algebraic consequence of the hypotheses [WU-CHAR]. Conceptually it's: geometry -&gt; polynomials -&gt; elimination, with a procedure that a computer can execute step-by-step.</p>
+<p>Groebner basis method (Buchberger 1965; geometry automation later). Groebner bases were introduced by Bruno Buchberger (1965), together with the Buchberger algorithm, giving a general-purpose computational engine for polynomial ideal problems [GB-HIST] [GB-THESIS]. In geometry proving, the translation is clean: encode the hypotheses as an ideal I generated by polynomials, encode the desired conclusion as a polynomial g, and prove the theorem by checking whether g is in I (or in a saturation/elimination variant to handle degeneracies). Groebner bases make this membership test algorithmic via systematic reductions and elimination behavior [GB-HIST].</p>
+<p>Same destination, different roads (and "coordinate dependence"). Both methods share the same punchline: a Euclidean proof can be reduced to algebraic elimination, once you choose coordinates and translate relations into polynomials [WU-CHAR] [GB-HIST]. This looks coordinate-dependent in execution because we literally pick a coordinate system, but the truth is coordinate-free: any non-degenerate coordinate choice represents the same geometry. Wu emphasized this as a workable philosophy of mechanization - geometry carries enough intrinsic structure that, after coordinatization, proof becomes a deterministic computation [WU-SURVEY]. That's the deeper shift of the last decades: not just knowing geometry, but compiling geometry into a procedure.</p>
+<p>The rest of this part shows two classic algebraic geometry-prover styles on the same configuration:</p>
 <ol>
-<li>Gröbner basis method: prove the target polynomial lies in the ideal generated by hypothesis polynomials.</li>
-<li>Wu’s method style (characteristic-set / triangular elimination): eliminate variables using a triangular chain (here it becomes simple linear elimination).</li>
-<li>Wu's method following the algorithm by Wu more religuously to show the difference from 2.</li>
+<li>Groebner basis method: prove the target polynomial lies in the ideal generated by hypothesis polynomials.</li>
+<li>Wu's method style (characteristic-set / triangular elimination): eliminate variables using a triangular chain (here it becomes simple linear elimination).</li>
+<li>Wu's method following the algorithm more faithfully to show the difference from (2).</li>
 </ol>
 <p>We work entirely in polynomials (no square-roots) by proving the squared identity
 $$
@@ -8135,7 +8123,7 @@ which is equivalent to $BE\cdot DH = BD\cdot EH$ for positive lengths.</p>
 <ul>
 <li>SymPy is used here for convenience (symbolic polynomials + Groebner/Wu-style elimination). It is not required in principle.</li>
 <li>Matrices are used only as a compact way to write determinants/dot products; this is a modeling choice, not a requirement of Wu's method.</li>
-<li>In later program the geometry is built with <code>Point</code> objects in sympy instead of matices, to show a more geometric style; both approaches are equivalent.</li>
+<li>In a later program the geometry is built with <code>Point</code> objects in SymPy instead of matrices, to show a more geometric style; both approaches are equivalent.</li>
 </ul>
 </div>
 </div>
@@ -8448,7 +8436,7 @@ $$ h_y = 1-h_x.  $$</li>
 <li>Substitute into $f_2=0$ to solve $h_x$.</li>
 <li>Substitute $(h_x,h_y)$ into $p$. If it becomes 0, the theorem is proved.
 This is exactly the <em>same spirit</em> as Wu: reduce the goal with the chain until remainder is 0.
-See below for the code execution</li>
+See the code below</li>
 </ol>
 </blockquote>
 </div>
@@ -8597,10 +8585,10 @@ difference = 0.0
 <p>This is Wu-flavored code, but it does not implement the full, original Wu characteristic-set algorithm.</p>
 <p>In the real Wu method, you fix a variable order (a precedence like $h_y \succ h_x \succ \cdots$), then build a triangular chain (a characteristic set).</p>
 <p>You do not "randomly solve" for a variable when it looks convenient. You pick eliminations to make the next polynomial's main variable well-behaved and the chain triangular.</p>
-<p>Most importantly: Wu's method avoids fraction of polynomials by using pseudo-division (a.k.a. pseudo-remainder).
+<p>Most importantly: Wu's method avoids fractions by using pseudo-division (a.k.a. pseudo-remainder).
 This guarantees you stay inside the polynomial ring: no denominators ever appear.
-Internally, pseudo-division multiplies by powers of the leading coefficient, so the "portfolio" always contains pure polynomials.</p>
-<p>So we call it "Wu-style" elimination here: same spirit (triangular elimination), but the first version uses solve (which may introduce denominators), while the second version shows the truly programmable "no-denominator" elimination that resembles Wu's mechanics. Below we will show how the problem would be solved had we followed the algo of Wu's method more programmably.</p>
+Internally, pseudo-division multiplies by powers of the leading coefficient, so the working set always contains pure polynomials.</p>
+<p>So we call it "Wu-style" elimination here: same spirit (triangular elimination), but the first version uses solve (which may introduce denominators), while the second version shows the truly programmable "no-denominator" elimination that resembles Wu's mechanics. Below we show how the problem would be solved if we followed Wu's algorithm more faithfully.</p>
 <p>Fully programmable "no-denominator" Wu-like elimination (pseudo-remainder)</p>
 <p>This is the key upgrade: we eliminate variables without ever dividing.</p>
 <p>Core idea (one line)</p>
@@ -8697,8 +8685,8 @@ Goal reduction: Rp2 = prem(prem(p,T1,hy), T2, hx) =
 <h3 id="section-pysym_polygon_ratio_Wu_and_Groebner-references">References</h3><ul>
 <li>[ATP-GEO] Chou, Gao, Zhang (2001). "Machine Proofs in Geometry." Summary: Monograph on automated geometry theorem proving. URL: <a href="http://www.mmrc.iss.ac.cn/~xgao/paper/book-area.pdf">http://www.mmrc.iss.ac.cn/~xgao/paper/book-area.pdf</a></li>
 <li>[CAS-GEN] "Computer algebra systems: Mathematica, Maple." Summary: General-purpose CAS background for symbolic computation. URLs: <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">https://en.wikipedia.org/wiki/Wolfram_Mathematica</a> ; <a href="https://en.wikipedia.org/wiki/Maple_(software">https://en.wikipedia.org/wiki/Maple_(software</a>)</li>
-<li>[GB-HIST] Buchberger (2005). "An Introduction to Groebner Bases." Summary: Historical and conceptual introduction to Gr?bner bases. URL: <a href="https://www3.risc.jku.at/publications/download/risc_3045/2005-07-09-Historic-Intro-to-GB.pdf">https://www3.risc.jku.at/publications/download/risc_3045/2005-07-09-Historic-Intro-to-GB.pdf</a></li>
-<li>[GB-THESIS] Buchberger (1965/2005 translation). "Bruno Buchberger's PhD thesis (Gr?bner bases)." Summary: Original Gr?bner basis algorithm and theory; later English translation with commentary. URL: <a href="https://www.sciencedirect.com/science/article/pii/S0747717105001483">https://www.sciencedirect.com/science/article/pii/S0747717105001483</a></li>
+<li>[GB-HIST] Buchberger (2005). "An Introduction to Groebner Bases." Summary: Historical and conceptual introduction to Grobner bases. URL: <a href="https://www3.risc.jku.at/publications/download/risc_3045/2005-07-09-Historic-Intro-to-GB.pdf">https://www3.risc.jku.at/publications/download/risc_3045/2005-07-09-Historic-Intro-to-GB.pdf</a></li>
+<li>[GB-THESIS] Buchberger (1965/2005 translation). "Bruno Buchberger's PhD thesis (Grobner bases)." Summary: Original Grobner basis algorithm and theory; later English translation with commentary. URL: <a href="https://www.sciencedirect.com/science/article/pii/S0747717105001483">https://www.sciencedirect.com/science/article/pii/S0747717105001483</a></li>
 <li>[WU-CHAR] Wu (late 1970s). "Wu's method of characteristic set." Summary: Overview of characteristic-set elimination developed in the late 1970s. URL: <a href="https://en.wikipedia.org/wiki/Wu%27s_method_of_characteristic_set">https://en.wikipedia.org/wiki/Wu%27s_method_of_characteristic_set</a></li>
 <li>[WU-ORIG] Wu (late 1970s). "Wu's method discovery timeline." Summary: Historical timeline for the development of Wu's method. URL: <a href="http://www.mmrc.iss.ac.cn/~lzhi/Research/wuritt.html">http://www.mmrc.iss.ac.cn/~lzhi/Research/wuritt.html</a></li>
 <li>[WU-SURVEY] Wu et al. (2007). "Mathematics mechanization" survey. Summary: Survey of algebraic methods and mechanization in geometry proving. URL: <a href="http://www.mmrc.iss.ac.cn/~xgao/paper/07-mmsurvey.pdf">http://www.mmrc.iss.ac.cn/~xgao/paper/07-mmsurvey.pdf</a></li>
@@ -8729,16 +8717,16 @@ Goal reduction: Rp2 = prem(prem(p,T1,hy), T2, hx) =
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <div class="page-break"></div>
 <div class="back-to-toc"><a href="#toc">Back to TOC</a></div>
-<h2 id="section-newclid_polygon_ratio-part-6-modern-geometric-prover">Part 6. Modern Geometric Prover</h2><p>Wu’s method and Gröbner-basis proving are “old school algorithmic” in the best sense: once you translate a diagram into polynomial constraints, the prover can grind deterministically and still surprise you with what it manages to derive. That feels creative because the algorithm is not following a human narrative, yet it discovers nontrivial consequences reliably and at scale. The downside is exactly what you observed: these proofs often become long coordinate eliminations that certify truth, but don’t illuminate the geometry. In fact, modern surveys often summarize algebraic methods this way: extremely powerful decision procedures, but the output is typically not a readable, traditional geometry proof—more a yes/no outcome with an algebraic justification. [SURVEY]</p>
-<p>A key idea that matured over the last two decades is to keep the computation, but move the “language of thought” closer to geometry itself. Semi-synthetic methods like the area method and the full-angle method do this by replacing raw coordinates with geometric invariants (directed areas, oriented angles, angle expressions) and carefully designed elimination rules. The area method is explicitly praised for producing proofs that are concise and human-readable while still being automated. [AREA]  The full-angle line of work went further by building rule systems around angle expressions in a way that can be structured hierarchically, which even enables visually dynamic, step-by-step presentations of proofs—much closer to how a person reasons with a diagram. [VDP]</p>
-<p>This “human-facing” direction also pushed geometry provers into interactive and educational software. A milestone was the incorporation and testing of multiple automated geometry provers inside GeoGebra, motivated by the idea that automated deduction had become mature enough to change how people learn and explore geometry. [GGB]  Around the same time, community efforts like OpenGeoProver worked on unifying several proof styles (algebraic, semi-synthetic, synthetic) behind a common tool interface, so the user sees geometry objects while the backend can choose the best proving engine.</p>
-<p>Then the last two years added a new ingredient that directly targets the “magic of auxiliary constructions”: systems that can propose new points/lines/circles in a human-like way. AlphaGeometry (Nature 2024) made this explicit: a neural language model guides a symbolic deduction engine through the huge branching factor of difficult Olympiad problems, and it reaches near gold-medalist performance on a benchmark of 30 problems. [AG1]  DeepMind’s own description highlights the core leap: the model predicts useful new constructs from an effectively infinite space, while the symbolic engine validates the consequences. [AG1-BLOG]  AlphaGeometry2 pushes this further by enriching the language and emphasizing auxiliary constructions even more strongly, and it is built on a more powerful Gemini-based model. [AG2]</p>
+<h2 id="section-newclid_polygon_ratio-part-6-modern-geometric-prover">Part 6. Modern Geometric Prover</h2><p>Wu’s method and Gröbner-basis proving are “old-school algorithmic” in the best sense: once you translate a diagram into polynomial constraints, the prover can grind deterministically and still surprise you with what it manages to derive. That feels creative because the algorithm is not following a human narrative, yet it discovers nontrivial consequences reliably and at scale. The downside is exactly what you observed: these proofs often become long coordinate eliminations that certify truth, but don’t illuminate the geometry. In fact, modern surveys often summarize algebraic methods this way: extremely powerful decision procedures, but the output is typically not a readable, traditional geometry proof—more a yes/no outcome with an algebraic justification. [SURVEY]</p>
+<p>A key idea that matured over the last two decades is to keep the computation, but move the “language of thought” closer to geometry itself. Semi-synthetic methods like the area method and the full-angle method do this by replacing raw coordinates with geometric invariants (directed areas, oriented angles, angle expressions) and carefully designed elimination rules. The area method is explicitly praised for producing proofs that are concise and human-readable while still being automated. [AREA] The full-angle line of work went further by building rule systems around angle expressions in a way that can be structured hierarchically, which even enables visually dynamic, step-by-step presentations of proofs—much closer to how a person reasons with a diagram. [VDP]</p>
+<p>This “human-facing” direction also pushed geometry provers into interactive and educational software. A milestone was the incorporation and testing of multiple automated geometry provers inside GeoGebra, motivated by the idea that automated deduction had become mature enough to change how people learn and explore geometry. [GGB] Around the same time, community efforts like OpenGeoProver worked on unifying several proof styles (algebraic, semi-synthetic, synthetic) behind a common tool interface, so the user sees geometry objects while the backend can choose the best proving engine.</p>
+<p>Then the last two years added a new ingredient that directly targets the “magic of auxiliary constructions”: systems that can propose new points/lines/circles in a human-like way. AlphaGeometry (Nature 2024) made this explicit: a neural language model guides a symbolic deduction engine through the huge branching factor of difficult Olympiad problems, and it reaches near gold-medalist performance on a benchmark of 30 problems. [AG1] DeepMind’s own description highlights the core leap: the model predicts useful new constructs from an effectively infinite space, while the symbolic engine validates the consequences. [AG1-BLOG]  AlphaGeometry2 pushes this further by enriching the language and emphasizing auxiliary constructions even more strongly, and it is built on a more powerful Gemini-based model. [AG2]</p>
 <p>What’s also interesting is that “auxiliary creativity” is no longer owned by neural models alone. HAGeo shows you can get gold-medal level performance by engineering strong heuristic auxiliary construction strategies wrapped around a symbolic deduction engine, running fully on CPUs without neural inference. [HAG]  GenesisGeo attacks the bottleneck from the other side: it open-sources a massive synthetic dataset (including millions of cases with auxiliaries) and accelerates the symbolic engine with C++ components, while also adding a neuro-symbolic prover based on Qwen3-0.6B-Base. [GEN]  These results collectively say something profound: the “human-like” part of geometry solving is largely about proposing the right extra objects, and we now have multiple competing ways to do that—LLMs, heuristics, and hybrid search.</p>
 <p>Newclid is a nice example of how modern systems separate “frontend geometry” from “backend proof.” On the frontend, you describe the construction and goals (JGEX / GeoGebra import); in the backend, a symbolic engine (DDARN) runs deduction and proof search. The important architectural twist is that Newclid exposes an agent interface between them, so the choice of auxiliary construction strategy can be swapped: an LLM agent, a heuristic agent, a BFS-style agent, or even a human-in-the-loop agent. The Newclid paper explicitly frames its CLI as a way to run problems without a Python entry point and even to replace the original LLM with human decisions, while still using the same symbolic core. [NC]</p>
 <p>Formal verification languages (Lean/Coq) matter because they make “correctness” non-negotiable. Once you have systems that generate highly non-obvious auxiliaries, you urgently need a small trusted kernel that can check every step. The area method already had a deep formalization path: Narboux implemented it as a decision procedure inside Coq, explicitly valuing short and readable proofs with machine-checkable elimination lemmas. [COQ-AM]  LeanGeo extends this spirit to competition-level geometry inside Lean 4, aiming for a unified, rigorously verified framework integrated with Mathlib and released with an open-source library and benchmark. [LG]  The big point is: “creative search” can be messy, probabilistic, and exploratory—but the final proof artifact can still be as clean and trustworthy as a textbook, because the checker is unforgiving.</p>
 <p>Another piece of the “human-like” story is not just finding a proof, but presenting it in a way that looks like geometry again. Historically, this emerged as a reaction to coordinate/elimination proofs: Wu/Gröbner methods can certify truth, but the output often reads like algebraic elimination rather than geometric insight. Semi-synthetic provers helped because they operate in higher-level invariants (areas, oriented angles, angle expressions), which naturally map back into short Euclid-style steps that a student can follow. The full-angle method is a representative example: it was designed specifically so the proof object is a sequence of geometric statements that can be displayed and checked step by step, rather than a large polynomial certificate [FA].</p>
 <p>Once the reasoning steps become “geometric sentences,” visualization becomes possible and valuable. A major milestone was the line of work on visually dynamic proof presentation, where the proof is organized hierarchically and the diagram is animated so that objects and relations appear exactly when the text uses them; this turns a proof from a static list of facts into a guided tour that matches human attention [VDP]. In parallel, automated provers began integrating into interactive geometry environments, so proving becomes part of exploration: you construct a figure, conjecture an invariant, and then ask the prover to justify it inside the same visual workspace, often with a human-readable proof trace rather than an opaque “true/false” result [GGB]. This visualization layer matters because it is where “machine correctness” becomes “human understanding.”</p>
-<p>Euclid-Omni fits into this contribution as a unification attempt that pushes the interface boundary outward. Compared to systems like Newclid, which cleanly separate a formal geometry frontend (JGEX/diagram constraints) from a symbolic backend (DDARN proof search) [NC], Euclid-Omni aims to connect more of the pipeline end-to-end: it combines formal symbolic proving with LLM/VLM components so that inputs can be more flexible (including natural language or diagram perception), while outputs can remain structured and human readable as logical steps supported by a formal core [EO]. Conceptually, it tries to make the “frontend” not just a parser for JGEX, but also a translator from human modalities into formal predicates, and then back into a readable proof narrative—bridging the last gap between creative construction and explainable reasoning.</p>
+<p>Euclid-Omni fits into this contribution as a unification attempt that pushes the interface boundary outward. Compared to systems like Newclid, which cleanly separate a formal geometry frontend (JGEX/diagram constraints) from a symbolic backend (DDARN proof search) [NC], Euclid-Omni aims to connect more of the pipeline end-to-end: it combines formal symbolic proving with LLM/VLM components so that inputs can be more flexible (including natural language or diagram perception), while outputs can remain structured and human-readable as logical steps supported by a formal core [EO]. Conceptually, it tries to make the “frontend” not just a parser for JGEX, but also a translator from human modalities into formal predicates, and then back into a readable proof narrative—bridging the last gap between creative construction and explainable reasoning.</p>
 <p>Furthermore, Euclid-Omni explicitly frames “open data” as one of the missing pieces in the current gold-medal pipeline ecosystem, and positions itself as a response. It points out that existing IMO-level systems required massive compute to generate training examples, yet did not release their data-generation pipelines or datasets, which blocks broader reproducibility and extension by the community [EO]. In contrast, EO’s core contribution is not only a symbolic solver (Euclidea), but also a complete configurable data factory that synthesizes symbolic problems, renders diagrams, and produces aligned natural-language versions, thereby yielding large-scale datasets for training LLMs/VLMs; and it explicitly states “we will release the complete framework,” which (by their own definition of the framework) includes the data generation pipeline and the datasets it produces [EO]</p>
 </div>
 </div>
@@ -8750,8 +8738,8 @@ Goal reduction: Rp2 = prem(prem(p,T1,hy), T2, hx) =
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="section-newclid_polygon_ratio-proof-6-1-newclid">Proof 6.1: Newclid</h3><p>Newclid was created based on AlphaGeometry, by a startup company called Harmonic.</p>
-<p>Harmonic built Newclid to make the AlphaGeometry-style approach usable outside a closed research stack: a tool that is easier to run, easier to extend, and easier to integrate into other workflows. The emphasis is on a clean interface between geometry input and the symbolic proof engine, so different construction or search strategies (LLM, heuristics, or human-in-the-loop) can be swapped in without changing the core prover. Newclid use its own DDARN (Deductive Database with Algebraic Reasoning in Newclid) symbolic solver that's derived from the DDAR of AlphaGeometry. In Newclid 3 published in later 2025, the model also included an C++ optimized execution engine of DDARN that is called Yuclid.</p>
+<h3 id="section-newclid_polygon_ratio-proof-6-1-newclid">Proof 6.1: Newclid</h3><p>Newclid was created by the startup company Harmonic, based on AlphaGeometry.</p>
+<p>Harmonic built Newclid to make the AlphaGeometry-style approach usable outside a closed research stack: a tool that is easier to run, easier to extend, and easier to integrate into other workflows. The emphasis is on a clean interface between geometry input and the symbolic proof engine, so different construction or search strategies (LLM, heuristics, or human-in-the-loop) can be swapped in without changing the core prover. Newclid uses its own DDARN (Deductive Database with Algebraic Reasoning in Newclid) symbolic solver derived from the DDAR used in AlphaGeometry. In Newclid 3, published in late 2025, the system also included a C++-optimized execution engine of DDARN called Yuclid.</p>
 </div>
 </div>
 </div>
@@ -8883,11 +8871,9 @@ Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<blockquote>
 <div align="center">
-<em>Figure 2: Proof dependency graph for the out run (dependency_graph.html). While the html version is interactive; the pdf version of this plot is static and miss the hover ability to show the details of the dependencies</em>
+<em>Figure 2: Proof dependency graph for the out run (dependency_graph.html). While the HTML version is interactive, the PDF version of this plot is static and misses the hover tooltips that show dependency details.</em>
 </div>
-</blockquote>
 </div>
 </div>
 </div>
@@ -8898,7 +8884,7 @@ Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Summarize the solution from out/proof.text in human readable steps using ChatGPT:</p>
+<p>Summarize the solution from out/proof.text in human-readable steps using ChatGPT:</p>
 </div>
 </div>
 </div>
@@ -8920,7 +8906,7 @@ $$
 =\frac{AD\cdot DF/AF}{AE\cdot FG/AF}
 =\frac{AD\cdot DF}{AE\cdot FG}
 =\frac{AD\cdot DF/EF}{AE\cdot FG/EF}
-=\frac{DH}{EH},
+=\frac{DH}{EH}
 $$
 so $BE\cdot DH=BD\cdot EH$.</p>
 </blockquote>
@@ -8934,8 +8920,8 @@ so $BE\cdot DH=BD\cdot EH$.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This proof has 65 steps in its proof.text which is about 500 lines. ChatGPT summarized it well, from it we see this doesn't require auxiliary lines other than some trivial connecting existing points. It is also more complex than some of the other methods listed in part 1. In this sense, this method is innovative and reveals a few other similarities of triangles that are not too obvious.</p>
-<h3 id="section-newclid_polygon_ratio-6-2-auxiliary-lines">6.2 auxiliary lines</h3><p>Newclid supports multiple ways of adding auxiliary lines. In the following session we will explore it. First we need to have the G point defined, without that line, even though it is apparently irrelevant, the solver would fail with error message "ProofBuildError: Goal eqratio B D B E D H E H is numerically false.". This shows the solver first makes sure numerically a generated case can verify the goal. The reason this fails without G is because A and B can sit on the opposite side of CD now. In that case though, EA//BD so they would never intersect. This is why by defining G we eliminated an unexpected case defined by JGEX language. Such trap can be subtle. The GeoGebra's plot support would help with such constraints.</p>
+<p>This proof has 65 steps in its proof.text, about 500 lines. ChatGPT summarized it well, and from it we see this does not require auxiliary lines beyond a few trivial connectors between existing points. It is also more complex than some of the other methods listed in Part 1. In this sense, this method is innovative and reveals a few other similarities of triangles that are not too obvious.</p>
+<h3 id="section-newclid_polygon_ratio-6-2-auxiliary-lines">6.2 Auxiliary lines</h3><p>Newclid supports multiple ways of adding auxiliary lines. In the following section we explore it. First we need to have point G defined. Without that line, even though it appears irrelevant, the solver fails with the error message "ProofBuildError: Goal eqratio B D B E D H E H is numerically false.". This shows the solver first checks that a generated numeric case satisfies the goal. The reason this fails without G is because A and B can sit on the opposite side of CD now. In that case though, EA//BD so they would never intersect. Defining G eliminates an unexpected case allowed by the JGEX description. Such trap can be subtle. GeoGebra's plot support would help expose such constraints.</p>
 </div>
 </div>
 </div>
@@ -9019,7 +9005,7 @@ Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits
 <div align="center">
 <img alt="Newclid proof figure" src="newclid_methods/out1/proof_figure.svg" width="100%"/>
 <br/>
-<em>Figure 3: Proof figure generated by Newclid for Proof 6.2 (proof_figure.svg); note the auxiliary point D1 is added compare with Figure 1.</em>
+<em>Figure 3: Proof figure generated by Newclid for Proof 6.2 (proof_figure.svg); note the auxiliary point D1 is added compared with Figure 1.</em>
 </div>
 </div>
 </div>
@@ -9059,7 +9045,7 @@ Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <div align="center">
-<em>Figure 4: Proof dependency graph for the out1 run (dependency_graph.html); this is noticeably simpler than the previous Figure 2 which shows the help point D1 has simplified the proof that's also evidential in the proof summary by ChatGPT below. Again the pdf version of this note loses the interactive functionality of the plots which reveals the meaning of each note.</em>
+<em>Figure 4: Proof dependency graph for the out1 run (dependency_graph.html); this is noticeably simpler than Figure 2, and the auxiliary point D1 clearly simplifies the proof, which is also evident in the ChatGPT summary below. Again, the PDF version of this note loses the interactive functionality of the plots, which hides the meaning of each node.</em>
 </div>
 </div>
 </div>
@@ -9071,7 +9057,7 @@ Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Proof 6.2 can be summarized based on out1/proof.txt by ChatGPT, we see it becomes significantly simpler than the previous proof</p>
+<p>Proof 6.2 can be summarized from out1/proof.txt by ChatGPT; it becomes significantly simpler than the previous proof.</p>
 </div>
 </div>
 </div>
@@ -9086,9 +9072,9 @@ Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits
 <p>Introduce $D_1$ on the extension of $DC$ such that $CD_1=CD$. Then $C$ is the midpoint of $DD_1$, and since $BC \perp DC$ we also have $BC \perp DD_1$. Hence $BC$ is the perpendicular bisector of $DD_1$, so $BD=BD_1$.
 Newclid then proves two similarities: $\triangle BCG \sim \triangle D_1BE$ and $\triangle BCG \sim \triangle DHE$. From the first, $BD_1:BE=BC:CG$; from the second, $DH:EH=BC:CG$. Therefore $BD_1:BE=DH:EH$, and using $BD_1=BD$ gives $BD:BE=DH:EH$, as desired.</p>
 </blockquote>
-<p>Moreover, beyond Newclid's ratio-chasing, the logic can be shortened: we can show that $\triangle D_1BE \sim \triangle DHE$. That directly yields $BD_1:BE=DH:EH$, and then $BD_1=BD$ finishes the proof in one line. This shortened version is exactly what our proof 1 in part 1 did. So Newclid isn't necessarily putting great efforts to simplify the solution; instead it aims to grow the algebraic reasoning tree till it reach the desired conclusion.</p>
+<p>Moreover, beyond Newclid's ratio-chasing, the logic can be shortened: we can show that $\triangle D_1BE \sim \triangle DHE$. That directly yields $BD_1:BE=DH:EH$, and then $BD_1=BD$ finishes the proof in one line. This shortened version is exactly what our proof 1 in part 1 did. So Newclid isn't necessarily putting great efforts to simplify the solution; instead it aims to grow the algebraic reasoning tree until it reaches the desired conclusion.</p>
 <p>Newclid has a few built-in point-generation heuristics (see <a href="https://github.com/Newclid/Newclid/blob/main/notebooks/heuristics_implementation.ipynb">https://github.com/Newclid/Newclid/blob/main/notebooks/heuristics_implementation.ipynb</a>). They are a systematic way to propose auxiliary constructions, which is overkill for this small problem, but the exercise of recreating Proof 1 still shows how the tool can help explore plane-geometry ideas. AlphaGeometry2 pushed this further by using LLM-guided proposals for new points, adding another layer of automation to the construction step.</p>
-<p>As we have demonstrated on summarizing the complicated proof.text with hundreds of lines into a human readable proof, a separate, complementary trend is using LLMs to translate formal or symbolic proofs into human-readable narratives. That translation layer matters for the human-machine interface; it helps students and researchers see the structure of an argument without wading through raw derivations. For more information, read the Euclid-omni paper [EO].</p>
+<p>As we have demonstrated on summarizing the complicated proof.text with hundreds of lines into a human-readable proof, a separate, complementary trend is using LLMs to translate formal or symbolic proofs into human-readable narratives. That translation layer matters for the human-machine interface; it helps students and researchers see the structure of an argument without wading through raw derivations. For more information, read the Euclid-Omni paper [EO].</p>
 <p>Taken together with the previous parts of the note, these developments show how human insight and machine assistance are reshaping plane geometry: from the cleverness of mathematicians to machines that can search, verify, and suggest constructions, while humans interpret, teach, and guide the narrative. Similar shifts are happening across mathematics and science, which makes this a particularly exciting time for human researchers.</p>
 </div>
 </div>
@@ -9155,18 +9141,18 @@ Newclid then proves two similarities: $\triangle BCG \sim \triangle D_1BE$ and $
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Harmonic (the company behind Newclid) also has a Lean-based prover called Aristotle that's their closed source flagship product. The company provides a web interface and API at <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a> that anyone can register and try (caveat it is very slow with long queue for job requests). This note uses our small, friendly geometry problem to demonstrate the workflow, while the same system is aimed at harder, cutting-edge problems across mathematics (geometry, number theory, analysis, and more) [ARISTOTLE].</p>
-<p><strong>How Aristotle differs from Newclid (short version).</strong> Newclid is a geometry-first system: you give a diagram-style construction and goals, and its symbolic engine tries to derive a synthetic proof inside that geometry domain. Aristotle is a general Lean prover: it formalizes statements in Lean and then proves them with Lean tactics, so its output is a formal Lean proof rather than a geometry-specific trace. For geometry problems, Aristotle's geometric solver can still use geometric reasoning (which appeared to be Newclid like), but in this demo it chooses a coordinate model, which looks closer to the analytic approach in Part 2. This is why the artifacts here feel more Lean/coordinate-heavy than Newclid's geometric narrative.</p>
-<p>Harmonic reports that Aristotle achieved gold medal-level performance on the 2025 International Mathematical Olympiad (IMO) solving 5 out of 6 problems, with formally verified solutions[HN-IMO][BW-IMO]. In the problem solved, problem 2 is about pure plane geometry [IMO2025P2]. It is vague if the solution adopted used Newclid approach, which Aristotle paper hinted that a separate solver is indeed used for geometry problems, following by the paper describing Newclid a month later. The proof also appears to be a geometry deduction instead of the Lean language.</p>
-<p>In general those IMO announcements are a useful backdrop for this demo: we stay with our simple trapezoid ratio to show how aristotle solve such simple problems in geometry, but the tooling is designed for much harder proofs in various domain beyond geometry. Without the full knowledge on how Aristotle's geometric engine differs from the open sourced Newclid, we will focus on how the solution to our simple polygon problem differ between the two to give an observation in this part of the notes. In general the aforementioned white papers propose that Aristotle trained a LLM with reinforcement learning to handle highly parallel Monte Carlo Graph Search over Lean proof states, with policy/value network to pick tree nodes and estimate promise. This differs from the Newclid default BSF tree search, which is enhanced by auxiliary point helper when the search logic stuck. This part of the design is beyond the scope of the current discussion. For our simple problem Aristotle indeed gives a distinct solution repying on Lean.</p>
-<p>Aristotle has been aimed and used beyond contest problems. In late 2025, it produced a Lean proof of a simplified variant of Erdos Problem 124. Chinese coverage highlighted that the system completed a variant autonomously in about six hours, while other reports noted that the solved statement was easier than the original conjecture [E124-6H]. Nonetheless this shows its early impact to the math community.</p>
-<p>A few days later, Harmonic's tool was credited for helping resolve Erdos Problem 1026. A December 14, 2025 write-up described how the AI tool proved a key step $c(k^2)=1/k$ in Lean as part of the eventual solution [E1026-48H]. Harmonic's own news page claims that since Aristotle's public launch in late 2025, mathematicians have used it to formalize proofs across levels and that the company sees this as a new era of discovery. [HN-MSI]</p>
-<p>For broader context on Erdos problems, the community-maintained erdosproblems GitHub database tracks problem status, prizes, formalizations, and links to related resources. It is essentially a living index of the current state of the problem list and related metadata, with an auto-generated table based on the repository's data files [ERDOS-SOTA]. Top mathematician Prof. Torrence Tao has been pioneering this efforts and other promotion of using AI for math research. The accompanying wiki page on AI contributions is more careful and nuanced: it catalogs where AI tools have been used, but also stresses that this is not a benchmark or leaderboard, that literature review can be incomplete, and that assessments are provisional and context-dependent. The page is best read as a reference for tracing claims and understanding the role AI has actually played [ERDOS-AI].</p>
+<p>Harmonic (the company behind Newclid) also has a Lean-based prover called Aristotle that is its closed-source flagship product. The company provides a web interface and API at <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a> that anyone can register and try (caveat: it can be slow and the job queue can be long). This note uses our small, friendly geometry problem to demonstrate the workflow, while the same system is aimed at harder, cutting-edge problems across mathematics (geometry, number theory, analysis, and more) [ARISTOTLE].</p>
+<p><strong>How Aristotle differs from Newclid (short version).</strong> Newclid is a geometry-first system: you give a diagram-style construction and goals, and its symbolic engine tries to derive a synthetic proof inside that geometry domain. Aristotle is a general Lean prover: it formalizes statements in Lean and then proves them with Lean tactics, so its output is a formal Lean proof rather than a geometry-specific trace. For geometry problems, Aristotle's geometric solver can still use geometric reasoning (which can look Newclid-like), but in this demo it chooses a coordinate model, which looks closer to the analytic approach in Part 2. This is why the artifacts here feel more Lean/coordinate-heavy than Newclid's geometric narrative.</p>
+<p>Harmonic reports that Aristotle achieved gold medal-level performance on the 2025 International Mathematical Olympiad (IMO), solving 5 of 6 problems with formally verified solutions [HN-IMO][BW-IMO]. Problem 2 is about pure plane geometry [IMO2025P2]. It is unclear whether the published solution used Newclid-style geometric deduction; the Aristotle paper hints that a separate geometry solver is used, and a Newclid paper appeared shortly afterward. The proof also appears to be a geometric deduction rather than a Lean script.</p>
+<p>These IMO announcements are a useful backdrop for this demo: we stay with our simple trapezoid ratio to show how Aristotle solves an elementary geometry problem, but the tooling is designed for much harder proofs in domains beyond geometry. Without full information on how Aristotle's geometry engine differs from the open-source Newclid, we focus on how the solutions differ in our small case. The white papers suggest that Aristotle trains an LLM with reinforcement learning to handle highly parallel Monte Carlo graph search over Lean proof states, using policy/value networks to choose nodes and estimate promise. This differs from Newclid's default BFS tree search, which is enhanced by auxiliary-point heuristics when the search gets stuck. That design discussion is beyond the scope of this note. For our simple problem, Aristotle indeed gives a distinct solution relying on Lean.</p>
+<p>Aristotle has been used beyond contest problems. In late 2025, it produced a Lean proof of a simplified variant of Erdos Problem 124. Chinese coverage highlighted that the system completed a variant autonomously in about six hours, while other reports noted that the solved statement was easier than the original conjecture [E124-6H]. Nonetheless, this shows its early impact on the math community.</p>
+<p>A few days later, Harmonic's tool was credited for helping resolve Erdos Problem 1026. A December 14, 2025 write-up described how the AI tool proved a key step $c(k^2)=1/k$ in Lean as part of the eventual solution [E1026-48H]. Harmonic's own news page claims that since Aristotle's public launch in late 2025, mathematicians have used it to formalize proofs across levels and that the company sees this as a new era of discovery [HN-MSI].</p>
+<p>For broader context on Erdos problems, the community-maintained erdosproblems GitHub database tracks problem status, prizes, formalizations, and links to related resources. It is essentially a living index of the current state of the problem list and related metadata, with an auto-generated table based on the repository's data files [ERDOS-SOTA]. Top mathematician Prof. Terence Tao has been pioneering this effort and promoting the use of AI for math research. The accompanying wiki page on AI contributions is more careful and nuanced: it catalogs where AI tools have been used, but also stresses that this is not a benchmark or leaderboard, that literature review can be incomplete, and that assessments are provisional and context-dependent. The page is best read as a reference for tracing claims and understanding the role AI has actually played [ERDOS-AI].</p>
 <div align="center">
 <img alt="Aristotle prompt interface" src="aristotle/aristotle_prompt1.png" style="height:320px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 7.1: Aristotle's prompt interface. It accepts formal Lean input as well as informal text or file uploads.</em></p>
 </div>
-As Figure 7.1 shows, the command line application of Aristotle can offer an interactive proof interface (see Appendix 7A for more discussion). Also they offer an API interface in python which is used in the code below to solve our polygon problem, including both questions. Note that the problem text is written in informal plain English, which is accepted by their API as well as the prompt, aside from the alternative lean input format. Under the hood the model clearly utilize strong LLM for understanding such descriptions. In fact the team has described its solver architecture as a pretrained LLM further trained with reinforcement learning for reasoning [ARISTOTLE].
+As Figure 7.1 shows, the command-line application of Aristotle can offer an interactive proof interface (see Appendix 7A for more discussion). They also offer a Python API, which is used in the code below to solve our polygon problem, including both questions. Note that the problem text is written in informal plain English, which is accepted by their API as well as the prompt, aside from the alternative Lean input format. Under the hood the model clearly utilizes a strong LLM for understanding such descriptions. In fact, the team has described its solver architecture as a pretrained LLM further trained with reinforcement learning for reasoning [ARISTOTLE].
 
 <hr/>
 </div>
@@ -9255,7 +9241,7 @@ As Figure 7.1 shows, the command line application of Aristotle can offer an inte
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="section-aristotle_polygon_ratio-lean-quick-intro">Lean quick intro</h3><p>Lean is an interactive theorem prover: humans (or automated tactics) provide the proof steps, and Lean checks every step for correctness. In typical use, the proof is supplied by the user via tactics or proof terms, though automation can discharge many routine goals.</p>
-<p>Before Lean became popular, prominent proof assistants and formal verification systems included Coq, Isabelle/HOL, HOL Light, ACL2, and Mizar.  Lean was created at Microsoft Research by Leonardo de Moura and collaborators. It began as a general-purpose theorem prover for formal verification and mathematics, and later grew a large community library (mathlib). Rough timeline (high-level): early 2010s initial Lean releases; mid2010s Lean 3 matured and became the main community platform; early 2020s Lean 4 modernized the system and tooling.</p>
+<p>Before Lean became popular, prominent proof assistants and formal verification systems included Coq, Isabelle/HOL, HOL Light, ACL2, and Mizar.  Lean was created at Microsoft Research by Leonardo de Moura and collaborators. It began as a general-purpose theorem prover for formal verification and mathematics, and later grew a large community library (mathlib). Rough timeline (high-level): early 2010s initial Lean releases; mid-2010s Lean 3 matured and became the main community platform; in the early 2020s Lean 4 modernized the system and tooling.</p>
 <p>In recent years, researchers and tool builders have started using Lean not just for verification but also for <em>assisting</em> proof discovery: automated tactics, proof search, and AI-guided systems propose steps that Lean then verifies. This notebook uses Aristotle to generate a Lean proof automatically, while Lean itself remains the verifier. [LEAN]</p>
 </div>
 </div>
@@ -9270,7 +9256,7 @@ As Figure 7.1 shows, the command line application of Aristotle can offer an inte
 <h3 id="section-aristotle_polygon_ratio-proof-7-1-aristotle-lean-files-reading-guide">Proof 7.1 Aristotle (Lean files + reading guide)</h3><blockquote>
 <h4 id="section-aristotle_polygon_ratio-human-readable-summary-abstracted-based-on-lean">Human-readable summary (abstracted based on Lean)</h4><p>Aristotle proves the ratio identities by coordinatizing the trapezoid in the complex plane. It sets
 $C=(0,0)$, $B=(a,0)$, $D=(0,a)$, $A=(x,a)$, and $E=(0,a-x)$,
-so the geometric constraints are encoded directly. The auxiliary points $F,G,H$ are then defined algebraically (projection and intersections). The two target identities are reduced to equalities of squared distances, denominators are cleared, and the resulting expressions are simplified by algebraic tactics. In short: the geometry is converted to algebra, and Lean verifies the algebraic identities. This translation indicated the step of converting the informal input description to a format one saving some work from the human.</p>
+so the geometric constraints are encoded directly. The auxiliary points $F,G,H$ are then defined algebraically (projection and intersections). The two target identities are reduced to equalities of squared distances, denominators are cleared, and the resulting expressions are simplified by algebraic tactics. In short: the geometry is converted to algebra, and Lean verifies the algebraic identities. This highlights the step of converting the informal input description into a formal format, saving some work for the human.</p>
 <h4 id="section-aristotle_polygon_ratio-human-readable-analytical-proof-abstracted-based-on-lean">Human-readable analytical proof (abstracted based on Lean)</h4><ol>
 <li><p><strong>Coordinate model.</strong> Set $C=(0,0)$, $B=(a,0)$, $D=(0,a)$, $A=(x,a)$, $E=(0,a-x)$. This makes $AD\parallel BC$, $\angle C=90^\circ$, $BC=CD$, and $DE=AD$ automatic.</p>
 </li>
@@ -9443,13 +9429,13 @@ Thus $BE^2\,DH^2=BD^2\,EH^2$, implying $BE\cdot DH=BD\cdot EH$.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d66f70c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08146170">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>All in all tools like lean MathLib (lean language and thereom database) + Aristotle (LLM with RL training in lean) + ChatGPT 5.2 Pro (and its competitor frontier LLM) have become the most cutting edge AI tools for mathematicians, which has revealed a frontier of realization of mathematical AGI.</p>
+<p>All in all, tools like Lean + mathlib (Lean language and theorem database), Aristotle (an LLM trained with RL for Lean), and ChatGPT 5.2 Pro (and other frontier LLMs) are among the most advanced AI tools available for mathematicians. Together they point toward a frontier of machine-assisted mathematical discovery.</p>
 </div>
 </div>
 </div>
@@ -9482,8 +9468,7 @@ Thus $BE^2\,DH^2=BD^2\,EH^2$, implying $BE\cdot DH=BD\cdot EH$.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="section-aristotle_polygon_ratio-appendix-7a-angle-bisector-theorem-session-by-session-read-of-angle_bisector_problem-lean">Appendix 7A: Angle Bisector Theorem (session-by-session read of <code>angle_bisector_problem.lean</code>)</h3><p>The input statement shown in Figure 7.1 contains a small typo. Aristotle's run hit a wall and then suggested the corrected objective, which makes this a useful mini-case study. This appendix summarizes the Lean output and how to read it.
-Below is a single, smoothly integrated “read-along”: every line of your original Lean file (with line numbers, unchanged content), broken into frequent chunks, with very beginner-friendly commentary—including the deeper explanations of the <code>exact?</code> “holes” (what they’re <em>supposed</em> to fill, and how to discover the lemma names) without modifying the file.</p>
+<h3 id="section-aristotle_polygon_ratio-appendix-7a-angle-bisector-theorem-session-by-session-read-of-angle_bisector_problem-lean">Appendix 7A: Angle Bisector Theorem (session-by-session read of <code>angle_bisector_problem.lean</code>)</h3><p>The input statement shown in Figure 7.1 contains a small typo. Aristotle's run hit a wall and then suggested the corrected objective, which makes this a useful mini-case study. This appendix summarizes the Lean output and how to read it. Below is a single, smoothly integrated “read-along”: every line of your original Lean file (with line numbers, unchanged content), broken into frequent chunks, with very beginner-friendly commentary—including the deeper explanations of the <code>exact?</code> “holes” (what they’re <em>supposed</em> to fill, and how to discover the lemma names) without modifying the file.</p>
 <h4 id="section-aristotle_polygon_ratio-first-what-s-going-on-here-big-picture-zero-background">First: what’s going on here (big picture, zero background)</h4><p>This <code>.lean</code> file is not “code that runs”; it’s a formal proof script. Think of it as:</p>
 <ul>
 <li>Theorem statement = a precise claim (a “type” in Lean).</li>
@@ -9493,18 +9478,16 @@ Below is a single, smoothly integrated “read-along”: every line of your orig
 <ul>
 <li>input: hypotheses (assumptions)</li>
 <li>output: the conclusion</li>
-<li>body: the proof steps</li>
+<li>body: the proof steps
+The original request was: AB/AC = AD/DC. The classical Angle Bisector Theorem is: AB/AC = BD/DC. Notice: the conclusion compares how the angle bisector cuts the opposite side BC (that’s BD and DC). Using AD instead is usually false: AD is a “cevian length” that varies in a more complicated way than the side-splitting ratio.</li>
 </ul>
-<h5 id="The-%E2%80%9Ctypo%E2%80%9D-and-why-a-prover-gets-stuck">The “typo” and why a prover gets stuck<a class="anchor-link" href="#The-%E2%80%9Ctypo%E2%80%9D-and-why-a-prover-gets-stuck">¶</a></h5><p>The original request was: AB/AC = AD/DC. The classical Angle Bisector Theorem is:
-AB/AC = BD/DC
-Notice: the conclusion compares how the angle bisector cuts the opposite side BC (that’s BD and DC). Using AD instead is usually false: AD is a “cevian length” that varies in a more complicated way than the side-splitting ratio.</p>
 <p>A quick “smell test” humans use (and automated systems can also use):</p>
 <ul>
 <li>If the hypothesis only says “D lies on BC and AD bisects angle A”, the most natural ratio to appear is BD/DC (pieces of BC), not AD/DC (a cross-triangle length mixed with a side piece).</li>
 </ul>
-<p>So Aristotle explicitly <em>repairs</em> the statement: AD → BD.</p>
-<h4 id="section-aristotle_polygon_ratio-lean-mathlib-mini-dictionary-for-a-reader-who-knows-nothing">Lean / mathlib mini dictionary (for a reader who knows nothing)</h4><p>When you see:</p>
-<ul>
+<p>So Aristotle explicitly <em>repairs</em> the statement: AD → BD.
+Before we get to the proof itself, it is worth pausing on <em>how</em> Aristotle detected the typo. The original objective said AB/AC = AD/DC, but the standard Angle Bisector Theorem states AB/AC = BD/DC. The model likely recognizes this classical statement: the angle bisector theorem is a memorized fact, so when it sees the hypotheses D lies on BC and AD bisects $\angle A$ it strongly expects the conclusion to involve the two <em>segments on BC</em> (BD and DC), not the cevian length AD. In other words, a language-model prior about the canonical theorem shape guides the correction here. That correction is not a formal proof step; it's a semantic repair that happens <em>before</em> proof search. Once the statement is repaired, Lean can proceed with a formal derivation in the rest of the file. This correct is certainly interesting and showed the deep knowledge of existing theorems in math. Further more it should be pointed out that MathLib contains many theorems, but the angle bisector isn't one of them; so this suggestion wasn't from MathLib database, but an suggestion by the LLM.</p>
+<h4 id="section-aristotle_polygon_ratio-lean-mathlib-mini-dictionary-for-a-reader-who-knows-nothing">Lean / mathlib mini dictionary (for a reader who knows nothing)</h4><ul>
 <li><code>¬ P</code> means “not P”.</li>
 <li><code>∧</code> means “and”.</li>
 <li><code>:= by ...</code> means “here is the proof, written in tactic steps”.</li>
@@ -9521,24 +9504,25 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <li><code>{A, B, C}</code> is a finite set of points.</li>
 <li><code>Collinear ℝ {A, B, C}</code> means “A,B,C are on one line.”</li>
 <li><code>affineSegment ℝ B C</code> = the closed segment from B to C (includes endpoints).</li>
-<li><code>Sbtw ℝ B D C</code> = “D is strictly between B and C” (on the segment, not equal to endpoints).</li>
+<li><code>Sbtw ℝ B D C</code> = “D is strictly between B and C” (on the segment, not equal to endpoints).
+Below let's read-along with the original file</li>
 </ul>
-<h4 id="section-aristotle_polygon_ratio-read-along-with-the-original-file">Read-along with the original file</h4><h5 id="Chunk-1-%E2%80%94-Metadata-+-the-repaired-statement-+-the-proof-plan">Chunk 1 — Metadata + the repaired statement + the proof plan<a class="anchor-link" href="#Chunk-1-%E2%80%94-Metadata-+-the-repaired-statement-+-the-proof-plan">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">001</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="section-aristotle_polygon_ratio-chunk-1-metadata-the-repaired-statement-the-proof-plan">Chunk 1 — Metadata + the repaired statement + the proof plan</h4><div class="highlight"><pre><span></span><span class="mi">001</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">002: This file was generated by Aristotle.</span>
-<span class="cm">003: </span>
+<span class="cm">003:</span>
 <span class="cm">004: Lean version: leanprover/lean4:v4.24.0</span>
 <span class="cm">005: Mathlib version: f897ebcf72cd16f89ab4577d0c826cd14afaafc7</span>
 <span class="cm">006: This project request had uuid: 86e2b544-c6c8-49e3-bca1-e4f015c16ba1</span>
-<span class="cm">007: </span>
+<span class="cm">007:</span>
 <span class="cm">008: To cite Aristotle, tag @Aristotle-Harmonic on GitHub PRs/issues, and add as co-author to commits:</span>
 <span class="cm">009: Co-authored-by: Aristotle (Harmonic) &lt;aristotle-harmonic@harmonic.fun&gt;</span>
 <span class="cm">010: -/</span>
-<span class="mi">011</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">011</span><span class="o">:</span>
 <span class="mi">012</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">013: We prove the Angle Bisector Theorem.</span>
 <span class="cm">014: The user's request "AB/AC=AD/DC" contains a typo (AD should be BD).</span>
 <span class="cm">015: We prove the standard theorem: if AD bisects angle A and D is on BC, then AB/AC = BD/DC.</span>
-<span class="cm">016: </span>
+<span class="cm">016:</span>
 <span class="cm">017: The proof proceeds by:</span>
 <span class="cm">018: 1. Establishing that D lies strictly between B and C (`sbtw_of_angle_bisector_intersect`).</span>
 <span class="cm">019: 2. Showing that sin(∠ADB) = sin(∠ADC) because the angles are supplementary (`sin_angle_eq_sin_angle_of_sbtw`).</span>
@@ -9554,25 +9538,25 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <li>Lines 14–15 are the crucial “typo fix.” This is not cosmetic. If you try to prove the wrong statement in Lean, it’s like trying to compile a program with a false spec: you can grind forever and never succeed because it’s simply not derivable from the hypotheses.</li>
 <li>Lines 17–23 give a human proof outline. That’s already a hint at how these systems work: the agent often chooses a familiar skeleton (Law of Sines) and then Lean forces all the details to be made explicit.</li>
 </ul>
-<h5 id="Chunk-2-%E2%80%94-Importing-mathlib-+-turning-off-proof-timeouts">Chunk 2 — Importing mathlib + turning off proof timeouts<a class="anchor-link" href="#Chunk-2-%E2%80%94-Importing-mathlib-+-turning-off-proof-timeouts">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">025</span><span class="o">:</span><span class="w"> </span>
+<h4 id="section-aristotle_polygon_ratio-chunk-2-importing-mathlib-turning-off-proof-timeouts">Chunk 2 — Importing mathlib + turning off proof timeouts</h4><div class="highlight"><pre><span></span><span class="mi">025</span><span class="o">:</span>
 <span class="mi">026</span><span class="o">:</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">Mathlib</span>
-<span class="mi">027</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">027</span><span class="o">:</span>
 <span class="mi">028</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">linter.mathlibStandardSet</span><span class="w"> </span><span class="n">false</span>
-<span class="mi">029</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">029</span><span class="o">:</span>
 <span class="mi">030</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">BigOperators</span>
 <span class="mi">031</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Real</span>
 <span class="mi">032</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Nat</span>
 <span class="mi">033</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Classical</span>
 <span class="mi">034</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Pointwise</span>
-<span class="mi">035</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">035</span><span class="o">:</span>
 <span class="mi">036</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">maxHeartbeats</span><span class="w"> </span><span class="mi">0</span>
 <span class="mi">037</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">maxRecDepth</span><span class="w"> </span><span class="mi">4000</span>
 <span class="mi">038</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">synthInstance.maxHeartbeats</span><span class="w"> </span><span class="mi">20000</span>
 <span class="mi">039</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">synthInstance.maxSize</span><span class="w"> </span><span class="mi">128</span>
-<span class="mi">040</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">040</span><span class="o">:</span>
 <span class="mi">041</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">relaxedAutoImplicit</span><span class="w"> </span><span class="n">false</span>
 <span class="mi">042</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">autoImplicit</span><span class="w"> </span><span class="n">false</span>
-<span class="mi">043</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">043</span><span class="o">:</span>
 <span class="mi">044</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kn">section</span>
 </pre></div>
 <p>Commentary:</p>
@@ -9581,29 +9565,26 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <li>“Heartbeats” are Lean’s internal fuel to stop runaway automation. Setting them huge (or 0 = unlimited) is common in machine-generated proofs that rely on search.</li>
 <li><code>autoImplicit false</code> forces variables to be declared explicitly. This reduces “mystery implicit variables,” which helps both machines and humans debug.</li>
 </ul>
-<h5 id="Chunk-3-%E2%80%94-Opening-the-geometry-world-+-declaring-the-ambient-space">Chunk 3 — Opening the geometry world + declaring the ambient space<a class="anchor-link" href="#Chunk-3-%E2%80%94-Opening-the-geometry-world-+-declaring-the-ambient-space">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">045</span><span class="o">:</span><span class="w"> </span>
+<h4 id="section-aristotle_polygon_ratio-chunk-3-opening-the-geometry-world-declaring-the-ambient-space">Chunk 3 — Opening the geometry world + declaring the ambient space</h4><div class="highlight"><pre><span></span><span class="mi">045</span><span class="o">:</span>
 <span class="mi">046</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">047: In a non-degenerate triangle ABC, if D is the intersection of the angle bisector of A with the segment BC, then D is strictly between B and C.</span>
 <span class="cm">048: -/</span>
 <span class="mi">049</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">050</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">050</span><span class="o">:</span>
 <span class="mi">051</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">052</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">052</span><span class="o">:</span>
 </pre></div>
 <p>Commentary:</p>
 <ul>
-<li><p><code>open EuclideanGeometry Metric</code> enables names like <code>dist</code>, <code>angle</code>, segment definitions, etc.</p>
-</li>
-<li><p>Line 51 is Lean being extremely general: it’s saying “we are in some Euclidean affine space.”</p>
-<ul>
+<li><code>open EuclideanGeometry Metric</code> enables names like <code>dist</code>, <code>angle</code>, segment definitions, etc.</li>
+<li>Line 51 is Lean being extremely general: it’s saying “we are in some Euclidean affine space.”<ul>
 <li><code>P</code> = points</li>
 <li><code>V</code> = vectors (displacements between points)</li>
 <li>the typeclass brackets <code>[...]</code> are Lean’s way of saying “assume V behaves like a real inner product space, and P is an affine space modeled on V.”</li>
 </ul>
 </li>
 </ul>
-<p>If you’re new: don’t panic. This is just Lean’s “we’re doing Euclidean geometry in full generality.”</p>
-<h5 id="Chunk-4-%E2%80%94-Lemma-1:-from-%E2%80%9CD-lies-on-segment-BC-+-bisector%E2%80%9D-to-%E2%80%9CD-is-strictly-between-B-and-C%E2%80%9D">Chunk 4 — Lemma 1: from “D lies on segment BC + bisector” to “D is strictly between B and C”<a class="anchor-link" href="#Chunk-4-%E2%80%94-Lemma-1:-from-%E2%80%9CD-lies-on-segment-BC-+-bisector%E2%80%9D-to-%E2%80%9CD-is-strictly-between-B-and-C%E2%80%9D">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">053</span><span class="o">:</span><span class="w"> </span><span class="kd">lemma</span><span class="w"> </span><span class="n">sbtw_of_angle_bisector_intersect</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
+<h4 id="section-aristotle_polygon_ratio-chunk-4-lemma-1-from-d-lies-on-segment-bc-bisector-to-d-is-strictly-between-b-and-c">Chunk 4 — Lemma 1: from “D lies on segment BC + bisector” to “D is strictly between B and C”</h4><div class="highlight"><pre><span></span><span class="mi">053</span><span class="o">:</span><span class="w"> </span><span class="kd">lemma</span><span class="w"> </span><span class="n">sbtw_of_angle_bisector_intersect</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
 <span class="mi">054</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">Collinear</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="o">{</span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="o">,</span><span class="w"> </span><span class="n">C</span><span class="o">})</span>
 <span class="mi">055</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_D_on_BC</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">∈</span><span class="w"> </span><span class="n">affineSegment</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="o">)</span>
 <span class="mi">056</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_bisector</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
@@ -9629,35 +9610,32 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <span class="mi">076</span><span class="o">:</span><span class="w">       </span><span class="bp">·</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">sub_eq_zero</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">077</span><span class="o">:</span><span class="w">         </span><span class="n">rintro</span><span class="w"> </span><span class="n">rfl</span><span class="bp">;</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">collinear_pair</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">078</span><span class="o">:</span><span class="w">     </span><span class="bp">·</span><span class="w"> </span><span class="n">exact</span><span class="bp">?</span>
-<span class="mi">079</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">079</span><span class="o">:</span>
 </pre></div>
-<h6 id="What-this-lemma-is-really-doing-(human-geometry)">What this lemma is <em>really</em> doing (human geometry)<a class="anchor-link" href="#What-this-lemma-is-really-doing-(human-geometry)">¶</a></h6><ul>
+<h4 id="section-aristotle_polygon_ratio-what-this-lemma-is-really-doing-human-geometry">What this lemma is <em>really</em> doing (human geometry)</h4><ul>
 <li><code>h_D_on_BC</code> says D is on the closed segment BC. That still allows D = B or D = C.</li>
 <li><code>Sbtw ℝ B D C</code> says D is strictly inside the segment (not endpoints).</li>
 <li>So the plan is: rule out endpoint cases using the “non-degenerate triangle” hypothesis.</li>
 </ul>
-<h6 id="Why-line-59-does-a-case-split">Why line 59 does a case split<a class="anchor-link" href="#Why-line-59-does-a-case-split">¶</a></h6><p><code>by_cases hDB : D = B</code> means:</p>
+<h4 id="section-aristotle_polygon_ratio-why-line-59-does-a-case-split">Why line 59 does a case split</h4><p><code>by_cases hDB : D = B</code> means:</p>
 <ul>
 <li>Case 1: D is B (degenerate)</li>
-<li>Case 2: D is not B (the “normal” case)</li>
+<li>Case 2: D is not B (the “normal” case)
+This is a classic Lean move: explicitly isolate degenerate cases because later trig and division facts can fail or behave differently there.</li>
 </ul>
-<p>This is a classic Lean move: explicitly isolate degenerate cases because later trig and division facts can fail or behave differently there.</p>
-<h6 id="What-the-scary-angle/collinear-stuff-is-about-(lines-60%E2%80%9368)">What the scary angle/collinear stuff is about (lines 60–68)<a class="anchor-link" href="#What-the-scary-angle/collinear-stuff-is-about-(lines-60%E2%80%9368)">¶</a></h6><p>When D = B, the “angle bisector” condition becomes something like:</p>
-<ul>
+<h4 id="section-aristotle_polygon_ratio-what-the-scary-angle-collinear-stuff-is-about-lines-60-68">What the scary angle/collinear stuff is about (lines 60–68)</h4><ul>
 <li>angle BAB = angle CAB
-and in mathlib, degenerate angles are defined in a particular way; but the net effect is that you can force a contradiction that A,B,C become collinear, which violates <code>h_triangle</code>.</li>
+and in mathlib, degenerate angles are defined in a particular way; but the net effect is that you can force a contradiction that A,B,C become collinear, which violates <code>h_triangle</code>.
+So lines 63–67 are Lean laboriously constructing a <em>formal</em> proof of collinearity in mathlib’s chosen definition (<code>collinear_iff_exists_forall_eq_smul_vadd</code>).</li>
 </ul>
-<p>So lines 63–67 are Lean laboriously constructing a <em>formal</em> proof of collinearity in mathlib’s chosen definition (<code>collinear_iff_exists_forall_eq_smul_vadd</code>).</p>
-<h6 id="The-key-%E2%80%9Cautomation-hole%E2%80%9D-at-line-78:-what-exact?-is-expected-to-find">The key “automation hole” at line 78: what <code>exact?</code> is expected to find<a class="anchor-link" href="#The-key-%E2%80%9Cautomation-hole%E2%80%9D-at-line-78:-what-exact?-is-expected-to-find">¶</a></h6><p>At line 69 you’re already in the branch “D ≠ B”, and inside it you split on <code>D = C</code>. The last remaining branch is:</p>
+<h4 id="section-aristotle_polygon_ratio-the-key-automation-hole-at-line-78-what-exact-is-expected-to-find">The key “automation hole” at line 78: what <code>exact?</code> is expected to find</h4><p>At line 69 you’re already in the branch “D ≠ B”, and inside it you split on <code>D = C</code>. The last remaining branch is:</p>
 <ul>
 <li>D ∈ segment BC</li>
 <li>D ≠ B</li>
 <li>D ≠ C
-→ therefore D is strictly between B and C.</li>
-</ul>
-<p>That last implication is extremely standard, so Aristotle writes <code>exact?</code>.</p>
-<p>How you, as a beginner, can <em>see what lemma should exist</em> without knowing its name:</p>
-<ul>
+→ therefore D is strictly between B and C.
+That last implication is extremely standard, so Aristotle writes <code>exact?</code>.
+So,</li>
 <li>Expand the definition in your head: <code>Sbtw</code> is “between + not endpoints”.</li>
 <li>You already have “between-ish” from <code>h_D_on_BC</code>.</li>
 <li>You already have “not endpoints” from the case splits.</li>
@@ -9666,19 +9644,19 @@ and in mathlib, degenerate angles are defined in a particular way; but the net e
 <blockquote>
 <p>If <code>D ∈ affineSegment ℝ B C</code> and <code>D ≠ B</code> and <code>D ≠ C</code> then <code>Sbtw ℝ B D C</code>.</p>
 </blockquote>
-<p>How you would discover the exact lemma name in practice (no file modifications needed):</p>
+<p>Let's discover the exact lemma name in practice (no file modifications needed):</p>
 <ul>
 <li>Put the cursor on <code>exact?</code> in an editor with Lean (VS Code + Lean extension).</li>
 <li>Lean will often suggest a replacement proof term / lemma application.</li>
 <li>Alternatively, you can try <code>simp</code> or <code>aesop</code> in a scratch buffer (not altering the original) and see what it uses.</li>
 </ul>
-<h5 id="Chunk-5-%E2%80%94-Lemma-2:-%E2%80%9Cstraight-line-at-D%E2%80%9D-%E2%87%92-equal-sines-of-supplementary-angles">Chunk 5 — Lemma 2: “straight line at D” ⇒ equal sines of supplementary angles<a class="anchor-link" href="#Chunk-5-%E2%80%94-Lemma-2:-%E2%80%9Cstraight-line-at-D%E2%80%9D-%E2%87%92-equal-sines-of-supplementary-angles">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">080</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="section-aristotle_polygon_ratio-chunk-5-lemma-2-straight-line-at-d-equal-sines-of-supplementary-angles">Chunk 5 — Lemma 2: “straight line at D” ⇒ equal sines of supplementary angles</h4><div class="highlight"><pre><span></span><span class="mi">080</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">081: If D is strictly between B and C, then sin(angle ADB) = sin(angle ADC).</span>
 <span class="cm">082: -/</span>
 <span class="mi">083</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">084</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">084</span><span class="o">:</span>
 <span class="mi">085</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">086</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">086</span><span class="o">:</span>
 <span class="mi">087</span><span class="o">:</span><span class="w"> </span><span class="kd">lemma</span><span class="w"> </span><span class="n">sin_angle_eq_sin_angle_of_sbtw</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Sbtw</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
 <span class="mi">088</span><span class="o">:</span><span class="w">   </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">089</span><span class="o">:</span><span class="w">   </span><span class="c1">-- By the properties of angles in a triangle, we know that angle BDC = π.</span>
@@ -9688,38 +9666,39 @@ and in mathlib, degenerate angles are defined in a particular way; but the net e
 <span class="mi">093</span><span class="o">:</span><span class="w">   </span><span class="k">have</span><span class="w"> </span><span class="n">h_angle_sum</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">Real.pi</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">094</span><span class="o">:</span><span class="w">     </span><span class="n">exact</span><span class="bp">?;</span>
 <span class="mi">095</span><span class="o">:</span><span class="w">   </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sin_pi_sub</span><span class="o">,</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">h_angle_sum</span><span class="o">,</span><span class="w"> </span><span class="n">add_sub_cancel_left</span><span class="w"> </span><span class="o">]</span>
-<span class="mi">096</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">096</span><span class="o">:</span>
 </pre></div>
-<h6 id="The-geometry-in-one-sentence">The geometry in one sentence<a class="anchor-link" href="#The-geometry-in-one-sentence">¶</a></h6><p>If B–D–C is a straight line, then ∠BDC = π, and ∠ADB + ∠ADC = π, so sin(∠ADB) = sin(∠ADC) by sin(π−x)=sin(x).</p>
-<h6 id="What-line-90%E2%80%9391-(exact?)-is-doing">What line 90–91 (<code>exact?</code>) is doing<a class="anchor-link" href="#What-line-90%E2%80%9391-(exact?)-is-doing">¶</a></h6><p>You have <code>h : Sbtw ℝ B D C</code>. From “strictly between”, mathlib usually provides a lemma saying:</p>
+<h4 id="section-aristotle_polygon_ratio-the-geometry-in-one-sentence">The geometry in one sentence</h4><p>If B–D–C is a straight line, then ∠BDC = π, and ∠ADB + ∠ADC = π, so sin(∠ADB) = sin(∠ADC) by sin(π−x)=sin(x).</p>
+<p>What line 90–91 (<code>exact?</code>) is doing:
+You have <code>h : Sbtw ℝ B D C</code>. From “strictly between”, mathlib usually provides a lemma saying:</p>
 <ul>
-<li>the angle ∠BDC is a straight angle, i.e. equals π.</li>
+<li>the angle ∠BDC is a straight angle, i.e. equals π.
+So <code>exact?</code> at line 91 is expected to find “Sbtw implies angle = π” (with the correct ordering of points).
+Beginner hint: in Lean, the <em>order of points</em> matters a lot. <code>angle B D C</code> is ∠BDC (vertex D). A lemma that proves <code>angle B C D = π</code> would not help here.</li>
 </ul>
-<p>So <code>exact?</code> at line 91 is expected to find “Sbtw implies angle = π” (with the correct ordering of points).</p>
-<p>Beginner hint: in Lean, the <em>order of points</em> matters a lot.
-<code>angle B D C</code> is ∠BDC (vertex D). A lemma that proves <code>angle B C D = π</code> would not help here.</p>
-<h6 id="What-line-93%E2%80%9394-(exact?)-is-doing">What line 93–94 (<code>exact?</code>) is doing<a class="anchor-link" href="#What-line-93%E2%80%9394-(exact?)-is-doing">¶</a></h6><p>Given ∠BDC = π, mathlib usually has a lemma saying:</p>
+<h4 id="section-aristotle_polygon_ratio-what-line-93-94-exact-is-doing">What line 93–94 (<code>exact?</code>) is doing</h4><p>Given ∠BDC = π, mathlib usually has a lemma saying:</p>
 <ul>
-<li>if rays DB and DC form π, then for any A, the adjacent angles ∠ADB and ∠ADC sum to π.</li>
+<li>if rays DB and DC form π, then for any A, the adjacent angles ∠ADB and ∠ADC sum to π.
+Again, <code>exact?</code> is the placeholder for “the library already knows supplementary angles sum to π in this configuration.”</li>
 </ul>
-<p>Again, <code>exact?</code> is the placeholder for “the library already knows supplementary angles sum to π in this configuration.”</p>
-<h6 id="Line-95:-the-trig-identity-move">Line 95: the trig identity move<a class="anchor-link" href="#Line-95:-the-trig-identity-move">¶</a></h6><p><code>rw [ ← Real.sin_pi_sub, ← h_angle_sum, add_sub_cancel_left ]</code> is a compact chain:</p>
+<h4 id="section-aristotle_polygon_ratio-line-95-the-trig-identity-move">Line 95: the trig identity move</h4><p><code>rw [ ← Real.sin_pi_sub, ← h_angle_sum, add_sub_cancel_left ]</code> is a compact chain:</p>
 <ul>
 <li>rewrite using sin(π − x) = sin x,</li>
 <li>replace π by (∠ADB + ∠ADC),</li>
 <li>cancel algebraically to turn sin(∠ADC) into sin(∠ADB).</li>
 </ul>
-<h5 id="Chunk-6-%E2%80%94-Restating-the-theorem-goal-section-header">Chunk 6 — Restating the theorem goal section header<a class="anchor-link" href="#Chunk-6-%E2%80%94-Restating-the-theorem-goal-section-header">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">097</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="section-aristotle_polygon_ratio-chunk-6-restating-the-theorem-goal-section-header">Chunk 6 — Restating the theorem goal section header</h4><div class="highlight"><pre><span></span><span class="mi">097</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">098: The Angle Bisector Theorem: In a triangle ABC, if the bisector of angle A intersects the segment BC at D, then AB/AC = BD/DC.</span>
 <span class="cm">099: -/</span>
 <span class="mi">100</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">101</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">101</span><span class="o">:</span>
 <span class="mi">102</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">103</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">103</span><span class="o">:</span>
 </pre></div>
-<p>Commentary:
-This is just a fresh section header. Machines often repeat context to keep things local and avoid implicit state.</p>
-<h5 id="Chunk-7-%E2%80%94-Main-theorem-(part-1):-encoding-Law-of-Sines-twice">Chunk 7 — Main theorem (part 1): encoding Law of Sines twice<a class="anchor-link" href="#Chunk-7-%E2%80%94-Main-theorem-(part-1):-encoding-Law-of-Sines-twice">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">104</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">angle_bisector_theorem_corrected</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
+<p>Commentary: This is just a fresh section header. Machines often repeat context to keep things local and avoid implicit state.</p>
+<div class="page-break"></div>
+<div class="back-to-toc"><a href="#toc">Back to TOC</a></div>
+<h4 id="section-aristotle_polygon_ratio-chunk-7-main-theorem-part-1-encoding-law-of-sines-twice">Chunk 7 — Main theorem (part 1): encoding Law of Sines twice</h4><div class="highlight"><pre><span></span><span class="mi">104</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">angle_bisector_theorem_corrected</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
 <span class="mi">105</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">Collinear</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="o">{</span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="o">,</span><span class="w"> </span><span class="n">C</span><span class="o">})</span>
 <span class="mi">106</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_D_on_BC</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">∈</span><span class="w"> </span><span class="n">affineSegment</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="o">)</span>
 <span class="mi">107</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_bisector</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
@@ -9779,35 +9758,32 @@ This is just a fresh section header. Machines often repeat context to keep thing
 <span class="mi">161</span><span class="o">:</span><span class="w">           </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="bp">-ᵥ</span><span class="w"> </span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="k">fun</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="bp">=&gt;</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">rcases</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">rfl</span><span class="w"> </span><span class="bp">|</span><span class="w"> </span><span class="n">rfl</span><span class="w"> </span><span class="bp">|</span><span class="w"> </span><span class="n">rfl</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="bp">&lt;;&gt;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">simp</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">⟩</span><span class="w"> </span><span class="bp">;</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">simp</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">⟩</span><span class="w"> </span><span class="bp">;</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="n">h_bisector</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="n">choose</span><span class="o">,</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">h_bisector</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="n">choose_spec</span><span class="bp">.</span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="n">vsub_vadd</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">⟩</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">⟩</span><span class="bp">;</span>
 <span class="mi">162</span><span class="o">:</span><span class="w">         </span><span class="bp">·</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="n">vsub_ne_zero.mpr</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">rintro</span><span class="w"> </span><span class="n">rfl</span><span class="bp">;</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">collinear_pair</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">)</span><span class="bp">;</span>
 </pre></div>
-<h6 id="What%E2%80%99s-the-conceptual-move-here?">What’s the conceptual move here?<a class="anchor-link" href="#What%E2%80%99s-the-conceptual-move-here?">¶</a></h6><p>Line 110 defines <code>h_angle_bisector</code> as two Law-of-Sines-style equalities (joined by <code>∧</code> = “and”):</p>
+<h4 id="section-aristotle_polygon_ratio-what-s-the-conceptual-move-here">What’s the conceptual move here?</h4><p>Line 110 defines <code>h_angle_bisector</code> as two Law-of-Sines-style equalities (joined by <code>∧</code> = “and”):</p>
 <ul>
 <li>One equality will correspond to triangle A D B.</li>
-<li>The other corresponds to triangle A D C.</li>
+<li>The other corresponds to triangle A D C.
+The lemma used is:</li>
+<li><code>EuclideanGeometry.sin_angle_div_dist_eq_sin_angle_div_dist</code>
+That’s the library’s packaged “Law of Sines symmetry” in the form:
+$$\frac{\sin(\angle)}{\text{opposite side}} = \frac{\sin(\angle)}{\text{opposite side}}$$
+but written in mathlib’s preferred ordering.</li>
 </ul>
-<p>The lemma used is:</p>
+<h4 id="section-aristotle_polygon_ratio-why-so-many-lines-about-degeneracy">Why so many lines about degeneracy?</h4><p>Because these identities involve dividing by distances. Lean will not let you divide by zero silently. So you see many sub-branches like:</p>
 <ul>
-<li><code>EuclideanGeometry.sin_angle_div_dist_eq_sin_angle_div_dist</code></li>
-</ul>
-<p>That’s the library’s packaged “Law of Sines symmetry” in the form:</p>
-<p>[
-\frac{\sin(\angle)}{\text{opposite side}} = \frac{\sin(\angle)}{\text{opposite side}}
-]</p>
-<p>but written in mathlib’s preferred ordering.</p>
-<h6 id="Why-so-many-lines-about-degeneracy?">Why so many lines about degeneracy?<a class="anchor-link" href="#Why-so-many-lines-about-degeneracy?">¶</a></h6><p>Because these identities involve dividing by distances. Lean will not let you divide by zero silently. So you see many sub-branches like:</p>
-<ul>
-<li><p><code>rintro rfl; ...</code> which is Lean-speak for:</p>
-<ul>
-<li>“Assume two points are equal (so the distance becomes 0). Show this contradicts <code>h_triangle</code>.”</li>
+<li><code>rintro rfl; ...</code> which is Lean-speak for:<ul>
+<li>“Assume two points are equal (so the distance becomes 0). Show this contradicts <code>h_triangle</code>.”
+That is “formal hygiene”: humans skip it; Lean forces it.</li>
 </ul>
 </li>
 </ul>
-<p>That is “formal hygiene”: humans skip it; Lean forces it.</p>
-<h6 id="Why-the-convert-...-using-1-trick?">Why the <code>convert ... using 1</code> trick?<a class="anchor-link" href="#Why-the-convert-...-using-1-trick?">¶</a></h6><p>Because the library lemma’s exact statement may not match the goal’s exact arrangement of points/distances. <code>convert</code> says:</p>
+<p>Why the <code>convert ... using 1</code> trick? Because the library lemma’s exact statement may not match the goal’s exact arrangement of points/distances. <code>convert</code> says:</p>
 <blockquote>
-<p>“This lemma gives something equivalent; let me adjust the expression slightly to make it match my goal.”</p>
+<p>“This lemma gives something equivalent; let me adjust the expression slightly to make it match my goal.”
+Then <code>congr!</code> helps prove the adjusted pieces are equal (e.g., swapping <code>dist A B</code> to <code>dist B A</code> using <code>dist_comm</code>).</p>
 </blockquote>
-<p>Then <code>congr!</code> helps prove the adjusted pieces are equal (e.g., swapping <code>dist A B</code> to <code>dist B A</code> using <code>dist_comm</code>).</p>
-<h5 id="Chunk-8-%E2%80%94-Main-theorem-(part-2):-use-the-sine-equality,-clear-denominators,-finish">Chunk 8 — Main theorem (part 2): use the sine equality, clear denominators, finish<a class="anchor-link" href="#Chunk-8-%E2%80%94-Main-theorem-(part-2):-use-the-sine-equality,-clear-denominators,-finish">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">163</span><span class="o">:</span><span class="w">   </span><span class="c1">-- Since $\sin(\angle A D B) = \sin(\angle A D C)$, we can equate the two expressions from the Angle Bisector Theorem.</span>
+<div class="page-break"></div>
+<div class="back-to-toc"><a href="#toc">Back to TOC</a></div>
+<h4 id="section-aristotle_polygon_ratio-chunk-8-main-theorem-part-2-use-the-sine-equality-clear-denominators-finish">Chunk 8 — Main theorem (part 2): use the sine equality, clear denominators, finish</h4><div class="highlight"><pre><span></span><span class="mi">163</span><span class="o">:</span><span class="w">   </span><span class="c1">-- Since $\sin(\angle A D B) = \sin(\angle A D C)$, we can equate the two expressions from the Angle Bisector Theorem.</span>
 <span class="mi">164</span><span class="o">:</span><span class="w">   </span><span class="k">have</span><span class="w"> </span><span class="n">h_sin_eq'</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">165</span><span class="o">:</span><span class="w">     </span><span class="n">apply</span><span class="w"> </span><span class="n">sin_angle_eq_sin_angle_of_sbtw</span><span class="bp">;</span>
 <span class="mi">166</span><span class="o">:</span><span class="w">     </span><span class="n">exact</span><span class="bp">?;</span>
@@ -9841,71 +9817,55 @@ This is just a fresh section header. Machines often repeat context to keep thing
 <span class="mi">194</span><span class="o">:</span><span class="w">     </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">div_eq_inv_mul</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">195</span><span class="o">:</span><span class="w">     </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">div_eq_div_iff</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">h_angle_bisector</span><span class="w"> </span><span class="bp">&lt;;&gt;</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">dist_comm</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">196</span><span class="o">:</span><span class="w">     </span><span class="n">grind</span>
-<span class="mi">197</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">197</span><span class="o">:</span>
 </pre></div>
-<h6 id="The-key-%E2%80%9Cexact?%E2%80%9D-at-line-166-(what-it-must-supply)">The key “exact?” at line 166 (what it must supply)<a class="anchor-link" href="#The-key-%E2%80%9Cexact?%E2%80%9D-at-line-166-(what-it-must-supply)">¶</a></h6><p>You’re proving <code>h_sin_eq'</code> by applying Lemma 2:</p>
+<p>The key “exact?” at line 166 (what it must supply)
+You’re proving <code>h_sin_eq'</code> by applying Lemma 2:</p>
 <ul>
-<li><code>apply sin_angle_eq_sin_angle_of_sbtw;</code></li>
-</ul>
-<p>That lemma needs an input:</p>
-<ul>
-<li><code>Sbtw ℝ B D C</code></li>
-</ul>
-<p>But here, in the main theorem, you only have:</p>
-<ul>
-<li><code>h_triangle</code>, <code>h_D_on_BC</code>, <code>h_bisector</code></li>
-</ul>
-<p>So line 166 <code>exact?</code> is expected to discover:</p>
-<ul>
+<li><code>apply sin_angle_eq_sin_angle_of_sbtw;</code>
+That lemma needs an input:</li>
+<li><code>Sbtw ℝ B D C</code>
+But here, in the main theorem, you only have:</li>
+<li><code>h_triangle</code>, <code>h_D_on_BC</code>, <code>h_bisector</code>
+So line 166 <code>exact?</code> is expected to discover:</li>
 <li>“from those three, we can prove <code>Sbtw ℝ B D C</code>”
-which is precisely Lemma 1 (<code>sbtw_of_angle_bisector_intersect</code>).</li>
-</ul>
-<p>So the chain is:</p>
-<ul>
+which is precisely Lemma 1 (<code>sbtw_of_angle_bisector_intersect</code>).
+So the chain is:</li>
 <li>Lemma 1: bisector + D on segment + non-collinear triangle ⇒ <code>Sbtw</code></li>
 <li>Lemma 2: <code>Sbtw</code> ⇒ sin(∠ADB)=sin(∠ADC)</li>
 </ul>
-<h6 id="Lines-167%E2%80%93170:-case-splits-on-distances-(why-so-pedantic?)">Lines 167–170: case splits on distances (why so pedantic?)<a class="anchor-link" href="#Lines-167%E2%80%93170:-case-splits-on-distances-(why-so-pedantic?)">¶</a></h6><p>Because the goal has divisions:</p>
+<p>Lines 167–170: case splits on distances:</p>
 <ul>
 <li><code>dist A B / dist A C</code></li>
-<li><code>dist B D / dist D C</code></li>
-</ul>
-<p>If any denominator is zero, division is problematic. So Lean forces you to split:</p>
-<ul>
+<li><code>dist B D / dist D C</code>
+If any denominator is zero, division is problematic. So Lean forces you to split:</li>
 <li>Is <code>dist A C = 0</code>? (meaning A=C)</li>
 <li>Is <code>dist D C = 0</code>? (meaning D=C)
-etc.</li>
+etc.
+Humans would say “in a nondegenerate triangle, these aren’t zero.” Lean makes you prove it.</li>
 </ul>
-<p>Humans would say “in a nondegenerate triangle, these aren’t zero.” Lean makes you prove it.</p>
-<h6 id="Lines-171%E2%80%93193:-proving-a-sine-is-nonzero">Lines 171–193: proving a sine is nonzero<a class="anchor-link" href="#Lines-171%E2%80%93193:-proving-a-sine-is-nonzero">¶</a></h6><p>This is another “formal hygiene” piece:</p>
+<p>Lines 171–193: proving a sine is nonzero. This is another “formal hygiene” piece:</p>
 <ul>
-<li>if <code>sin(angle C A D) = 0</code>, then the angle is 0 or π (for angles in [0,π]).</li>
-<li>either one implies collinearity, contradicting <code>h_triangle</code>.</li>
+<li>if <code>sin(angle C A D) = 0</code>, then the angle is 0 or π (for angles in $[0,\pi]$).</li>
+<li>either one implies collinearity, contradicting <code>h_triangle</code>.
+So it is a formal version of:
+“In a real triangle, angle CAD can’t be 0 or π.”</li>
 </ul>
-<p>So it is a formal version of:</p>
-<blockquote>
-<p>“In a real triangle, angle CAD can’t be 0 or π.”</p>
-</blockquote>
-<h6 id="Line-195:-div_eq_div_iff-=-%E2%80%9Ccross-multiply%E2%80%9D">Line 195: <code>div_eq_div_iff</code> = “cross-multiply”<a class="anchor-link" href="#Line-195:-div_eq_div_iff-=-%E2%80%9Ccross-multiply%E2%80%9D">¶</a></h6><p>This is the standard algebra step:
-[
-\frac{x}{y} = \frac{u}{v} \quad \Rightarrow \quad x v = u y
-]
-(with side conditions about nonzero denominators).</p>
-<h6 id="Line-196:-grind">Line 196: <code>grind</code><a class="anchor-link" href="#Line-196:-grind">¶</a></h6><p>This is the “big automation broom” that sweeps up routine algebraic rearrangements and simplifications.</p>
-<p>Beginner takeaway: <code>grind</code> is not a magical mathematical insight. It’s mostly:</p>
+<p>Line 195: <code>div_eq_div_iff</code> = “cross-multiply”. This is the standard algebra step: $\frac{x}{y} = \frac{u}{v} \Rightarrow x v = u y$ (with side conditions about nonzero denominators).</p>
+<p>Line 196 <code>grind</code>: this is the “big automation broom” that sweeps up routine algebraic rearrangements and simplifications. <code>grind</code> is not a magical mathematical insight. It’s mostly:</p>
 <ul>
 <li>rewriting,</li>
 <li>cancelling,</li>
 <li>commutativity/associativity bookkeeping,</li>
 <li>and pushing <code>simp</code>-like rules repeatedly.</li>
 </ul>
-<h5 id="Chunk-9-%E2%80%94-Final-wrapper-theorem:-%E2%80%9CLean,-find-the-proof-we-already-built%E2%80%9D">Chunk 9 — Final wrapper theorem: “Lean, find the proof we already built”<a class="anchor-link" href="#Chunk-9-%E2%80%94-Final-wrapper-theorem:-%E2%80%9CLean,-find-the-proof-we-already-built%E2%80%9D">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">198</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="section-aristotle_polygon_ratio-chunk-9-final-wrapper-theorem-lean-find-the-proof-we-already-built">Chunk 9 — Final wrapper theorem: “Lean, find the proof we already built”</h4><div class="highlight"><pre><span></span><span class="mi">198</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">199: The Angle Bisector Theorem: In a triangle ABC, if the bisector of angle A intersects the segment BC at D, then AB/AC = BD/DC.</span>
 <span class="cm">200: -/</span>
 <span class="mi">201</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">202</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">202</span><span class="o">:</span>
 <span class="mi">203</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">204</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">204</span><span class="o">:</span>
 <span class="mi">205</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">angle_bisector_theorem_final</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
 <span class="mi">206</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">Collinear</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="o">{</span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="o">,</span><span class="w"> </span><span class="n">C</span><span class="o">})</span>
 <span class="mi">207</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_D_on_BC</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">∈</span><span class="w"> </span><span class="n">affineSegment</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="o">)</span>
@@ -9913,25 +9873,17 @@ etc.</li>
 <span class="mi">209</span><span class="o">:</span><span class="w">   </span><span class="n">dist</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">210</span><span class="o">:</span><span class="w">   </span><span class="n">exact</span><span class="bp">?</span>
 </pre></div>
-<h6 id="What-exact?-at-line-210-is-intended-to-do">What <code>exact?</code> at line 210 is intended to do<a class="anchor-link" href="#What-exact?-at-line-210-is-intended-to-do">¶</a></h6><p>At this point, the file already has a theorem with the same statement:</p>
+<p>What <code>exact?</code> at line 210 is intended to do? At this point, the file already has a theorem with the same statement:</p>
 <ul>
-<li><code>angle_bisector_theorem_corrected</code> (line 104)</li>
-</ul>
-<p>So line 210 <code>exact?</code> is basically:</p>
-<blockquote>
-<p>“Please locate a theorem in the environment whose type matches my goal, and apply it.”</p>
-</blockquote>
-<p>In a “human-clean” proof, you’d typically write:</p>
-<ul>
-<li><code>exact angle_bisector_theorem_corrected A B C D h_triangle h_D_on_BC h_bisector</code></li>
-</ul>
-<p>But Aristotle leaves it as <code>exact?</code> to let Lean’s search find it automatically.</p>
-<p>Beginner debugging note: if <code>exact?</code> fails here, it usually means:</p>
-<ul>
+<li><code>angle_bisector_theorem_corrected</code> (line 104)
+So line 210 <code>exact?</code> is basically: “Please locate a theorem in the environment whose type matches my goal, and apply it.”
+In a “human-clean” proof, you’d typically write: <code>exact angle_bisector_theorem_corrected A B C D h_triangle h_D_on_BC h_bisector</code>
+But Aristotle leaves it as <code>exact?</code> to let Lean’s search find it automatically.
+If <code>exact?</code> fails here, it usually means:</li>
 <li>the earlier theorem is not in scope (not the case here),</li>
 <li>or the goal is syntactically different (e.g., distances swapped), and you need a <code>simp [dist_comm]</code> first.</li>
 </ul>
-<h6 id="How-Aristotle-%E2%80%9Cworked%E2%80%9D-here-(in-plain-language)">How Aristotle “worked” here (in plain language)<a class="anchor-link" href="#How-Aristotle-%E2%80%9Cworked%E2%80%9D-here-(in-plain-language)">¶</a></h6><p>You can read this file as a collaboration:</p>
+<p>You can read this file as a collaboration:</p>
 <ul>
 <li>The agent chooses a known proof strategy (Law of Sines) and scaffolds the structure.</li>
 <li>Lean + mathlib force every missing detail to be filled: nondegeneracy, rewriting, collinearity contradictions, denominator nonzero, angle bounds.</li>

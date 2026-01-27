@@ -7518,9 +7518,9 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Polygon-Ratio-Problem:-Many-Proofs,-One-Degree-of-Freedom">Polygon Ratio Problem: Many Proofs, One Degree of Freedom<a class="anchor-link" href="#Polygon-Ratio-Problem:-Many-Proofs,-One-Degree-of-Freedom">¶</a></h1><p>Author: Changchun Shi<br/>
-Date: First Version Jan 12, 2026
+Date: First version Jan 12, 2026<br/>
 Last update Jan 25, 2026</p>
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>During the Christmas holidays, a basic geometry proof problem showed up in my class alumni chat (Figure 1 is the original screenshot from classmate Lin He). He asked about the second question as the first of the two is almost trivial, and that set the whole discussion in motion. I have always liked Euclidean geometry and have exceled in most of teenage subject competitions (I don't recall failed to proof any of the geometry problems in my competition career). Problems like this rarely stop at one proof. Draw one line and a ratio drops out; draw another and a different argument appears. What follows is a cleaned collection: one quick sine-law proof, several synthetic proofs, an analytic-geometry proof (with help of ChatGPT 5.2-thinking for easy life, edited for clarity), and a one-parameter generalization that reveals deeper structure. I hope it gives younger students a sense of how much structure a single diagram can hide. I also plan to use this pilot problem to introduce the SOTA artificial intelligent ways of solving such problems in seperate notes.</p>
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>During the Christmas holidays, a basic geometry proof problem showed up in my class alumni chat (Figure 1 is the original screenshot from classmate Lin He). He asked about the second question because the first is almost trivial, and that set the discussion in motion. I have always liked Euclidean geometry and excelled in my teenage competitions (I don't recall failing to prove any geometry problems in that period). Problems like this rarely stop at one proof. Draw one line and a ratio drops out; draw another and a different argument appears. What follows is a cleaned collection: one quick sine-law proof, several synthetic proofs, an analytic-geometry proof (with help from ChatGPT 5.2-thinking, edited for clarity), and a one-parameter generalization that reveals deeper structure. I hope it gives younger students a sense of how much structure a single diagram can hide. I also plan to use this pilot problem to introduce state-of-the-art AI approaches for solving such problems in separate notes.</p>
 <div align="center">
 <img alt="Image" src="../original_image.jpg" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 1: The original problem (photo from the chat).</em></p>
@@ -7530,7 +7530,7 @@ Last update Jan 25, 2026</p>
 <img alt="Image" src="original_problem_redraw.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 2: A clean redraw in GeoGebra.</em></p>
 </div>
-<p>Problem statement (translated). In trapezoid $ABCD$, $AD\parallel BC$, $\angle C=90^\circ$, and $BC=CD$. Point $E$ lies on $CD$, and $DE=AD$. Through $E$, draw $EF\perp AB$ with $F$ as the foot of the perpendicular. Draw $BD$; it intersects $AE$ and $EF$ at points $G$ and $H$, respectively. Prove:</p>
+<p>Problem statement (translated). In trapezoid $ABCD$, $AD\parallel BC$, $ngle C=90^\circ$, and $BC=CD$. Point $E$ lies on $CD$, and $DE=AD$. Through $E$, draw $EF\perp AB$ with $F$ as the foot of the perpendicular. Draw $BD$; it intersects $AE$ and $EF$ at points $G$ and $H$, respectively. Prove:</p>
 <ol>
 <li>$BF\cdot HE=GE\cdot BH$.</li>
 <li>$BE\cdot DH=BD\cdot EH$.</li>
@@ -7659,7 +7659,7 @@ which is the same proportion.</p>
 </div>
 </blockquote>
 <p>In this generalized setup, $EF$ is no longer perpendicular to $AB$. In fact, the perpendicular line through $E$ intersects $AB$ and $DB$ at $F'$ and $H'$, as shown in Figure 7. Here $H'$ differs from $H$ and does not satisfy the ratio property. The original problem is special because the $45^\circ$ angles create a surplus of right angles. The single degree of freedom here is essentially the ellipse eccentricity, with $A$ and $C$ determined by the right angle $\angle ADC$. When the ellipse degenerates to a circle (foci coincide), the identity becomes obvious.</p>
-<p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem, as shown in Figure 8 with the pure geometric approach.</p>
+<p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem; Figure 8 shows the pure geometric approach.</p>
 <div align="center">
 <img alt="Image" src="./ellipse_view_simple.png" style="height:300px; display:block; margin:0 auto;"/>
 <p><em>Figure 8: The simplified ellipse setup, which reveals the essence of the original problem.</em></p>
@@ -7668,7 +7668,7 @@ which is the same proportion.</p>
 <h3 id="Proof-3.2,-similarity">Proof 3.2, similarity<a class="anchor-link" href="#Proof-3.2,-similarity">¶</a></h3><blockquote>
 <p>Let $T$ and $S$ be the feet of the perpendiculars from $H$ and $B$ to the tangent line $DE$. By the reflection property, $\triangle HET\sim\triangle BES$, so $HE:BE=HT:BS$. Likewise, $\triangle HDT\sim\triangle BDS$, so $HD:DB=HT:BS$. Combining gives $HD/DB=HE/BE$.</p>
 </blockquote>
-<p>Interestingly, we can also compute the ratio analytically in the ellipse model. It turns out to be simplest using the de La Hire (eccentric-angle) parameter, revealing the geometry transparent.</p>
+<p>Interestingly, we can also compute the ratio analytically in the ellipse model. It turns out to be simplest using the de La Hire (eccentric-angle) parameter, revealing the geometry transparently.</p>
 <div align="center">
 <img alt="Image" src="ellipse_view_simple_param.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 9: de La Hire parameters and outer-circle view with $E$, $E'$, and $E''$.</em></p>
@@ -7718,7 +7718,7 @@ $$
 $$
 accounts only for the sum. The real content is that each focus-to-tangent distance equals its matching focus-to-point distance; this rigidity is encoded by the de La Hire parameter and the ellipse's affine relation to the circle.</p>
 </blockquote>
-<h3 id="Proof-3.4-Outer-circle-proof">Proof 3.4 Outer circle proof<a class="anchor-link" href="#Proof-3.4-Outer-circle-proof">¶</a></h3><blockquote>
+<h3 id="Proof-3.4-(outer-circle-proof)">Proof 3.4 (outer circle proof)<a class="anchor-link" href="#Proof-3.4-(outer-circle-proof)">¶</a></h3><blockquote>
 <p>Once Corollary 2 is in hand, let $P$ and $P'$ be the feet of the perpendiculars from $H$ and $B$ to $\ell'$ (for simplicity Figure 9 only shows $P$). Then $\triangle DHP \sim \triangle DBP'$ (right angles at $P,P'$ and a common angle at $D$), so $DH/DB=HP/BP'=\operatorname{dist}(H,\ell')/\operatorname{dist}(B,\ell')$, recovering the same ratio.</p>
 </blockquote>
 <p>Finally, there is a fun fact. Note that the feet of the perpendiculars drawn in Proof 3.2, $S$ and $T$, are exactly the intersection points of the tangent line $DE$ with the ellipse's outer circle. A quick proof is to show that $OT=a$ (Figure 10). Let $H'$ be the reflection of $H$ across $DE$; then $T$ is the midpoint of $HH'$. Since $O$ is the midpoint of $BH$, we have $OT=\tfrac{1}{2}BH'$. But $BH'=BE+EH=2a$, hence $OT=a$. The same reflection with $B$ gives $OS=a$, so the fun fact is that $S$ and $T$ are precisely the two intersections of $DE$ with the outer circle.</p>
@@ -7737,7 +7737,7 @@ accounts only for the sum. The real content is that each focus-to-tangent distan
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Part-4.-Vector-analysis">Part 4. Vector analysis<a class="anchor-link" href="#Part-4.-Vector-analysis">¶</a></h2><p>Once one length is fixed, the trapezoid configuration has a single degree of freedom: the angle $\alpha$. In the broader ellipse construction, a second parameter $\theta$ (the tangent point/slope) appears, and the same ratio follows from the reflection property. The special case $\theta=45^\circ$ is exactly the original problem; that is why so many proofs exist, and why each auxiliary line exposes the same invariant ratio in a different way. Part 3 frees the $\theta$ dimension while keeping the reflection property, and that is what ultimately shows the simplicity behind the original picture.</p>
-<p>In this Part of the note, we will focusing on using some other mathematical tools useful in geometry to solve our proof. The problem to proof is almost trivial: DH:DB = EH:EB, given light BE reflects to the EH direction by mirror DE. Part 3 has explained extensively of the solutions. But it is still good to show some of the power of such tools.</p>
+<p>In this part of the note, we focus on other mathematical tools that are useful in geometry. The target ratio is almost trivial here: $DH:DB = EH:EB$, given that the ray $BE$ reflects across the mirror $DE$ and reaches $H$. Part 3 already explained the reflection viewpoint, but it is still instructive to see how these tools express the same invariant.</p>
 <p>Since Euclid (~300 BCE), geometry was developed in a synthetic style: one reasons directly with the figure using congruence, similarity, tangency, and auxiliary lines. That is the mindset behind Part 1. A major second language arrived with Descartes (1637): analytic geometry turns geometric constraints into algebra once you choose coordinates, matching the style of Part 2.</p>
 <p>This arc also mirrors the historical split between geometry and algebra in physics and mechanics. Newton, in the <em>Principia</em> [NEWTON-PRINCIPIA], favored coordinate-free arguments because they were the clearest language of rigor in 1687, while modern physics often relies on coordinates for universal computation. Analytic geometry existed by Newton's time, but the algebraic language for differential equations matured later; Newton's methods therefore look Euclidean in flavor, mixing auxiliary lines with limiting arguments. Several later authors also gave elementary, coordinate-free proofs (see [KEPLER-TEACH], including Feynman's famous "lost lecture"). It is good for students to appreciate both techniques.</p>
 <p>Physics naturally blends geometry with differential ideas. Here we keep that discussion light and focus on the geometric tools that sit just below calculus.</p>
@@ -7830,7 +7830,7 @@ Substitute to get $$\boxed{\frac{BD}{HD}=\frac{BE}{EH}},$$ which is equivalent t
 </blockquote>
 <p>I explored several alternative constructions which give various other proofs that I won't detail here since these two are the simplest and representative. For instance, in the original configuration, the condition $EH\perp AB$ immediately yields the dot-product constraint $\overrightarrow{EH}\cdot
 \overrightarrow{AB}=0$. This orthogonality can be used to reduce the degrees of freedom without appealing to any reflection argument. More generally, one can start from essentially any point in the diagram, parameterize the remaining configuration by a small set of length (or scaling) parameters, and then drive the argument to the target length-ratio identity. There are many such routes, and they do not require introducing any auxiliary lines.</p>
-<p>In this 2D Euclidean setting, the geometric-algebra approach does not introduce additional structure compare with the cross product. Both encode the oriented (signed) area of the parallelogram spanned by two vectors. The $\times$ only makes traditional sense in 3D space, resulting in a vector perpendicular to the plane, the $\wedge$ operator gives a bivector that's definited universally for d-D space and the bivector doesn't need to utilize the 3rd dimension. Likewise, the differential-forms formulation is not fundamentally different in this context: a 2-form takes two vectors as input and returns a scalar, and 1-form vector is essentially difine the dot product of any vector with a given vector; so the resulting identities reduce to the same area or determinant computations already used in the cross-product argument. For completeness, Proof 4.3 shows how they are united and replaced in the same proof. Be aware that in the modern math/physics which often utilize dimensionality beyond 3, the dot and cross way become hard, which is way we had to separate time t (another dimension strictly speaking) from the space in order to write the equation as "coordinate free". And that's why you no longer see any use of t in the unified maxell equation using geometric algebra and differential form.</p>
+<p>In this 2D Euclidean setting, the geometric-algebra approach does not introduce additional structure compared with the cross product. Both encode the oriented (signed) area of the parallelogram spanned by two vectors. The $\times$ operator only makes traditional sense in 3D space (it produces a vector perpendicular to the plane), whereas the $\wedge$ operator gives a bivector that is defined in any dimension. Likewise, the differential-forms formulation is not fundamentally different here: a 2-form takes two vectors as input and returns a scalar, and a 1-form is essentially a linear functional (often represented by a dot product with a fixed vector). The identities therefore reduce to the same area or determinant computations already used in the cross-product argument. For completeness, Proof 4.3 shows how they are unified in one proof. In modern math/physics, where the dimensionality is often beyond 3, the dot/cross picture becomes awkward, which is why spacetime formulations separate time from space and why geometric algebra and differential forms are preferred. That is also why the unified Maxwell equations are usually written without an explicit time coordinate.</p>
 <h3 id="Proof-4.3:-Unified-simple-solution-(area-language:-cross-=-wedge-=-2-form-=-1-form)">Proof 4.3: Unified simple solution (area language: cross = wedge = 2-form = 1-form)<a class="anchor-link" href="#Proof-4.3:-Unified-simple-solution-(area-language:-cross-=-wedge-=-2-form-=-1-form)">¶</a></h3><blockquote>
 <p>Let $DE$ be the tangent at $E$ and let $\mathbf{t}=\overrightarrow{ED}\ne 0$.
 For any vector $\mathbf{u}$ based at $E$ (here $\overrightarrow{EB},\overrightarrow{EH},\overrightarrow{DB},\overrightarrow{DH}$), the area with the tangent is the same in all languages:
@@ -7846,9 +7846,9 @@ $$A(\overrightarrow{EH})=A(\overrightarrow{DH}),\qquad A(\overrightarrow{EB})=A(
 Hence
 $$\frac{A(\overrightarrow{DH})}{EH}=\frac{A(\overrightarrow{DB})}{EB}.$$</p>
 <p>Because $B,D,H$ are collinear, $A(\overrightarrow{DB})/A(\overrightarrow{DH})=BD/HD$, so
-$$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.</p>
+$$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.$$</p>
 </blockquote>
-<p>By now I hope this part of the note have conveyed an appreciation for coordinate-free methods in our mathematical toolbox. I also hope it gives a preview of what modern physics use to solve geometry problems that are more than 3-dimensional, admittedly in a weak sense.</p>
+<p>By now I hope this part of the note has conveyed an appreciation for coordinate-free methods in our mathematical toolbox. I also hope it gives a preview of what modern physics use to solve geometry problems that are more than 3-dimensional, admittedly in a weak sense.</p>
 </div>
 </div>
 </div>
@@ -7859,10 +7859,10 @@ $$\frac{BD}{HD}=\frac{BE}{EH},\quad\text{i.e.}\quad \frac{BE}{BD}=\frac{EH}{HD}.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>So far in this part we discussed the simple case of how the reflection property implies the ratio equality.
+<p>So far in this part we have discussed the simple case of how the reflection property implies the ratio equality.
 Below we show why the original problem in Part 1 gives the reflection property of $EF$ and $BE$, using a vector argument.</p>
 <h3 id="Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">Proof 4.4 Vector analysis: $EF$ is the reflection of $BE$ across $CD$ in Figure 3<a class="anchor-link" href="#Proof-4.4-Vector-analysis:-$EF$-is-the-reflection-of-$BE$-across-$CD$-in-Figure-3">¶</a></h3><blockquote>
-<p>Let $\mathbf{u}=\overrightarrow{CB}$ and $\mathbf{d}=\overrightarrow{CD}$. Then $\mathbf{u}\perp\mathbf{d}$ and $\lVert\mathbf{u}\rVert=\lVert\mathbf{d}\rVert$.<br>
+<p>Let $\mathbf{u}=\overrightarrow{CB}$ and $\mathbf{d}=\overrightarrow{CD}$. Then $\mathbf{u}\perp\mathbf{d}$ and $\lVert\mathbf{u}\rVert=\lVert\mathbf{d}\rVert$.
 Fix the unit normal $\mathbf{w}=\dfrac{\mathbf{u}\times\mathbf{d}}{\lVert\mathbf{u}\times\mathbf{d}\rVert}$.
 Since $AD\parallel CB$, $E\in CD$, and $DE=AD$, there exists a scalar $k$ such that
 $$\overrightarrow{AB}=-\mathbf{d}+(1-k)\mathbf{u},\qquad \overrightarrow{BE}=-(k-1)\mathbf{d}-\mathbf{u}.  $$
@@ -7882,7 +7882,7 @@ Finally, $\lVert\overrightarrow{AB}\times\mathbf{w}\rVert=\lVert\overrightarrow{
 $$\lVert\overrightarrow{AB}\rVert^2=\lVert\mathbf{d}\rVert^2+(k-1)^2\lVert\mathbf{u}\rVert^2=(k-1)^2\lVert\mathbf{d}\rVert^2+\lVert\mathbf{u}\rVert^2=\lVert\overrightarrow{BE}\rVert^2, $$
 so $\lVert\overrightarrow{AB}\rVert=\lVert\overrightarrow{BE}\rVert$. Therefore the normalized cross magnitudes match, and the reflection condition holds:
 $$\frac{\lVert\overrightarrow{BE}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{BE}\rVert}=\frac{\lVert\overrightarrow{EF}\times\overrightarrow{CD}\rVert}{\lVert\overrightarrow{EF}\rVert}.  $$
-So $BE$ reflects across $CD$ into $EF$.</br></p>
+So $BE$ reflects across $CD$ into $EF$.</p>
 </blockquote>
 </div>
 </div>
@@ -7894,7 +7894,7 @@ So $BE$ reflects across $CD$ into $EF$.</br></p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We used Lagrange’s formula (the vector triple product identity) in the proof above. There are many known proofs,some classic ones pure algebraic, but this one that I came up is purely geometric and makes the identity feel almost unavoidable. I haven’t seen this particular “Thales-circle + chord” intuition presented in such a compact form else where, so it seems worth sharing though it can hardly be original given this is elementary. In a sense, it brings the argument back to a Euclid-style picture: analysis and geometry are not rivals, but two languages for the same structure, constantly translating into each other.</p>
+<p>We used Lagrange’s formula (the vector triple product identity) in the proof above. There are many known proofs, some classic and purely algebraic, but this one that I came up with is purely geometric and makes the identity feel almost unavoidable. I haven’t seen this particular “Thales-circle + chord” intuition presented in such a compact form elsewhere, so it seems worth sharing though it can hardly be original, given that this is elementary. In a sense, it brings the argument back to a Euclid-style picture: analysis and geometry are not rivals, but two languages for the same structure, constantly translating into each other.</p>
 <h3 id="Proof-of-Lagrange's-formula-based-on-only-geometric-properties">Proof of Lagrange's formula based on only geometric properties<a class="anchor-link" href="#Proof-of-Lagrange's-formula-based-on-only-geometric-properties">¶</a></h3><blockquote>
 <p>Let $O$ be the origin and $\overrightarrow{OU}=\mathbf{u}$, $\overrightarrow{OV}=\mathbf{v}$, $\overrightarrow{OW}=\mathbf{w}$.
 Write $\mathbf{w}=\mathbf{w}_{\parallel}+\mathbf{w}_{\perp}$ relative to the plane $(OU,OV)$. Then $(\mathbf{u}\times\mathbf{v})\times\mathbf{w}_{\perp}=0$ (since $\mathbf{u}\times\mathbf{v}\parallel\mathbf{w}_{\perp}$) and $\mathbf{u}\cdot\mathbf{w}_{\perp}=\mathbf{v}\cdot\mathbf{w}_{\perp}=0$, so it suffices to assume $U,V,W$ are coplanar.
@@ -7911,7 +7911,7 @@ Since $\triangle OAB\cong\triangle OA'B'$, we have $AB=A'B'$. In the diameter-1 
 $$\lvert(\mathbf{u}\times\mathbf{v})\times\mathbf{w}\rvert=\lvert\mathbf{u}\times\mathbf{v}\rvert\,\lvert\mathbf{w}\rvert=\sin\alpha,$$
 so both sides are the same vector:
 $$ (\mathbf{u}\times\mathbf{v})\times\mathbf{w}=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{v}\cdot\mathbf{w})\mathbf{u}. $$
-So basically we used the multilinearity of the dot and cross products (it is enough to prove the identity for coplanar unit vectors). We also used that dot and cross magnitudes correspond to cos and sin of the angle. The rest relies on a circle fact: two chords have the same length if and only if their inscribed angles are equal.</p>
+In short, we used the multilinearity of the dot and cross products (it is enough to prove the identity for coplanar unit vectors). We also used that dot and cross magnitudes correspond to cos and sin of the angle. The rest relies on a circle fact: two chords have the same length if and only if their inscribed angles are equal.</p>
 </blockquote>
 </div>
 </div>
@@ -7929,15 +7929,15 @@ So basically we used the multilinearity of the dot and cross products (it is eno
 </ol>
 <ul>
 <li>AlphaGeometry / AlphaGeometry 2 (research systems that can solve many Olympiad problems)</li>
-<li>Open source software such as Newclid/yuclid by startup company Harmonic</li>
+<li>Open-source software such as Newclid/Yuclid by the startup company Harmonic</li>
 </ul>
 <ol start="2">
 <li>Geometry theorem provers (strong automation, not always Olympiad-style proofs)</li>
 </ol>
 <ul>
-<li>GCLC / WinGCLC (area method, Wu's method, Grobner bases)</li>
-<li>JGEX and Sympy (Wu/Grobner/full-angle methods with visualization)</li>
-<li>OpenGeoProver (Wu/Grobner style)</li>
+<li>GCLC / WinGCLC (area method, Wu's method, Gr?bner bases)</li>
+<li>JGEX and SymPy (Wu/Grobner/full-angle methods with visualization)</li>
+<li>OpenGeoProver (Wu/Gr?bner style)</li>
 <li>GeoLogic (interactive Euclidean prover)</li>
 </ul>
 <ol start="3">

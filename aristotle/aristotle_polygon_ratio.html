@@ -7528,18 +7528,18 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Harmonic (the company behind Newclid) also has a Lean-based prover called Aristotle that's their closed source flagship product. The company provides a web interface and API at <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a> that anyone can register and try (caveat it is very slow with long queue for job requests). This note uses our small, friendly geometry problem to demonstrate the workflow, while the same system is aimed at harder, cutting-edge problems across mathematics (geometry, number theory, analysis, and more) [ARISTOTLE].</p>
-<p><strong>How Aristotle differs from Newclid (short version).</strong> Newclid is a geometry-first system: you give a diagram-style construction and goals, and its symbolic engine tries to derive a synthetic proof inside that geometry domain. Aristotle is a general Lean prover: it formalizes statements in Lean and then proves them with Lean tactics, so its output is a formal Lean proof rather than a geometry-specific trace. For geometry problems, Aristotle's geometric solver can still use geometric reasoning (which appeared to be Newclid like), but in this demo it chooses a coordinate model, which looks closer to the analytic approach in Part 2. This is why the artifacts here feel more Lean/coordinate-heavy than Newclid's geometric narrative.</p>
-<p>Harmonic reports that Aristotle achieved gold medal-level performance on the 2025 International Mathematical Olympiad (IMO) solving 5 out of 6 problems, with formally verified solutions[HN-IMO][BW-IMO]. In the problem solved, problem 2 is about pure plane geometry [IMO2025P2]. It is vague if the solution adopted used Newclid approach, which Aristotle paper hinted that a separate solver is indeed used for geometry problems, following by the paper describing Newclid a month later. The proof also appears to be a geometry deduction instead of the Lean language.</p>
-<p>In general those IMO announcements are a useful backdrop for this demo: we stay with our simple trapezoid ratio to show how aristotle solve such simple problems in geometry, but the tooling is designed for much harder proofs in various domain beyond geometry. Without the full knowledge on how Aristotle's geometric engine differs from the open sourced Newclid, we will focus on how the solution to our simple polygon problem differ between the two to give an observation in this part of the notes. In general the aforementioned white papers propose that Aristotle trained a LLM with reinforcement learning to handle highly parallel Monte Carlo Graph Search over Lean proof states, with policy/value network to pick tree nodes and estimate promise. This differs from the Newclid default BSF tree search, which is enhanced by auxiliary point helper when the search logic stuck. This part of the design is beyond the scope of the current discussion. For our simple problem Aristotle indeed gives a distinct solution repying on Lean.</p>
-<p>Aristotle has been aimed and used beyond contest problems. In late 2025, it produced a Lean proof of a simplified variant of Erdos Problem 124. Chinese coverage highlighted that the system completed a variant autonomously in about six hours, while other reports noted that the solved statement was easier than the original conjecture [E124-6H]. Nonetheless this shows its early impact to the math community.</p>
-<p>A few days later, Harmonic's tool was credited for helping resolve Erdos Problem 1026. A December 14, 2025 write-up described how the AI tool proved a key step $c(k^2)=1/k$ in Lean as part of the eventual solution [E1026-48H]. Harmonic's own news page claims that since Aristotle's public launch in late 2025, mathematicians have used it to formalize proofs across levels and that the company sees this as a new era of discovery. [HN-MSI]</p>
-<p>For broader context on Erdos problems, the community-maintained erdosproblems GitHub database tracks problem status, prizes, formalizations, and links to related resources. It is essentially a living index of the current state of the problem list and related metadata, with an auto-generated table based on the repository's data files [ERDOS-SOTA]. Top mathematician Prof. Torrence Tao has been pioneering this efforts and other promotion of using AI for math research. The accompanying wiki page on AI contributions is more careful and nuanced: it catalogs where AI tools have been used, but also stresses that this is not a benchmark or leaderboard, that literature review can be incomplete, and that assessments are provisional and context-dependent. The page is best read as a reference for tracing claims and understanding the role AI has actually played [ERDOS-AI].</p>
+<p>Harmonic (the company behind Newclid) also has a Lean-based prover called Aristotle that is its closed-source flagship product. The company provides a web interface and API at <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a> that anyone can register and try (caveat: it can be slow and the job queue can be long). This note uses our small, friendly geometry problem to demonstrate the workflow, while the same system is aimed at harder, cutting-edge problems across mathematics (geometry, number theory, analysis, and more) [ARISTOTLE].</p>
+<p><strong>How Aristotle differs from Newclid (short version).</strong> Newclid is a geometry-first system: you give a diagram-style construction and goals, and its symbolic engine tries to derive a synthetic proof inside that geometry domain. Aristotle is a general Lean prover: it formalizes statements in Lean and then proves them with Lean tactics, so its output is a formal Lean proof rather than a geometry-specific trace. For geometry problems, Aristotle's geometric solver can still use geometric reasoning (which can look Newclid-like), but in this demo it chooses a coordinate model, which looks closer to the analytic approach in Part 2. This is why the artifacts here feel more Lean/coordinate-heavy than Newclid's geometric narrative.</p>
+<p>Harmonic reports that Aristotle achieved gold medal-level performance on the 2025 International Mathematical Olympiad (IMO), solving 5 of 6 problems with formally verified solutions [HN-IMO][BW-IMO]. Problem 2 is about pure plane geometry [IMO2025P2]. It is unclear whether the published solution used Newclid-style geometric deduction; the Aristotle paper hints that a separate geometry solver is used, and a Newclid paper appeared shortly afterward. The proof also appears to be a geometric deduction rather than a Lean script.</p>
+<p>These IMO announcements are a useful backdrop for this demo: we stay with our simple trapezoid ratio to show how Aristotle solves an elementary geometry problem, but the tooling is designed for much harder proofs in domains beyond geometry. Without full information on how Aristotle's geometry engine differs from the open-source Newclid, we focus on how the solutions differ in our small case. The white papers suggest that Aristotle trains an LLM with reinforcement learning to handle highly parallel Monte Carlo graph search over Lean proof states, using policy/value networks to choose nodes and estimate promise. This differs from Newclid's default BFS tree search, which is enhanced by auxiliary-point heuristics when the search gets stuck. That design discussion is beyond the scope of this note. For our simple problem, Aristotle indeed gives a distinct solution relying on Lean.</p>
+<p>Aristotle has been used beyond contest problems. In late 2025, it produced a Lean proof of a simplified variant of Erdos Problem 124. Chinese coverage highlighted that the system completed a variant autonomously in about six hours, while other reports noted that the solved statement was easier than the original conjecture [E124-6H]. Nonetheless, this shows its early impact on the math community.</p>
+<p>A few days later, Harmonic's tool was credited for helping resolve Erdos Problem 1026. A December 14, 2025 write-up described how the AI tool proved a key step $c(k^2)=1/k$ in Lean as part of the eventual solution [E1026-48H]. Harmonic's own news page claims that since Aristotle's public launch in late 2025, mathematicians have used it to formalize proofs across levels and that the company sees this as a new era of discovery [HN-MSI].</p>
+<p>For broader context on Erdos problems, the community-maintained erdosproblems GitHub database tracks problem status, prizes, formalizations, and links to related resources. It is essentially a living index of the current state of the problem list and related metadata, with an auto-generated table based on the repository's data files [ERDOS-SOTA]. Top mathematician Prof. Terence Tao has been pioneering this effort and promoting the use of AI for math research. The accompanying wiki page on AI contributions is more careful and nuanced: it catalogs where AI tools have been used, but also stresses that this is not a benchmark or leaderboard, that literature review can be incomplete, and that assessments are provisional and context-dependent. The page is best read as a reference for tracing claims and understanding the role AI has actually played [ERDOS-AI].</p>
 <div align="center">
 <img alt="Aristotle prompt interface" src="aristotle_prompt1.png" style="height:320px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 7.1: Aristotle's prompt interface. It accepts formal Lean input as well as informal text or file uploads.</em></p>
 </div>
-As Figure 7.1 shows, the command line application of Aristotle can offer an interactive proof interface (see Appendix 7A for more discussion). Also they offer an API interface in python which is used in the code below to solve our polygon problem, including both questions. Note that the problem text is written in informal plain English, which is accepted by their API as well as the prompt, aside from the alternative lean input format. Under the hood the model clearly utilize strong LLM for understanding such descriptions. In fact the team has described its solver architecture as a pretrained LLM further trained with reinforcement learning for reasoning [ARISTOTLE].
+As Figure 7.1 shows, the command-line application of Aristotle can offer an interactive proof interface (see Appendix 7A for more discussion). They also offer a Python API, which is used in the code below to solve our polygon problem, including both questions. Note that the problem text is written in informal plain English, which is accepted by their API as well as the prompt, aside from the alternative Lean input format. Under the hood the model clearly utilizes a strong LLM for understanding such descriptions. In fact, the team has described its solver architecture as a pretrained LLM further trained with reinforcement learning for reasoning [ARISTOTLE].
 
 <hr/>
 </div>
@@ -7628,7 +7628,7 @@ As Figure 7.1 shows, the command line application of Aristotle can offer an inte
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Lean-quick-intro">Lean quick intro<a class="anchor-link" href="#Lean-quick-intro">¶</a></h3><p>Lean is an interactive theorem prover: humans (or automated tactics) provide the proof steps, and Lean checks every step for correctness. In typical use, the proof is supplied by the user via tactics or proof terms, though automation can discharge many routine goals.</p>
-<p>Before Lean became popular, prominent proof assistants and formal verification systems included Coq, Isabelle/HOL, HOL Light, ACL2, and Mizar.  Lean was created at Microsoft Research by Leonardo de Moura and collaborators. It began as a general-purpose theorem prover for formal verification and mathematics, and later grew a large community library (mathlib). Rough timeline (high-level): early 2010s initial Lean releases; mid2010s Lean 3 matured and became the main community platform; early 2020s Lean 4 modernized the system and tooling.</p>
+<p>Before Lean became popular, prominent proof assistants and formal verification systems included Coq, Isabelle/HOL, HOL Light, ACL2, and Mizar.  Lean was created at Microsoft Research by Leonardo de Moura and collaborators. It began as a general-purpose theorem prover for formal verification and mathematics, and later grew a large community library (mathlib). Rough timeline (high-level): early 2010s initial Lean releases; mid-2010s Lean 3 matured and became the main community platform; in the early 2020s Lean 4 modernized the system and tooling.</p>
 <p>In recent years, researchers and tool builders have started using Lean not just for verification but also for <em>assisting</em> proof discovery: automated tactics, proof search, and AI-guided systems propose steps that Lean then verifies. This notebook uses Aristotle to generate a Lean proof automatically, while Lean itself remains the verifier. [LEAN]</p>
 </div>
 </div>
@@ -7643,7 +7643,7 @@ As Figure 7.1 shows, the command line application of Aristotle can offer an inte
 <h3 id="Proof-7.1-Aristotle-(Lean-files-+-reading-guide)">Proof 7.1 Aristotle (Lean files + reading guide)<a class="anchor-link" href="#Proof-7.1-Aristotle-(Lean-files-+-reading-guide)">¶</a></h3><blockquote>
 <h4 id="Human-readable-summary-(abstracted-based-on-Lean)">Human-readable summary (abstracted based on Lean)<a class="anchor-link" href="#Human-readable-summary-(abstracted-based-on-Lean)">¶</a></h4><p>Aristotle proves the ratio identities by coordinatizing the trapezoid in the complex plane. It sets
 $C=(0,0)$, $B=(a,0)$, $D=(0,a)$, $A=(x,a)$, and $E=(0,a-x)$,
-so the geometric constraints are encoded directly. The auxiliary points $F,G,H$ are then defined algebraically (projection and intersections). The two target identities are reduced to equalities of squared distances, denominators are cleared, and the resulting expressions are simplified by algebraic tactics. In short: the geometry is converted to algebra, and Lean verifies the algebraic identities. This translation indicated the step of converting the informal input description to a format one saving some work from the human.</p>
+so the geometric constraints are encoded directly. The auxiliary points $F,G,H$ are then defined algebraically (projection and intersections). The two target identities are reduced to equalities of squared distances, denominators are cleared, and the resulting expressions are simplified by algebraic tactics. In short: the geometry is converted to algebra, and Lean verifies the algebraic identities. This highlights the step of converting the informal input description into a formal format, saving some work for the human.</p>
 <h4 id="Human-readable-analytical-proof-(abstracted-based-on-Lean)">Human-readable analytical proof (abstracted based on Lean)<a class="anchor-link" href="#Human-readable-analytical-proof-(abstracted-based-on-Lean)">¶</a></h4><ol>
 <li><p><strong>Coordinate model.</strong> Set $C=(0,0)$, $B=(a,0)$, $D=(0,a)$, $A=(x,a)$, $E=(0,a-x)$. This makes $AD\parallel BC$, $\angle C=90^\circ$, $BC=CD$, and $DE=AD$ automatic.</p>
 </li>
@@ -7816,13 +7816,13 @@ Thus $BE^2\,DH^2=BD^2\,EH^2$, implying $BE\cdot DH=BD\cdot EH$.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d66f70c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08146170">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>All in all tools like lean MathLib (lean language and thereom database) + Aristotle (LLM with RL training in lean) + ChatGPT 5.2 Pro (and its competitor frontier LLM) have become the most cutting edge AI tools for mathematicians, which has revealed a frontier of realization of mathematical AGI.</p>
+<p>All in all, tools like Lean + mathlib (Lean language and theorem database), Aristotle (an LLM trained with RL for Lean), and ChatGPT 5.2 Pro (and other frontier LLMs) are among the most advanced AI tools available for mathematicians. Together they point toward a frontier of machine-assisted mathematical discovery.</p>
 </div>
 </div>
 </div>
@@ -7855,8 +7855,7 @@ Thus $BE^2\,DH^2=BD^2\,EH^2$, implying $BE\cdot DH=BD\cdot EH$.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Appendix-7A:-Angle-Bisector-Theorem-(session-by-session-read-of-angle_bisector_problem.lean)">Appendix 7A: Angle Bisector Theorem (session-by-session read of <code>angle_bisector_problem.lean</code>)<a class="anchor-link" href="#Appendix-7A:-Angle-Bisector-Theorem-(session-by-session-read-of-angle_bisector_problem.lean)">¶</a></h3><p>The input statement shown in Figure 7.1 contains a small typo. Aristotle's run hit a wall and then suggested the corrected objective, which makes this a useful mini-case study. This appendix summarizes the Lean output and how to read it.
-Below is a single, smoothly integrated “read-along”: every line of your original Lean file (with line numbers, unchanged content), broken into frequent chunks, with very beginner-friendly commentary—including the deeper explanations of the <code>exact?</code> “holes” (what they’re <em>supposed</em> to fill, and how to discover the lemma names) without modifying the file.</p>
+<h3 id="Appendix-7A:-Angle-Bisector-Theorem-(session-by-session-read-of-angle_bisector_problem.lean)">Appendix 7A: Angle Bisector Theorem (session-by-session read of <code>angle_bisector_problem.lean</code>)<a class="anchor-link" href="#Appendix-7A:-Angle-Bisector-Theorem-(session-by-session-read-of-angle_bisector_problem.lean)">¶</a></h3><p>The input statement shown in Figure 7.1 contains a small typo. Aristotle's run hit a wall and then suggested the corrected objective, which makes this a useful mini-case study. This appendix summarizes the Lean output and how to read it. Below is a single, smoothly integrated “read-along”: every line of your original Lean file (with line numbers, unchanged content), broken into frequent chunks, with very beginner-friendly commentary—including the deeper explanations of the <code>exact?</code> “holes” (what they’re <em>supposed</em> to fill, and how to discover the lemma names) without modifying the file.</p>
 <h4 id="First:-what%E2%80%99s-going-on-here-(big-picture,-zero-background)">First: what’s going on here (big picture, zero background)<a class="anchor-link" href="#First:-what%E2%80%99s-going-on-here-(big-picture,-zero-background)">¶</a></h4><p>This <code>.lean</code> file is not “code that runs”; it’s a formal proof script. Think of it as:</p>
 <ul>
 <li>Theorem statement = a precise claim (a “type” in Lean).</li>
@@ -7866,18 +7865,16 @@ Below is a single, smoothly integrated “read-along”: every line of your orig
 <ul>
 <li>input: hypotheses (assumptions)</li>
 <li>output: the conclusion</li>
-<li>body: the proof steps</li>
+<li>body: the proof steps
+The original request was: AB/AC = AD/DC. The classical Angle Bisector Theorem is: AB/AC = BD/DC. Notice: the conclusion compares how the angle bisector cuts the opposite side BC (that’s BD and DC). Using AD instead is usually false: AD is a “cevian length” that varies in a more complicated way than the side-splitting ratio.</li>
 </ul>
-<h5 id="The-%E2%80%9Ctypo%E2%80%9D-and-why-a-prover-gets-stuck">The “typo” and why a prover gets stuck<a class="anchor-link" href="#The-%E2%80%9Ctypo%E2%80%9D-and-why-a-prover-gets-stuck">¶</a></h5><p>The original request was: AB/AC = AD/DC. The classical Angle Bisector Theorem is:
-AB/AC = BD/DC
-Notice: the conclusion compares how the angle bisector cuts the opposite side BC (that’s BD and DC). Using AD instead is usually false: AD is a “cevian length” that varies in a more complicated way than the side-splitting ratio.</p>
 <p>A quick “smell test” humans use (and automated systems can also use):</p>
 <ul>
 <li>If the hypothesis only says “D lies on BC and AD bisects angle A”, the most natural ratio to appear is BD/DC (pieces of BC), not AD/DC (a cross-triangle length mixed with a side piece).</li>
 </ul>
-<p>So Aristotle explicitly <em>repairs</em> the statement: AD → BD.</p>
-<h4 id="Lean-/-mathlib-mini-dictionary-(for-a-reader-who-knows-nothing)">Lean / mathlib mini dictionary (for a reader who knows nothing)<a class="anchor-link" href="#Lean-/-mathlib-mini-dictionary-(for-a-reader-who-knows-nothing)">¶</a></h4><p>When you see:</p>
-<ul>
+<p>So Aristotle explicitly <em>repairs</em> the statement: AD → BD.
+Before we get to the proof itself, it is worth pausing on <em>how</em> Aristotle detected the typo. The original objective said AB/AC = AD/DC, but the standard Angle Bisector Theorem states AB/AC = BD/DC. The model likely recognizes this classical statement: the angle bisector theorem is a memorized fact, so when it sees the hypotheses D lies on BC and AD bisects $\angle A$ it strongly expects the conclusion to involve the two <em>segments on BC</em> (BD and DC), not the cevian length AD. In other words, a language-model prior about the canonical theorem shape guides the correction here. That correction is not a formal proof step; it's a semantic repair that happens <em>before</em> proof search. Once the statement is repaired, Lean can proceed with a formal derivation in the rest of the file. This correct is certainly interesting and showed the deep knowledge of existing theorems in math. Further more it should be pointed out that MathLib contains many theorems, but the angle bisector isn't one of them; so this suggestion wasn't from MathLib database, but an suggestion by the LLM.</p>
+<h4 id="Lean-/-mathlib-mini-dictionary-(for-a-reader-who-knows-nothing)">Lean / mathlib mini dictionary (for a reader who knows nothing)<a class="anchor-link" href="#Lean-/-mathlib-mini-dictionary-(for-a-reader-who-knows-nothing)">¶</a></h4><ul>
 <li><code>¬ P</code> means “not P”.</li>
 <li><code>∧</code> means “and”.</li>
 <li><code>:= by ...</code> means “here is the proof, written in tactic steps”.</li>
@@ -7894,24 +7891,25 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <li><code>{A, B, C}</code> is a finite set of points.</li>
 <li><code>Collinear ℝ {A, B, C}</code> means “A,B,C are on one line.”</li>
 <li><code>affineSegment ℝ B C</code> = the closed segment from B to C (includes endpoints).</li>
-<li><code>Sbtw ℝ B D C</code> = “D is strictly between B and C” (on the segment, not equal to endpoints).</li>
+<li><code>Sbtw ℝ B D C</code> = “D is strictly between B and C” (on the segment, not equal to endpoints).
+Below let's read-along with the original file</li>
 </ul>
-<h4 id="Read-along-with-the-original-file">Read-along with the original file<a class="anchor-link" href="#Read-along-with-the-original-file">¶</a></h4><h5 id="Chunk-1-%E2%80%94-Metadata-+-the-repaired-statement-+-the-proof-plan">Chunk 1 — Metadata + the repaired statement + the proof plan<a class="anchor-link" href="#Chunk-1-%E2%80%94-Metadata-+-the-repaired-statement-+-the-proof-plan">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">001</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="Chunk-1-%E2%80%94-Metadata-+-the-repaired-statement-+-the-proof-plan">Chunk 1 — Metadata + the repaired statement + the proof plan<a class="anchor-link" href="#Chunk-1-%E2%80%94-Metadata-+-the-repaired-statement-+-the-proof-plan">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">001</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">002: This file was generated by Aristotle.</span>
-<span class="cm">003: </span>
+<span class="cm">003:</span>
 <span class="cm">004: Lean version: leanprover/lean4:v4.24.0</span>
 <span class="cm">005: Mathlib version: f897ebcf72cd16f89ab4577d0c826cd14afaafc7</span>
 <span class="cm">006: This project request had uuid: 86e2b544-c6c8-49e3-bca1-e4f015c16ba1</span>
-<span class="cm">007: </span>
+<span class="cm">007:</span>
 <span class="cm">008: To cite Aristotle, tag @Aristotle-Harmonic on GitHub PRs/issues, and add as co-author to commits:</span>
 <span class="cm">009: Co-authored-by: Aristotle (Harmonic) &lt;aristotle-harmonic@harmonic.fun&gt;</span>
 <span class="cm">010: -/</span>
-<span class="mi">011</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">011</span><span class="o">:</span>
 <span class="mi">012</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">013: We prove the Angle Bisector Theorem.</span>
 <span class="cm">014: The user's request "AB/AC=AD/DC" contains a typo (AD should be BD).</span>
 <span class="cm">015: We prove the standard theorem: if AD bisects angle A and D is on BC, then AB/AC = BD/DC.</span>
-<span class="cm">016: </span>
+<span class="cm">016:</span>
 <span class="cm">017: The proof proceeds by:</span>
 <span class="cm">018: 1. Establishing that D lies strictly between B and C (`sbtw_of_angle_bisector_intersect`).</span>
 <span class="cm">019: 2. Showing that sin(∠ADB) = sin(∠ADC) because the angles are supplementary (`sin_angle_eq_sin_angle_of_sbtw`).</span>
@@ -7927,25 +7925,25 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <li>Lines 14–15 are the crucial “typo fix.” This is not cosmetic. If you try to prove the wrong statement in Lean, it’s like trying to compile a program with a false spec: you can grind forever and never succeed because it’s simply not derivable from the hypotheses.</li>
 <li>Lines 17–23 give a human proof outline. That’s already a hint at how these systems work: the agent often chooses a familiar skeleton (Law of Sines) and then Lean forces all the details to be made explicit.</li>
 </ul>
-<h5 id="Chunk-2-%E2%80%94-Importing-mathlib-+-turning-off-proof-timeouts">Chunk 2 — Importing mathlib + turning off proof timeouts<a class="anchor-link" href="#Chunk-2-%E2%80%94-Importing-mathlib-+-turning-off-proof-timeouts">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">025</span><span class="o">:</span><span class="w"> </span>
+<h4 id="Chunk-2-%E2%80%94-Importing-mathlib-+-turning-off-proof-timeouts">Chunk 2 — Importing mathlib + turning off proof timeouts<a class="anchor-link" href="#Chunk-2-%E2%80%94-Importing-mathlib-+-turning-off-proof-timeouts">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">025</span><span class="o">:</span>
 <span class="mi">026</span><span class="o">:</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">Mathlib</span>
-<span class="mi">027</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">027</span><span class="o">:</span>
 <span class="mi">028</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">linter.mathlibStandardSet</span><span class="w"> </span><span class="n">false</span>
-<span class="mi">029</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">029</span><span class="o">:</span>
 <span class="mi">030</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">BigOperators</span>
 <span class="mi">031</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Real</span>
 <span class="mi">032</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Nat</span>
 <span class="mi">033</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Classical</span>
 <span class="mi">034</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Pointwise</span>
-<span class="mi">035</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">035</span><span class="o">:</span>
 <span class="mi">036</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">maxHeartbeats</span><span class="w"> </span><span class="mi">0</span>
 <span class="mi">037</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">maxRecDepth</span><span class="w"> </span><span class="mi">4000</span>
 <span class="mi">038</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">synthInstance.maxHeartbeats</span><span class="w"> </span><span class="mi">20000</span>
 <span class="mi">039</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">synthInstance.maxSize</span><span class="w"> </span><span class="mi">128</span>
-<span class="mi">040</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">040</span><span class="o">:</span>
 <span class="mi">041</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">relaxedAutoImplicit</span><span class="w"> </span><span class="n">false</span>
 <span class="mi">042</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">autoImplicit</span><span class="w"> </span><span class="n">false</span>
-<span class="mi">043</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">043</span><span class="o">:</span>
 <span class="mi">044</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kn">section</span>
 </pre></div>
 <p>Commentary:</p>
@@ -7954,29 +7952,26 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <li>“Heartbeats” are Lean’s internal fuel to stop runaway automation. Setting them huge (or 0 = unlimited) is common in machine-generated proofs that rely on search.</li>
 <li><code>autoImplicit false</code> forces variables to be declared explicitly. This reduces “mystery implicit variables,” which helps both machines and humans debug.</li>
 </ul>
-<h5 id="Chunk-3-%E2%80%94-Opening-the-geometry-world-+-declaring-the-ambient-space">Chunk 3 — Opening the geometry world + declaring the ambient space<a class="anchor-link" href="#Chunk-3-%E2%80%94-Opening-the-geometry-world-+-declaring-the-ambient-space">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">045</span><span class="o">:</span><span class="w"> </span>
+<h4 id="Chunk-3-%E2%80%94-Opening-the-geometry-world-+-declaring-the-ambient-space">Chunk 3 — Opening the geometry world + declaring the ambient space<a class="anchor-link" href="#Chunk-3-%E2%80%94-Opening-the-geometry-world-+-declaring-the-ambient-space">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">045</span><span class="o">:</span>
 <span class="mi">046</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">047: In a non-degenerate triangle ABC, if D is the intersection of the angle bisector of A with the segment BC, then D is strictly between B and C.</span>
 <span class="cm">048: -/</span>
 <span class="mi">049</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">050</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">050</span><span class="o">:</span>
 <span class="mi">051</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">052</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">052</span><span class="o">:</span>
 </pre></div>
 <p>Commentary:</p>
 <ul>
-<li><p><code>open EuclideanGeometry Metric</code> enables names like <code>dist</code>, <code>angle</code>, segment definitions, etc.</p>
-</li>
-<li><p>Line 51 is Lean being extremely general: it’s saying “we are in some Euclidean affine space.”</p>
-<ul>
+<li><code>open EuclideanGeometry Metric</code> enables names like <code>dist</code>, <code>angle</code>, segment definitions, etc.</li>
+<li>Line 51 is Lean being extremely general: it’s saying “we are in some Euclidean affine space.”<ul>
 <li><code>P</code> = points</li>
 <li><code>V</code> = vectors (displacements between points)</li>
 <li>the typeclass brackets <code>[...]</code> are Lean’s way of saying “assume V behaves like a real inner product space, and P is an affine space modeled on V.”</li>
 </ul>
 </li>
 </ul>
-<p>If you’re new: don’t panic. This is just Lean’s “we’re doing Euclidean geometry in full generality.”</p>
-<h5 id="Chunk-4-%E2%80%94-Lemma-1:-from-%E2%80%9CD-lies-on-segment-BC-+-bisector%E2%80%9D-to-%E2%80%9CD-is-strictly-between-B-and-C%E2%80%9D">Chunk 4 — Lemma 1: from “D lies on segment BC + bisector” to “D is strictly between B and C”<a class="anchor-link" href="#Chunk-4-%E2%80%94-Lemma-1:-from-%E2%80%9CD-lies-on-segment-BC-+-bisector%E2%80%9D-to-%E2%80%9CD-is-strictly-between-B-and-C%E2%80%9D">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">053</span><span class="o">:</span><span class="w"> </span><span class="kd">lemma</span><span class="w"> </span><span class="n">sbtw_of_angle_bisector_intersect</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
+<h4 id="Chunk-4-%E2%80%94-Lemma-1:-from-%E2%80%9CD-lies-on-segment-BC-+-bisector%E2%80%9D-to-%E2%80%9CD-is-strictly-between-B-and-C%E2%80%9D">Chunk 4 — Lemma 1: from “D lies on segment BC + bisector” to “D is strictly between B and C”<a class="anchor-link" href="#Chunk-4-%E2%80%94-Lemma-1:-from-%E2%80%9CD-lies-on-segment-BC-+-bisector%E2%80%9D-to-%E2%80%9CD-is-strictly-between-B-and-C%E2%80%9D">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">053</span><span class="o">:</span><span class="w"> </span><span class="kd">lemma</span><span class="w"> </span><span class="n">sbtw_of_angle_bisector_intersect</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
 <span class="mi">054</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">Collinear</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="o">{</span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="o">,</span><span class="w"> </span><span class="n">C</span><span class="o">})</span>
 <span class="mi">055</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_D_on_BC</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">∈</span><span class="w"> </span><span class="n">affineSegment</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="o">)</span>
 <span class="mi">056</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_bisector</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
@@ -8002,35 +7997,32 @@ Notice: the conclusion compares how the angle bisector cuts the opposite side BC
 <span class="mi">076</span><span class="o">:</span><span class="w">       </span><span class="bp">·</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">sub_eq_zero</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">077</span><span class="o">:</span><span class="w">         </span><span class="n">rintro</span><span class="w"> </span><span class="n">rfl</span><span class="bp">;</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">collinear_pair</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">078</span><span class="o">:</span><span class="w">     </span><span class="bp">·</span><span class="w"> </span><span class="n">exact</span><span class="bp">?</span>
-<span class="mi">079</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">079</span><span class="o">:</span>
 </pre></div>
-<h6 id="What-this-lemma-is-really-doing-(human-geometry)">What this lemma is <em>really</em> doing (human geometry)<a class="anchor-link" href="#What-this-lemma-is-really-doing-(human-geometry)">¶</a></h6><ul>
+<h4 id="What-this-lemma-is-really-doing-(human-geometry)">What this lemma is <em>really</em> doing (human geometry)<a class="anchor-link" href="#What-this-lemma-is-really-doing-(human-geometry)">¶</a></h4><ul>
 <li><code>h_D_on_BC</code> says D is on the closed segment BC. That still allows D = B or D = C.</li>
 <li><code>Sbtw ℝ B D C</code> says D is strictly inside the segment (not endpoints).</li>
 <li>So the plan is: rule out endpoint cases using the “non-degenerate triangle” hypothesis.</li>
 </ul>
-<h6 id="Why-line-59-does-a-case-split">Why line 59 does a case split<a class="anchor-link" href="#Why-line-59-does-a-case-split">¶</a></h6><p><code>by_cases hDB : D = B</code> means:</p>
+<h4 id="Why-line-59-does-a-case-split">Why line 59 does a case split<a class="anchor-link" href="#Why-line-59-does-a-case-split">¶</a></h4><p><code>by_cases hDB : D = B</code> means:</p>
 <ul>
 <li>Case 1: D is B (degenerate)</li>
-<li>Case 2: D is not B (the “normal” case)</li>
+<li>Case 2: D is not B (the “normal” case)
+This is a classic Lean move: explicitly isolate degenerate cases because later trig and division facts can fail or behave differently there.</li>
 </ul>
-<p>This is a classic Lean move: explicitly isolate degenerate cases because later trig and division facts can fail or behave differently there.</p>
-<h6 id="What-the-scary-angle/collinear-stuff-is-about-(lines-60%E2%80%9368)">What the scary angle/collinear stuff is about (lines 60–68)<a class="anchor-link" href="#What-the-scary-angle/collinear-stuff-is-about-(lines-60%E2%80%9368)">¶</a></h6><p>When D = B, the “angle bisector” condition becomes something like:</p>
-<ul>
+<h4 id="What-the-scary-angle/collinear-stuff-is-about-(lines-60%E2%80%9368)">What the scary angle/collinear stuff is about (lines 60–68)<a class="anchor-link" href="#What-the-scary-angle/collinear-stuff-is-about-(lines-60%E2%80%9368)">¶</a></h4><ul>
 <li>angle BAB = angle CAB
-and in mathlib, degenerate angles are defined in a particular way; but the net effect is that you can force a contradiction that A,B,C become collinear, which violates <code>h_triangle</code>.</li>
+and in mathlib, degenerate angles are defined in a particular way; but the net effect is that you can force a contradiction that A,B,C become collinear, which violates <code>h_triangle</code>.
+So lines 63–67 are Lean laboriously constructing a <em>formal</em> proof of collinearity in mathlib’s chosen definition (<code>collinear_iff_exists_forall_eq_smul_vadd</code>).</li>
 </ul>
-<p>So lines 63–67 are Lean laboriously constructing a <em>formal</em> proof of collinearity in mathlib’s chosen definition (<code>collinear_iff_exists_forall_eq_smul_vadd</code>).</p>
-<h6 id="The-key-%E2%80%9Cautomation-hole%E2%80%9D-at-line-78:-what-exact?-is-expected-to-find">The key “automation hole” at line 78: what <code>exact?</code> is expected to find<a class="anchor-link" href="#The-key-%E2%80%9Cautomation-hole%E2%80%9D-at-line-78:-what-exact?-is-expected-to-find">¶</a></h6><p>At line 69 you’re already in the branch “D ≠ B”, and inside it you split on <code>D = C</code>. The last remaining branch is:</p>
+<h4 id="The-key-%E2%80%9Cautomation-hole%E2%80%9D-at-line-78:-what-exact?-is-expected-to-find">The key “automation hole” at line 78: what <code>exact?</code> is expected to find<a class="anchor-link" href="#The-key-%E2%80%9Cautomation-hole%E2%80%9D-at-line-78:-what-exact?-is-expected-to-find">¶</a></h4><p>At line 69 you’re already in the branch “D ≠ B”, and inside it you split on <code>D = C</code>. The last remaining branch is:</p>
 <ul>
 <li>D ∈ segment BC</li>
 <li>D ≠ B</li>
 <li>D ≠ C
-→ therefore D is strictly between B and C.</li>
-</ul>
-<p>That last implication is extremely standard, so Aristotle writes <code>exact?</code>.</p>
-<p>How you, as a beginner, can <em>see what lemma should exist</em> without knowing its name:</p>
-<ul>
+→ therefore D is strictly between B and C.
+That last implication is extremely standard, so Aristotle writes <code>exact?</code>.
+So,</li>
 <li>Expand the definition in your head: <code>Sbtw</code> is “between + not endpoints”.</li>
 <li>You already have “between-ish” from <code>h_D_on_BC</code>.</li>
 <li>You already have “not endpoints” from the case splits.</li>
@@ -8039,19 +8031,19 @@ and in mathlib, degenerate angles are defined in a particular way; but the net e
 <blockquote>
 <p>If <code>D ∈ affineSegment ℝ B C</code> and <code>D ≠ B</code> and <code>D ≠ C</code> then <code>Sbtw ℝ B D C</code>.</p>
 </blockquote>
-<p>How you would discover the exact lemma name in practice (no file modifications needed):</p>
+<p>Let's discover the exact lemma name in practice (no file modifications needed):</p>
 <ul>
 <li>Put the cursor on <code>exact?</code> in an editor with Lean (VS Code + Lean extension).</li>
 <li>Lean will often suggest a replacement proof term / lemma application.</li>
 <li>Alternatively, you can try <code>simp</code> or <code>aesop</code> in a scratch buffer (not altering the original) and see what it uses.</li>
 </ul>
-<h5 id="Chunk-5-%E2%80%94-Lemma-2:-%E2%80%9Cstraight-line-at-D%E2%80%9D-%E2%87%92-equal-sines-of-supplementary-angles">Chunk 5 — Lemma 2: “straight line at D” ⇒ equal sines of supplementary angles<a class="anchor-link" href="#Chunk-5-%E2%80%94-Lemma-2:-%E2%80%9Cstraight-line-at-D%E2%80%9D-%E2%87%92-equal-sines-of-supplementary-angles">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">080</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="Chunk-5-%E2%80%94-Lemma-2:-%E2%80%9Cstraight-line-at-D%E2%80%9D-%E2%87%92-equal-sines-of-supplementary-angles">Chunk 5 — Lemma 2: “straight line at D” ⇒ equal sines of supplementary angles<a class="anchor-link" href="#Chunk-5-%E2%80%94-Lemma-2:-%E2%80%9Cstraight-line-at-D%E2%80%9D-%E2%87%92-equal-sines-of-supplementary-angles">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">080</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">081: If D is strictly between B and C, then sin(angle ADB) = sin(angle ADC).</span>
 <span class="cm">082: -/</span>
 <span class="mi">083</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">084</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">084</span><span class="o">:</span>
 <span class="mi">085</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">086</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">086</span><span class="o">:</span>
 <span class="mi">087</span><span class="o">:</span><span class="w"> </span><span class="kd">lemma</span><span class="w"> </span><span class="n">sin_angle_eq_sin_angle_of_sbtw</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Sbtw</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
 <span class="mi">088</span><span class="o">:</span><span class="w">   </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">089</span><span class="o">:</span><span class="w">   </span><span class="c1">-- By the properties of angles in a triangle, we know that angle BDC = π.</span>
@@ -8061,38 +8053,37 @@ and in mathlib, degenerate angles are defined in a particular way; but the net e
 <span class="mi">093</span><span class="o">:</span><span class="w">   </span><span class="k">have</span><span class="w"> </span><span class="n">h_angle_sum</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">Real.pi</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">094</span><span class="o">:</span><span class="w">     </span><span class="n">exact</span><span class="bp">?;</span>
 <span class="mi">095</span><span class="o">:</span><span class="w">   </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sin_pi_sub</span><span class="o">,</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">h_angle_sum</span><span class="o">,</span><span class="w"> </span><span class="n">add_sub_cancel_left</span><span class="w"> </span><span class="o">]</span>
-<span class="mi">096</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">096</span><span class="o">:</span>
 </pre></div>
-<h6 id="The-geometry-in-one-sentence">The geometry in one sentence<a class="anchor-link" href="#The-geometry-in-one-sentence">¶</a></h6><p>If B–D–C is a straight line, then ∠BDC = π, and ∠ADB + ∠ADC = π, so sin(∠ADB) = sin(∠ADC) by sin(π−x)=sin(x).</p>
-<h6 id="What-line-90%E2%80%9391-(exact?)-is-doing">What line 90–91 (<code>exact?</code>) is doing<a class="anchor-link" href="#What-line-90%E2%80%9391-(exact?)-is-doing">¶</a></h6><p>You have <code>h : Sbtw ℝ B D C</code>. From “strictly between”, mathlib usually provides a lemma saying:</p>
+<h4 id="The-geometry-in-one-sentence">The geometry in one sentence<a class="anchor-link" href="#The-geometry-in-one-sentence">¶</a></h4><p>If B–D–C is a straight line, then ∠BDC = π, and ∠ADB + ∠ADC = π, so sin(∠ADB) = sin(∠ADC) by sin(π−x)=sin(x).</p>
+<p>What line 90–91 (<code>exact?</code>) is doing:
+You have <code>h : Sbtw ℝ B D C</code>. From “strictly between”, mathlib usually provides a lemma saying:</p>
 <ul>
-<li>the angle ∠BDC is a straight angle, i.e. equals π.</li>
+<li>the angle ∠BDC is a straight angle, i.e. equals π.
+So <code>exact?</code> at line 91 is expected to find “Sbtw implies angle = π” (with the correct ordering of points).
+Beginner hint: in Lean, the <em>order of points</em> matters a lot. <code>angle B D C</code> is ∠BDC (vertex D). A lemma that proves <code>angle B C D = π</code> would not help here.</li>
 </ul>
-<p>So <code>exact?</code> at line 91 is expected to find “Sbtw implies angle = π” (with the correct ordering of points).</p>
-<p>Beginner hint: in Lean, the <em>order of points</em> matters a lot.
-<code>angle B D C</code> is ∠BDC (vertex D). A lemma that proves <code>angle B C D = π</code> would not help here.</p>
-<h6 id="What-line-93%E2%80%9394-(exact?)-is-doing">What line 93–94 (<code>exact?</code>) is doing<a class="anchor-link" href="#What-line-93%E2%80%9394-(exact?)-is-doing">¶</a></h6><p>Given ∠BDC = π, mathlib usually has a lemma saying:</p>
+<h4 id="What-line-93%E2%80%9394-(exact?)-is-doing">What line 93–94 (<code>exact?</code>) is doing<a class="anchor-link" href="#What-line-93%E2%80%9394-(exact?)-is-doing">¶</a></h4><p>Given ∠BDC = π, mathlib usually has a lemma saying:</p>
 <ul>
-<li>if rays DB and DC form π, then for any A, the adjacent angles ∠ADB and ∠ADC sum to π.</li>
+<li>if rays DB and DC form π, then for any A, the adjacent angles ∠ADB and ∠ADC sum to π.
+Again, <code>exact?</code> is the placeholder for “the library already knows supplementary angles sum to π in this configuration.”</li>
 </ul>
-<p>Again, <code>exact?</code> is the placeholder for “the library already knows supplementary angles sum to π in this configuration.”</p>
-<h6 id="Line-95:-the-trig-identity-move">Line 95: the trig identity move<a class="anchor-link" href="#Line-95:-the-trig-identity-move">¶</a></h6><p><code>rw [ ← Real.sin_pi_sub, ← h_angle_sum, add_sub_cancel_left ]</code> is a compact chain:</p>
+<h4 id="Line-95:-the-trig-identity-move">Line 95: the trig identity move<a class="anchor-link" href="#Line-95:-the-trig-identity-move">¶</a></h4><p><code>rw [ ← Real.sin_pi_sub, ← h_angle_sum, add_sub_cancel_left ]</code> is a compact chain:</p>
 <ul>
 <li>rewrite using sin(π − x) = sin x,</li>
 <li>replace π by (∠ADB + ∠ADC),</li>
 <li>cancel algebraically to turn sin(∠ADC) into sin(∠ADB).</li>
 </ul>
-<h5 id="Chunk-6-%E2%80%94-Restating-the-theorem-goal-section-header">Chunk 6 — Restating the theorem goal section header<a class="anchor-link" href="#Chunk-6-%E2%80%94-Restating-the-theorem-goal-section-header">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">097</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="Chunk-6-%E2%80%94-Restating-the-theorem-goal-section-header">Chunk 6 — Restating the theorem goal section header<a class="anchor-link" href="#Chunk-6-%E2%80%94-Restating-the-theorem-goal-section-header">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">097</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">098: The Angle Bisector Theorem: In a triangle ABC, if the bisector of angle A intersects the segment BC at D, then AB/AC = BD/DC.</span>
 <span class="cm">099: -/</span>
 <span class="mi">100</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">101</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">101</span><span class="o">:</span>
 <span class="mi">102</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">103</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">103</span><span class="o">:</span>
 </pre></div>
-<p>Commentary:
-This is just a fresh section header. Machines often repeat context to keep things local and avoid implicit state.</p>
-<h5 id="Chunk-7-%E2%80%94-Main-theorem-(part-1):-encoding-Law-of-Sines-twice">Chunk 7 — Main theorem (part 1): encoding Law of Sines twice<a class="anchor-link" href="#Chunk-7-%E2%80%94-Main-theorem-(part-1):-encoding-Law-of-Sines-twice">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">104</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">angle_bisector_theorem_corrected</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
+<p>Commentary: This is just a fresh section header. Machines often repeat context to keep things local and avoid implicit state.</p>
+<h4 id="Chunk-7-%E2%80%94-Main-theorem-(part-1):-encoding-Law-of-Sines-twice">Chunk 7 — Main theorem (part 1): encoding Law of Sines twice<a class="anchor-link" href="#Chunk-7-%E2%80%94-Main-theorem-(part-1):-encoding-Law-of-Sines-twice">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">104</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">angle_bisector_theorem_corrected</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
 <span class="mi">105</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">Collinear</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="o">{</span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="o">,</span><span class="w"> </span><span class="n">C</span><span class="o">})</span>
 <span class="mi">106</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_D_on_BC</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">∈</span><span class="w"> </span><span class="n">affineSegment</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="o">)</span>
 <span class="mi">107</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_bisector</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
@@ -8152,35 +8143,30 @@ This is just a fresh section header. Machines often repeat context to keep thing
 <span class="mi">161</span><span class="o">:</span><span class="w">           </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="bp">-ᵥ</span><span class="w"> </span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="k">fun</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="bp">=&gt;</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">rcases</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">rfl</span><span class="w"> </span><span class="bp">|</span><span class="w"> </span><span class="n">rfl</span><span class="w"> </span><span class="bp">|</span><span class="w"> </span><span class="n">rfl</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="bp">&lt;;&gt;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">simp</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">⟩</span><span class="w"> </span><span class="bp">;</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">simp</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">⟩</span><span class="w"> </span><span class="bp">;</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="o">⟨</span><span class="w"> </span><span class="n">h_bisector</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="n">choose</span><span class="o">,</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">h_bisector</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="n">choose_spec</span><span class="bp">.</span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="n">vsub_vadd</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">⟩</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">⟩</span><span class="bp">;</span>
 <span class="mi">162</span><span class="o">:</span><span class="w">         </span><span class="bp">·</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="n">vsub_ne_zero.mpr</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">rintro</span><span class="w"> </span><span class="n">rfl</span><span class="bp">;</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">collinear_pair</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">)</span><span class="bp">;</span>
 </pre></div>
-<h6 id="What%E2%80%99s-the-conceptual-move-here?">What’s the conceptual move here?<a class="anchor-link" href="#What%E2%80%99s-the-conceptual-move-here?">¶</a></h6><p>Line 110 defines <code>h_angle_bisector</code> as two Law-of-Sines-style equalities (joined by <code>∧</code> = “and”):</p>
+<h4 id="What%E2%80%99s-the-conceptual-move-here?">What’s the conceptual move here?<a class="anchor-link" href="#What%E2%80%99s-the-conceptual-move-here?">¶</a></h4><p>Line 110 defines <code>h_angle_bisector</code> as two Law-of-Sines-style equalities (joined by <code>∧</code> = “and”):</p>
 <ul>
 <li>One equality will correspond to triangle A D B.</li>
-<li>The other corresponds to triangle A D C.</li>
+<li>The other corresponds to triangle A D C.
+The lemma used is:</li>
+<li><code>EuclideanGeometry.sin_angle_div_dist_eq_sin_angle_div_dist</code>
+That’s the library’s packaged “Law of Sines symmetry” in the form:
+$$\frac{\sin(\angle)}{\text{opposite side}} = \frac{\sin(\angle)}{\text{opposite side}}$$
+but written in mathlib’s preferred ordering.</li>
 </ul>
-<p>The lemma used is:</p>
+<h4 id="Why-so-many-lines-about-degeneracy?">Why so many lines about degeneracy?<a class="anchor-link" href="#Why-so-many-lines-about-degeneracy?">¶</a></h4><p>Because these identities involve dividing by distances. Lean will not let you divide by zero silently. So you see many sub-branches like:</p>
 <ul>
-<li><code>EuclideanGeometry.sin_angle_div_dist_eq_sin_angle_div_dist</code></li>
-</ul>
-<p>That’s the library’s packaged “Law of Sines symmetry” in the form:</p>
-<p>[
-\frac{\sin(\angle)}{\text{opposite side}} = \frac{\sin(\angle)}{\text{opposite side}}
-]</p>
-<p>but written in mathlib’s preferred ordering.</p>
-<h6 id="Why-so-many-lines-about-degeneracy?">Why so many lines about degeneracy?<a class="anchor-link" href="#Why-so-many-lines-about-degeneracy?">¶</a></h6><p>Because these identities involve dividing by distances. Lean will not let you divide by zero silently. So you see many sub-branches like:</p>
-<ul>
-<li><p><code>rintro rfl; ...</code> which is Lean-speak for:</p>
-<ul>
-<li>“Assume two points are equal (so the distance becomes 0). Show this contradicts <code>h_triangle</code>.”</li>
+<li><code>rintro rfl; ...</code> which is Lean-speak for:<ul>
+<li>“Assume two points are equal (so the distance becomes 0). Show this contradicts <code>h_triangle</code>.”
+That is “formal hygiene”: humans skip it; Lean forces it.</li>
 </ul>
 </li>
 </ul>
-<p>That is “formal hygiene”: humans skip it; Lean forces it.</p>
-<h6 id="Why-the-convert-...-using-1-trick?">Why the <code>convert ... using 1</code> trick?<a class="anchor-link" href="#Why-the-convert-...-using-1-trick?">¶</a></h6><p>Because the library lemma’s exact statement may not match the goal’s exact arrangement of points/distances. <code>convert</code> says:</p>
+<p>Why the <code>convert ... using 1</code> trick? Because the library lemma’s exact statement may not match the goal’s exact arrangement of points/distances. <code>convert</code> says:</p>
 <blockquote>
-<p>“This lemma gives something equivalent; let me adjust the expression slightly to make it match my goal.”</p>
+<p>“This lemma gives something equivalent; let me adjust the expression slightly to make it match my goal.”
+Then <code>congr!</code> helps prove the adjusted pieces are equal (e.g., swapping <code>dist A B</code> to <code>dist B A</code> using <code>dist_comm</code>).</p>
 </blockquote>
-<p>Then <code>congr!</code> helps prove the adjusted pieces are equal (e.g., swapping <code>dist A B</code> to <code>dist B A</code> using <code>dist_comm</code>).</p>
-<h5 id="Chunk-8-%E2%80%94-Main-theorem-(part-2):-use-the-sine-equality,-clear-denominators,-finish">Chunk 8 — Main theorem (part 2): use the sine equality, clear denominators, finish<a class="anchor-link" href="#Chunk-8-%E2%80%94-Main-theorem-(part-2):-use-the-sine-equality,-clear-denominators,-finish">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">163</span><span class="o">:</span><span class="w">   </span><span class="c1">-- Since $\sin(\angle A D B) = \sin(\angle A D C)$, we can equate the two expressions from the Angle Bisector Theorem.</span>
+<h4 id="Chunk-8-%E2%80%94-Main-theorem-(part-2):-use-the-sine-equality,-clear-denominators,-finish">Chunk 8 — Main theorem (part 2): use the sine equality, clear denominators, finish<a class="anchor-link" href="#Chunk-8-%E2%80%94-Main-theorem-(part-2):-use-the-sine-equality,-clear-denominators,-finish">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">163</span><span class="o">:</span><span class="w">   </span><span class="c1">-- Since $\sin(\angle A D B) = \sin(\angle A D C)$, we can equate the two expressions from the Angle Bisector Theorem.</span>
 <span class="mi">164</span><span class="o">:</span><span class="w">   </span><span class="k">have</span><span class="w"> </span><span class="n">h_sin_eq'</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">Real.sin</span><span class="w"> </span><span class="o">(</span><span class="n">angle</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">165</span><span class="o">:</span><span class="w">     </span><span class="n">apply</span><span class="w"> </span><span class="n">sin_angle_eq_sin_angle_of_sbtw</span><span class="bp">;</span>
 <span class="mi">166</span><span class="o">:</span><span class="w">     </span><span class="n">exact</span><span class="bp">?;</span>
@@ -8214,71 +8200,55 @@ This is just a fresh section header. Machines often repeat context to keep thing
 <span class="mi">194</span><span class="o">:</span><span class="w">     </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">div_eq_inv_mul</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">195</span><span class="o">:</span><span class="w">     </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">div_eq_div_iff</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">h_angle_bisector</span><span class="w"> </span><span class="bp">&lt;;&gt;</span><span class="w"> </span><span class="n">simp_all</span><span class="w"> </span><span class="bp">+</span><span class="n">decide</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">dist_comm</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
 <span class="mi">196</span><span class="o">:</span><span class="w">     </span><span class="n">grind</span>
-<span class="mi">197</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">197</span><span class="o">:</span>
 </pre></div>
-<h6 id="The-key-%E2%80%9Cexact?%E2%80%9D-at-line-166-(what-it-must-supply)">The key “exact?” at line 166 (what it must supply)<a class="anchor-link" href="#The-key-%E2%80%9Cexact?%E2%80%9D-at-line-166-(what-it-must-supply)">¶</a></h6><p>You’re proving <code>h_sin_eq'</code> by applying Lemma 2:</p>
+<p>The key “exact?” at line 166 (what it must supply)
+You’re proving <code>h_sin_eq'</code> by applying Lemma 2:</p>
 <ul>
-<li><code>apply sin_angle_eq_sin_angle_of_sbtw;</code></li>
-</ul>
-<p>That lemma needs an input:</p>
-<ul>
-<li><code>Sbtw ℝ B D C</code></li>
-</ul>
-<p>But here, in the main theorem, you only have:</p>
-<ul>
-<li><code>h_triangle</code>, <code>h_D_on_BC</code>, <code>h_bisector</code></li>
-</ul>
-<p>So line 166 <code>exact?</code> is expected to discover:</p>
-<ul>
+<li><code>apply sin_angle_eq_sin_angle_of_sbtw;</code>
+That lemma needs an input:</li>
+<li><code>Sbtw ℝ B D C</code>
+But here, in the main theorem, you only have:</li>
+<li><code>h_triangle</code>, <code>h_D_on_BC</code>, <code>h_bisector</code>
+So line 166 <code>exact?</code> is expected to discover:</li>
 <li>“from those three, we can prove <code>Sbtw ℝ B D C</code>”
-which is precisely Lemma 1 (<code>sbtw_of_angle_bisector_intersect</code>).</li>
-</ul>
-<p>So the chain is:</p>
-<ul>
+which is precisely Lemma 1 (<code>sbtw_of_angle_bisector_intersect</code>).
+So the chain is:</li>
 <li>Lemma 1: bisector + D on segment + non-collinear triangle ⇒ <code>Sbtw</code></li>
 <li>Lemma 2: <code>Sbtw</code> ⇒ sin(∠ADB)=sin(∠ADC)</li>
 </ul>
-<h6 id="Lines-167%E2%80%93170:-case-splits-on-distances-(why-so-pedantic?)">Lines 167–170: case splits on distances (why so pedantic?)<a class="anchor-link" href="#Lines-167%E2%80%93170:-case-splits-on-distances-(why-so-pedantic?)">¶</a></h6><p>Because the goal has divisions:</p>
+<p>Lines 167–170: case splits on distances:</p>
 <ul>
 <li><code>dist A B / dist A C</code></li>
-<li><code>dist B D / dist D C</code></li>
-</ul>
-<p>If any denominator is zero, division is problematic. So Lean forces you to split:</p>
-<ul>
+<li><code>dist B D / dist D C</code>
+If any denominator is zero, division is problematic. So Lean forces you to split:</li>
 <li>Is <code>dist A C = 0</code>? (meaning A=C)</li>
 <li>Is <code>dist D C = 0</code>? (meaning D=C)
-etc.</li>
+etc.
+Humans would say “in a nondegenerate triangle, these aren’t zero.” Lean makes you prove it.</li>
 </ul>
-<p>Humans would say “in a nondegenerate triangle, these aren’t zero.” Lean makes you prove it.</p>
-<h6 id="Lines-171%E2%80%93193:-proving-a-sine-is-nonzero">Lines 171–193: proving a sine is nonzero<a class="anchor-link" href="#Lines-171%E2%80%93193:-proving-a-sine-is-nonzero">¶</a></h6><p>This is another “formal hygiene” piece:</p>
+<p>Lines 171–193: proving a sine is nonzero. This is another “formal hygiene” piece:</p>
 <ul>
-<li>if <code>sin(angle C A D) = 0</code>, then the angle is 0 or π (for angles in [0,π]).</li>
-<li>either one implies collinearity, contradicting <code>h_triangle</code>.</li>
+<li>if <code>sin(angle C A D) = 0</code>, then the angle is 0 or π (for angles in $[0,\pi]$).</li>
+<li>either one implies collinearity, contradicting <code>h_triangle</code>.
+So it is a formal version of:
+“In a real triangle, angle CAD can’t be 0 or π.”</li>
 </ul>
-<p>So it is a formal version of:</p>
-<blockquote>
-<p>“In a real triangle, angle CAD can’t be 0 or π.”</p>
-</blockquote>
-<h6 id="Line-195:-div_eq_div_iff-=-%E2%80%9Ccross-multiply%E2%80%9D">Line 195: <code>div_eq_div_iff</code> = “cross-multiply”<a class="anchor-link" href="#Line-195:-div_eq_div_iff-=-%E2%80%9Ccross-multiply%E2%80%9D">¶</a></h6><p>This is the standard algebra step:
-[
-\frac{x}{y} = \frac{u}{v} \quad \Rightarrow \quad x v = u y
-]
-(with side conditions about nonzero denominators).</p>
-<h6 id="Line-196:-grind">Line 196: <code>grind</code><a class="anchor-link" href="#Line-196:-grind">¶</a></h6><p>This is the “big automation broom” that sweeps up routine algebraic rearrangements and simplifications.</p>
-<p>Beginner takeaway: <code>grind</code> is not a magical mathematical insight. It’s mostly:</p>
+<p>Line 195: <code>div_eq_div_iff</code> = “cross-multiply”. This is the standard algebra step: $\frac{x}{y} = \frac{u}{v} \Rightarrow x v = u y$ (with side conditions about nonzero denominators).</p>
+<p>Line 196 <code>grind</code>: this is the “big automation broom” that sweeps up routine algebraic rearrangements and simplifications. <code>grind</code> is not a magical mathematical insight. It’s mostly:</p>
 <ul>
 <li>rewriting,</li>
 <li>cancelling,</li>
 <li>commutativity/associativity bookkeeping,</li>
 <li>and pushing <code>simp</code>-like rules repeatedly.</li>
 </ul>
-<h5 id="Chunk-9-%E2%80%94-Final-wrapper-theorem:-%E2%80%9CLean,-find-the-proof-we-already-built%E2%80%9D">Chunk 9 — Final wrapper theorem: “Lean, find the proof we already built”<a class="anchor-link" href="#Chunk-9-%E2%80%94-Final-wrapper-theorem:-%E2%80%9CLean,-find-the-proof-we-already-built%E2%80%9D">¶</a></h5><div class="highlight"><pre><span></span><span class="mi">198</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<h4 id="Chunk-9-%E2%80%94-Final-wrapper-theorem:-%E2%80%9CLean,-find-the-proof-we-already-built%E2%80%9D">Chunk 9 — Final wrapper theorem: “Lean, find the proof we already built”<a class="anchor-link" href="#Chunk-9-%E2%80%94-Final-wrapper-theorem:-%E2%80%9CLean,-find-the-proof-we-already-built%E2%80%9D">¶</a></h4><div class="highlight"><pre><span></span><span class="mi">198</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
 <span class="cm">199: The Angle Bisector Theorem: In a triangle ABC, if the bisector of angle A intersects the segment BC at D, then AB/AC = BD/DC.</span>
 <span class="cm">200: -/</span>
 <span class="mi">201</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">EuclideanGeometry</span><span class="w"> </span><span class="n">Metric</span>
-<span class="mi">202</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">202</span><span class="o">:</span>
 <span class="mi">203</span><span class="o">:</span><span class="w"> </span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddCommGroup</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">InnerProductSpace</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">V</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">P</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">NormedAddTorsor</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
-<span class="mi">204</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">204</span><span class="o">:</span>
 <span class="mi">205</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">angle_bisector_theorem_final</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">P</span><span class="o">)</span>
 <span class="mi">206</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">Collinear</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="o">{</span><span class="n">A</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="o">,</span><span class="w"> </span><span class="n">C</span><span class="o">})</span>
 <span class="mi">207</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">h_D_on_BC</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">∈</span><span class="w"> </span><span class="n">affineSegment</span><span class="w"> </span><span class="n">ℝ</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="o">)</span>
@@ -8286,25 +8256,17 @@ etc.</li>
 <span class="mi">209</span><span class="o">:</span><span class="w">   </span><span class="n">dist</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="mi">210</span><span class="o">:</span><span class="w">   </span><span class="n">exact</span><span class="bp">?</span>
 </pre></div>
-<h6 id="What-exact?-at-line-210-is-intended-to-do">What <code>exact?</code> at line 210 is intended to do<a class="anchor-link" href="#What-exact?-at-line-210-is-intended-to-do">¶</a></h6><p>At this point, the file already has a theorem with the same statement:</p>
+<p>What <code>exact?</code> at line 210 is intended to do? At this point, the file already has a theorem with the same statement:</p>
 <ul>
-<li><code>angle_bisector_theorem_corrected</code> (line 104)</li>
-</ul>
-<p>So line 210 <code>exact?</code> is basically:</p>
-<blockquote>
-<p>“Please locate a theorem in the environment whose type matches my goal, and apply it.”</p>
-</blockquote>
-<p>In a “human-clean” proof, you’d typically write:</p>
-<ul>
-<li><code>exact angle_bisector_theorem_corrected A B C D h_triangle h_D_on_BC h_bisector</code></li>
-</ul>
-<p>But Aristotle leaves it as <code>exact?</code> to let Lean’s search find it automatically.</p>
-<p>Beginner debugging note: if <code>exact?</code> fails here, it usually means:</p>
-<ul>
+<li><code>angle_bisector_theorem_corrected</code> (line 104)
+So line 210 <code>exact?</code> is basically: “Please locate a theorem in the environment whose type matches my goal, and apply it.”
+In a “human-clean” proof, you’d typically write: <code>exact angle_bisector_theorem_corrected A B C D h_triangle h_D_on_BC h_bisector</code>
+But Aristotle leaves it as <code>exact?</code> to let Lean’s search find it automatically.
+If <code>exact?</code> fails here, it usually means:</li>
 <li>the earlier theorem is not in scope (not the case here),</li>
 <li>or the goal is syntactically different (e.g., distances swapped), and you need a <code>simp [dist_comm]</code> first.</li>
 </ul>
-<h6 id="How-Aristotle-%E2%80%9Cworked%E2%80%9D-here-(in-plain-language)">How Aristotle “worked” here (in plain language)<a class="anchor-link" href="#How-Aristotle-%E2%80%9Cworked%E2%80%9D-here-(in-plain-language)">¶</a></h6><p>You can read this file as a collaboration:</p>
+<p>You can read this file as a collaboration:</p>
 <ul>
 <li>The agent chooses a known proof strategy (Law of Sines) and scaffolds the structure.</li>
 <li>Lean + mathlib force every missing detail to be filled: nondegeneracy, rewriting, collinearity contradictions, denominator nonzero, angle bounds.</li>
