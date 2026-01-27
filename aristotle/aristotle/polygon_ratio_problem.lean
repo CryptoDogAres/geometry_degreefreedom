@@ -3,4 +3,4 @@
 -- Point E lies on CD with DE = AD. Through E draw EF ? AB with F the foot.
 -- Draw BD; it meets AE and EF at G and H, respectively. Prove:
 -- 1) BF * HE = GE * BH
--- 2) BE * DH = BD * EH 
+-- 2) BE * DH = BD * EH

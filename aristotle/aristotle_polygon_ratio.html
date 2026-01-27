@@ -7508,26 +7508,8 @@ a.anchor-link {
     white-space: normal;
   }
 </style>
-<!-- End of mermaid configuration --><style>
-.back-to-index {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 9999;
-  padding: 10px 14px;
-  background: #111;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-}
-.back-to-index:hover { background: #333; }
-</style>
-</head>
+<!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<a class="back-to-index" href="../index.html">Back to index</a>
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6a1704e8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7546,13 +7528,20 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Harmonic (the company behind Newclid) also has a Lean-based prover called Aristotle. The company provides a web interface and API at <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a>. This note uses a small, friendly geometry problem to demonstrate the workflow, while the same system is aimed at harder, cutting-edge problems across mathematics (geometry, number theory, analysis, and more). [ARISTOTLE]</p>
-<p>Harmonic reports that Aristotle achieved gold medal-level performance on the 2025 International Mathematical Olympiad (IMO), with formally verified solutions. [HN-IMO][BW-IMO] Those IMO announcements are a useful backdrop for this demo: we stay with a simple trapezoid ratio, but the tooling is designed for much harder proofs.</p>
-<p>Aristotle has also been used beyond contest problems. In late 2025, it produced a Lean proof of a simplified variant of Erdős Problem #124. Chinese coverage highlighted that the system completed a variant autonomously in about six hours, while other reports noted that the solved statement was easier than the original conjecture. [E124-6H]</p>
-<p>A few days later, Harmonic’s tool was credited for helping resolve Erdős Problem #1026. A December 14, 2025 write-up described how the AI tool proved a key step $c(k^2)=1/k$ in Lean as part of the eventual solution. [E1026-48H]</p>
-<p>Harmonic’s own news page claims that since Aristotle’s public launch in late 2025, mathematicians have used it to formalize proofs across levels and that the company sees this as a new era of discovery. [HN-MSI]</p>
-<p>For broader context on Erdős problems, the community-maintained erdosproblems GitHub database tracks problem status, prizes, formalizations, and links to related resources. It is essentially a living index of the current state of the problem list and related metadata, with an auto-generated table based on the repository's data files. [ERDOS-SOTA]</p>
-<p>The accompanying wiki page on AI contributions is more careful and nuanced: it catalogs where AI tools have been used, but also stresses that this is not a benchmark or leaderboard, that literature review can be incomplete, and that assessments are provisional and context-dependent. The page is best read as a reference for tracing claims and understanding the role AI has actually played. [ERDOS-AI]</p>
+<p>Harmonic (the company behind Newclid) also has a Lean-based prover called Aristotle that's their closed source flagship product. The company provides a web interface and API at <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a> that anyone can register and try (caveat it is very slow with long queue for job requests). This note uses our small, friendly geometry problem to demonstrate the workflow, while the same system is aimed at harder, cutting-edge problems across mathematics (geometry, number theory, analysis, and more) [ARISTOTLE].</p>
+<p><strong>How Aristotle differs from Newclid (short version).</strong> Newclid is a geometry-first system: you give a diagram-style construction and goals, and its symbolic engine tries to derive a synthetic proof inside that geometry domain. Aristotle is a general Lean prover: it formalizes statements in Lean and then proves them with Lean tactics, so its output is a formal Lean proof rather than a geometry-specific trace. For geometry problems, Aristotle's geometric solver can still use geometric reasoning (which appeared to be Newclid like), but in this demo it chooses a coordinate model, which looks closer to the analytic approach in Part 2. This is why the artifacts here feel more Lean/coordinate-heavy than Newclid's geometric narrative.</p>
+<p>Harmonic reports that Aristotle achieved gold medal-level performance on the 2025 International Mathematical Olympiad (IMO) solving 5 out of 6 problems, with formally verified solutions[HN-IMO][BW-IMO]. In the problem solved, problem 2 is about pure plane geometry [IMO2025P2]. It is vague if the solution adopted used Newclid approach, which Aristotle paper hinted that a separate solver is indeed used for geometry problems, following by the paper describing Newclid a month later. The proof also appears to be a geometry deduction instead of the Lean language.</p>
+<p>In general those IMO announcements are a useful backdrop for this demo: we stay with our simple trapezoid ratio to show how aristotle solve such simple problems in geometry, but the tooling is designed for much harder proofs in various domain beyond geometry. Without the full knowledge on how Aristotle's geometric engine differs from the open sourced Newclid, we will focus on how the solution to our simple polygon problem differ between the two to give an observation in this part of the notes. In general the aforementioned white papers propose that Aristotle trained a LLM with reinforcement learning to handle highly parallel Monte Carlo Graph Search over Lean proof states, with policy/value network to pick tree nodes and estimate promise. This differs from the Newclid default BSF tree search, which is enhanced by auxiliary point helper when the search logic stuck. This part of the design is beyond the scope of the current discussion. For our simple problem Aristotle indeed gives a distinct solution repying on Lean.</p>
+<p>Aristotle has been aimed and used beyond contest problems. In late 2025, it produced a Lean proof of a simplified variant of Erdos Problem 124. Chinese coverage highlighted that the system completed a variant autonomously in about six hours, while other reports noted that the solved statement was easier than the original conjecture [E124-6H]. Nonetheless this shows its early impact to the math community.</p>
+<p>A few days later, Harmonic's tool was credited for helping resolve Erdos Problem 1026. A December 14, 2025 write-up described how the AI tool proved a key step $c(k^2)=1/k$ in Lean as part of the eventual solution [E1026-48H]. Harmonic's own news page claims that since Aristotle's public launch in late 2025, mathematicians have used it to formalize proofs across levels and that the company sees this as a new era of discovery. [HN-MSI]</p>
+<p>For broader context on Erdos problems, the community-maintained erdosproblems GitHub database tracks problem status, prizes, formalizations, and links to related resources. It is essentially a living index of the current state of the problem list and related metadata, with an auto-generated table based on the repository's data files [ERDOS-SOTA]. Top mathematician Prof. Torrence Tao has been pioneering this efforts and other promotion of using AI for math research. The accompanying wiki page on AI contributions is more careful and nuanced: it catalogs where AI tools have been used, but also stresses that this is not a benchmark or leaderboard, that literature review can be incomplete, and that assessments are provisional and context-dependent. The page is best read as a reference for tracing claims and understanding the role AI has actually played [ERDOS-AI].</p>
+<div align="center">
+<img alt="Aristotle prompt interface" src="aristotle_prompt1.png" style="height:320px; width:auto; display:block; margin:0 auto;"/>
+<p><em>Figure 7.1: Aristotle's prompt interface. It accepts formal Lean input as well as informal text or file uploads.</em></p>
+</div>
+As Figure 7.1 shows, the command line application of Aristotle can offer an interactive proof interface. Also they offer an API interface in python which is used in the code below to solve our polygon problem, including both questions. Note that the problem text is written in informal plain English, which is accepted by their API as well as the prompt, aside from the alternative lean input format. Under the hood the model clearly utilize strong LLM for understanding such descriptions. In fact the team has described its solver architecture as a pretrained LLM further trained with reinforcement learning for reasoning [ARISTOTLE].
+
+<hr/>
 </div>
 </div>
 </div>
@@ -7626,8 +7615,21 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <div align="center">
 <img alt="Aristotle web interface screenshot" src="aristotle_harmonic.fun_output.png" style="height:320px; width:auto; display:block; margin:0 auto;"/>
-<p><em>Figure 7.1 The Aristotle web UI at harmonic.fun. The demo job below was queued for a while and then ran for ~20 minutes, suggesting a CPU-heavy run rather than a short GPU burst.</em></p>
+<p><em>Figure 7.2 The Aristotle web UI at harmonic.fun. The demo job below was queued for a while and then ran for ~20 minutes, suggesting a resource constrained run for the trial account possibly not even on the GPU.</em></p>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=07c4b19c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Lean-quick-intro">Lean quick intro<a class="anchor-link" href="#Lean-quick-intro">¶</a></h3><p>Lean is an interactive theorem prover: humans (or automated tactics) provide the proof steps, and Lean checks every step for correctness. In typical use, the proof is supplied by the user via tactics or proof terms, though automation can discharge many routine goals.</p>
+<p>Before Lean became popular, prominent proof assistants and formal verification systems included Coq, Isabelle/HOL, HOL Light, ACL2, and Mizar.  Lean was created at Microsoft Research by Leonardo de Moura and collaborators. It began as a general-purpose theorem prover for formal verification and mathematics, and later grew a large community library (mathlib). Rough timeline (high-level): early 2010s initial Lean releases; mid2010s Lean 3 matured and became the main community platform; early 2020s Lean 4 modernized the system and tooling.</p>
+<p>In recent years, researchers and tool builders have started using Lean not just for verification but also for <em>assisting</em> proof discovery: automated tactics, proof search, and AI-guided systems propose steps that Lean then verifies. This notebook uses Aristotle to generate a Lean proof automatically, while Lean itself remains the verifier. [LEAN]</p>
 </div>
 </div>
 </div>
@@ -7638,122 +7640,167 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Proof-7.1-Human-readable-summary-of-Aristotle's-proof-(with-detailed-derivations)">Proof 7.1 Human-readable summary of Aristotle's proof (with detailed derivations)<a class="anchor-link" href="#Proof-7.1-Human-readable-summary-of-Aristotle's-proof-(with-detailed-derivations)">¶</a></h3><blockquote>
-<p>Aristotle encodes the problem in Lean and outputs a Lean proof file. Below is a human-readable summary of the proof.</p>
-<p>Aristotle places the trapezoid in the plane (coordinates in $\mathbb{R}^2$):</p>
-<p>$$
-C=(0,0),\; B=(a,0),\; D=(0,a),\; A=(x,a),\; E=(0,a-x).
+<h3 id="Proof-7.1-Aristotle-(Lean-files-+-reading-guide)">Proof 7.1 Aristotle (Lean files + reading guide)<a class="anchor-link" href="#Proof-7.1-Aristotle-(Lean-files-+-reading-guide)">¶</a></h3><blockquote>
+<h4 id="Human-readable-summary-(abstracted-based-on-Lean)">Human-readable summary (abstracted based on Lean)<a class="anchor-link" href="#Human-readable-summary-(abstracted-based-on-Lean)">¶</a></h4><p>Aristotle proves the ratio identities by coordinatizing the trapezoid in the complex plane. It sets
+$C=(0,0)$, $B=(a,0)$, $D=(0,a)$, $A=(x,a)$, and $E=(0,a-x)$,
+so the geometric constraints are encoded directly. The auxiliary points $F,G,H$ are then defined algebraically (projection and intersections). The two target identities are reduced to equalities of squared distances, denominators are cleared, and the resulting expressions are simplified by algebraic tactics. In short: the geometry is converted to algebra, and Lean verifies the algebraic identities. This translation indicated the step of converting the informal input description to a format one saving some work from the human.</p>
+<h4 id="Human-readable-analytical-proof-(abstracted-based-on-Lean)">Human-readable analytical proof (abstracted based on Lean)<a class="anchor-link" href="#Human-readable-analytical-proof-(abstracted-based-on-Lean)">¶</a></h4><ol>
+<li><p><strong>Coordinate model.</strong> Set $C=(0,0)$, $B=(a,0)$, $D=(0,a)$, $A=(x,a)$, $E=(0,a-x)$. This makes $AD\parallel BC$, $\angle C=90^\circ$, $BC=CD$, and $DE=AD$ automatic.</p>
+</li>
+<li><p><strong>How $H$ is found.</strong> The diagonal $BD$ has direction $(-a,\,a)$ and can be parametrized as $(a\,(1-s),\,a\,s)$. The line through $E$ perpendicular to $AB$ has direction $(a,\,-(x-a))$ and can be parametrized as $(0,a-x)+u\,(a,\,-(x-a))$. Solving
+$u a=a\,(1-s)$ and $a-x-u(x-a)=a\,s$ gives $u=\tfrac{x}{2a-x}$, hence
+$$
+H=\Big(\frac{ax}{2a-x},\,\frac{2a(a-x)}{2a-x}\Big).
 $$</p>
-<p>These choices encode $AD\parallel BC$, $\angle C=90^\circ$, $BC=CD$, and $DE=AD$ directly. The auxiliary points are defined algebraically:</p>
-<ul>
-<li>$F$ is the orthogonal projection of $E$ onto line $AB$.</li>
-<li>$G$ is the intersection of $AE$ and $BD$.</li>
-<li>$H$ is the intersection of $EF$ and $BD$.</li>
-</ul>
-<p>From the coordinate definitions, Aristotle derives explicit formulas (in complex coordinates) for the constructed points:</p>
-<p>$$
-G=\Big(\frac{x}{2},\; a-\frac{x}{2}\Big).
-$$</p>
-<p>Let $AB$ have direction vector $(x-a,\,a)$, so a perpendicular direction is $(a,\,-(x-a))$. The line $EF$ through $E=(0,a-x)$ can be written:</p>
-<p>$$
-EF:\quad (X,Y)=(0,a-x)+u\,(a,\,-(x-a)).
-$$</p>
-<p>The diagonal $BD$ can be parametrized as:</p>
-<p>$$
-BD:\quad (X,Y)=(a,0)+s\,(-a,\,a)=(a(1-s),\,as).
-$$</p>
-<p>Solve for the intersection by equating coordinates:</p>
-<p>$$
-ua=a(1-s),\quad a-x-u(x-a)=as.
-$$</p>
-<p>From $u=1-s$, the second equation gives:</p>
-<p>$$
-2(a-x)=s(2a-x),\quad\Rightarrow\quad s=\frac{2(a-x)}{2a-x},\quad u=\frac{x}{2a-x}.
-$$</p>
-<p>Therefore:</p>
-<p>$$
-H=\Big(\frac{ax}{2a-x},\; \frac{2a(a-x)}{2a-x}\Big),\qquad (2a\neq x).
-$$</p>
-<p>The projection point $F$ is defined using the standard projection formula along $AB$:</p>
-<p>$$
-F = B + t(A-B),\quad t=\frac{\langle E-B, A-B\rangle}{\langle A-B, A-B\rangle}.
-$$</p>
-<p>If we expand this, the coordinates of $F$ can be written explicitly as:</p>
-<p>$$
-F=\Big( a + t(x-a),\; t a \Big),\qquad
- t=\frac{a^2 + a(x-a)}{(x-a)^2 + a^2}.
-$$</p>
-<hr/>
-<h4 id="Derivation-for-$BE%5Ccdot-DH-=-BD%5Ccdot-EH$">Derivation for $BE\cdot DH = BD\cdot EH$<a class="anchor-link" href="#Derivation-for-$BE%5Ccdot-DH-=-BD%5Ccdot-EH$">¶</a></h4><p>First compute squared lengths:</p>
-<p>$$
-BE^2 = (a-0)^2 + (a-x-0)^2 = a^2 + (a-x)^2,
-$$</p>
-<p>$$
-BD^2 = (a-0)^2 + (0-a)^2 = 2a^2.
-$$</p>
-<p>Now use $H=\big(\frac{ax}{2a-x},\frac{2a(a-x)}{2a-x}\big)$.</p>
-<p>For $DH$, subtract $D=(0,a)$:</p>
-<p>$$
-DH^2 = \Big(\frac{ax}{2a-x}\Big)^2 + \Big(\frac{2a(a-x)}{2a-x} - a\Big)^2.
-$$</p>
-<p>The second component simplifies as:</p>
-<p>$$
-\frac{2a(a-x)}{2a-x} - a
-= \frac{2a(a-x) - a(2a-x)}{2a-x}
-= \frac{-ax}{2a-x}.
-$$</p>
-<p>So:</p>
-<p>$$
-DH^2 = \Big(\frac{ax}{2a-x}\Big)^2 + \Big(\frac{ax}{2a-x}\Big)^2
-= \frac{2a^2x^2}{(2a-x)^2}.
-$$</p>
-<p>For $EH$, subtract $E=(0,a-x)$:</p>
-<p>$$
-EH^2 = \Big(\frac{ax}{2a-x}\Big)^2 + \Big(\frac{2a(a-x)}{2a-x} - (a-x)\Big)^2.
-$$</p>
-<p>The second component simplifies as:</p>
-<p>$$
-\frac{2a(a-x)}{2a-x} - (a-x)
-= (a-x)\Big(\frac{2a}{2a-x} - 1\Big)
-= (a-x)\Big(\frac{x}{2a-x}\Big).
-$$</p>
-<p>So:</p>
-<p>$$
-EH^2 = \frac{a^2x^2}{(2a-x)^2} + \frac{x^2(a-x)^2}{(2a-x)^2}
-= \frac{x^2\big(a^2+(a-x)^2\big)}{(2a-x)^2}.
-$$</p>
-<p>Now multiply:</p>
-<p>$$
-BE^2\,DH^2 = \big(a^2+(a-x)^2\big)\cdot \frac{2a^2x^2}{(2a-x)^2},
-$$</p>
-<p>$$
-BD^2\,EH^2 = 2a^2 \cdot \frac{x^2\big(a^2+(a-x)^2\big)}{(2a-x)^2}.
-$$</p>
-<p>These are equal term-by-term, hence:</p>
-<p>$$
-BE^2\,DH^2 = BD^2\,EH^2.
-$$</p>
-<p>Since all lengths are nonnegative, this implies:</p>
-<p>$$
-BE\cdot DH = BD\cdot EH.
-$$</p>
-<hr/>
-<h4 id="Outline-for-$BF%5Ccdot-HE-=-GE%5Ccdot-BH$">Outline for $BF\cdot HE = GE\cdot BH$<a class="anchor-link" href="#Outline-for-$BF%5Ccdot-HE-=-GE%5Ccdot-BH$">¶</a></h4><p>The Lean proof follows the same algebraic template:</p>
-<ol>
-<li>Express $F,G,H$ in coordinates (with $F$ from the projection formula).</li>
-<li>Convert distances into squared distances using the complex norm.</li>
-<li>Clear denominators (notably $(2a-x)$ and $(x-a)^2+a^2$).</li>
-<li>Reduce the final expression to a polynomial identity in $a$ and $x$.</li>
+</li>
+<li><p><strong>How $F$ is found.</strong> $F$ is the orthogonal projection of $E$ onto the line $AB$. In coordinates this uses the standard projection formula
+$$
+F=B+t(A-B),\quad t=\frac{\langle E-B,\,A-B\rangle}{\langle A-B,\,A-B\rangle}.
+$$
+This yields explicit coordinates for $F$, which Lean uses algebraically rather than geometrically.</p>
+</li>
+<li><p><strong>Second identity.</strong> Compute squared lengths:
+$BE^2=a^2+(a-x)^2$, $BD^2=2a^2$,
+$DH^2=\tfrac{2a^2x^2}{(2a-x)^2}$, and
+$EH^2=\tfrac{x^2(a^2+(a-x)^2)}{(2a-x)^2}$.
+Thus $BE^2\,DH^2=BD^2\,EH^2$, implying $BE\cdot DH=BD\cdot EH$.</p>
+</li>
+<li><p><strong>First identity.</strong> The proof is analogous: substitute the explicit $F,G,H$ coordinates, expand squared distances, clear denominators, and simplify. The Lean proof follows the same algebraic pattern as the second identity, so we omit the details.</p>
+</li>
 </ol>
-<p>In Lean, this is reflected by the sequence:</p>
-<ul>
-<li><code>unfold</code> the point definitions,</li>
-<li><code>norm_num</code> to expand norms and real/imaginary parts,</li>
-<li><code>field_simp</code> to clear denominators,</li>
-<li><code>ring</code>/<code>nlinarith</code> (and <code>grind</code> in the Aristotle output) to finish the algebra.</li>
-</ul>
-<p>This is why the proof is algebraically correct even though it is not a geometric (synthetic) proof: the identities become polynomial equalities in $a$ and $x$ once the configuration is coordinatized.</p>
 </blockquote>
+<h4 id="Input-file-(informal-statement)---@polygon_ratio_problem.lean">Input file (informal statement) - <code>@polygon_ratio_problem.lean</code><a class="anchor-link" href="#Input-file-(informal-statement)---@polygon_ratio_problem.lean">¶</a></h4><p>This is the informal problem text sent to Aristotle (comments start with <code>--</code>):</p>
+<div class="highlight"><pre><span></span><span class="c1">-- Polygon ratio problem (informal statement for Aristotle)</span>
+<span class="c1">-- In trapezoid ABCD, AD ∥ BC, ∠C = 90°, and BC = CD.</span>
+<span class="c1">-- Point E lies on CD with DE = AD. Through E draw EF ⟂ AB with F the foot.</span>
+<span class="c1">-- Draw BD; it meets AE and EF at G and H, respectively. Prove:</span>
+<span class="c1">-- 1) BF * HE = GE * BH</span>
+<span class="c1">-- 2) BE * DH = BD * EH</span>
+</pre></div>
+<h4 id="Aristotle-output-(formal-Lean-proof)---polygon_ratio_problem_aristotle.lean">Aristotle output (formal Lean proof) - <code>polygon_ratio_problem_aristotle.lean</code><a class="anchor-link" href="#Aristotle-output-(formal-Lean-proof)---polygon_ratio_problem_aristotle.lean">¶</a></h4><p>Below are key parts of the generated Lean file with <strong>line numbers</strong>, each followed by extended commentary that explains the Lean keywords and how the proof progresses.</p>
+<p><strong>Lean output (lines 1-53):</strong></p>
+<div class="highlight"><pre><span></span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<span class="cm"> 2: This file was generated by Aristotle.</span>
+<span class="cm"> 3: </span>
+<span class="cm"> 4: Lean version: leanprover/lean4:v4.24.0</span>
+<span class="cm"> 5: Mathlib version: f897ebcf72cd16f89ab4577d0c826cd14afaafc7</span>
+<span class="cm"> 6: This project request had uuid: defb37a9-102b-470c-8442-c3396eccd211</span>
+<span class="cm"> 7: </span>
+<span class="cm"> 8: To cite Aristotle, tag @Aristotle-Harmonic on GitHub PRs/issues, and add as co-author to commits:</span>
+<span class="cm"> 9: Co-authored-by: Aristotle (Harmonic) &lt;aristotle-harmonic@harmonic.fun&gt;</span>
+<span class="cm">10: -/</span>
+<span class="mi">11</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">12</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<span class="cm">13: We define the points of the trapezoid in the complex plane and prove the two required geometric identities using algebraic simplification of the distances.</span>
+<span class="cm">14: The points are defined as follows:</span>
+<span class="cm">15: - C is the origin (0,0).</span>
+<span class="cm">16: - B is at (a,0).</span>
+<span class="cm">17: - D is at (0,a).</span>
+<span class="cm">18: - A is at (x,a).</span>
+<span class="cm">19: - E is at (0, a-x).</span>
+<span class="cm">20: - F is the projection of E onto AB.</span>
+<span class="cm">21: - G is the intersection of AE and BD.</span>
+<span class="cm">22: - H is the intersection of EF and BD.</span>
+<span class="cm">23: </span>
+<span class="cm">24: We prove:</span>
+<span class="cm">25: 1. BF * HE = GE * BH (`polygon_ratio_1`)</span>
+<span class="cm">26: 2. BE * DH = BD * EH (`polygon_ratio_2`)</span>
+<span class="cm">27: -/</span>
+<span class="mi">28</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">29</span><span class="o">:</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">Mathlib</span>
+<span class="mi">30</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">31</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">linter.mathlibStandardSet</span><span class="w"> </span><span class="n">false</span>
+<span class="mi">32</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">33</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">BigOperators</span>
+<span class="mi">34</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Real</span>
+<span class="mi">35</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Nat</span>
+<span class="mi">36</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Classical</span>
+<span class="mi">37</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">scoped</span><span class="w"> </span><span class="n">Pointwise</span>
+<span class="mi">38</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">39</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">maxHeartbeats</span><span class="w"> </span><span class="mi">0</span>
+<span class="mi">40</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">maxRecDepth</span><span class="w"> </span><span class="mi">4000</span>
+<span class="mi">41</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">synthInstance.maxHeartbeats</span><span class="w"> </span><span class="mi">20000</span>
+<span class="mi">42</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">synthInstance.maxSize</span><span class="w"> </span><span class="mi">128</span>
+<span class="mi">43</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">44</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">relaxedAutoImplicit</span><span class="w"> </span><span class="n">false</span>
+<span class="mi">45</span><span class="o">:</span><span class="w"> </span><span class="kd">set_option</span><span class="w"> </span><span class="n">autoImplicit</span><span class="w"> </span><span class="n">false</span>
+<span class="mi">46</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">47</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kn">section</span>
+<span class="mi">48</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">49</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<span class="cm">50: Definitions of points A, B, C, D, E, F, G, H in the complex plane for the trapezoid problem.</span>
+<span class="cm">51: -/</span>
+<span class="mi">52</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">Complex</span>
+<span class="mi">53</span><span class="o">:</span><span class="w"> </span>
+</pre></div>
+<p><strong>Commentary (lines 1-53):</strong> This block is metadata and explanatory prose rather than executable code. The multi-line comment delimiters <code>/- ... -/</code> mark documentation. The header records the Lean and mathlib versions, which matter because tactics and lemmas can change across releases. The project UUID identifies the Aristotle run. The next comment describes the coordinate model and names the two target identities, giving the reader a roadmap before formal definitions begin. The <code>import Mathlib</code> and <code>set_option</code> lines also live in this block: they load the library and tune the proof engine (heartbeats, recursion depth, instance search limits) so algebraic automation can complete. This section moves the proof from narrative intent to a precise plan.</p>
+<p><strong>Lean output (lines 54-76):</strong></p>
+<div class="highlight"><pre><span></span><span class="mi">54</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pC</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="mi">55</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pD</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">a</span>
+<span class="mi">56</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pB</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">a</span>
+<span class="mi">57</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pA</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">a</span>
+<span class="mi">58</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pE</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">x</span><span class="o">)</span>
+<span class="mi">59</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">60</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pF</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span>
+<span class="mi">61</span><span class="o">:</span><span class="w">   </span><span class="k">let</span><span class="w"> </span><span class="n">AB</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">pA</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">pB</span><span class="w"> </span><span class="n">a</span>
+<span class="mi">62</span><span class="o">:</span><span class="w">   </span><span class="k">let</span><span class="w"> </span><span class="n">EB</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">pE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">pB</span><span class="w"> </span><span class="n">a</span>
+<span class="mi">63</span><span class="o">:</span><span class="w">   </span><span class="k">let</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">(</span><span class="n">EB</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">star</span><span class="w"> </span><span class="n">AB</span><span class="o">)</span><span class="bp">.</span><span class="n">re</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="o">(</span><span class="n">AB</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">star</span><span class="w"> </span><span class="n">AB</span><span class="o">)</span><span class="bp">.</span><span class="n">re</span>
+<span class="mi">64</span><span class="o">:</span><span class="w">   </span><span class="n">pB</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">AB</span>
+<span class="mi">65</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">66</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pG</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="mi">2</span><span class="o">)</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="mi">2</span><span class="o">)</span>
+<span class="mi">67</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">68</span><span class="o">:</span><span class="w"> </span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">def</span><span class="w"> </span><span class="n">pH</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℂ</span><span class="w"> </span><span class="o">:=</span>
+<span class="mi">69</span><span class="o">:</span><span class="w">   </span><span class="k">let</span><span class="w"> </span><span class="n">den</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">x</span>
+<span class="mi">70</span><span class="o">:</span><span class="w">   </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="n">den</span><span class="o">)</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="o">(</span><span class="mi">2</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="bp">/</span><span class="w"> </span><span class="n">den</span><span class="o">)</span>
+<span class="mi">71</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">72</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<span class="cm">73: Prove that BF * HE = GE * BH in the configured trapezoid.</span>
+<span class="cm">74: -/</span>
+<span class="mi">75</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="n">Metric</span>
+<span class="mi">76</span><span class="o">:</span><span class="w"> </span>
+</pre></div>
+<p><strong>Commentary (lines 54-76):</strong> This block is the fully translated Lean version of the geometric setup. <code>noncomputable</code> and <code>open Complex</code> make complex-number geometry available. The <code>def</code> keyword introduces named definitions; here <code>pA</code>, <code>pB</code>, <code>pC</code>, <code>pD</code>, <code>pE</code>, <code>pF</code>, <code>pG</code>, <code>pH</code> are points encoded as complex numbers, with <code>I</code> the imaginary unit. <code>pF</code> encodes orthogonal projection using complex conjugation (<code>star</code>) and real parts (<code>.re</code>) as dot products. <code>pG</code> and <code>pH</code> are explicit intersection formulas. This is the precise coordinate model that the later algebraic proofs use.</p>
+<p><strong>Lean output (lines 77-92):</strong></p>
+<div class="highlight"><pre><span></span><span class="mi">77</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">polygon_ratio_1</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">ha</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">≠</span><span class="w"> </span><span class="mi">0</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">hx</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">≠</span><span class="w"> </span><span class="mi">0</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">hden</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">≠</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
+<span class="mi">78</span><span class="o">:</span><span class="w">   </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pB</span><span class="w"> </span><span class="n">a</span><span class="o">)</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pH</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pG</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pH</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pB</span><span class="w"> </span><span class="n">a</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
+<span class="mi">79</span><span class="o">:</span><span class="w">   </span><span class="n">unfold</span><span class="w"> </span><span class="n">pF</span><span class="w"> </span><span class="n">pE</span><span class="w"> </span><span class="n">pG</span><span class="w"> </span><span class="n">pH</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="bp">*;</span>
+<span class="mi">80</span><span class="o">:</span><span class="w">   </span><span class="n">unfold</span><span class="w"> </span><span class="n">pA</span><span class="w"> </span><span class="n">pB</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="bp">*;</span>
+<span class="mi">81</span><span class="o">:</span><span class="w">   </span><span class="n">norm_num</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">Complex.dist_eq</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.normSq</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.norm_def</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
+<span class="mi">82</span><span class="o">:</span><span class="w">   </span><span class="n">norm_num</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">Complex.normSq</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.div_re</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.div_im</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="bp">*;</span>
+<span class="mi">83</span><span class="o">:</span><span class="w">   </span><span class="n">field_simp</span><span class="bp">;</span>
+<span class="mi">84</span><span class="o">:</span><span class="w">   </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sqrt_mul</span><span class="w"> </span><span class="bp">&lt;|</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">positivity</span><span class="o">,</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sqrt_mul</span><span class="w"> </span><span class="bp">&lt;|</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">positivity</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
+<span class="mi">85</span><span class="o">:</span><span class="w">   </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sqrt_mul</span><span class="w"> </span><span class="bp">&lt;|</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">positivity</span><span class="o">,</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sqrt_mul</span><span class="w"> </span><span class="bp">&lt;|</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">positivity</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="bp">;</span><span class="w"> </span><span class="n">ring</span><span class="bp">;</span>
+<span class="mi">86</span><span class="o">:</span><span class="w">   </span><span class="n">grind</span>
+<span class="mi">87</span><span class="o">:</span><span class="w"> </span>
+<span class="mi">88</span><span class="o">:</span><span class="w"> </span><span class="c">/-</span>
+<span class="cm">89: Prove that BE * DH = BD * EH in the configured trapezoid.</span>
+<span class="cm">90: -/</span>
+<span class="mi">91</span><span class="o">:</span><span class="w"> </span><span class="kn">open</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="n">Metric</span>
+<span class="mi">92</span><span class="o">:</span><span class="w"> </span>
+</pre></div>
+<p><strong>Commentary (lines 77-92):</strong> <code>theorem</code> introduces a proposition to prove. The objective statement is on line 77: it asserts the first ratio identity as an equality of distances. The hypotheses <code>ha</code>, <code>hx</code>, and <code>hden</code> assert non-degeneracy so denominators are safe (e.g., <code>2a-x ≠ 0</code>). The proof enters tactic mode with <code>by</code>. <code>unfold</code> expands definitions, turning geometric objects into explicit algebra. <code>norm_num</code> expands norms and distances into algebraic expressions. <code>field_simp</code> clears denominators. <code>rw</code> is the rewrite tactic: it replaces the current goal using a known equality (here, square-root identities), so expressions are put into a form that <code>ring</code> and <code>grind</code> can finish. This block advances the proof by reducing geometry to a polynomial identity and closing it mechanically.</p>
+<p><strong>Lean output (lines 93-101):</strong></p>
+<div class="highlight"><pre><span></span><span class="w"> </span><span class="mi">93</span><span class="o">:</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">polygon_ratio_2</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ℝ</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">ha</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">≠</span><span class="w"> </span><span class="mi">0</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">hx</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">≠</span><span class="w"> </span><span class="mi">0</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">hden</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">≠</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span>
+<span class="w"> </span><span class="mi">94</span><span class="o">:</span><span class="w">   </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pB</span><span class="w"> </span><span class="n">a</span><span class="o">)</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pD</span><span class="w"> </span><span class="n">a</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pH</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pD</span><span class="w"> </span><span class="n">a</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pB</span><span class="w"> </span><span class="n">a</span><span class="o">)</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">(</span><span class="n">pE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">pH</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
+<span class="w"> </span><span class="mi">95</span><span class="o">:</span><span class="w">   </span><span class="n">unfold</span><span class="w"> </span><span class="n">pB</span><span class="w"> </span><span class="n">pD</span><span class="w"> </span><span class="n">pE</span><span class="w"> </span><span class="n">pH</span><span class="bp">;</span>
+<span class="w"> </span><span class="mi">96</span><span class="o">:</span><span class="w">   </span><span class="n">norm_num</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">Complex.normSq</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.norm_def</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.dist_eq</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
+<span class="w"> </span><span class="mi">97</span><span class="o">:</span><span class="w">   </span><span class="n">norm_cast</span><span class="bp">;</span><span class="w"> </span><span class="n">norm_num</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">Complex.normSq</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.div_re</span><span class="o">,</span><span class="w"> </span><span class="n">Complex.div_im</span><span class="o">,</span><span class="w"> </span><span class="n">ha</span><span class="o">,</span><span class="w"> </span><span class="n">hx</span><span class="o">,</span><span class="w"> </span><span class="n">hden</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="bp">;</span><span class="w"> </span><span class="n">ring</span><span class="bp">;</span>
+<span class="w"> </span><span class="mi">98</span><span class="o">:</span><span class="w">   </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sqrt_mul</span><span class="o">,</span><span class="w"> </span><span class="bp">←</span><span class="w"> </span><span class="n">Real.sqrt_mul</span><span class="w"> </span><span class="o">]</span><span class="bp">;</span>
+<span class="w"> </span><span class="mi">99</span><span class="o">:</span><span class="w">   </span><span class="bp">·</span><span class="w"> </span><span class="n">grind</span><span class="bp">;</span>
+<span class="mi">100</span><span class="o">:</span><span class="w">   </span><span class="bp">·</span><span class="w"> </span><span class="n">positivity</span><span class="bp">;</span>
+<span class="mi">101</span><span class="o">:</span><span class="w">   </span><span class="bp">·</span><span class="w"> </span><span class="n">nlinarith</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">sq_nonneg</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">]</span>
+</pre></div>
+<p><strong>Commentary (lines 93-101):</strong> <code>polygon_ratio_2</code> mirrors the first proof. <code>norm_cast</code> resolves coercions between numeric types. <code>positivity</code> discharges non-negativity side conditions required for square roots. <code>nlinarith</code> solves remaining nonlinear arithmetic constraints. Conceptually, this block repeats the same algebraic pipeline: expand distances, clear denominators, and verify the polynomial equality. It completes the proof of the second identity under the same non-degeneracy assumptions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f3f05ab0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 </div>
 </div>
 </div>
@@ -7764,8 +7811,18 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Note on proof style.</strong> In this problem Aristotle proceeds by coordinates model, so the proof is essentially algebraic and very similar to the essence of what we did in Part 2. However it should be pointed out that in other plane geometry problems it can use more geometric, angle-chasing reasoning. For example, in the Harmonic IMO 2025 P2 formalization [IMO2025P2], the proof structure reflects angle relations and cocyclic arguments rather than pure coordinate algebra. This highlights that Aristotle can deploy higher-level strategies beyond the coordinate approach used here.</p>
-<p>Furthermore, as we have discussed at the beginning of the part, Aristotle together with ChatGPT5.2 Pro have become a powerful tools within the methamaticians.</p>
+<p><strong>Note on proof style.</strong> In this problem Aristotle proceeds by a coordinate model, so the proof is essentially algebraic and very similar in spirit to Part 2. That choice is not a rule of Aristotle; it is just the strategy selected for this run. In contrast, Newclid (Part 6) is designed to stay in the geometry domain and produce a synthetic-style trace from diagram constraints. So the key difference to keep in mind is not <em>correctness</em> but <em>style of reasoning and output</em>: Aristotle outputs a Lean proof (general formal system), while Newclid outputs a geometry-specific derivation. For other problems, Aristotle can also use geometric/angle-chasing reasoning, as seen in the IMO 2025 P2 formalization [IMO2025P2], but here it stayed with coordinates for simplicity.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2293f015">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>All in all tools like lean MathLib (lean language and thereom database) + Aristotle (LLM with RL training in lean) + ChatGPT 5.2 Pro (and its competitor frontier LLM) have become the most cutting edge AI tools for mathematicians, which has revealed a frontier of realization of mathematical AGI.</p>
 </div>
 </div>
 </div>
@@ -7777,15 +7834,16 @@ $$</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="References">References<a class="anchor-link" href="#References">¶</a></h3><ul>
-<li>[ARISTOTLE] Harmonic. "Aristotle" (web interface). Summary: Web interface and API access for the Aristotle prover. URL: <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a></li>
-<li>[E124-6H] 36Kr (2025-11-??). "AI solved a 30-year math problem in 6 hours. Terence Tao: ChatGPT and others failed." Summary: Coverage of a simplified Erdős #124 variant solved with Aristotle. URL: <a href="https://eu.36kr.com/en/p/3576638922980231">https://eu.36kr.com/en/p/3576638922980231</a></li>
+<li>[ARISTOTLE] Harmonic. "Aristotle" (web interface). Summary: Web interface and API access for the Aristotle prover. URL: <a href="https://aristotle.harmonic.fun">https://aristotle.harmonic.fun</a>; arxiv link of the paper at <a href="https://arxiv.org/pdf/2510.01346">https://arxiv.org/pdf/2510.01346</a></li>
+<li>[E124-6H] 36Kr (2025-11-). "AI solved a 30-year math problem in 6 hours. Terence Tao: ChatGPT and others failed." Summary: Coverage of a simplified Erdős #124 variant solved with Aristotle. URL: <a href="https://eu.36kr.com/en/p/3576638922980231">https://eu.36kr.com/en/p/3576638922980231</a></li>
 <li>[E1026-48H] 36Kr (2025-12-14). "Terence Tao is shocked: The “pit” dug by a mathematician in 1975 was filled by AI and netizens around the world in just 48 hours." Summary: Coverage of Erdős #1026 and an Aristotle-assisted Lean step. URL: <a href="https://eu.36kr.com/en/p/3596176018898947">https://eu.36kr.com/en/p/3596176018898947</a></li>
 <li>[HN-MSI] Harmonic News (2025). "Harmonic announces mathematician sponsorships to accelerate mathematical superintelligence." Summary: Harmonic’s announcement and claims about Aristotle usage. URL: <a href="https://harmonic.fun/news">https://harmonic.fun/news</a></li>
 <li>[HN-IMO] Harmonic News (2025-07-28). "Aristotle Achieves Gold Medal-Level Performance at the International Mathematical Olympiad". Summary: Harmonic announcement of IMO 2025 results and formal verification. URL: <a href="https://harmonic.fun/news">https://harmonic.fun/news</a></li>
 <li>[BW-IMO] Business Wire (2025-07-28). "Harmonic Announces IMO Gold Medal-Level Performance &amp; Launch of First Mathematical Superintelligence (MSI) AI App." Summary: Press release on IMO 2025 result and Aristotle launch. URL: <a href="https://www.businesswire.com/news/home/20250728394917/en/Harmonic-Announces-IMO-Gold-Medal-Level-Performance-Launch-of-First-Mathematical-Superintelligence-MSI-AI-App">https://www.businesswire.com/news/home/20250728394917/en/Harmonic-Announces-IMO-Gold-Medal-Level-Performance-Launch-of-First-Mathematical-Superintelligence-MSI-AI-App</a></li>
 <li>[IMO2025P2] Harmonic AI (2025). "IMO 2025 P2 formalization (Lean)." Summary: Lean formalization file for IMO 2025 Problem 2. URL: <a href="https://github.com/harmonic-ai/IMO2025/blob/main/HarmonicLean/IMO2025P2.txt">https://github.com/harmonic-ai/IMO2025/blob/main/HarmonicLean/IMO2025P2.txt</a></li>
-<li>[ERDOS-SOTA] Terence Tao et al. (2025). "Erdos Problems" (overview). Summary: Community-maintained status tracker for Erdos problems. URL: <a href="https://github.com/teorth/erdosproblems?tab=readme-ov-file">https://github.com/teorth/erdosproblems?tab=readme-ov-file</a></li>
+<li>[ERDOS-SOTA] Terence Tao et al. (2025). "Erdos Problems" (overview). Summary: Community-maintained status tracker for Erdos problems. URL: <a href="https://github.com/teorth/erdosproblemstab=readme-ov-file">https://github.com/teorth/erdosproblemstab=readme-ov-file</a></li>
 <li>[ERDOS-AI] Terence Tao et al. (2025). "AI contributions to Erdos problems" (wiki). Summary: Notes on AI involvement in Erdos problem progress. URL: <a href="https://github.com/teorth/erdosproblems/wiki/AI-contributions-to-Erd%C5%91s-problems">https://github.com/teorth/erdosproblems/wiki/AI-contributions-to-Erd%C5%91s-problems</a></li>
+<li>[LEAN] Lean Prover (2025). "Lean Theorem Prover" (official site). Summary: Official documentation and downloads. URL: <a href="https://leanprover.github.io/">https://leanprover.github.io/</a></li>
 </ul>
 </div>
 </div>

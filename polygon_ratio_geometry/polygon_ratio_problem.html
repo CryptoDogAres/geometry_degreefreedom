@@ -7508,26 +7508,8 @@ a.anchor-link {
     white-space: normal;
   }
 </style>
-<!-- End of mermaid configuration --><style>
-.back-to-index {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 9999;
-  padding: 10px 14px;
-  background: #111;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-}
-.back-to-index:hover { background: #333; }
-</style>
-</head>
+<!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<a class="back-to-index" href="../index.html">Back to index</a>
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7540,12 +7522,12 @@ Date: First Version Jan 12, 2026
 Last update Jan 25, 2026</p>
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>During the Christmas holidays, a basic geometry proof problem showed up in my class alumni chat (Figure 1 is the original screenshot from classmate Lin He). He asked about the second question as the first of the two is almost trivial, and that set the whole discussion in motion. I have always liked Euclidean geometry and have exceled in most of teenage subject competitions (I don't recall failed to proof any of the geometry problems in my competition career). Problems like this rarely stop at one proof. Draw one line and a ratio drops out; draw another and a different argument appears. What follows is a cleaned collection: one quick sine-law proof, several synthetic proofs, an analytic-geometry proof (with help of ChatGPT 5.2-thinking for easy life, edited for clarity), and a one-parameter generalization that reveals deeper structure. I hope it gives younger students a sense of how much structure a single diagram can hide. I also plan to use this pilot problem to introduce the SOTA artificial intelligent ways of solving such problems in seperate notes.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="../original_image.jpg" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="../original_image.jpg" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 1: The original problem (photo from the chat).</em></p>
 </div>
 <p>Let me first restate the problem in words and redraw the diagram more cleanly.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="original_problem_redraw.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="original_problem_redraw.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 2: A clean redraw in GeoGebra.</em></p>
 </div>
 <p>Problem statement (translated). In trapezoid $ABCD$, $AD\parallel BC$, $\angle C=90^\circ$, and $BC=CD$. Point $E$ lies on $CD$, and $DE=AD$. Through $E$, draw $EF\perp AB$ with $F$ as the foot of the perpendicular. Draw $BD$; it intersects $AE$ and $EF$ at points $G$ and $H$, respectively. Prove:</p>
@@ -7565,7 +7547,7 @@ Last update Jan 25, 2026</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Part-1.-Synthetic-geometry-(auxiliary-lines)">Part 1. Synthetic geometry (auxiliary lines)<a class="anchor-link" href="#Part-1.-Synthetic-geometry-(auxiliary-lines)">¶</a></h2><p>The basic equal angles and lengths are shown in Figure 3.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="original_problem_basic_property.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="original_problem_basic_property.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 3: Basic angle and length relations.</em></p>
 </div>
 <p>Question (1) is a warm-up; it follows from similar triangles visible in Figure 3. For part (2), a quick start is the sine law. For a triangle $ABC$ with side lengths $a,b,c$ opposite vertices $A,B,C$, we have
@@ -7576,7 +7558,7 @@ This gives Proof 0 immediately.</p>
 </blockquote>
 <p>To avoid assuming the sine law, I drew auxiliary lines. Rather than separate diagrams per proof, the next figure collects all extra points. Each added point carries a subscript that matches the proof number (for example, $D_1$ is used only in Proof 1).</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="original_problem_with_proof.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="original_problem_with_proof.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 4: All auxiliary lines used in the synthetic proofs.</em></p>
 </div>
 <p>Below are brief proof sketches. Each can be completed as a standard middle-school geometry exercise.</p>
@@ -7619,7 +7601,7 @@ This gives Proof 0 immediately.</p>
 <p>A note on degrees of freedom: the only adjustable angle in the original configuration is $\alpha&lt;45^\circ$. If $\alpha=45^\circ$, then $H$ and $B$ overlap and the result is trivial. If $\alpha&gt;45^\circ$, then $H$ lies on the extension of $DB$, and $E$ lies on the extension of $DC$. The roles of $B$ and $H$ swap, and the same style of arguments still works. Similarly, one can show that a ray from $B$ to $E$ reflects across $DE$ and reaches $H$.</p>
 <h3 id="Other-proofs">Other proofs<a class="anchor-link" href="#Other-proofs">¶</a></h3><p>By now we should be done. However, if you followed the solutions so far, you likely noticed two patterns: (1) we have essentially drawn a square $BDB_{10}D_1$ in Figure 4, and many proofs are based on various points on this square; (2) polygon $ABED$ is symmetric about $BD$, which is why we could leverage $AB=BE$ and $AH=HE$ in several steps. It follows that any proof obtained by extending lines in the original diagram has a mirror proof across $BD$. These are indicated again by subscripts, and they give Proofs 12, 13, 14, 15, and 16. They form the symmetric rectangle $BDB_{15}D_{12}$ and are shown in Figure 5.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="original_problem_with_proof_ext.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="original_problem_with_proof_ext.png" style="height:500px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 5: Five additional symmetric proofs.</em></p>
 </div>
 <p>Finally, several proofs such as Proofs 3, 5, 6, and 7 focus on what happens inside polygon $ABED$. Each has a symmetric counterpart (Proofs 17, 18, 19, 20) reflected across $BD$. For clarity, these are not displayed.</p>
@@ -7662,7 +7644,7 @@ $$BE\cdot DH=\sqrt{1+t^2}\cdot \frac{1-t}{t+1}\sqrt{2}=BD\cdot EH.$$</p>
 <h2 id="Part-3.-One-more-degree-of-freedom-(ellipse-view)">Part 3. One more degree of freedom (ellipse view)<a class="anchor-link" href="#Part-3.-One-more-degree-of-freedom-(ellipse-view)">¶</a></h2><p>The $45^\circ$ angle is special. If we relax that angle, the clean right-angle structure disappears, but the problem still has a simple geometric core: reflection on an ellipse. The key insight is to generalize the reflection: the ray from $B$ to $E$ reflects across $DE$ and heads to $H$. This reveals an ellipse that reflects light from one focus to the other at any point $E$ on it. That reflection property is equivalent to the constant-sum-of-distances definition of an ellipse.</p>
 <h3 id="Construction">Construction<a class="anchor-link" href="#Construction">¶</a></h3><p>Let $O$ be the ellipse with foci $B$ and $H$. Take a point $A$ on $O$, with $A$ closer to $H$. Draw the tangent line $AD$ at $A$, and let it intersect $BH$ at $D$. Take a point $E$ on $O$, the reflection of $A$ with respect to the major axis. Through $E$ draw the line $D-E-C$, and choose $C$ so that $BC\parallel AD$. Draw $EH$, and let it intersect $AB$ at $F$. In general, $\angle BFE$ is not $90^\circ$, but when $\theta=45^\circ$, $\angle BFE=90^\circ$. The resulting shape is shown in Figure 6.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="ellipse_view.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="ellipse_view.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 6: Ellipse construction with foci $B$ and $H$.</em></p>
 </div>
 <h3 id="Proof-3.1-(reflection-property)">Proof 3.1 (reflection property)<a class="anchor-link" href="#Proof-3.1-(reflection-property)">¶</a></h3><blockquote>
@@ -7672,14 +7654,14 @@ $$\frac{EH}{HD}=\frac{BE}{BD}.$$</p>
 $$\frac{DB}{BE}=\frac{DH'}{EH'}=\frac{DH}{EH},$$
 which is the same proportion.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="ellipse_view_wproof.png" style="height:350px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="ellipse_view_wproof.png" style="height:350px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 7: Reflection proof for the ellipse construction.</em></p>
 </div>
 </blockquote>
 <p>In this generalized setup, $EF$ is no longer perpendicular to $AB$. In fact, the perpendicular line through $E$ intersects $AB$ and $DB$ at $F'$ and $H'$, as shown in Figure 7. Here $H'$ differs from $H$ and does not satisfy the ratio property. The original problem is special because the $45^\circ$ angles create a surplus of right angles. The single degree of freedom here is essentially the ellipse eccentricity, with $A$ and $C$ determined by the right angle $\angle ADC$. When the ellipse degenerates to a circle (foci coincide), the identity becomes obvious.</p>
 <p>In this setup, points $A$, $F$, $C$, and $G$, and the lines through them, are not even essential; only the foci $B$ and $H$, and the tangent line $DE$, are necessary, with $D$ on the major axis. This shows the true simplicity of the original problem, as shown in Figure 8 with the pure geometric approach.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="./ellipse_view_simple.png" style="height:300px; display:block; margin:0 auto;"/>
+<img alt="Image" src="./ellipse_view_simple.png" style="height:300px; display:block; margin:0 auto;"/>
 <p><em>Figure 8: The simplified ellipse setup, which reveals the essence of the original problem.</em></p>
 </div>
 <p>The diagram also yields a second, similarity-based proof.</p>
@@ -7688,7 +7670,7 @@ which is the same proportion.</p>
 </blockquote>
 <p>Interestingly, we can also compute the ratio analytically in the ellipse model. It turns out to be simplest using the de La Hire (eccentric-angle) parameter, revealing the geometry transparent.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="ellipse_view_simple_param.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="ellipse_view_simple_param.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 9: de La Hire parameters and outer-circle view with $E$, $E'$, and $E''$.</em></p>
 </div>
 <h3 id="Proof-3.3-(de-La-Hire-+-outer-circle)">Proof 3.3 (de La Hire + outer circle)<a class="anchor-link" href="#Proof-3.3-(de-La-Hire-+-outer-circle)">¶</a></h3><blockquote>
@@ -7741,7 +7723,7 @@ accounts only for the sum. The real content is that each focus-to-tangent distan
 </blockquote>
 <p>Finally, there is a fun fact. Note that the feet of the perpendiculars drawn in Proof 3.2, $S$ and $T$, are exactly the intersection points of the tangent line $DE$ with the ellipse's outer circle. A quick proof is to show that $OT=a$ (Figure 10). Let $H'$ be the reflection of $H$ across $DE$; then $T$ is the midpoint of $HH'$. Since $O$ is the midpoint of $BH$, we have $OT=\tfrac{1}{2}BH'$. But $BH'=BE+EH=2a$, hence $OT=a$. The same reflection with $B$ gives $OS=a$, so the fun fact is that $S$ and $T$ are precisely the two intersections of $DE$ with the outer circle.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="ellipse_view_simple_param2.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="ellipse_view_simple_param2.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 10: additional properties of T and S</em></p>
 </div>
 </div>
@@ -7918,7 +7900,7 @@ So $BE$ reflects across $CD$ into $EF$.</br></p>
 Write $\mathbf{w}=\mathbf{w}_{\parallel}+\mathbf{w}_{\perp}$ relative to the plane $(OU,OV)$. Then $(\mathbf{u}\times\mathbf{v})\times\mathbf{w}_{\perp}=0$ (since $\mathbf{u}\times\mathbf{v}\parallel\mathbf{w}_{\perp}$) and $\mathbf{u}\cdot\mathbf{w}_{\perp}=\mathbf{v}\cdot\mathbf{w}_{\perp}=0$, so it suffices to assume $U,V,W$ are coplanar.
 By linearity of both $\times$ and $\cdot$ in each argument, scaling $\mathbf{u},\mathbf{v},\mathbf{w}$ by $a,b,c$ multiplies both sides by $abc$; hence it suffices to prove the unit case $\lvert\mathbf{u}\rvert=\lvert\mathbf{v}\rvert=\lvert\mathbf{w}\rvert=1$. Let $\alpha=\angle UOV$.</p>
 <div align="center">
-<img alt="No description has been provided for this image" src="triple_vector_thales_circle_safe.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
+<img alt="Image" src="triple_vector_thales_circle_safe.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 11: Geometric property of the triple vector formula.</em></p>
 </div>
 <p>For the plane geometry, refer to Figure 11. Draw the circle with diameter $OW$. Let it meet rays $OU,OV$ again at $A,B$. By Thales, $\angle OAW=\angle OBW=90^\circ$, hence $OA=\mathbf{u}\cdot\mathbf{w}$ and $OB=\mathbf{v}\cdot\mathbf{w}$.
