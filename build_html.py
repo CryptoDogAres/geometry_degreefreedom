@@ -25,6 +25,18 @@ H3_EM = 1.15
 H4_EM = 1.05
 IFRAME_HEIGHT_PX = 1000
 
+GISCUS_REPO = "CryptoDogAres/geometry_degreefreedom"
+GISCUS_REPO_ID = "R_kgDOQ45z8g"
+GISCUS_CATEGORY = "comments"
+GISCUS_CATEGORY_ID = "DIC_kwDOQ45z8s4C1jyb"
+GISCUS_MAPPING = "pathname"
+GISCUS_STRICT = "0"
+GISCUS_REACTIONS_ENABLED = "1"
+GISCUS_EMIT_METADATA = "0"
+GISCUS_INPUT_POSITION = "bottom"
+GISCUS_THEME = "preferred_color_scheme"
+GISCUS_LANG = "en"
+
 
 def _tag(text: str, tag: str) -> str:
     match = re.search(rf"<{tag}[^>]*>(.*?)</{tag}>", text, flags=re.DOTALL | re.IGNORECASE)
@@ -44,6 +56,43 @@ def _rewrite_src(body_html: str, base_dir: Path, repo_root: Path) -> str:
         return f'src="{rel.as_posix()}"'
 
     return re.sub(r'src="([^"]+)"', repl, body_html)
+
+
+def _giscus_snippet() -> str:
+    if not GISCUS_REPO_ID or not GISCUS_CATEGORY_ID:
+        return ""
+    return f"""
+<section id="comments" class="giscus-wrapper">
+  <h2>Comments</h2>
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="{GISCUS_REPO}"
+    data-repo-id="{GISCUS_REPO_ID}"
+    data-category="{GISCUS_CATEGORY}"
+    data-category-id="{GISCUS_CATEGORY_ID}"
+    data-mapping="{GISCUS_MAPPING}"
+    data-strict="{GISCUS_STRICT}"
+    data-reactions-enabled="{GISCUS_REACTIONS_ENABLED}"
+    data-emit-metadata="{GISCUS_EMIT_METADATA}"
+    data-input-position="{GISCUS_INPUT_POSITION}"
+    data-theme="{GISCUS_THEME}"
+    data-lang="{GISCUS_LANG}"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+""".strip()
+
+
+def _inject_giscus(html_text: str) -> str:
+    snippet = _giscus_snippet()
+    if not snippet:
+        return html_text
+    if "giscus.app/client.js" in html_text:
+        return html_text
+    if "</body>" not in html_text:
+        return html_text
+    return html_text.replace("</body>", f"\n{snippet}\n</body>")
 
 
 def _add_heading_ids(body_html: str, prefix: str) -> tuple[str, list[tuple[int, str, str]]]:
@@ -271,7 +320,10 @@ def _convert_notebook(repo_root: Path, nb_rel: str, html_name: str) -> Path:
     ]
     print(f"Generating: {output_dir / html_name}")
     subprocess.run(cmd, check=True)
-    return output_dir / html_name
+    html_path = output_dir / html_name
+    html_text = html_path.read_text(encoding="utf-8", errors="ignore")
+    html_path.write_text(_inject_giscus(html_text), encoding="utf-8")
+    return html_path
 
 
 def main() -> int:
