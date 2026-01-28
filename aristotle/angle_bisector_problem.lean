@@ -75,7 +75,7 @@ lemma sbtw_of_angle_bisector_intersect (A B C D : P)
         exact ⟨ A, B -ᵥ A, fun p hp => by rcases hp with ( rfl | rfl | rfl ) <;> [ exact ⟨ 0, by simp +decide ⟩ ; exact ⟨ 1, by simp +decide ⟩ ; exact ⟨ h_bisector.2.choose, by rw [ ← h_bisector.2.choose_spec.2, vsub_vadd ] ⟩ ] ⟩;
       · simp_all +decide [ sub_eq_zero ];
         rintro rfl; simp_all +decide [ collinear_pair ];
-    · exact?
+    · exact h_D_on_BC
 
 /-
 If D is strictly between B and C, then sin(angle ADB) = sin(angle ADC).
@@ -184,7 +184,7 @@ theorem angle_bisector_theorem_corrected (A B C D : P)
         obtain ⟨ s, hs, hs' ⟩ := h_bisector.2;
         -- Since $r < 0$ and $s < 0$, we have $r • (C -ᵥ A) = s • (B -ᵥ A)$ implies $C -ᵥ A = \frac{s}{r} • (B -ᵥ A)$.
         have h_eq : C -ᵥ A = (s / r) • (B -ᵥ A) := by
-          simp_all +decide [ div_eq_inv_mul, MulAction.mul_smul ];
+          simp_all +decide [ div_eq_inv_mul, mul_smul ];
           rw [ inv_smul_smul₀ ( ne_of_lt hr ) ];
         refine' h_triangle _;
         rw [ collinear_iff_exists_forall_eq_smul_vadd ];

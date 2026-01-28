@@ -1,0 +1,6 @@
+-- Polygon ratio problem (informal statement for Aristotle)
+-- In trapezoid ABCD, AD ? BC, ?C = 90?, and BC = CD.
+-- Point E lies on CD with DE = AD. Through E draw EF ? AB with F the foot.
+-- Draw BD; it meets AE and EF at G and H, respectively. Prove:
+-- 1) BF * HE = GE * BH
+-- 2) BE * DH = BD * EH
