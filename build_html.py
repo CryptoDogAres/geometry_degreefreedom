@@ -161,7 +161,9 @@ def build_combined_html(html_paths: list[Path], output_path: Path, repo_root: Pa
             level = int(match.group(1))
             attrs = match.group(2) or ""
             inner = match.group(3) or ""
-            if not re.search(r"\bpart\b", inner, flags=re.IGNORECASE):
+            # Only add back-links for real Part headings (avoid "part 1" in chunk titles).
+            inner_text = re.sub(r"<[^>]*>", "", inner)
+            if not re.search(r"^\s*part\s+\d+(\b|[.:])", inner_text, flags=re.IGNORECASE):
                 return match.group(0)
             page_break = '<div class="page-break"></div>\n' if part_break_inserted else ""
             part_break_inserted = True
