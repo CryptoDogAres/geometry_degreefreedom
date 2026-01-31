@@ -25,6 +25,7 @@ H3_EM = 1.15
 H4_EM = 1.05
 IFRAME_HEIGHT_PX = 1000
 
+ENABLE_GISCUS = False
 GISCUS_REPO = "CryptoDogAres/geometry_degreefreedom"
 GISCUS_REPO_ID = "R_kgDOQ45z8g"
 GISCUS_CATEGORY = "comments"
@@ -85,6 +86,8 @@ def _giscus_snippet() -> str:
 
 
 def _inject_giscus(html_text: str) -> str:
+    if not ENABLE_GISCUS:
+        return html_text
     snippet = _giscus_snippet()
     if not snippet:
         return html_text
