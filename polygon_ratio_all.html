@@ -7752,7 +7752,7 @@ $$BE\cdot DH=\sqrt{1+t^2}\cdot \frac{1-t}{t+1}\sqrt{2}=BD\cdot EH.$$</p>
 <img alt="Image" src="polygon_ratio_geometry/ellipse_view.png" style="height:300px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 6: Ellipse construction with foci $B$ and $H$.</em></p>
 </div>
-<h3 id="section-polygon_ratio_problem-proof-3-1-reflection-property">Proof 3.1 (reflection property)</h3><blockquote>
+<h3 id="section-polygon_ratio_problem-proof-3-1-proving-the-equal-ratio-using-areflection-property-of-ellipse">Proof 3.1 Proving the equal ratio using areflection property of ellipse</h3><blockquote>
 <p>By the reflection property of the ellipse (a light ray from $B$ to $E$ reflects and then passes through $H$), we obtain
 $$\frac{EH}{HD}=\frac{BE}{BD}.$$</p>
 <p>Reflect $H$ across line $DE$ to $H_m$. Then
@@ -7831,6 +7831,15 @@ accounts only for the sum. The real content is that each focus-to-tangent distan
 <img alt="Image" src="polygon_ratio_geometry/ellipse_view_simple_param2.png" style="height:400px; width:auto; display:block; margin:0 auto;"/>
 <p><em>Figure 10: additional properties of T and S</em></p>
 </div>
+<p>Also these relations show $OT\parallel BE$ and $HE\parallel OS$. So $HE:OS=DH:DO$ and $OT:BE=DO:DB$. Since $OT=a=OS$, we get $HE:a=DH:DO$ and $a:BE=DO:DB$. So we immediately have two observations, stated below:</p>
+<h3 id="section-polygon_ratio_problem-corollary-2-revisit-geometrically">Corollary 2 revisit geometrically</h3><blockquote>
+<p>In Figure 9, $OE'\perp DE'$ and $HP\perp DE'$, so $HP:a=HP:OE'=DH:DO=HE:a$ (the last equality comes from the result above). Therefore $HE=HP=\operatorname{dist}(H,\ell')$; similarly $BE=\operatorname{dist}(B,\ell')$. In this analysis we do not use the parametric expression for $HE$ in terms of $\beta$ and $a,c$. This gives a direct geometric reason for the result stated in Corollary 2.</p>
+</blockquote>
+<p>Furthermore, we get another proof of the distance ratio in this part of the note.</p>
+<h3 id="section-polygon_ratio_problem-proof-3-5-yet-another-geometric-proof">Proof 3.5 (yet another geometric proof)</h3><blockquote>
+<p>Using the ratio conclusion from our geometric derivation, $HE:a=DH:DO$ and $a:BE=DO:DB$ give us $HE:DH=a:DO$ and $BE:DB=a:DO$ so $HE:BE=DH:DB$. Note that a:DO is simply $\cos\beta$ geometrically since $\angleOE'D$ is right, which fills the geometric explaination of Corollary 1 too and Proof 3.3.</p>
+</blockquote>
+<p>Properties explained in this part of the notes, such as Corollary 2, are not obvious to explain geometrically until one draws extensive auxiliary lines that start to utilize more known geometric property of an ellipse such as the the sum of the distance to foci is $\2a$. This is why the analytical approaches such as proof 3.3 are arguably very effective which heavily leverage algebraic derivations. Through our discussion, a prelude to the rich properties of the ellipse should be apparent emphasizing on using the geometric methods. Historically the ellipse, together with the parabola and the hyperbola, forms the family of conic sections and were studied extensively ever since the ancient greek Apollonius [CONICS-WIKIPEDIA]. Conics found its particular importance in planetary physics since Kepler discovered that planets follow such trajectories. The geometric approaches to the ellipse here echo Isaac Newton's way of proving Kepler's laws from universal gravity proportional to $\hat{\mathbf{r}}/r^2$. For interested readers, see the summary of geometric interpretations of these coordinate-free proofs in [KEPLER-TEACH]. All the geometric properties we concluded in this part can be explained relatively straightforwardly using a parametric representation of the ellipse (whether polar or the traditional Cartesian form), though one coordinate choice can make the representation much easier than another. Again, our two routes to Corollary 2 provide more flavors on the comparisons between analytic approach and the pure geometry approach. The geometric approach reveals a different kind of insight into the subject, often leads to a stronger AHA moment and feels obvious only when the "imaginary" auxiliary lines and circles are discovered.</p>
 </div>
 </div>
 </div>
@@ -8065,6 +8074,7 @@ In short, we used the multilinearity of the dot and cross products (it is enough
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="section-polygon_ratio_problem-references">References</h3><ul>
+<li>[CONICS-WIKIPEDIA] "Conic section." Wikipedia. Summary: Overview of conic sections and their standard definitions. URL: <a href="https://en.wikipedia.org/wiki/Conic_section">https://en.wikipedia.org/wiki/Conic_section</a></li>
 <li>[CROSS-PRODUCT] Gibbs/Heaviside (1881). "Cross product." Summary: Notation for dot/cross products introduced in 1881. URL: <a href="https://en.wikipedia.org/wiki/Cross_product">https://en.wikipedia.org/wiki/Cross_product</a></li>
 <li>[EPSTEIN-DG] Epstein (2013~2014). "Differential Geometry Minicourse." Summary: Minicourse notes associated with a 2013 workshop; book version appeared in 2014. URL: <a href="https://marceloepstein.weebly.com/uploads/1/2/8/4/12849112/dg_minicourse.pdf">https://marceloepstein.weebly.com/uploads/1/2/8/4/12849112/dg_minicourse.pdf</a> (context: <a href="https://www.isbn.de/buch/9783319357140/differential-geometry">https://www.isbn.de/buch/9783319357140/differential-geometry</a>)</li>
 <li>[EUCLID-VIDEO] Syversen (2025-09-18). "Euclid's ruler-and-compass constructions." YouTube. Summary: Video on the role of straightedge-and-compass constructions in Euclid. URL: <a href="https://youtu.be/M-MgQC6z3VU">https://youtu.be/M-MgQC6z3VU</a></li>
